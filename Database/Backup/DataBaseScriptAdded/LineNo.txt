@@ -1,0 +1,5 @@
+ create table public."LineNo"(
+ "Id" serial primary key,
+ "LineNoName" character varying(100)
+
+)

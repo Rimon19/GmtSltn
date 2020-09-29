@@ -1,0 +1,45 @@
+CREATE TABLE public."EmployeeInfo"
+(
+    "Id"  serial primary key,
+    "EmployeeCode" character varying(50),
+    "EmployeeFirstName" character varying(100),
+    "EmployeeMiddleName" character varying(100),
+    "EmployeeLastName" character varying(100),
+    "EmployeeNameBangla" character varying(100),
+    "FathersName" character varying(100),
+    "FathersNameBangla" character varying(100),
+    "MothersName" character varying(100),
+    "MothersNameBangla"character varying(100),
+    "Sex" character varying(50),
+    "BirthPlace" character varying(100),
+    "DateofBirth" character varying(100),
+    "Age"character varying(50),
+    "ReligionId" integer,
+    "MaritalStatus" character varying(50),
+    "BloodGroupId" integer,
+    "Nationality" character varying(50),
+    "NationalId" integer,
+    "PassportNo" integer,
+    "EmployeeCategoryId" integer,
+    "DesignationLebelId" integer,
+    "DesignationId" integer,
+    "FunctionalSuperiorId" integer,
+    "AdminSuperiorId" integer,
+    "IdCardNo" integer,
+    "JoiningDate" character varying(50),
+    "ConfirmationDate" character varying(50),
+    "PunchCardNo" integer,
+    "Remarks" character varying(100),
+    "CompanyId" integer,
+    "LocationId" integer,
+    "FloorId" integer,
+    "DivisionId" integer,
+    "DepartmentId" integer,
+    "SectionId" integer,
+    "LineNoId" integer
+
+
+
+
+    
+)

@@ -1,0 +1,3 @@
+<select companyName [(ngModel)]="companyName">
+  <option *ngFor="let item of myValues" [value]="item.value">{{item.title}}</option>
+</select>

@@ -1,0 +1,18 @@
+create table public."TrimCost"(
+"Id" serial primary key,
+"GroupId" integer,
+"PrecostingId" integer,
+"CountryId" integer,
+"Description" character varying(100),
+"BrandSupRef" character varying(100),
+"Remarks" character varying(100),
+"NominatedSuppId" integer,
+"ConsUOMId"  integer,
+"ConsUnitGmts" double precision,
+"Rate" double precision,
+"Amount" double precision,
+"TotalQty" double precision,
+"TotalAmount" double precision,
+"ApvlReq" character varying(80),
+"ImagePath" character varying(200)
+)

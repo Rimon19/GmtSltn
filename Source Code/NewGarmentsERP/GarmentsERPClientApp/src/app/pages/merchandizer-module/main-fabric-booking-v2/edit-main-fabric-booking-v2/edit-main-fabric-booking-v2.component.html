@@ -1,0 +1,708 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+    Edit Main Fabric Booking V2</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BookingNo" class="label text-dark">
+                Booking No</label
+                >
+                <input
+                  readonly
+                  name="bookingNo"
+                  #BookingNo="ngModel"
+                  [(ngModel)]="
+                  mainFabricBookingV2Service.mainFabricBookingV2.bookingNo
+                  "
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="BookingNo"
+                  placeholder="Booking No"
+                />
+               
+              </div>
+            </div>
+               <div class="col-sm-3">
+               <div class="form-group">
+                 <label for="BuyerProfileId" class="label text-dark">
+                 Buyer Name
+                 </label>
+                 <select
+                   name="buyerProfileId"
+                 
+                   #BuyerProfileId="ngModel"
+                   [(ngModel)]="
+                   mainFabricBookingV2Service.mainFabricBookingV2.buyerProfileId
+                   "
+                   id="BuyerProfileId"
+                   class="form-control form-rounded form-control-sm"
+                 >
+                 <option value="">Select Buyer Name</option>
+                 <option
+                   *ngFor="let item of dropdownValueService.buyerList"
+                   value="{{item.id}}"
+                   >{{ item.contactName}}</option
+                 >
+                 </select>
+                 
+               </div>
+             </div>
+                <div class="col-sm-3">
+           <div class="form-group">
+            <label for="JobNo" class="label text-dark">
+              Job No</label
+            >
+            <input
+              name="jobNo"    
+              [(ngModel)]="
+              mainFabricBookingV2Service.mainFabricBookingV2.jobNo
+              "
+              class="form-control form-rounded form-control-sm"
+              type="text"
+              id="JobNo"
+              placeholder=" Job No"
+            />
+           </div>
+           </div>
+             
+               <div class="col-sm-3">
+               <div class="form-group">
+                 <label for="BookingMonthId" class="label text-dark">
+                 Booking Month
+                 </label>
+                 <select
+                   name="bookingMonthId"
+                 
+                   #BookingMonthId="ngModel"
+                   [(ngModel)]="
+                   mainFabricBookingV2Service.mainFabricBookingV2.bookingMonthId
+                   "
+                   id="BookingMonthId"
+                   class="form-control form-rounded form-control-sm"
+                 >
+                 <option value="">Select Booking Month</option>
+                 <option
+                   *ngFor="let item of dropdownValueService.monthList"
+                   value="{{item.monthName}}"
+                   >{{ item.monthName}}</option
+                 >
+                 </select>
+                 
+               </div>
+             </div>
+          </div>
+       
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="YearId" class="label text-dark">
+          Year
+          </label>
+          <select
+            name="yearId"
+          
+            #YearId="ngModel"
+            [(ngModel)]="
+            mainFabricBookingV2Service.mainFabricBookingV2.yearId
+            "
+            id="YearId"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Year</option>
+          <option
+            *ngFor="let item of dropdownValueService.yearList"
+            value="{{item.year}}"
+            >{{ item.year}}</option
+          >
+          </select>
+          
+        </div>
+      </div>
+        
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="FabricNatureId" class="label text-dark">
+          Fabric Nature
+          <span class="text-danger">*</span> </label>
+          <select
+            name="fabricNatureId"
+            required
+            #FabricNatureId="ngModel"
+            [(ngModel)]="
+            mainFabricBookingV2Service.mainFabricBookingV2.fabricNatureId
+            "
+            id="FabricNatureId"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Fabric Nature</option>
+          <option
+            *ngFor="let item of dropdownValueService.fabricNatureList"
+            value="{{item.fabricNatureName}}"
+            >{{ item.fabricNatureName}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            mainFabricBookingV2Service.mainFabricBookingV2.fabricNatureId== '' && FabricNatureId.touched
+            "
+          >
+          Fabric Nature is required
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="UomId" class="label text-dark">
+          Uom
+          </label>
+          <select
+            name="uomId"
+          
+            #UomId="ngModel"
+            [(ngModel)]="
+            mainFabricBookingV2Service.mainFabricBookingV2.uomId
+            "
+            id="UomId"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Uom</option>
+          <option
+            *ngFor="let item of dropdownValueService.uomList"
+            value="{{item.uomName}}"
+            >{{ item.uomName}}</option
+          >
+          </select>
+          
+        </div>
+      </div>
+        
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="FabricSource" class="label text-dark">
+          Fabric Source
+          <span class="text-danger">*</span> </label>
+          <select
+            name="fabricSource"
+            required
+            #FabricSource="ngModel"
+            [(ngModel)]="
+            mainFabricBookingV2Service.mainFabricBookingV2.fabricSource
+            "
+            id="FabricSource"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Fabric Source</option>
+          <option
+            *ngFor="let item of dropdownValueService.fabricSourceList"
+            value="{{item.value}}"
+            >{{ item.value}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            mainFabricBookingV2Service.mainFabricBookingV2.fabricSource== '' && FabricSource.touched
+            "
+          >
+          Fabric Source is required
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="BookingDate" class="label text-dark">
+          Booking Date<span class="text-danger">*</span>
+        </label>
+        <input readonly
+          name="bookingDate"
+          required
+          #bookingDate="ngModel"
+          [(ngModel)]="
+            mainFabricBookingV2Service.mainFabricBookingV2.bookingDate
+          "          
+          type="text"
+          class="form-control form-rounded form-control-sm"
+          id="BookingDate"
+          [nbDatepicker]="BookingDate"
+          placeholder="Booking Date"
+        />
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          mainFabricBookingV2Service.mainFabricBookingV2.bookingDate ==
+              '' &&bookingDate.touched
+          "
+        >
+        Booking Date is required
+        </div>
+        <nb-datepicker #BookingDate></nb-datepicker>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="OrderOrPoNo" class="label text-dark">
+          Order No<span class="text-danger">*</span></label>
+       <input
+       required
+         name="jobNo"    
+         [(ngModel)]="
+         mainFabricBookingV2Service.mainFabricBookingV2.orderOrPoNo
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="Order No"
+         placeholder="Order No"
+       />
+      </div>
+      </div>
+    <!-- <div class="col-sm-3">
+      <div class="form-group">
+        <label for="OrderOrPoNo" class="label text-dark">
+         Order No<span class="text-danger">*</span></label>
+        
+        <input
+          name="orderOrPoNo"
+          (dblclick)="onAddImage()"
+          class="form-control form-rounded form-control-sm"
+          type="text"
+          id="OrderOrPoNo"
+          placeholder="Double click"
+          
+        />
+        
+      </div>
+    </div> -->
+       <div class="col-sm-3">
+      <div class="form-group">
+        <label for="DeliveryDate" class="label text-dark">
+          Delivery Date<span class="text-danger">*</span>
+        </label>
+        <input readonly
+          name="deliveryDate"
+          required
+          #deliveryDate="ngModel"
+          [(ngModel)]="
+            mainFabricBookingV2Service.mainFabricBookingV2.deliveryDate
+          "          
+          type="text"
+          class="form-control form-rounded form-control-sm"
+          id="DeliveryDate"
+          [nbDatepicker]="DeliveryDate"
+          placeholder="Delivery Date"
+        />
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          mainFabricBookingV2Service.mainFabricBookingV2.deliveryDate ==
+              '' &&deliveryDate.touched
+          "
+        >
+        Delivery Date is required
+        </div>
+        <nb-datepicker #DeliveryDate></nb-datepicker>
+      </div>
+    </div>
+      <div class="col-sm-3">
+      <div class="form-group">
+        <label for="PayMode" class="label text-dark">
+        Pay Mode
+        <span class="text-danger">*</span> </label>
+        <select
+          name="payMode"
+          required
+          #PayMode="ngModel"
+          [(ngModel)]="
+          mainFabricBookingV2Service.mainFabricBookingV2.payMode
+          "
+          id="PayMode"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Pay Mode</option>
+        <option
+          *ngFor="let item of dropdownValueService.payModeList"
+          value="{{item.value}}"
+          >{{ item.value}}</option
+        >
+        </select>
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          mainFabricBookingV2Service.mainFabricBookingV2.payMode== '' && PayMode.touched
+          "
+        >
+        Pay Mode is required
+        </div>
+      </div>
+    </div>
+  </div>
+     
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="SupplierProfileId" class="label text-dark">
+        Supplier Name
+        <span class="text-danger">*</span> </label>
+        <select
+          name="supplierProfileId"
+          required
+          #SupplierProfileId="ngModel"
+          [(ngModel)]="
+          mainFabricBookingV2Service.mainFabricBookingV2.supplierProfileId
+          "
+          id="SupplierProfileId"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Supplier Name</option>
+        <option
+          *ngFor="let item of dropdownValueService.subpplierList"
+          value="{{item.id}}"
+          >{{ item.supplierName}}</option
+        >
+        </select>
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          mainFabricBookingV2Service.mainFabricBookingV2.supplierProfileId== '' && SupplierProfileId.touched
+          "
+        >
+        Supplier Name is required
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-3">
+      <div class="form-group">
+        <label for="CurrencyId" class="label text-dark">
+        Currency
+        </label>
+        <select
+          name="currencyId"
+        
+          #CurrencyId="ngModel"
+          [(ngModel)]="
+          mainFabricBookingV2Service.mainFabricBookingV2.currencyId
+          "
+          id="CurrencyId"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Currency</option>
+        <option
+          *ngFor="let item of dropdownValueService.currencyList"
+          value="{{item.id}}"
+          >{{ item.discountMethodName}}</option
+        >
+        </select>
+        
+      </div>
+    </div>
+       <div class="col-sm-3">
+  <div class="form-group">
+   <label for="ExchangeRate" class="label text-dark">
+     Exchange Rate</label
+   >
+   <input
+     name="exchangeRate"    
+     [(ngModel)]="
+     mainFabricBookingV2Service.mainFabricBookingV2.exchangeRate
+     "
+     class="form-control form-rounded form-control-sm"
+     type="number"
+     id="ExchangeRate"
+     placeholder=" Exchange Rate"
+   />
+  </div>
+  </div>
+    
+      <div class="col-sm-3">
+      <div class="form-group">
+        <label for="Source" class="label text-dark">
+        Source
+        </label>
+        <select
+          name="source"
+        
+          #Source="ngModel"
+          [(ngModel)]="
+          mainFabricBookingV2Service.mainFabricBookingV2.source
+          "
+          id="Source"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Source</option>
+        <option
+          *ngFor="let item of dropdownValueService.sourceList"
+          value="{{item.value}}"
+          >{{ item.value}}</option
+        >
+        </select>
+        
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+         <label for="Attention" class="label text-dark">
+           Attention</label
+         >
+         <input
+           name="attention"    
+           [(ngModel)]="
+           mainFabricBookingV2Service.mainFabricBookingV2.attention
+           "
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="Attention"
+           placeholder=" Attention"
+         />
+        </div>
+        </div>
+           <div class="col-sm-3">
+        <div class="form-group">
+         <label for="BookingPercent" class="label text-dark">
+           Booking Percent</label
+         >
+         <input
+           name="bookingPercent"    
+           [(ngModel)]="
+           mainFabricBookingV2Service.mainFabricBookingV2.bookingPercent
+           "
+           class="form-control form-rounded form-control-sm"
+           type="number"
+           id="BookingPercent"
+           placeholder=" Booking Percent"
+         />
+        </div>
+        </div>
+           <div class="col-sm-3">
+        <div class="form-group">
+         <label for="ColarExcessCut" class="label text-dark">
+           Colar Excess Cut %</label
+         >
+         <input
+           name="colarExcessCut"    
+           [(ngModel)]="
+           mainFabricBookingV2Service.mainFabricBookingV2.colarExcessCut
+           "
+           class="form-control form-rounded form-control-sm"
+           type="number"
+           id="ColarExcessCut"
+           placeholder=" Colar Excess Cut %"
+         />
+        </div>
+        </div>
+           <div class="col-sm-3">
+        <div class="form-group">
+         <label for="CuffExcessCut" class="label text-dark">
+           Cuff Excess Cut %</label
+         >
+         <input
+           name="cuffExcessCut"    
+           [(ngModel)]="
+           mainFabricBookingV2Service.mainFabricBookingV2.cuffExcessCut
+           "
+           class="form-control form-rounded form-control-sm"
+           type="number"
+           id="CuffExcessCut"
+           placeholder=" Cuff Excess Cut %"
+         />
+        </div>
+        </div> 
+       
+    </div>
+    
+  <div class="row">
+    
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="ReadyToApproved" class="label text-dark">
+        Ready To Approved
+        </label>
+        <select
+          name="readyToApproved"
+        
+          #ReadyToApproved="ngModel"
+          [(ngModel)]="
+          mainFabricBookingV2Service.mainFabricBookingV2.readyToApproved
+          "
+          id="ReadyToApproved"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Ready To Approved</option>
+        <option
+          *ngFor="let item of dropdownValueService.yesNoList"
+          value="{{item.value}}"
+          >{{ item.value}}</option
+        >
+        </select>
+        
+      </div>
+    </div>
+       <div class="col-sm-3">
+  <div class="form-group">
+   <label for="InternalRefNo" class="label text-dark">
+     Internal Ref No</label
+   >
+   <input
+     name="internalRefNo"    
+     [(ngModel)]="
+     mainFabricBookingV2Service.mainFabricBookingV2.internalRefNo
+     "
+     class="form-control form-rounded form-control-sm"
+     type="text"
+     id="InternalRefNo"
+     placeholder=" Internal Ref No"
+   />
+  </div>
+  </div>
+     <div class="col-sm-3">
+  <div class="form-group">
+   <label for="Fileno" class="label text-dark">
+     File no</label
+   >
+   <input
+     name="fileno"    
+     [(ngModel)]="
+     mainFabricBookingV2Service.mainFabricBookingV2.fileno
+     "
+     class="form-control form-rounded form-control-sm"
+     type="text"
+     id="Fileno"
+     placeholder=" File no"
+   />
+  </div>
+  </div>
+     <div class="col-sm-3">
+      <div class="form-group">
+        <label for="Unapproverequest" class="label text-dark">
+          Un-approve request</label>
+        
+        <input
+          name="unapproverequest"
+          (dblclick)="onAddImage()"
+          class="form-control form-rounded form-control-sm"
+          type="text"
+          id="Unapproverequest"
+          placeholder="Double click"
+          
+        />
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+       <label for="FabricComposition" class="label text-dark">
+         Fabric Composition</label
+       >
+       <input
+         name="fabricComposition"    
+         [(ngModel)]="
+         mainFabricBookingV2Service.mainFabricBookingV2.fabricComposition
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="FabricComposition"
+         placeholder=" Fabric Composition"
+       />
+      </div>
+      </div>
+         <div class="col-sm-3">
+      <div class="form-group">
+       <label for="Remarks" class="label text-dark">
+         Remarks</label
+       >
+       <input
+         name="remarks"    
+         [(ngModel)]="
+         mainFabricBookingV2Service.mainFabricBookingV2.remarks
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="Remarks"
+         placeholder=" Remarks"
+       />
+      </div>
+      </div>
+         <div class="col-sm-3">
+          <div class="form-group">
+            <label for="TermsNcondition" class="label text-dark">
+              Terms and Condition</label>
+            
+            <input
+              name="termsNcondition"
+              (dblclick)="onAddImage()"
+              class="form-control form-rounded form-control-sm"
+              type="text"
+              id="TermsNcondition"
+              placeholder="Double click"
+              
+            />
+            
+          </div>
+        </div>
+         <div class="col-sm-3">
+          <div class="form-group">
+            <label for="ProcessLoss" class="label text-dark">
+              Process Loss</label>
+            
+            <input
+              name="processLoss"
+              (dblclick)="onAddImage()"
+              class="form-control form-rounded form-control-sm"
+              type="text"
+              id="ProcessLoss"
+              placeholder="Double click"
+              
+            />
+            
+          </div>
+        </div> 
+        
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="TrimsDyingToMatch" class="label text-dark">
+          Trims Dye to Match</label>
+        
+        <input
+          name="trimsDyingToMatch"
+          (dblclick)="onAddImage()"
+          class="form-control form-rounded form-control-sm"
+          type="text"
+          id="TrimsDyingToMatch"
+          placeholder="Double click"
+          
+        />
+        
+      </div>
+    </div>
+  </div>
+ 
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

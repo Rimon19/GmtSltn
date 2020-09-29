@@ -1,0 +1,6 @@
+﻿Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.Tools.DotNet
+Microsoft.NETCore.App
+Npgsql.EntityFrameworkCore.PostgreSQL
+Npgsql.EntityFrameworkCore.PostgreSQL.Design
+dotnet ef dbcontext scaffold "Host=localhost;Database=GarmentERP;Username=postgres;Password=123456" Npgsql.EntityFrameworkCore.PostgreSQL -o Model 

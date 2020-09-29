@@ -1,0 +1,157 @@
+
+ <nb-card>
+
+  <div class="example-container mat-elevation-z8">
+     <div class="example-header">
+         <h5>Sample Fabric Booking -With order rimon</h5>
+         <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field>
+        <mat-label style="font-size:15px;font-weight: bold;">Search All Here ..</mat-label>
+          <input
+            matInput
+            #filter
+            (change)="applyFilter($event.target.value)"
+           
+          />
+        
+         
+          <button
+            mat-icon-button
+            matSuffix
+            aria-label="clear"
+            *ngIf="filter.value"
+            (click)="filter.value = ''; applyFilter('')"
+          >
+            <mat-icon>close</mat-icon>
+            
+          
+          </button>
+         
+          
+          <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
+        </mat-form-field>
+        <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+         </div>
+       </div>
+     
+       <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+        <mat-label style="font-size:15px;font-weight: bold;">S.{{filter.name}}</mat-label>
+          <input  matInput  
+          name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+          (change)="filterChange(filter,$event)">
+          
+        </mat-form-field>
+       </div>
+
+         <mat-table
+           [dataSource]="dataSource"
+           matSort
+           mat-table
+         >
+         
+         <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef class="text-dark">   
+           <button class="btn btn-outline-success ml-2" (click)="redirectToAddPage()"> <i class="fa fa-plus"></i></button>
+         </mat-header-cell>
+         <mat-cell *matCellDef="let element" > <section>
+          <div class="example-button-row">
+            <button *ngIf="element.id!=0"  mat-icon-button (click)="redirectToEditPage(element)" > <mat-icon>launch</mat-icon></button>
+            <button *ngIf="element.id!=0" mat-icon-button (click)="onDelete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+        <button 
+        *ngIf="element.id != 0"
+        (click)="onDetails(element)"
+        class="btn-outline-success"
+      >
+      
+      NEXT
+      </button>
+          </div>
+        </section> 
+         </mat-cell>
+       </ng-container>
+           
+          <ng-container matColumnDef="bookingNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Booking No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.bookingNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="buyerProfileId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Buyer Name</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.buyerProfileId }}</mat-cell>
+</ng-container>
+
+<ng-container matColumnDef="fabricNature">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Nature</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fabricNature }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="fabricSource">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Source</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fabricSource }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="bookingDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Booking Date</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.bookingDate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="orderNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Order No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.orderNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="currency">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Currency</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.currency }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="exchangeRate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Exchange Rate</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.exchangeRate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="source">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Source</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.source }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="deliveryDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Delivery Date</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.deliveryDate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="payMode">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Pay Mode</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.payMode }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="supplierProfileId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Supplier Name</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.supplierProfileId }}</mat-cell>
+</ng-container>
+
+
+           <mat-header-row
+             *matHeaderRowDef="displayedColumns"
+           ></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+         </mat-table>
+
+      </div>
+ <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

@@ -1,0 +1,17 @@
+create table public."ConsumptionEntryForm"(
+"Id" serial primary key,
+"PoNoId" integer,
+"Color" character varying(100),
+"GmtsSizes" character varying(100),
+"Dia" character varying(100),
+"ItemSizes" character varying(100),
+"FinishCons" numeric,
+"ProcessLoss" numeric,
+"GreyCons" numeric,
+"Rate" numeric,
+"Amount"  numeric,
+"Pcs"  numeric,
+"TotalQty"  numeric,
+"TotalAmount"  numeric,
+"Remarks" character varying(100)
+)

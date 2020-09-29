@@ -1,0 +1,156 @@
+
+ <nb-card>
+
+  <div class="example-container mat-elevation-z8">
+     <div class="example-header">
+         <h5>Service Booking</h5>
+         <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field>
+        <mat-label style="font-size:15px;font-weight: bold;">Search All Here ..</mat-label>
+          <input
+            matInput
+            #filter
+            (change)="applyFilter($event.target.value)"
+           
+          />
+        
+         
+          <button
+            mat-icon-button
+            matSuffix
+            aria-label="clear"
+            *ngIf="filter.value"
+            (click)="filter.value = ''; applyFilter('')"
+          >
+            <mat-icon>close</mat-icon>
+            
+          
+          </button>
+         
+          
+          <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
+        </mat-form-field>
+        <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+         </div>
+       </div>
+     
+       <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+        <mat-label style="font-size:15px;font-weight: bold;">S.{{filter.name}}</mat-label>
+          <input  matInput  
+          name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+          (change)="filterChange(filter,$event)">
+          
+        </mat-form-field>
+       </div>
+
+         <mat-table
+           [dataSource]="dataSource"
+           matSort
+           mat-table
+         >
+         
+         <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef class="text-dark">   
+           <button class="btn btn-outline-success ml-2" (click)="redirectToAddPage()"> <i class="fa fa-plus"></i></button>
+         </mat-header-cell>
+         <mat-cell *matCellDef="let element" >       
+           <button *ngIf="element.id!=0"  mat-icon-button (click)="redirectToEditPage(element)" > <mat-icon>launch</mat-icon></button>
+           <button *ngIf="element.id!=0" mat-icon-button (click)="onDelete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+         </mat-cell>
+       </ng-container>
+           
+          <ng-container matColumnDef="fabricSource">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Source</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fabricSource }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="fabricDescriptionId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Description</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fabricDescriptionId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="aOPGSM">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >AOP.GSM</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.aOPGSM }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="aOPDia">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >AOP.Dia</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.aOPDia }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="uOMId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >UOM</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.uOMId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="artworkNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Artwork No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.artworkNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="gmtsColor">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >GmtsColor</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.gmtsColor }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="wOQnty">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >WO. Qnty</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.wOQnty }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="aopRate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Aop Rate</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.aopRate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="amount">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Amount	</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.amount }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="deliveryStartDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Delivery Start Date</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.deliveryStartDate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="deliveryEndDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Delivery End Date	</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.deliveryEndDate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="remarks">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Remarks</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.remarks }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="printingColor">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Printing Color	</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.printingColor }}</mat-cell>
+</ng-container>
+
+           <mat-header-row
+             *matHeaderRowDef="displayedColumns"
+           ></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+         </mat-table>
+
+      </div>
+ <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

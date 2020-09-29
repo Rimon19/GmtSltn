@@ -1,0 +1,95 @@
+
+<nb-card>
+  <nb-card-header
+  > 
+  Fabrication Details Pop Up
+
+  <button class="float-right ml-5"  mat-button (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="fabricationDetailsForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    
+      <form >
+        <table class="">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col">Constraction</th>
+              <th scope="col">Composition</th>
+              <th scope="col">GSM</th>
+            </tr>
+          </thead>
+            
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of fabricationDetailsFormInformationForm.controls;let i=index" >
+                <tr>
+                  
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1" (click)="onDelete(fabricationDetailsFormInformationForm,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+                    <td>
+                      
+                      <input
+                        class="form-control 
+                        form-rounded form-control-sm "
+                        type="text"
+                       id="{{i}}ratio"
+                        placeholder="Constraction"
+                        formControlName="constraction"
+                       
+                      />
+                    </td>
+    
+                    <td >
+                      <input
+                        class="form-control 
+                        form-rounded form-control-sm "
+                        type="text"
+                       id="{{i}}ratio"
+                        placeholder="Composition"
+                        formControlName="composition"
+                       
+                      />
+                     
+                    </td>
+                    <td>
+                      
+                      <input
+                        class="form-control 
+                        form-rounded form-control-sm "
+                        type="text"
+                       
+                        placeholder="GSM"
+                        formControlName="gSM"
+                       
+                      />
+                    </td>              
+                </tr>
+                <button *ngIf="i==count-1" type="submit" [disabled]="fg.invalid" (click)="onSubmit()"  nbButton >Submit</button>
+              </tbody>
+            
+         
+         
+        </table>
+       
+      </form>
+    
+ 
+    
+ 
+  </nb-card-body>
+</nb-card>
+

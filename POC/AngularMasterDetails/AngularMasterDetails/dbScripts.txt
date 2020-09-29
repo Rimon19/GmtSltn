@@ -1,0 +1,91 @@
+﻿-- Database: Customer PostgreSQL
+
+-- DROP DATABASE "Customer";
+
+CREATE DATABASE "Customer"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
+CREATE TABLE public."Customer"(  
+"CustomerID"  INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+"Name" varchar(50) NOT NULL);
+
+
+CREATE TABLE public."Item"(  
+"ItemID"  INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+"Name" varchar(50) NOT NULL,
+"Price" decimal(18, 2) NULL);
+
+
+CREATE TABLE public."Order"(  
+"OrderID"  bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+"OrderNo" integer NOT NULL,
+"CustomerID" INT NULL REFERENCES "Customer"("CustomerID"),
+PMethod varchar(50) NULL,
+GTotal decimal(18, 2) NULL);
+
+
+CREATE TABLE public."OrderItems"(  
+"OrderItemID"  INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+"OrderID" bigint NULL REFERENCES "Order"("OrderID"),
+"ItemID" INT NULL REFERENCES "Item"("ItemID"),
+"Quantity" INT NULL );
+
+
+
+INSERT INTO public."Customer" ( "Name") VALUES ( N'Olivia Kathleen');
+;
+INSERT INTO public."Customer" ( "Name") VALUES ( N'Liam Patrick')
+;
+INSERT INTO public."Customer" ( "Name") VALUES ( N'Charlotte Rose')
+;
+INSERT INTO public."Customer" ( "Name") VALUES ( N'Elijah Burke ')
+;
+INSERT INTO public."Customer" ( "Name") VALUES ( N'Ayesha Ameer')
+;
+INSERT INTO public."Customer" ( "Name") VALUES ( N'Eva Louis')
+;
+SELECT * FROM  public."Customer" 
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Chicken Tenders', CAST(3.50 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Chicken Tenders w/ Fries', CAST(4.99 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Chicken Tenders w/ Onion', CAST(5.99 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Grilled Cheese Sandwich', CAST(2.50 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Grilled Cheese Sandwich w/ Fries', CAST(3.99 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Grilled Cheese Sandwich w/ Onion', CAST(4.99 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Lettuce and Tomato Burger', CAST(1.99 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Soup', CAST(2.50 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Onion Rings', CAST(2.99 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Fries', CAST(1.99 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Sweet Potato Fries', CAST(2.49 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES (N'Sweet Tea', CAST(1.79 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES ( N'Botttle Water', CAST(1.00 AS Decimal(18, 2)))
+;
+INSERT INTO public."Item" ("Name", "Price") VALUES ( N'Canned Drinks', CAST(1.00 AS Decimal(18, 2)))
+;
+SELECT * FROM  public."Item" 
+
+
+INSERT INTO public."Order"("OrderNo","CustomerID","pmethod","gtotal")
+Values('5','1','Cash','9000')
+
+
+dotnet ef dbcontext scaffold "Host=localhost;Database=Customer;Username=postgres;Password=123" Npgsql.EntityFrameworkCore.PostgreSQL -o Model 

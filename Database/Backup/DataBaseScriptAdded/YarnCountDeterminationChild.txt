@@ -1,0 +1,10 @@
+CREATE TABLE public."YarnCountDeterminationChild"
+(
+    "Id"  serial primary key,
+    "CompositionId" integer,
+    "Percentage" numeric,
+    "YarnCountId" integer,
+    "Type" character varying(100)
+   "YarnCountDeterminationMasterId" integer,
+    
+)

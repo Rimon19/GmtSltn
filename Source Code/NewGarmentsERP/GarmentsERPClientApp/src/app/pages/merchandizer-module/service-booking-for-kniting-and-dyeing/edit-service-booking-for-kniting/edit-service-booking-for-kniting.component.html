@@ -1,0 +1,325 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Service Booking</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+   <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+       <label for="WONo" class="label text-dark">
+         WO No</label
+       >
+       <input readonly
+         name="woNo"    
+         [(ngModel)]="
+         serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.woNo
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="WONo"
+         placeholder="WO No"
+       />
+      </div>
+      </div>
+        
+          <div class="col-sm-3">
+          <div class="form-group">
+            <label for="CompanyNameId" class="label text-dark">
+            Company Name
+            <span class="text-danger">*</span> </label>
+            <select
+              name="companyNameId"
+              required
+              #CompanyNameId="ngModel"
+              [(ngModel)]="
+              serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.companyNameId
+              "
+              id="CompanyNameId"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select Company Name</option>
+            <option
+              *ngFor="let item of dropdownValueService. companyList "
+              value="{{item.compID}}"
+              >{{ item.company_Name}}</option
+            >
+            </select>
+            <div
+              class="text-left text-danger text-responsive"
+              *ngIf="
+              serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.companyNameId== '' && CompanyNameId.touched
+              "
+            >
+            Company Name is required
+            </div>
+          </div>
+        </div>
+         <div class="col-sm-3">
+      <div class="form-group">
+       <label for="FabBookingNo" class="label text-dark">
+         Fab. Booking No</label
+       >
+       <input
+         name="fabBookingNo"    
+         [(ngModel)]="
+         serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.fabBookingNo
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="FabBookingNo"
+         placeholder=" Fab. Booking No"
+       />
+      </div>
+      </div>
+        
+          <div class="col-sm-3">
+          <div class="form-group">
+            <label for="BuyerNameId" class="label text-dark">
+            Buyer Name
+            </label>
+            <select
+              name="buyerNameId"
+            
+              #BuyerNameId="ngModel"
+              [(ngModel)]="
+              serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.buyerNameId
+              "
+              id="BuyerNameId"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select Buyer Name</option>
+            <option
+              *ngFor="let item of dropdownValueService.buyerList"
+              value="{{item.id}}"
+              >{{ item.contactName}}</option
+            >
+            </select>
+            
+          </div>
+        </div>
+   </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="BookingDate" class="label text-dark">
+            Booking Date	<span class="text-danger">*</span>
+          </label>
+          <input readonly
+            name="bookingDate"
+            required
+            #bookingDate="ngModel"
+            [(ngModel)]="
+              serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.bookingDate
+            "          
+            type="text"
+            class="form-control form-rounded form-control-sm"
+            id="BookingDate"
+            [nbDatepicker]="BookingDate"
+            placeholder="Booking Date	"
+          />
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.bookingDate ==
+                '' &&bookingDate.touched
+            "
+          >
+          Booking Date	 is required
+          </div>
+          <nb-datepicker #BookingDate></nb-datepicker>
+        </div>
+      </div>
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="CurrencyId" class="label text-dark">
+          Currency
+          </label>
+          <select
+            name="currencyId"
+          
+            #CurrencyId="ngModel"
+            [(ngModel)]="
+            serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.currencyId
+            "
+            id="CurrencyId"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Currency</option>
+          <option
+            *ngFor="let item of dropdownValueService.currencyList"
+            value="{{item.id}}"
+            >{{ item.discountMethodName}}</option
+          >
+          </select>
+          
+        </div>
+      </div>
+         <div class="col-sm-3">
+    <div class="form-group">
+     <label for="ExchangeRate" class="label text-dark">
+       Exchange Rate</label
+     >
+     <input
+       name="exchangeRate"    
+       [(ngModel)]="
+       serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.exchangeRate
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="ExchangeRate"
+       placeholder=" Exchange Rate"
+     />
+    </div>
+    </div>
+      
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="PayMode" class="label text-dark">
+          PayMode
+          <span class="text-danger">*</span> </label>
+          <select
+            name="payMode"
+            required
+            #PayMode="ngModel"
+            [(ngModel)]="
+            serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.payMode
+            "
+            id="PayMode"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select PayMode</option>
+          <option
+            *ngFor="let item of dropdownValueService.payModeList"
+            value="{{item.value}}"
+            >{{ item.value}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.payMode== '' && PayMode.touched
+            "
+          >
+          PayMode is required
+          </div>
+        </div>
+      </div>
+    </div>
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Source" class="label text-dark">
+      Source
+      </label>
+      <select
+        name="source"
+      
+        #Source="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.source
+        "
+        id="Source"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.sourceList   "
+        value="{{item.value                       }}"
+        >{{ item.value                       }}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="KnitDyeSource" class="label text-dark">
+      Knit Dye Source
+      </label>
+      <select
+        name="knitDyeSource"
+      
+        #KnitDyeSource="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.knitDyeSource
+        "
+        id="KnitDyeSource"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Knit Dye Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.aopSourceList "
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="SupplierNameId" class="label text-dark">
+      Supplier Name
+      </label>
+      <select
+        name="supplierNameId"
+      
+        #SupplierNameId="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.supplierNameId
+        "
+        id="SupplierNameId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Supplier Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.subpplierList "
+        value="{{item.id}}"
+        >{{ item.supplierName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="Attention" class="label text-dark">
+   Attention</label
+ >
+ <input
+   name="attention"    
+   [(ngModel)]="
+   serviceBookingForKnitingandDyeingWithoutOrderService.serviceBookingForKnitingandDyeingWithoutOrder.attention
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Attention"
+   placeholder=" Attention"
+ />
+</div>
+</div>
+ </div>
+  
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+

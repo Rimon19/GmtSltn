@@ -1,0 +1,8 @@
+CREATE TABLE public."PageInfo"
+(
+    "Id"  serial primary key,
+    "PageName" character varying(100),
+    "PageLink" character varying(100),
+    "status" character varying(100)
+    
+)

@@ -1,0 +1,13 @@
+  <h4>File Upload Using Angular 5 and ASP.NET Core 2.1</h4>
+  <input #file type="file" multiple (change)="upload(file.files,$event)" />
+  <br />
+  <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
+    {{progress}}%
+  </span>
+
+  <span style="font-weight:bold;color:green;" *ngIf="message">
+    {{message}}
+  </span>
+
+  <!--<input type='file' (change)="readUrl($event)">-->
+  <img [src]="url">

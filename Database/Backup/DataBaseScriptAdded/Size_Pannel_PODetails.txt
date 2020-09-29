@@ -1,0 +1,17 @@
+CREATE TABLE public."Size_Pannel_PODetails"
+(
+    "SizePannelId" serial primary key,
+    "InputPannelId" integer,
+    "ItemId" integer,
+    "PoId" integer,
+    "ArticleNumber" character varying(150) ,
+    "Color" character varying(100),
+    "Size" character varying(100) ,
+    "Quanity" double precision,
+    "Rate" numeric(255,0),
+    "ExcessCut" numeric(255,0),
+    "PlanCutQty" numeric(255,0),
+    "Status" character varying(255),
+	"Amount" double precision,
+    "BarCode" boolean
+)

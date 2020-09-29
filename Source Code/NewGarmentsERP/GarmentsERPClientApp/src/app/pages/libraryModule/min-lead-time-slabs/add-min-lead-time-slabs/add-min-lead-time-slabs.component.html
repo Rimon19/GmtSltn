@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backToaMinLeadTimeSlabsHomePage()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i>
+      </button>  Min Lead Time Slab Entry
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Company" class="label text-dark">
+                  Company <span class="text-danger"> *</span></label>
+                  <select  required name="companyId" #CompanyId="ngModel"
+                  [(ngModel)]="minLeadTimeSlabsService.minLeadTimeSlabs.companyId"  
+                class="form-control form-rounded form-control-sm  " >
+                 <option [ngValue]=0>Select Company</option>
+                 <option *ngFor="let companylist of companyListItems" [value]="companylist.compID">{{companylist.company_Name}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="minLeadTimeSlabsService.minLeadTimeSlabs.companyId==0&&CompanyId.touched">
+             Company Name  is required
+           </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Location" class="label text-dark">
+                  Location	</label>
+                  <select   name="locationId" #locationId="ngModel"
+                  [(ngModel)]="minLeadTimeSlabsService.minLeadTimeSlabs.locationId"  
+                class="form-control form-rounded form-control-sm  " >
+                 <option [ngValue]=0>Select Location</option>
+                 <option *ngFor="let locationlist of locationListItems" [value]="locationlist.locationId">{{locationlist.location_Name}}</option>
+                 
+             </select>
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Year" class="label text-dark">
+                  Year</label>
+                  <select   name="yearId" #yearId="ngModel"
+                  [(ngModel)]="minLeadTimeSlabsService.minLeadTimeSlabs.yearId"  
+                class="form-control form-rounded form-control-sm  " >
+                 <option [ngValue]=0>Select Year</option>
+                 <option *ngFor="let yearlist of yearListItems" [value]="yearlist.id">{{yearlist.year}}</option>
+                 
+             </select>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Month" class="label text-dark">
+                  Month</label>
+                  <select   name="monthId" #monthId="ngModel"
+                  [(ngModel)]="minLeadTimeSlabsService.minLeadTimeSlabs.monthId"  
+                 class="form-control form-rounded form-control-sm  " >
+                  <option [ngValue]=0>Select Month</option>
+                  <option *ngFor="let monthlist of monthListItems" [value]="monthlist.id">{{monthlist.monthName}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <button type="submit" [disabled]="form.invalid||minLeadTimeSlabsService.minLeadTimeSlabs.companyId==0"   nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,497 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Sample Requisition</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="RequisitionId" class="label text-dark">
+                 Requisition Id</label
+               >
+               <input readonly
+                 name="requisitionId"    
+                 [(ngModel)]="
+                 sampleRequisitionWithBookingService.sampleRequisitionWithBooking.requisitionId
+                 "
+                 class="form-control form-rounded form-control-sm"
+                 type="text"
+                 id="RequisitionId"
+                 placeholder=" Requisition Id"
+               />
+              </div>
+                       </div>
+                
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="SampleStage" class="label text-dark">
+                    Sample Stage
+                    <span class="text-danger">*</span> </label>
+                    <select
+                      name="sampleStage"
+                      required
+                      #SampleStage="ngModel"
+                      [(ngModel)]="
+                      sampleRequisitionWithBookingService.sampleRequisitionWithBooking.sampleStage
+                      "
+                      id="SampleStage"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Sample Stage</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.SampleStageList"
+                      value="{{item.value}}"
+                      >{{ item.value}}</option
+                    >
+                    </select>
+                    <div
+                      class="text-left text-danger text-responsive"
+                      *ngIf="
+                      sampleRequisitionWithBookingService.sampleRequisitionWithBooking.sampleStage== '' && SampleStage.touched
+                      "
+                    >
+                    Sample Stage is required
+                    </div>
+                  </div>
+                </div>
+                   <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="RequisitionDate" class="label text-dark">
+                      Requisition Date<span class="text-danger">*</span>
+                    </label>
+                    <input readonly
+                      name="requisitionDate"
+                      required
+                      #requisitionDate="ngModel"
+                      [(ngModel)]="
+                        sampleRequisitionWithBookingService.sampleRequisitionWithBooking.requisitionDate
+                      "          
+                      type="text"
+                      class="form-control form-rounded form-control-sm"
+                      id="RequisitionDate"
+                      [nbDatepicker]="RequisitionDate"
+                      placeholder="Requisition Date"
+                    />
+                    <div
+                      class="text-left text-danger text-responsive"
+                      *ngIf="
+                      sampleRequisitionWithBookingService.sampleRequisitionWithBooking.requisitionDate ==
+                          '' &&requisitionDate.touched
+                      "
+                    >
+                    Requisition Date is required
+                    </div>
+                    <nb-datepicker #RequisitionDate></nb-datepicker>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                 <div class="form-group">
+                   <label for="StyleRefId" class="label text-dark">
+                   Style Ref<span class="text-danger">*</span></label
+                   >
+                   <input
+                     required
+                     name="styleRefId"
+                     #StyleRefId="ngModel"
+                     [(ngModel)]="
+                     sampleRequisitionWithBookingService.sampleRequisitionWithBooking.styleRefId
+                     "
+                     type="text"
+                     class="form-control form-rounded form-control-sm"
+                     id="StyleRefId"
+                     placeholder="Style Ref"
+                   />
+                   <div
+                     class="text-left text-danger text-responsive"
+                     *ngIf="
+                     sampleRequisitionWithBookingService.sampleRequisitionWithBooking.styleRefId ==
+                         '' && StyleRefId.touched
+                     "
+                   >
+                   Style Ref is required
+                   </div>
+                 </div>
+               </div>
+          </div>
+          <div class="row"> <div class="col-sm-3">
+            <div class="form-group">
+              <label for="CompanyNameId" class="label text-dark">
+              Company Name
+              <span class="text-danger">*</span> </label>
+              <select
+                name="companyNameId"
+                required
+                #CompanyNameId="ngModel"
+                [(ngModel)]="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.companyNameId
+                "
+                id="CompanyNameId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Company Name</option>
+              <option
+                *ngFor="let item of dropdownValueService.companyList"
+                value="{{item.compID}}"
+                >{{ item.company_Name}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.companyNameId== '' && CompanyNameId.touched
+                "
+              >
+              Company Name is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="LocationId" class="label text-dark">
+              Location
+              <span class="text-danger">*</span> </label>
+              <select
+                name="locationId"
+                required
+                #LocationId="ngModel"
+                [(ngModel)]="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.locationId
+                "
+                id="LocationId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Location</option>
+              <option
+                *ngFor="let item of dropdownValueService.locationList"
+                value="{{item.locationId}}"
+                >{{ item.location_Name}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.locationId== '' && LocationId.touched
+                "
+              >
+              Location is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="BuyerNameId" class="label text-dark">
+              Buyer Name
+              <span class="text-danger">*</span> </label>
+              <select
+                name="buyerNameId"
+                required
+                #BuyerNameId="ngModel"
+                [(ngModel)]="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.buyerNameId
+                "
+                id="BuyerNameId"
+                (change)="onChangeBuyer(sampleRequisitionWithBookingService.sampleRequisitionWithBooking.buyerNameId)"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Buyer Name</option>
+              <option
+                *ngFor="let item of dropdownValueService.buyerList"
+                value="{{item.id}}"
+                >{{ item.contactName}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.buyerNameId== '' && BuyerNameId.touched
+                "
+              >
+              Buyer Name is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="SeasonId" class="label text-dark">
+              Season
+              <span class="text-danger">*</span> </label>
+              <select
+                name="seasonId"
+                required
+                #SeasonId="ngModel"
+                [(ngModel)]="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.seasonId
+                "
+                id="SeasonId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Season</option>
+              <option
+                *ngFor="let item of dropdownValueService.buyerWiseSeasonList"
+                value="{{item.id}}"
+                >{{ item.seasonName}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.seasonId==''&& SeasonId.touched
+                "
+              >
+              Season is required
+              </div>
+            </div>
+          </div></div>
+          <div class="row">    <div class="col-sm-3">
+            <div class="form-group">
+              <label for="ProductDept" class="label text-dark">
+              Product Dept
+              <span class="text-danger">*</span> </label>
+              <select
+                name="productDept"
+                required
+                #ProductDept="ngModel"
+                [(ngModel)]="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.productDept
+                "
+                id="ProductDept"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Product Dept</option>
+              <option
+                *ngFor="let item of dropdownValueService.productDeptList"
+                value="{{item.value}}"
+                >{{ item.value}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.productDept== '' && ProductDept.touched
+                "
+              >
+              Product. Dept is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="DealingMerchantId" class="label text-dark">
+              Dealing Merchant
+              <span class="text-danger">*</span> </label>
+              <select
+                name="dealingMerchantId"
+                required
+                #DealingMerchantId="ngModel"
+                [(ngModel)]="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.dealingMerchantId
+                "
+                id="DealingMerchantId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Dealing Merchant</option>
+              <option
+                *ngFor="let item of dropdownValueService.dealiningMarchandList"
+                value="{{item.id}}"
+                >{{ item.userId}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.dealingMerchantId== '' && DealingMerchantId.touched
+                "
+              >
+              Dealing Merchant is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="AgentNameId" class="label text-dark">
+              Agent Name
+              </label>
+              <select
+                name="agentNameId"
+              
+                #AgentNameId="ngModel"
+                [(ngModel)]="
+                sampleRequisitionWithBookingService.sampleRequisitionWithBooking.agentNameId
+                "
+                id="AgentNameId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Agent Name</option>
+              <option
+                *ngFor="let item of dropdownValueService.agentList"
+                value="{{item.agentID}}"
+                >{{ item.agent_Name}}</option
+              >
+              </select>
+              
+            </div>
+          </div>
+             <div class="col-sm-3">
+        <div class="form-group">
+         <label for="BuyerRef" class="label text-dark">
+           Buyer Ref</label
+         >
+         <input
+           name="buyerRef"    
+           [(ngModel)]="
+           sampleRequisitionWithBookingService.sampleRequisitionWithBooking.buyerRef
+           "
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="BuyerRef"
+           placeholder=" Buyer Ref"
+         />
+        </div>
+        </div></div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="BHMerchant" class="label text-dark">
+                 BH Merchant</label
+               >
+               <input
+                 name="bHMerchant"    
+                 [(ngModel)]="
+                 sampleRequisitionWithBookingService.sampleRequisitionWithBooking.bHMerchant
+                 "
+                 class="form-control form-rounded form-control-sm"
+                 type="text"
+                 id="BHMerchant"
+                 placeholder=" BH Merchant"
+               />
+              </div>
+              </div>
+                 <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="EstShip Date" class="label text-dark">
+                      Est. Ship Date
+                    </label>
+                    <input readonly
+                      name="estShipDate"
+                      #estShipDate="ngModel"
+                      [(ngModel)]="
+                        sampleRequisitionWithBookingService.sampleRequisitionWithBooking.estShipDate
+                      "          
+                      type="text"
+                      class="form-control form-rounded form-control-sm"
+                      id="EstShipDate"
+                      [nbDatepicker]="EstShipDate"
+                      placeholder="Est. Ship Date"
+                    />
+                    
+                    <nb-datepicker #EstShipDate></nb-datepicker>
+                  </div>
+                </div>
+                 <div class="col-sm-3">
+              <div class="form-group">
+               <label for="RemarksDesc" class="label text-dark">
+                 Remarks/Desc.</label
+               >
+               <input
+                 name="remarksDesc"    
+                 [(ngModel)]="
+                 sampleRequisitionWithBookingService.sampleRequisitionWithBooking.remarksDesc
+                 "
+                 class="form-control form-rounded form-control-sm"
+                 type="text"
+                 id="RemarksDesc"
+                 placeholder=" Remarks/Desc."
+               />
+              </div>
+              </div>
+                 <div class="col-sm-3">
+                 <div class="form-group">
+                   <label for="File" class="label text-dark">
+                     Add File</label>
+                   
+                   <input
+                     name="file"
+                     (dblclick)="onAddFile()"
+                     class="form-control form-rounded form-control-sm"
+                     type="text"
+                     id="File"
+                     placeholder="Double click"
+                     
+                   />
+                   
+                 </div>
+               </div>
+          </div>
+  
+   
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ReadyToApproved" class="label text-dark">
+      Ready To Approved
+      </label>
+      <select
+        name="readyToApproved"
+      
+        #ReadyToApproved="ngModel"
+        [(ngModel)]="
+        sampleRequisitionWithBookingService.sampleRequisitionWithBooking.readyToApproved
+        "
+        id="ReadyToApproved"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Ready To Approved</option>
+      <option
+        *ngFor="let item of dropdownValueService.yesNoList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+    <div class="form-group">
+      <label for="MaterialDeliveryDate" class="label text-dark">
+        Material Delivery Date
+      </label>
+      <input readonly
+        name="materialDeliveryDate"
+        
+        #materialDeliveryDate="ngModel"
+        [(ngModel)]="
+          sampleRequisitionWithBookingService.sampleRequisitionWithBooking.materialDeliveryDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="MaterialDeliveryDate"
+        [nbDatepicker]="MaterialDeliveryDate"
+        placeholder="Material Delivery Date"
+      />
+      
+      <nb-datepicker #MaterialDeliveryDate></nb-datepicker>
+    </div>
+  </div>
+</div>
+ 
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+

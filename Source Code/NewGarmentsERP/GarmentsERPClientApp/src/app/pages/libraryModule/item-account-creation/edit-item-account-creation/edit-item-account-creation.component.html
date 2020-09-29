@@ -1,0 +1,274 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Edit Iteam Account Creation 
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <input   #id="ngModel"
+          [(ngModel)]="itemAccountCreationService.itemAccountCreation.id" 
+             name="id"   type="hidden" 
+              >
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="companyId" class="label text-dark">Company Name<span class="text-danger">*</span></label>
+                <select required #companyId="ngModel"  
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.companyId" class="form-control form-rounded form-control-sm" name="companyId" >
+                  <option [ngValue]=0>Select Company </option>
+                  <option *ngFor="let company of companyList" [value]="company.compID">{{company.company_Name}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="itemAccountCreationService.itemAccountCreation.companyId==0&&companyId.touched">
+              Company name is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="itemCategoryId" class="label text-dark">Item Category<span class="text-danger">*</span></label>
+                <select required #itemCategoryId="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.itemCategoryId" class="form-control form-rounded form-control-sm" name="itemCategoryId" >
+                  <option [ngValue]=0>Select Item Category </option>
+                  <option *ngFor="let itemCategory of itemCategoryList" [value]="itemCategory.id">{{itemCategory.itemCategoryName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="itemAccountCreationService.itemAccountCreation.itemCategoryId==0&&itemCategoryId.touched">
+              Item Category is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="itemGroupId" class="label text-dark">Item Group<span class="text-danger">*</span></label>
+                <select required #itemGroupId="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.itemGroupId" class="form-control form-rounded form-control-sm" name="itemGroupId" >
+                  <option [ngValue]=0>Select Item Group </option>
+                  <option *ngFor="let itemGroup of itemGroupList" [value]="itemGroup.id">{{itemGroup.itemGroupName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="itemAccountCreationService.itemAccountCreation.itemGroupId==0&&itemGroupId.touched">
+             Item Group is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Sub Group Code</label>
+                <input   #subGroupCode="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.subGroupCode" class="form-control form-rounded form-control-sm" 
+                   name="subGroupCode"   type="text" 
+                    placeholder="Sub Group Code">
+                    
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Sub Group Name</label>
+                <input   #subGroupName="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.subGroupName" class="form-control form-rounded form-control-sm" 
+                   name="subGroupName"   type="text" 
+                    placeholder="Sub Group Name">
+                    
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Item Code</label>
+                <input   #itemCode="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.itemCode" class="form-control form-rounded form-control-sm" 
+                   name="itemCode"   type="text" 
+                    placeholder="Item Code">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Item Size</label>
+                <input #itemSize="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.itemSize" class="form-control form-rounded form-control-sm" 
+                   name="itemSize"   type="text" 
+                    placeholder="Item Size">
+                   
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Item Description</label>
+                <input #itemDescription="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.itemDescription" class="form-control form-rounded form-control-sm" 
+                   name="itemDescription"   type="text" 
+                    placeholder="Item Description">
+                    
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Re Order Label</label>
+                <input   #reOrderLabel="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.reOrderLabel" class="form-control form-rounded form-control-sm" 
+                   name="reOrderLabel"   type="text" 
+                    placeholder="Re Order Label">
+                   
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Min Label</label>
+                <input  #minLabel="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.minLabel" class="form-control form-rounded form-control-sm" 
+                   name="minLabel"   type="text" 
+                    placeholder="Min Label">
+                  
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Max Label</label>
+                <input   #maxLabel="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.maxLabel" class="form-control form-rounded form-control-sm" 
+                   name="maxLabel"   type="text" 
+                    placeholder="Max Label">
+                  
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Brand</label>
+                <input   #brand="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.brand" class="form-control form-rounded form-control-sm" 
+                   name="brand"   type="text" 
+                    placeholder="Brand">
+                   
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderUom" class="label text-dark">Order Uom<span class="text-danger">*</span></label>
+                <select required #orderUom="ngModel" 
+                [(ngModel)]="this.itemAccountCreationService.itemAccountCreation.orderUom" class="form-control form-rounded form-control-sm" name="orderUom" >
+                  <option value=''>Select Order Uom </option>
+                  <option *ngFor="let u of uomList" [value]="u.uomName">{{u.uomName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="this.itemAccountCreationService.itemAccountCreation .orderUom==''&&orderUom.touched">
+             Order Uom is required .
+            </div>
+              </div>
+              
+            </div>
+         
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderUom" class="label text-dark">Cons Uom<span class="text-danger">*</span></label>
+                <select required #consUom="ngModel" 
+                [(ngModel)]="this.itemAccountCreationService.itemAccountCreation.consUom" class="form-control form-rounded form-control-sm" name="consUom" >
+                  <option value=''>Select Cons Uom </option>
+                  <option *ngFor="let u of uomList" [value]="u.uomName">{{u.uomName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="this.itemAccountCreationService.itemAccountCreation .consUom==''&&consUom.touched">
+             Cons Uom is required .
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Item Account<span class="text-danger">*</span></label>
+                <input  required #itemAccount="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.itemAccount" class="form-control form-rounded form-control-sm" 
+                   name="itemAccount"   type="text" 
+                    placeholder="Item Account">
+                    <div class="text-left text-danger"
+              *ngIf="itemAccountCreationService.itemAccountCreation.itemAccount==''&&itemAccount.touched">
+              Item Accountis required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">Status</label>
+                <select id="status"   #status="ngModel" class="form-control form-rounded form-control-sm"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.status"
+                  name="status">
+               <option value=''>Select Status </option>
+               <option value="Active">Active </option>
+               <option value=" In Active"> In Active </option>    
+           </select>
+         
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="originOrCountryId" class="label text-dark">Origin<span class="text-danger">*</span></label>
+                <select required #originOrCountryId="ngModel"  
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.originOrCountryId" class="form-control form-rounded form-control-sm" name="originOrCountryId" >
+                  <option value=''>Select Origin </option>
+                  <option *ngFor="let countrylist of countryList" [value]="countrylist.regionID">{{countrylist.region_Name}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="itemAccountCreationService.itemAccountCreation.originOrCountryId==0&&originOrCountryId.touched">
+              Origin  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Model</label>
+                <input   #model="ngModel"
+                [(ngModel)]="itemAccountCreationService.itemAccountCreation.model" class="form-control form-rounded form-control-sm" 
+                   name="model"   type="text" 
+                    placeholder="Model">
+                   
+              </div>
+              
+            </div>
+           
+            
+          </div>
+          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

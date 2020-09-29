@@ -1,0 +1,540 @@
+<div class="row">
+    <div class="col-lg-12">
+      <nb-card>
+        <nb-card-header>Employee Info Entry</nb-card-header>
+        <nb-card-body>
+          <form #form="ngForm" (submit)="onSubmit(form)">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="employeeCode" class="label">EmployeeCode </label>
+                      <input  name="employeeCode" #EmployeeCode="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.employeeCode"
+                      class="form-control" type="text" 
+                      id="employeeCode" placeholder="Employee Code">
+                      
+                    </div>
+                    
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="employeeFirstName" class="label">Employee First Name<span class="text-danger">*</span></label>
+                      <input required name="employeeFirstName" #EmployeeFirstName="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.employeeFirstName"
+                      class="form-control" type="text" 
+                      id="employeeFirstName" placeholder="Employee First Name">
+                      <div class="text-left text-danger"
+                     *ngIf="employeeInfoService.employeeInfo.employeeFirstName==''&&EmployeeFirstName.touched">
+                     Employee First Name required
+                   </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="employeeMiddleName" class="label">Employee Middle Name </label>
+                      <input  name="employeeMiddleName" #EmployeeMiddleName="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.employeeMiddleName"
+                      class="form-control" type="text" 
+                      id="employeeMiddleName" placeholder="Employee Middle Name">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="employeeLastName" class="label">Employee Last Name </label>
+                      <input  name="employeeLastName" #EmployeeLastName="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.employeeLastName"
+                      class="form-control" type="text" 
+                      id="employeeLastName" placeholder="Employee Last Name">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="employeeNameBangla" class="label">Employee Name(Bangla) </label>
+                      <input  name="employeeNameBangla" #EmployeeNameBangla="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.employeeNameBangla"
+                      class="form-control" type="text" 
+                      id="employeeNameBangla" placeholder="Employee First Name">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="fathersName" class="label">Father's Name </label>
+                      <input  name="fathersName" #FathersName="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.fathersName"
+                      class="form-control" type="text" 
+                      id="fathersName" placeholder="Father's Name">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="fathersNameBangla" class="label">Father's Name Bangla </label>
+                      <input  name="fathersNameBangla" #FathersNameBangla="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.fathersNameBangla"
+                      class="form-control" type="text" 
+                      id="fathersNameBangla" placeholder="Father's Name Bangla">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="mothersName" class="label">Mother's Name</label>
+                      <input  name="mothersName" #MothersName="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.mothersName"
+                      class="form-control" type="text" 
+                      id="mothersName" placeholder="Mother's Name">
+                      
+                    </div>
+                    
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="mothersNameBangla" class="label">Mother's Name Bangla</label>
+                      <input  name="mothersNameBangla" #MothersNameBangla="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.mothersNameBangla"
+                      class="form-control" type="text" 
+                      id="mothersNameBangla" placeholder="Mother's Name Bangla">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="sex" class="label">Sex<span class="text-danger">*</span></label>
+                         <select required name="sex" #Sex="ngModel"
+                         [(ngModel)]="employeeInfoService.employeeInfo.sex"
+                          id="sex" 
+                          class="form-control text-responsive" >
+                         <option value=''>Select Sex</option>
+                         <option  *ngFor="let btnAction of gender" 
+                         value="{{btnAction.val}}">{{btnAction.btn}}</option> 
+                         
+                     </select>
+                     <div class="text-left text-danger"
+                     *ngIf="employeeInfoService.employeeInfo.sex==''&&Sex.touched">
+                     Sex  is required
+                   </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="birthPlace" class="label">Birth Place</label>
+                      <input  name="birthPlace" #BirthPlace="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.birthPlace"
+                      class="form-control" type="text" 
+                      id="birthPlace" placeholder="BirthPlace">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="dateofBirth" class="label">Date of Birth</label>
+                      <input  name="dateofBirth" #DateofBirth="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.dateofBirth"
+                      class="form-control" type="text" 
+                      id="dateofBirth" [nbDatepicker]="dateofBirth" placeholder="Date of Birth">
+                      <nb-datepicker #dateofBirth></nb-datepicker>
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="age" class="label">Age</label>
+                      <input  name="age" #Age="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.age"
+                      class="form-control" type="text" 
+                      id="age" placeholder="Age">
+                      
+                    </div>
+                    
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="religionId" class="label">
+                        Religion </label>
+                        <select  name="religionId" #religionId="ngModel"
+                        [(ngModel)]="employeeInfoService.employeeInfo.religionId"
+                         id="religionId"  
+                        class="form-control text-responsive" >
+                        <option [ngValue]=0>Select Religion </option>
+                        <option *ngFor="let ReligionList of religion" [value]="ReligionList.id">{{ReligionList.religionName}}</option>
+                       
+                   </select>
+                   
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="maritalStatus" class="label">Marital Status</label>
+                         <select  name="maritalStatus" #MaritalStatus="ngModel"
+                         [(ngModel)]="employeeInfoService.employeeInfo.maritalStatus"
+                          id="maritalStatus" 
+                          class="form-control text-responsive" >
+                         <option value=''>Select MaritalStatus</option>
+                         <option  *ngFor="let btnAction of maritalStatus" 
+                         value="{{btnAction.val}}">{{btnAction.btn}}</option> 
+                         
+                     </select>
+                     
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="bloodGroupId" class="label">
+                        BloodGroup </label>
+                        <select  name="bloodGroupId" #BloodGroupId="ngModel"
+                        [(ngModel)]="employeeInfoService.employeeInfo.bloodGroupId"
+                         id="bloodGroupId"  
+                        class="form-control text-responsive" >
+                        <option [ngValue]=0>Select BloodGroup </option>
+                        <option *ngFor="let bloodGroupList of bloodGroup" [value]="bloodGroupList.id">{{bloodGroupList.bloodGroupName}}</option>
+                       
+                   </select>
+                   
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="nationality" class="label">Nationality</label>
+                      <input  name="nationality" #Nationality="ngModel"
+                      [(ngModel)]="employeeInfoService.employeeInfo.nationality"
+                      class="form-control" type="text" 
+                      id="nationality" placeholder="Nationality">
+                      
+                    </div>
+                    
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="nationalId" class="label">National Id No</label>
+                    <input  name="nationalId" #NationalId="ngModel"
+                    [(ngModel)]="employeeInfoService.employeeInfo.nationalId"
+                    class="form-control" type="text" 
+                    id="nationalId" placeholder="National Id No">
+                    
+                  </div>
+                  
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="passportNo" class="label">Passport No</label>
+                  <input  name="passportNo" #PassportNo="ngModel"
+                  [(ngModel)]="employeeInfoService.employeeInfo.passportNo"
+                  class="form-control" type="text" 
+                  id="passportNo" placeholder="Passport No">
+                  
+                </div>
+                
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="employeeCategoryId" class="label">
+                  Employee Category  </label>
+                  <select  name="employeeCategoryId" #EmployeeCategoryId="ngModel"
+                  [(ngModel)]="employeeInfoService.employeeInfo.employeeCategoryId"
+                   id="employeeCategoryId"  
+                  class="form-control text-responsive" >
+                  <option [ngValue]=0>Select Employee Category </option>
+                  <option *ngFor="let employeeCategoryList of employeeCategory" [value]="employeeCategoryList.id">{{employeeCategoryList.employeeCategoryName}}</option>
+                 
+             </select>
+             
+              </div>
+              
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="designationLebelId" class="label">
+                  DesignationLebelId </label>
+                  <select  name="designationLebelId" #DesignationLebelId="ngModel"
+                  [(ngModel)]="employeeInfoService.employeeInfo.designationLebelId"
+                   id="designationLebelId"  
+                  class="form-control text-responsive" >
+                  <option [ngValue]=0>Select DesignationLebels </option>
+                  <option *ngFor="let designationLebelsList of designationLebels" [value]="designationLebelsList.id">{{designationLebelsList.designationLebelName}}</option>
+                 
+             </select>
+             
+              </div>
+              
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="designationId" class="label">
+                  Designation<span class="text-danger">*</span> </label>
+                  <select required name="designationId" #DesignationId="ngModel"
+                  [(ngModel)]="employeeInfoService.employeeInfo.designationId"
+                   id="designationId"  
+                  class="form-control text-responsive" >
+                  <option [ngValue]=0>Select Designation </option>
+                  <option *ngFor="let designationList of designation" [value]="designationList.id">{{designationList.designationName}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+                     *ngIf="employeeInfoService.employeeInfo.designationId==0&&DesignationId.touched">
+                     Designation Name required
+                   </div>
+              </div>
+              
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="functionalSuperiorId" class="label">
+                  Functional Superior </label>
+                  <select required name="functionalSuperiorId" #FunctionalSuperiorId="ngModel"
+                  [(ngModel)]="employeeInfoService.employeeInfo.functionalSuperiorId"
+                   id="functionalSuperiorId"  
+                  class="form-control text-responsive" >
+                  <option [ngValue]=0>Select Functional Superior </option>
+                  <option *ngFor="let functionalSuperiorsList of functionalSuperiors" [value]="functionalSuperiorsList.id">{{functionalSuperiorsList.functionalSuperiorName}}</option>
+                 
+             </select>
+             
+              </div>
+              
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="adminSuperiorId" class="label">
+                  Admin Superior</label>
+                  <select required name="adminSuperiorId" #AdminSuperiorId="ngModel"
+                  [(ngModel)]="employeeInfoService.employeeInfo.adminSuperiorId"
+                   id="adminSuperiorId"  
+                  class="form-control text-responsive" >
+                  <option [ngValue]=0>Select Admin Superiors </option>
+                  <option *ngFor="let adminSuperiorsList of adminSuperiors" [value]="adminSuperiorsList.id">{{adminSuperiorsList.adminSuperiorName}}</option>
+                 
+             </select>
+             
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="idCardNo" class="label">IdCard No<span class="text-danger">*</span></label>
+                <input required name="idCardNo" #IdCardNo="ngModel"
+                [(ngModel)]="employeeInfoService.employeeInfo.idCardNo"
+                class="form-control" type="text" 
+                id="idCardNo" placeholder="IdCard No">
+                
+              </div>
+              <div class="text-left text-danger"
+              *ngIf="employeeInfoService.employeeInfo.idCardNo==0&&IdCardNo.touched">
+              IdCard No required
+            </div>
+              
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="joiningDate" class="label">Joining Date</label>
+              <input  name="joiningDate" #JoiningDate="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.joiningDate"
+              class="form-control" type="text" 
+              id="joiningDate" [nbDatepicker]="joiningDate" placeholder="Joining Date">
+              <nb-datepicker #joiningDate></nb-datepicker>
+              
+            </div>
+            
+        </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="confirmationDate" class="label">ConfirmationDate</label>
+              <input  name="confirmationDate" #ConfirmationDate="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.confirmationDate"
+              class="form-control" type="text" 
+              id="confirmationDate" [nbDatepicker]="confirmationDate" placeholder="Confirmation Date">
+              <nb-datepicker #confirmationDate></nb-datepicker>
+              
+            </div>
+            
+        </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="punchCardNo" class="label">Punch Card No</label>
+              <input  name="punchCardNo" #PunchCardNo="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.punchCardNo"
+              class="form-control" type="text" 
+              id="punchCardNo" placeholder="Punch Card No">
+              
+            </div>
+            
+        </div>
+          
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="remarks" class="label">Remarks</label>
+              <textarea  name="remarks" #Remarks="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.remarks"
+              class="form-control" type="textarea" 
+              id="remarks" placeholder="Remarks"></textarea>
+              
+              
+            </div>
+            
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="companyId" class="label">
+              Company</label>
+              <select name="companyId" #CompanyId="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.companyId"
+               id="companyId"  
+              class="form-control text-responsive" >
+              <option [ngValue]=0>Select Company</option>
+              <option *ngFor="let companyList of company" [value]="companyList.compId">{{companyList.companyName}}</option>
+             
+         </select>
+         
+          </div>
+          
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="locationId" class="label">
+              Location</label>
+              <select  name="locationId" #LocationId="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.locationId"
+               id="locationId"  
+              class="form-control text-responsive" >
+              <option [ngValue]=0>Select Location</option>
+              <option *ngFor="let locationList of location" [value]="locationList.locationId">{{locationList.locationName}}</option>
+             
+         </select>
+         
+          </div>
+          
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="floorId" class="label">
+              Floor</label>
+              <select  name="floorId" #FloorId="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.floorId"
+               id="floorId"  
+              class="form-control text-responsive" >
+              <option [ngValue]=0>Select Floor</option>
+              <option *ngFor="let floorList of floor" [value]="floorList.id">{{floorList.floorName}}</option>
+             
+         </select>
+         
+          </div>
+          
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="divisionId" class="label">
+              Division</label>
+              <select  name="divisionId" #DivisionId="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.divisionId"
+               id="divisionId"  
+              class="form-control text-responsive" >
+              <option [ngValue]=0>Select Division</option>
+              <option *ngFor="let divisionList of division" [value]="divisionList.id">{{divisionList.divisionName}}</option>
+             
+         </select>
+         
+          </div>
+          
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="departmentId" class="label">
+              Department</label>
+              <select  name="departmentId" #DepartmentId="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.departmentId"
+               id="departmentId"  
+              class="form-control text-responsive" >
+              <option [ngValue]=0>Select Department</option>
+              <option *ngFor="let departmentList of department" [value]="departmentList.id">{{departmentList.departmentName}}</option>
+             
+         </select>
+         
+          </div>
+          
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="sectionId" class="label">
+              Section</label>
+              <select  name="sectionId" #SectionId="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.sectionId"
+               id="sectionId"  
+              class="form-control text-responsive" >
+              <option [ngValue]=0>Select Section</option>
+              <option *ngFor="let sectionList of section" [value]="sectionList.id">{{sectionList.sectionName}}</option>
+             
+         </select>
+         
+          </div>
+          
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="lineNoId" class="label">
+              Line No</label>
+              <select  name="lineNoId" #LineNoId="ngModel"
+              [(ngModel)]="employeeInfoService.employeeInfo.lineNoId"
+               id="lineNoId"  
+              class="form-control text-responsive" >
+              <option [ngValue]=0>Select Line No</option>
+              <option *ngFor="let lineNoList of lineNo" [value]="lineNoList.id">{{lineNoList.lineNoName}}</option>
+             
+         </select>
+         
+          </div>
+          
+        </div>
+              
+
+
+            </div>
+            <button type="submit" [disabled]="form.invalid" nbButton>Submit</button>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>

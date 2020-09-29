@@ -1,0 +1,250 @@
+<nb-card>
+  <nb-card-header
+  > <button 
+  class="btn btn-outline-success "
+  
+>
+<i class="fas fa-arrow-left"></i>
+</button>
+  Page Object Creator
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="Form()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-3">
+        <label for="">Class Name</label>
+        <input knifeNoSpaces  class="form-control form-rounded form-control-sm " [(ngModel)]="className" type="text">
+      </div>
+      <div class="col-md-3">
+        <label for="">Service Name</label>
+        <input knifeNoSpaces  class="form-control form-rounded form-control-sm " [(ngModel)]="serviceName" type="text">
+      </div>
+      <div class="col-md-3">
+        <label for="">Single Page Or Multiline Page ?</label>
+        <select class="form-control form-rounded form-control-sm " name="" id="" [(ngModel)]="singleOrMultiline" >
+          <option value="Single">Single</option>
+          <option value="Multiline">Multiline </option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="">Page Title Name</label>
+        <input class="form-control form-rounded form-control-sm " [(ngModel)]="pageTitle" type="text">
+      </div>
+    </div>
+    
+
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:2500px;">
+        <form>
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Input Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Label Name</th>
+                <th scope="col">Input Type</th>
+                <th scope="col">Dropdown List Name</th>
+                <th scope="col">Is Required?</th>
+                <th scope="col">Dropdown Method</th>
+                <th scope="col">Searchable Field?</th>
+                <th scope="col">Dropdwn Id P.</th>
+                <th scope="col">Dropdown value P.</th>
+               
+              </tr>
+            </thead>
+         
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of pageObjectCreatorForm.controls;let i=index" >
+                <tr>
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm " (click)="onDelete(i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+                    <td>
+                      
+                      <input knifeNoSpaces 
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      
+                      placeholder="input Name"
+                      formControlName="inputName"
+                    />
+                    </td>
+                    
+    
+                    <td >
+                      <select class="form-control form-rounded form-control-sm " formControlName="dataType">
+                        <option value="">Select</option>
+                        <option value="int">Int</option>
+                        <option value="character">Character</option>
+                        <option value="numeric">Numeric</option>
+                        <option value="doubleprecision">double precision</option>
+                        <option value="boolean">Boolean</option>
+                      </select>
+                      
+                    </td>
+                    <td>
+                      
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      
+                      placeholder="label Name"
+                      formControlName="labelName"
+                    />
+                    </td>
+                    <td >
+                    
+                      <select class="form-control form-rounded form-control-sm " formControlName="inputType">
+                        <option value="">Select</option>
+                        <option value="Dropdownlist">Dropdown list</option>
+                        <option value="Input">Input</option>
+                        <option value="Checkbox">Checkbox</option>
+                        <option value="Image">Image</option>
+                        <option value="File">File</option>
+                        <option value="DatePiker">DatePiker</option>
+                      </select>
+                   
+                  </td>
+                  <td>
+                    
+                    <input
+                    class="form-control form-rounded form-control-sm "
+                    type="text"
+                    
+                    placeholder="dropdown List Name"
+                    formControlName="dropdownListName"
+                  />
+                  </td>
+                  <td >
+                    
+                    <select class="form-control form-rounded form-control-sm " formControlName="isRequired">
+                      <option value="">Select</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      
+                    </select>
+                  </td>
+                 
+                  <td>
+                      
+                    <input
+                    class="form-control form-rounded form-control-sm "
+                    type="text"
+                    
+                    placeholder="dropdown Method Name"
+                    formControlName="dropdownMethodName"
+                  />
+                  </td>
+                  <td>
+                      
+                    <select class="form-control form-rounded form-control-sm " formControlName="isSearchable">
+                      <option value="">Select</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      
+                    </select>
+                  </td>
+                  <td>
+                      
+                    <input
+                    class="form-control form-rounded form-control-sm "
+                    type="text"
+                    
+                    placeholder="dropdwn Id Property"
+                    formControlName="dropdwnIdProperty"
+                  />
+                  </td>
+                  <td>
+                      
+                    <input
+                    class="form-control form-rounded form-control-sm "
+                    type="text"
+                    
+                    placeholder="dropdown Value Property"
+                    formControlName="dropdownValueProperty"
+                  />
+                  </td>
+                </tr>
+
+               
+
+                <button *ngIf="i==count-1" type="submit" (click)="onSubmit()" nbButton>Submit</button>
+              </tbody>
+         
+           
+          </table>
+        </form>
+         
+          
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">Table Schema</label>
+        <textarea name="" id="" cols="40" rows="15" [(ngModel)]="tableSchema"></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="">Visual Studio Model</label>
+        <textarea name="" id="" cols="40" rows="15" [(ngModel)]="classDesign"></textarea>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">VS Code Model</label>
+        <textarea name="" id="" cols="40" rows="15" [(ngModel)]="classDesignForVsCode"></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="">Services</label>
+        <textarea name="" id="" cols="40" rows="15" [(ngModel)]="displayService"></textarea>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">Ts Create</label>
+        <textarea name="" id="" cols="50" rows="15" [(ngModel)]="displayTsCreate"></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="">Ts Edit</label>
+        <textarea name="" id="" cols="50" rows="15" [(ngModel)]="displayTsEdit"></textarea>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="">Ts Display</label>
+        <textarea name="" id="" cols="50" rows="15" [(ngModel)]="tsDisplayPage"></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="">Display Markup</label>
+        <textarea name="" id="" cols="50" rows="15" [(ngModel)]="tsDisplayMarkup"></textarea>
+      </div>
+      
+    </div>
+    <div class="row">
+      
+      <div class="col-md-12">
+        <label for="">Markup</label>
+        <textarea name="" id="" cols="100" rows="100" [(ngModel)]="displayMarkup"></textarea>
+      </div>
+      
+    </div>
+  </nb-card-body>
+</nb-card>
+
+
+
+

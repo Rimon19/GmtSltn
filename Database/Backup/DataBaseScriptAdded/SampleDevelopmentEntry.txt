@@ -1,0 +1,28 @@
+create table public."SampleDevelopmentEntry"(
+"Id" serial primary key,
+  "SampleTypeId" integer,
+"SampleColor" character varying(100),
+"RcvDateFromBuyer" character varying(100),
+"TfReceivDate" character varying(100),
+"BuyerDeadLine" character varying(100),
+"WorkingFactory" character varying(100),
+"SentToSmplDept" character varying(100),
+"DeadLine" character varying(100),
+"RcvFromSmplDept" character varying(100),
+"Fabrication" character varying(100),
+"FabricSource" character varying(100),
+"SentToBuyer" character varying(100),
+"KeyPointOrValDrive" character varying(100),
+"Department" character varying(100),
+"ApprovalStatus" character varying(100),
+"StatusDate" character varying(100),
+"BuyerMeeting" character varying(100),
+"SampleCharge" character varying(100),
+"BuyerReqNo" character varying(100),
+"Comments" character varying(100),
+"Currency"character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "Status" character varying(100)
+  )

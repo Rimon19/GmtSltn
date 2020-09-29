@@ -1,0 +1,11 @@
+create table public."SewingOperation"(
+"Id" serial primary key,
+"Operation" character varying(100),
+"Rate" integer,
+"UOMId" integer, 
+"ResourceId" integer,
+"OperatorSMV" integer,
+"HelperSMV" integer,
+"TotalSMV" integer,
+"Action" character varying(100)
+)

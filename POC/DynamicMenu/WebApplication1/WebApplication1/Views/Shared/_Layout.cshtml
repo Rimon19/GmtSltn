@@ -1,0 +1,13 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layout</title>
+</head>
+<body>
+    @{Html.RenderAction("Menu", "Account", new { area = "" });}
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

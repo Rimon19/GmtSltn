@@ -1,0 +1,15 @@
+create table public."SalesForecastEntryDetails"(
+"Id" serial primary key,
+"Month" character varying(100),
+"Year" integer,
+"SalesForecastMasterId"integer,
+"CYQntyTarget" integer,
+"CYValueTarget" integer,
+"CYTargetMint" integer,
+"PYQntyTarget" integer,
+"PYValueTarget" integer,
+"PYTargetMint" integer,
+"EntryDate" character varying(100),
+"EntryBy" character varying(100),
+"Status" character varying(100)
+)

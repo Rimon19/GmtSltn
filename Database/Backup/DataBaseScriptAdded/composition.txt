@@ -1,0 +1,8 @@
+
+
+CREATE TABLE public."Composition"
+(
+    "Id" serial primary key,
+    "CompositionName" character varying(100),
+    "Status" character varying(100)
+)

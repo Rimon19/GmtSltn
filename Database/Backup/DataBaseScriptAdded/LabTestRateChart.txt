@@ -1,0 +1,13 @@
+CREATE TABLE public."LabTestRateChart"
+(
+    "Id"  serial primary key,
+    "TestCatagory" character varying(100),
+    "TestFor" character varying(100),
+    "TestItem" character varying(100),
+    "Rate" integer,
+    "Upcharge" integer,
+    "UpchargeAmout" integer,
+    "NetRate" integer,
+    "Currency" character varying(100),
+    "TestingCompany" character varying(100)
+)

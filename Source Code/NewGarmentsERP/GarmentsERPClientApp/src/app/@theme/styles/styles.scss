@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+// themes - our custom or/and out of the box themes
+@import 'themes';
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+// loading progress bar theme
+@import './pace.theme';
+@import './layout';
+@import './overrides';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+// install the framework and custom global styles
+@include nb-install() {
+    // framework global styles
+    @include nb-theme-global();
+    @include nb-auth-global();
+    @include ngx-layout();
+    // loading progress bar
+    @include ngx-pace-theme();
+    @include nb-overrides();
+}
+
+;
+.confirm-dialog-container .mat-dialog-container {
+    border-radius: .25em .25em .4em .4em;
+    padding: 0px;
+}
+
+.confirm-dialog-container .content-container {
+    margin: 5px 5px 15px 5px;
+    color: #8f9cb5;
+    display: flex;
+}
+
+.confirm-dialog-container #close-icon {
+    margin-left: auto;
+    order: 2;
+    font-weight: bolder;
+}
+
+.confirm-dialog-container #close-icon:hover {
+    cursor: pointer;
+}
+
+.confirm-dialog-container #no-button {
+    height: 50px;
+    width: 50%;
+    background-color: #fc7169;
+    color: white;
+    border-radius: 0px;
+}
+
+.confirm-dialog-container #yes-button {
+    height: 50px;
+    width: 50%;
+    background-color: #b6bece;
+    color: white;
+    border-radius: 0px;
+}
+
+.confirm-dialog-container span.content-span {
+    padding: 35px 16px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.blue-snackbar {
+    background: #2196F3;
+}
+
+// scroll bar CSS
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    // width: 100%;
+    // height: 100%;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.container {
+    background-color: white;
+    border: 1.5px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.mat-table {
+    background-color: rgba(255, 255, 255, 0.959);
+    height: 100vh;
+    overflow: auto;
+    width: 100%;
+}
+
+.mat-header-cell,
+.mat-cell {
+    min-height: 48px;
+    font-size: 15px;
+    width: 100%;
+    color: black;
+}
+
+.mat-form-field-underline {
+    background-color: transparent;
+}
+
+.mat-form-field-flex {
+    font-size: 14px;
+    line-height: 1em;
+    color: #555;
+    background-image: none;
+    //  border: 1px solid #29157a;
+    border-radius: 4px;
+    margin-top: 8px;
+    padding: 2px;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 1.25em;
+    padding-top: 1.25em;
+}
+
+.mat-form-field-infix {
+    border: 0px;
+}
+
+//  .mat-form-field {
+// font-size: 18px;
+//width: 70%;
+// margin-left: 15px;
+// }
+.mat-paginator {
+    background-color: white;
+}
+
+.mat-row,
+.mat-header-row {
+    min-width: 1500px;
+    // width: 100%;
+}
+
+#visibilityContainer ::ng-deep ::-webkit-scrollbar-thumb {
+    background: blue;
+}
+
+//  ::-webkit-scrollbar {
+//     width: 200px;
+// }
+// /* Track */
+//  ::-webkit-scrollbar-track {
+//     box-shadow: inset 0 0 5px grey;
+//     border-radius: 10px;
+// }
+// /* Handle */
+//  ::-webkit-scrollbar-thumb {
+//     background: red;
+//     border-radius: 10px;
+// }
+// /* Handle on hover */
+//  ::-webkit-scrollbar-thumb:hover {
+//     background: #b30000;
+// }
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

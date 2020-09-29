@@ -1,0 +1,77 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+    
+          <div class="example-header">
+            <h5>Machine Name Info</h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success ml-2" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" >       
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            
+            </ng-container>  
+          <ng-container matColumnDef="location">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Location</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.location}}</mat-cell> 
+               
+          </ng-container>   
+          <ng-container matColumnDef="floorNo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Floor Name</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.floorNo}}</mat-cell>  
+            
+          
+          </ng-container>  
+          <ng-container matColumnDef="machineNo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Machine No</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.machineNo}}</mat-cell>  
+            
+          
+          </ng-container>
+          <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Category</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.category}}</mat-cell>  
+          </ng-container>
+        
+          <ng-container matColumnDef="group">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Machine Group</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.group}}</mat-cell>    
+          </ng-container>
+          <ng-container matColumnDef="diaWidth">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Dia Width </mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.diaWidth}}</mat-cell>    
+          </ng-container>
+        
+          <ng-container matColumnDef="gauge">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Gauge </mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.gauge}}</mat-cell>    
+          </ng-container>
+          <ng-container matColumnDef="sequenceNo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Seq. No</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.sequenceNo}}</mat-cell>    
+          </ng-container>
+        
+          
+          
+
+         
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+       
+      
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>  

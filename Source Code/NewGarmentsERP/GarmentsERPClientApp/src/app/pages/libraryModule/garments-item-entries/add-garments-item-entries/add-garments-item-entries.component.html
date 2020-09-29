@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backToaGarmentsitementriesHomePage()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i>
+      </button>  Garments Item Entry
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ItemName " class="label text-dark">
+                  Item Name <span class="text-danger">*</span></label>
+                <input required name="itemName" #ItemName="ngModel"
+                [(ngModel)]="garmentsItemEntriesService.garmentsItemEntries.itemName"   
+               class="form-control form-rounded form-control-sm" type="text" 
+                id="ItemName" placeholder="Item Name">
+                <div class="text-left text-danger"
+                *ngIf="garmentsItemEntriesService.garmentsItemEntries.itemName==''&&ItemName.touched">
+                Item Name  is required
+              </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for=" CommercialName " class="label text-dark">
+                  Commercial Name </label>
+                <input  name="commercialName" #commercialName="ngModel"
+                [(ngModel)]="garmentsItemEntriesService.garmentsItemEntries.commercialName" 
+               class="form-control form-rounded form-control-sm" type="text" 
+                id="CommercialName" placeholder="Commercial Name">
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ProductCategory" class="label text-dark">
+                  Product Category<span class="text-danger">*</span></label>
+                  <select required name="productCategoryId" #ProductCategoryId="ngModel"
+                  [(ngModel)]="garmentsItemEntriesService.garmentsItemEntries.productCategoryId"  
+                 class="form-control form-rounded form-control-sm" >
+                 <option [ngValue]=0>Select Product Category </option>
+                 <option *ngFor="let productCategoryList of ProductCategoryList" [value]="productCategoryList.id">{{productCategoryList.productCategoryName}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="garmentsItemEntriesService.garmentsItemEntries.productCategoryId==0&&ProductCategoryId.touched">
+             Product Category  is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ProductType" class="label text-dark">
+                  Product Type<span class="text-danger">*</span></label>
+                  <select required name="productTypeId" #ProductTypeId="ngModel"
+                  [(ngModel)]="garmentsItemEntriesService.garmentsItemEntries.productTypeId"  
+                  class="form-control form-rounded form-control-sm" >
+                  <option [ngValue]=0>Select Product Type </option>
+                  <option *ngFor="let productTypeList of ProductTypeList" [value]="productTypeList.id">{{productTypeList.productTypeName}}</option>
+                  
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="garmentsItemEntriesService.garmentsItemEntries.productTypeId==0&&ProductTypeId.touched">
+              Product Type  is required
+            </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="StandardSMV" class="label text-dark">
+                  Standard SMV </label>
+                <input  name="standardSMV" #standardSMV="ngModel"
+                [(ngModel)]="garmentsItemEntriesService.garmentsItemEntries.standardSMV" 
+               class="form-control form-rounded form-control-sm" type="number" 
+                id="Standard SMV" placeholder="Standard SMV ">
+               
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Efficiency" class="label text-dark">
+                  Efficiency% </label>
+                <input   name="efficiency" #efficiency="ngModel"
+                [(ngModel)]="garmentsItemEntriesService.garmentsItemEntries.efficiency" 
+               class="form-control form-rounded form-control-sm" type="number" 
+                id="Efficiency" placeholder="Efficiency">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">
+                  Status</label>
+                  <select   name="status" #Status="ngModel"
+                  [(ngModel)]="garmentsItemEntriesService.garmentsItemEntries.status"
+                   id="Status" 
+                  class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              </div>
+              
+            </div>
+           
+          </div>
+          
+          <button type="submit"  [disabled]="form.invalid||garmentsItemEntriesService.garmentsItemEntries.productCategoryId==0||
+          garmentsItemEntriesService.garmentsItemEntries.productTypeId==0" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

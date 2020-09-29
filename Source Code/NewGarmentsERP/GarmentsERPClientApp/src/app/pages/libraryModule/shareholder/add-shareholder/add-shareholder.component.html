@@ -1,0 +1,640 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+     
+      
+      <nb-card-header>
+        <!-- <button (click)="backTo()"
+        class="btn btn-outline-success "
+  
+       >
+       <i class="fas fa-arrow-left"></i></button> -->
+        Shareholder
+      
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+           
+          <div class="col-sm-3 ">
+            <div class="form-group">
+              <label for="Country" class="label">Search for Update or Delete</label>
+              
+              <select id="fabricNature"   
+                 [(ngModel)]="serchIdNo"
+                 (change)="onChangeUpdateId(serchIdNo)"
+                  class="form-control form-rounded form-control-sm" name="serchIdNo">
+                <option [ngValue]=0>Select </option>
+                <option *ngFor="let c of shareholdeList" [value]="c.id">{{c.idNo}}</option>
+            </select>
+            </div>
+             
+          </div>
+        </div>
+        <form #form="ngForm" (submit)="onSubmit(form,ShareDetailsForm,NomineeDetailsForm)" >
+         
+          <div class="row">
+            <!-- <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="Country" class="label">Fabric Nature<span class="text-danger">*</span></label>
+                
+                <select id="fabricNature"  required #fabricNature="ngModel"
+                   [(ngModel)]="shareholderService.shareholder.fabricNature"
+                    class="form-control form-rounded form-control-sm" name="fabricNature">
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let countrylist of countryList" [value]="countrylist.regionId">{{countrylist.regionName}}</option>
+              </select>
+              </div>
+               <div class="text-left text-danger"
+              *ngIf="shareholderService.shareholder.fabricNature==0&&fabricNature.touched">
+              Fabric Nature is required
+              </div>
+            </div> -->
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="idNo" class="label">Id No<span class="text-danger">*</span></label>
+                <input class="form-control" name="idNo" required #idNo="ngModel"
+                 [(ngModel)]="shareholderService.shareholder.idNo"
+                  class="form-control form-rounded form-control-sm" type="text" id="idNo"
+                  placeholder="Id No">
+                  <div class="text-left text-danger"
+              *ngIf="shareholderService.shareholder.idNo==''&&idNo.touched">
+              Id No is required
+              </div>
+              </div>
+
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="name" class="label">Name<span class="text-danger">*</span></label>
+                <input class="form-control" name="name" required #name="ngModel"
+                 [(ngModel)]="shareholderService.shareholder.name"
+                  class="form-control form-rounded form-control-sm" type="text" id="name"
+                  placeholder="name">
+                  <div class="text-left text-danger"
+                  *ngIf="shareholderService.shareholder.name==''&&name.touched">
+                  Name is required
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="boAccountId" class="label">Bo Account Id</label>
+                <input class="form-control form-rounded form-control-sm" name="boAccountId"
+                 [(ngModel)]="shareholderService.shareholder.boAccountId"
+                  class="form-control form-rounded form-control-sm" type="text" id="boAccountId"
+                  placeholder="Bo Account Id">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="fatherhusband" class="label">Father/Husband</label>
+                <input class="form-control form-rounded form-control-sm" name="fatherhusband"
+                 [(ngModel)]="shareholderService.shareholder.fatherhusband"
+                  class="form-control form-rounded form-control-sm" type="text" id="fatherhusband"
+                  placeholder="father/Husband">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="mothersName" class="label">Mother's Name</label>
+                <input class="form-control"name="mothersName"
+                 [(ngModel)]="shareholderService.shareholder.mothersName"
+                  class="form-control form-rounded form-control-sm" type="text" id="mothersName"
+                  placeholder="Mother's Name">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="profession" class="label">Profession</label>
+                <input class="form-control" name="profession"
+                 [(ngModel)]="shareholderService.shareholder.profession"
+                  class="form-control form-rounded form-control-sm" type="text" id="profession"
+                  placeholder="Profession">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="organization" class="label">Organization</label>
+                <input class="form-control form-rounded form-control-sm" name="organization"
+                 [(ngModel)]="shareholderService.shareholder.organization"
+                  class="form-control form-rounded form-control-sm" type="text" id="organization"
+                  placeholder="Organization">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Designation" class="label">Designation</label>
+                <input class="form-control form-rounded form-control-sm" name="designation"
+                 [(ngModel)]="shareholderService.shareholder.designation"
+                  class="form-control form-rounded form-control-sm" type="text" id="designation"
+                  placeholder="Designation">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="nationalId" class="label">National Id</label>
+                <input class="form-control" name="nationalId"
+                 [(ngModel)]="shareholderService.shareholder.nationalId"
+                  class="form-control form-rounded form-control-sm" type="text" id="nationalId"
+                  placeholder="National Id">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="tin" class="label">Tin</label>
+                <input class="form-control" name="tin"
+                 [(ngModel)]="shareholderService.shareholder.tin"
+                  class="form-control form-rounded form-control-sm" type="text" id="tin"
+                  placeholder="tin">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="vat" class="label">Vat</label>
+                <input class="form-control form-rounded form-control-sm" name="vat"
+                 [(ngModel)]="shareholderService.shareholder.vat"
+                  class="form-control form-rounded form-control-sm" type="text" id="vat"
+                  placeholder="vat">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="email" class="label">E-mail</label>
+                <input class="form-control form-rounded form-control-sm" name="email"
+                 [(ngModel)]="shareholderService.shareholder.email"
+                  class="form-control form-rounded form-control-sm" type="text" id="email"
+                  placeholder="email">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="phone" class="label">Phone</label>
+                <input class="form-control" name="phone"
+                 [(ngModel)]="shareholderService.shareholder.phone"
+                  class="form-control form-rounded form-control-sm" type="text" id="phone"
+                  placeholder="Phone">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label">Status</label>
+                   <select  name="status" #Status="ngModel"
+                   [(ngModel)]="shareholderService.shareholder.status"
+                   id="Status" 
+                    class="form-control form-rounded form-control-sm" >
+                   <option value="">Select Status</option>
+                   <option value="Active">Active</option>
+                   <option value="In Active">In Active</option>
+               </select>
+               <!-- <div class="text-left text-danger"
+               *ngIf="partyTypeService.partyType.status==''&&Status.touched">
+               Status is required
+             </div> -->
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+          
+            <div class="col-sm-3">
+              <div class="form-group">
+              Present Address
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="plotNoPr" class="label">Plot No</label>
+                <input class="form-control" name="plotNoPr"
+                 [(ngModel)]="shareholderService.shareholder.plotNoPr"
+                  class="form-control form-rounded form-control-sm" type="text" id="plotNoPr"
+                  placeholder="Plot No">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="levelNoPr" class="label">Level No</label>
+                <input class="form-control" name="levelNoPr"
+                 [(ngModel)]="shareholderService.shareholder.levelNoPr"
+                  class="form-control form-rounded form-control-sm" type="text" id="levelNoPr"
+                  placeholder="Level No">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="vat" class="label">Road No</label>
+                <input class="form-control form-rounded form-control-sm" name="roadNoPr"
+                 [(ngModel)]="shareholderService.shareholder.roadNoPr"
+                  class="form-control form-rounded form-control-sm" type="text" id="roadNoPr"
+                  placeholder="Road No">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="blockNoPr" class="label">Block No</label>
+                <input class="form-control form-rounded form-control-sm" name="blockNoPr"
+                 [(ngModel)]="shareholderService.shareholder.blockNoPr"
+                  class="form-control form-rounded form-control-sm" type="text" id="blockNoPr"
+                  placeholder="Block No">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+         <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="countryIdPr" class="label">Country </label>
+                
+                <select id="countryIdPr"  
+                   [(ngModel)]="shareholderService.shareholder.countryIdPr"
+                    class="form-control form-rounded form-control-sm" name="countryIdPr">
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let c of countryList" [value]="c.regionId">{{c.regionName}}</option>
+              </select>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="provincePr" class="label">Province </label>
+                <input class="form-control" name="provincePr"
+                 [(ngModel)]="shareholderService.shareholder.provincePr"
+                  class="form-control form-rounded form-control-sm" type="text" id="provincePr"
+                  placeholder="Province">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cityOrTownPr" class="label">City/TownPr</label>
+                <input class="form-control form-rounded form-control-sm" name="cityOrTownPr"
+                 [(ngModel)]="shareholderService.shareholder.cityOrTownPr"
+                  class="form-control form-rounded form-control-sm" type="text" id="cityOrTownPr"
+                  placeholder="City/Town">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="zipCodePr" class="label">Zip Code </label>
+                <input class="form-control form-rounded form-control-sm" name="zipCodePr"
+                 [(ngModel)]="shareholderService.shareholder.zipCodePr"
+                  class="form-control form-rounded form-control-sm" type="text" id="zipCodePr"
+                  placeholder="Zip Code ">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+          
+            <div class="col-sm-3">
+              <div class="form-group">
+              Permanent Address
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="plotNoPe" class="label">Plot No</label>
+                <input class="form-control" name="plotNoPe"
+                 [(ngModel)]="shareholderService.shareholder.plotNoPe"
+                  class="form-control form-rounded form-control-sm" type="text" id="plotNoPe"
+                  placeholder="Plot No">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="levelNoPe" class="label">Level No</label>
+                <input class="form-control" name="levelNoPe"
+                 [(ngModel)]="shareholderService.shareholder.levelNoPe"
+                  class="form-control form-rounded form-control-sm" type="text" id="levelNoPe"
+                  placeholder="Level No">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="roadNoPe" class="label">Road No</label>
+                <input class="form-control form-rounded form-control-sm" name="roadNoPe"
+                 [(ngModel)]="shareholderService.shareholder.roadNoPe"
+                  class="form-control form-rounded form-control-sm" type="text" id="roadNoPe"
+                  placeholder="Road No">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="blockNoPe" class="label">Block No</label>
+                <input class="form-control form-rounded form-control-sm" name="blockNoPe"
+                 [(ngModel)]="shareholderService.shareholder.blockNoPe"
+                  class="form-control form-rounded form-control-sm" type="text" id="blockNoPe"
+                  placeholder="Block No">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+         <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="countryIdPr" class="label">Country </label>
+                
+                <select id="countryIdPe"  
+                   [(ngModel)]="shareholderService.shareholder.countryIdPe"
+                    class="form-control form-rounded form-control-sm" name="countryIdPe">
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let c of countryList" [value]="c.regionId">{{c.regionName}}</option>
+              </select>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="provincePe" class="label">Province </label>
+                <input class="form-control" name="provincePe"
+                 [(ngModel)]="shareholderService.shareholder.provincePe"
+                  class="form-control form-rounded form-control-sm" type="text" id="provincePe"
+                  placeholder="Province">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="cityOrTownPe" class="label">City/TownPr</label>
+                <input class="form-control form-rounded form-control-sm" name="cityOrTownPe"
+                 [(ngModel)]="shareholderService.shareholder.cityOrTownPe"
+                  class="form-control form-rounded form-control-sm" type="text" id="cityOrTownPe"
+                  placeholder="City/Town">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="zipCodePe" class="label">Zip Code </label>
+                <input class="form-control form-rounded form-control-sm" name="zipCodePe"
+                 [(ngModel)]="shareholderService.shareholder.zipCodePe"
+                  class="form-control form-rounded form-control-sm" type="text" id="zipCodePe"
+                  placeholder="Zip Code ">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-1 ">
+                 <div class="form-group">
+                  <button  type="submit" nbButton>Submit</button>
+                  
+                 </div>
+                 
+               </div>
+               
+               <div class="col-sm-1 ">
+                <div class="form-group">
+                
+                 <button  type="button" (click)="onUpdate(form,ShareDetailsForm,NomineeDetailsForm)" nbButton>Update</button>
+               
+                </div>
+                
+              </div>
+              
+              <div class="col-sm-1 ">
+                <div class="form-group">
+                  <input hidden class="form-control" name="id"
+                  [(ngModel)]="shareholderService.shareholder.id"
+                   >
+                 <button  type="button" (click)="delete(shareholderService.shareholder.id)" nbButton>Delete</button>
+                </div>
+                
+              </div>
+             </div>
+
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+           
+  <div class="col-sm-6 ">
+    <nb-card>
+      <nb-card-header
+      > 
+      Share Details
+      <button
+        class="btn btn-outline-success float-right"
+        (click)="resetShareDetailsForm()"
+      >
+        <i class="fa fa-plus"></i>
+      </button>
+     
+    </nb-card-header>
+      <nb-card-body>
+        <div class="col-md-12">
+          <div class="smart-table-container">
+            <form>
+              <table class="">
+                <thead>
+                  <tr>
+                    <th scope="col">Action</th>
+                   
+                    <th scope="col">Company </th>
+                    <th scope="col">No.of.share</th>
+                    <th scope="col">Face Value</th>
+                    <th scope="col">Premium</th>
+                    <th scope="col">Share Value</th>
+                   
+                  </tr>
+                </thead>
+             
+                  <tbody 
+                  [formGroup]="fg"
+                  *ngFor="let fg of ShareDetailsForm.controls;let k=index">
+                    <tr>
+                      <td> 
+                          
+                        <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm" 
+                        (click)="onDeleteShareDetailsForm(ShareDetailsForm,k)" >
+                            <i class="far fa-trash-alt fa-lg text-danger"></i>
+                            
+                        </button> 
+                      </td>
+                       
+        
+                        <td >
+                        
+                          <select class="form-control form-rounded form-control-sm "formControlName="companyId" >
+                            <option value="0">Select</option>
+                            <option *ngFor="let c of companyList" [value]="c.compId">{{c.companyName}}</option>
+                          </select>
+                        </td>
+        
+                       
+      
+                        <td>
+                          
+                          <input
+                          class="form-control form-rounded form-control-sm " formControlName="noOfShare"
+                          type="text"
+                          placeholder="No.Of.Share"
+                        
+                        />
+                        </td>
+        
+                        <td>
+                          
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="faceValue"
+                            type="text"
+                            placeholder="Face Value"
+                          
+                          />
+                        </td>
+        
+                        <td>
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="premium"
+                            type="text"
+                            placeholder="Premium"
+                          
+                          />
+                        </td>
+                        <td>
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="shareValue"
+                            type="text"
+                            placeholder="ShareValue"
+                          
+                          />
+                        </td>
+                       
+                    </tr>
+                  
+                  </tbody>
+             
+               
+              </table>
+            </form>
+             
+              
+          </div>
+        </div>
+       
+      </nb-card-body>
+    </nb-card>
+    
+  </div>
+  <div class="col-sm-6 ">
+    <nb-card>
+      <nb-card-header
+      > 
+      Nominee Details
+      <button
+        class="btn btn-outline-success float-right"
+        (click)="resetNomineeDetailsForm()"
+      >
+        <i class="fa fa-plus"></i>
+      </button>
+     
+    </nb-card-header>
+      <nb-card-body>
+        <div class="col-md-12">
+          <div class="smart-table-container">
+            <form>
+              <table class="">
+                <thead>
+                  <tr>
+                    <th scope="col">Action</th>
+                   
+                    <th scope="col">Company</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Relation</th>
+                    <th scope="col">Ratio</th>
+                    <th scope="col">Amount</th>
+                   
+                  </tr>
+                </thead>
+             
+                  <tbody 
+                  [formGroup]="fg"
+                  *ngFor="let fg of NomineeDetailsForm.controls;let k=index">
+                  <tr>
+                    <td> 
+                        
+                      <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm" 
+                      (click)="onDeleteNomineeDetailsForm(NomineeDetailsForm,k)" >
+                          <i class="far fa-trash-alt fa-lg text-danger"></i>
+                          
+                      </button> 
+                    </td>
+                     
+      
+                      <td >
+                      
+                        <select class="form-control form-rounded form-control-sm "formControlName="companyId" >
+                          <option value="0">Select</option>
+                          <option *ngFor="let c of companyList" [value]="c.compId">{{c.companyName}}</option>
+                        </select>
+                      </td>
+      
+                     
+    
+                      <td>
+                        
+                        <input
+                        class="form-control form-rounded form-control-sm " formControlName="name"
+                        type="text"
+                        placeholder="Name"
+                      
+                      />
+                      </td>
+      
+                      <td>
+                        
+                        <input
+                          class="form-control form-rounded form-control-sm " formControlName="relation"
+                          type="text"
+                          placeholder="Relation"
+                        
+                        />
+                      </td>
+      
+                      <td>
+                        <input
+                          class="form-control form-rounded form-control-sm " formControlName="ratio"
+                          type="text"
+                          placeholder="Ratio"
+                        
+                        />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control form-rounded form-control-sm " formControlName="amount"
+                          type="text"
+                          placeholder="Amount"
+                        
+                        />
+                      </td>
+                     
+                  </tr>
+                   
+                  </tbody>
+             
+               
+              </table>
+            </form>
+             
+              
+          </div>
+        </div>
+       
+      </nb-card-body>
+    </nb-card>
+    
+  </div>
+</div>

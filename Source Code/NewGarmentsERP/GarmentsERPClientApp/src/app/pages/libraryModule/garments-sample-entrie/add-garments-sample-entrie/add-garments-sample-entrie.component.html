@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()" class="btn btn-outline-success">
+  <i class="fas fa-arrow-left"></i>
+</button> Garments Sample Entrie
+    </nb-card-header>
+      
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SampleName" class="label text-dark">
+                  Sample Name<span class="text-danger">*</span></label>
+                <input  required name="sampleName" #SampleName="ngModel"
+                [(ngModel)]="garmentsSampleEntrieService.garmentsSampleEntrie.sampleName" 
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="SampleName" placeholder="Sample Name">
+                <div class="text-left text-danger"
+                *ngIf="garmentsSampleEntrieService.garmentsSampleEntrie.sampleName==''&&SampleName.touched">
+                Sample Name  is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SampleType" class="label text-dark">
+                  Sample Type<span class="text-danger">*</span></label>
+                  <select   required name="sampleTypeId" #SampleTypeId="ngModel"
+                  [(ngModel)]="garmentsSampleEntrieService.garmentsSampleEntrie.sampleTypeId"
+                  class="form-control form-rounded form-control-sm" id="SampleType">
+                  <option value=''>Select Sample Type </option>
+                  <option *ngFor="let samplelist of sampleTypeList" [value]="samplelist.id">{{samplelist.sampleTypeName}}</option>
+                  
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="garmentsSampleEntrieService.garmentsSampleEntrie.sampleTypeId==0&&SampleTypeId.touched">
+              Sample Type  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">
+                  Status </label>
+                  <select   name="status" #Status="ngModel"
+                  [(ngModel)]="garmentsSampleEntrieService.garmentsSampleEntrie.status"
+                   id="Status" 
+                  class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+          </div>
+        
+          <button type="submit" [disabled]="form.invalid"   nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

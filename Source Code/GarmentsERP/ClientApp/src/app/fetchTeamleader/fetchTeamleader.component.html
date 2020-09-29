@@ -1,0 +1,78 @@
+
+<h4>Teamleader Information</h4>
+<p>This component demonstrates fetching Location data from the server.</p>
+<p *ngIf="!Teamleaderlist"><em>Loading...</em></p>
+<p>
+  <button type="button" class="btn btn-info" (click)="openModalDialog()">Add new</button>
+</p>
+<!--<pre>{{Teamleaderlist|json}}</pre>-->
+<table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2" *ngIf="Teamleaderlist">
+  <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border: solid1px#659EC7;">
+
+    <td width="80" align="center">Teamleader ID</td>
+    <td width="150" align="center">Teamleader Name</td> 
+    <td width="150" align="center">Actions</td>
+
+  </tr>
+  <tbody *ngFor="let comp of Teamleaderlist">
+    <tr>
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{comp.teamleaderId}}</span></td>
+      <td style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;">
+      <span style="color:#9F000F">
+        <div *ngFor='let c of Userslist'>
+          <div *ngIf='c.userId== comp.userId'> {{c.fullName}}</div>
+        </div>
+       </span></td>
+    
+
+
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;">
+        <button type="button" class="btn btn-link btn-sm" (click)="openModalDialog(comp.teamleaderId)">Edit</button>
+        <button type="button" class="btn btn-link btn-sm" (click)="delete(comp.teamleaderId)">Delete</button>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="modal" id="modalLocation" tabindex="1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true"></span></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="teamleaderForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+
+        
+
+          <div class="form-group row">
+
+            <label class=" control-label col-md-12" for="userId">Teamleader Name</label>
+            <div class="col-md-4">
+              <select formControlName="userId" class="form-control" value="">
+                <option *ngFor="let item of Userslist" [value]="item.userId">
+                  {{item.fullName}}
+                </option>
+              </select>
+            </div>
+            <span class="text-danger" *ngIf="teamleaderForm.hasError('required', 'userId') && formDir.submitted">
+              Teamleader is required.
+            </span>
+          </div>
+
+
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Save</button>
+            <button class="btn" (click)="closeModalDialog()">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

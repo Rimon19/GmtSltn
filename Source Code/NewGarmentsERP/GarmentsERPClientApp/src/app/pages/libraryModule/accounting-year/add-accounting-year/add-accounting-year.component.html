@@ -1,0 +1,241 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+     
+      
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+  
+       >
+       <i class="fas fa-arrow-left"></i></button>
+        Accounting Year Entry
+      
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form,AccountingYearSubInfoForm)" >
+          <div class="row">
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="Country" class="label">Company<span class="text-danger">*</span></label>
+                
+                <select id="companyId"  required #companyId="ngModel"
+                   [(ngModel)]="accountingYearService.accountingYear.companyId"
+                    class="form-control form-rounded form-control-sm" name="companyId">
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let c of companyList" [value]="c.compId">{{c.companyName}}</option>
+              </select>
+              </div>
+               <div class="text-left text-danger"
+              *ngIf="accountingYearService.accountingYear.companyId==0&&companyId.touched">
+              Company is required
+              </div>
+            </div>
+          
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Country" class="label">Starting Year<span class="text-danger">*</span></label>
+                
+                <select id="startingYear"  required #startingYear="ngModel"
+                   [(ngModel)]="accountingYearService.accountingYear.startingYear"
+                    class="form-control form-rounded form-control-sm" name="startingYear">
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let y of yearList" [value]="y.year">{{y.year}}</option>
+              </select>
+              </div>
+               <div class="text-left text-danger"
+              *ngIf="accountingYearService.accountingYear.startingYear==0&&startingYear.touched">
+              Starting Year is required
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="currentYear" class="label">Current Year<span class="text-danger">*</span></label>
+                
+                <select id="currentYear"  required #currentYear="ngModel"
+                   [(ngModel)]="accountingYearService.accountingYear.currentYear"
+                    class="form-control form-rounded form-control-sm" name="currentYear">
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let y of yearList" [value]="y.year">{{y.year}}</option>
+              </select>
+              </div>
+               <div class="text-left text-danger"
+              *ngIf="accountingYearService.accountingYear.currentYear==0&&currentYear.touched">
+              Current  Year is required
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="startingMonth" class="label">Starting Month</label>
+                
+                <select id="startingMonth"   #startingMonth="ngModel"
+                   [(ngModel)]="accountingYearService.accountingYear.startingMonth"
+                    class="form-control form-rounded form-control-sm" name="startingMonth">
+                    <option value="">Select </option>
+                  <option *ngFor="let m of monthList" [value]="m.monthName">{{m.monthName}}</option>
+              </select>
+              </div>
+             
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="endingMonth" class="label">Ending Month</label>
+                
+                <select id="endingMonth"   #endingMonth="ngModel"
+                   [(ngModel)]="accountingYearService.accountingYear.endingMonth"
+                    class="form-control form-rounded form-control-sm" name="endingMonth">
+                    <option value="">Select </option>
+                  <option *ngFor="let m of monthList" [value]="m.monthName">{{m.monthName}}</option>
+              </select>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="periodName" class="label">Period Name</label>
+                <input class="form-control" name="periodName"
+                 [(ngModel)]="accountingYearService.accountingYear.periodName"
+                  class="form-control form-rounded form-control-sm" type="text" id="periodName"
+                  placeholder="Period Name">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="startingMonth" class="label">In Active</label>
+                
+                <select id="startingMonth"   #startingMonth="ngModel"
+                   [(ngModel)]="accountingYearService.accountingYear.isActive"
+                    class="form-control form-rounded form-control-sm" name="isActive">
+                  <option value="">Select </option>
+                  <option value="Active">Active </option>
+                  <option value="InActive">In Active </option>
+              </select>
+              </div>
+              
+            </div>
+           
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+
+                <button [disabled]="form.invalid"  type="submit" nbButton>Submit</button>
+               
+              </div>
+             
+            </div>
+           
+           
+          </div>
+        
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<nb-card>
+  <nb-card-header
+  > 
+ Accounting Year 
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="resetSubForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12">
+      <div class="smart-table-container">
+        <form>
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+               
+                <th scope="col">Starting Date</th>
+                <th scope="col">Ending Date</th>
+                <th scope="col">Period</th>
+                <th scope="col">Locked</th>
+               
+               
+              </tr>
+            </thead>
+         
+              <tbody 
+              [formGroup]="fg"
+              *ngFor="let fg of AccountingYearSubInfoForm.controls;let k=index">
+                <tr>
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm" 
+                    (click)="onDeleteSubForm(AccountingYearSubInfoForm,k)" >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+                   
+    
+                    <td >
+                    
+                      <input
+                        class="form-control form-rounded form-control-sm "
+                         formControlName="startingDate"
+                        type="text"
+                        placeholder="Starting Date"
+                      
+                      />
+                    </td>
+    
+                   
+  
+                    <td>
+                      
+                      <input
+                        class="form-control form-rounded form-control-sm "
+                         formControlName="endingDate"
+                        type="text"
+                        placeholder="Ending Date"
+                      
+                      />
+                    </td>
+    
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                       formControlName="period"
+                      type="text"
+                      placeholder="Period"
+                    
+                    />
+                    </td>
+    
+                    <td>
+                      
+                      <input
+                        class="form-control form-rounded form-control-sm "
+                         formControlName="locked"
+                        type="checkbox"
+                        placeholder="Locked"
+                      
+                      />
+                    </td>
+                   
+                </tr>
+               
+              </tbody>
+         
+           
+          </table>
+        </form>
+         
+          
+      </div>
+    </div>
+   
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,9 @@
+CREATE TABLE public."DepoLocationMapping"
+(
+    "Id"  serial primary key,
+    "CountryId" integer,
+    "UltimateCountryId" integer,
+    "CountryDepoName" character varying(100),
+    "status" character varying(100)
+    
+)

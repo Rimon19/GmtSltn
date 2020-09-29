@@ -1,0 +1,7 @@
+create table public."CurrencyConversionRate"(
+"Id" serial primary key,
+"Currency" character varying(100),
+"ConversionRate" integer,
+"MarketingRate" integer,
+"Date" character varying(100)
+)

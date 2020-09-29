@@ -1,0 +1,5 @@
+ create table public."FunctionalSuperior"(
+ "Id" serial primary key,
+ "FunctionalSuperiorName" character varying(100)
+
+)

@@ -1,0 +1,55 @@
+CREATE TABLE public."ImageOrFileHolderPages"
+(
+    "Id"  serial primary key,
+    "PageName" character varying(100),
+    "PageId" integer
+   
+    
+)
+
+
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( 'Order Entry', 1);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( 'Quotation Inquery', 2);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( 'Sample Development Order Details', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( 'Supplier Profile', 4);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( 'Buyer Profile', 5);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( 'Other Party Profile', 6);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 7);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 8);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 9);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 10);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 11);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 12);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 13);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 14);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 15);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+INSERT INTO public."ImageOrFileHolderPages"( "PageName", "PageId") VALUES ( '', 3);
+

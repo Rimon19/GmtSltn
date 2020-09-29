@@ -1,0 +1,135 @@
+<nb-card>
+  <nb-card-header
+  >
+  <button (click)="backToPrecostingFromFabricCost()"
+  class="btn btn-outline-success"><i class="fas fa-arrow-left"></i></button> 
+  Commission Cost
+ 
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="commissionDetailsForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:1000px;">
+      <form  >
+        <table class="">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col">Particulars</th>
+              <th scope="col">Commn. Base</th>
+              <th scope="col">Commn Rate</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+  
+            </tr>
+          </thead>
+            
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of commissionInformationForm.controls;let i=index" >
+                <tr>                
+                   <td>   
+                    <button  class="btn btn-light ml-1 " (click)="onDelete(commissionInformationForm,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                   </td>
+                    <td>
+   
+                      <select class="form-control form-rounded 
+                      form-control-sm " formControlName="particulars">
+                       <option value="">Select</option>
+                       <option value="Foreign">Foreign</option>
+                       <option value="Local">Local</option>
+                      </select>
+                    </td>
+                    <td>                     
+                     
+                      <select class="form-control form-rounded 
+                      form-control-sm " formControlName="commnBase">
+                       <option value="">Select</option>
+                       <option value="In Percentage">In Percentage</option>
+                       <option value="Per Pcs">Per Pcs</option>
+                       <option value="Per Dzn">Per Dzn</option>
+                      </select>
+                    </td>    
+                    <td>                 
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      knifeOnlyNumbers
+                      placeholder="Commn Rate"
+                      formControlName="commnRate"
+                     (change)="onChangeCommnBaseRate(commissionInformationForm)"
+                    />
+                    </td>
+                    <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"            
+                        placeholder="Amount"
+                        formControlName="amount"
+                        (change)="onChangeAmount(commissionInformationForm)"
+                        knifeOnlyNumbers
+                      />
+                    </td>
+                    <td>
+                     
+                    <select class="form-control form-rounded 
+                      form-control-sm " formControlName="status">
+                       <option value="">Select</option>
+                       <option value="Active">Active</option>
+                       <option value="In Active">InActive</option>
+                       
+                      </select>
+                    <input
+                  type="hidden"
+                    formControlName="id"
+                   
+                  />
+                  </td>
+
+                </tr>
+                
+                <button *ngIf="i==count-1" type="submit" (click)="onSubmit(commissionInformationForm)" nbButton >Submit</button>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td colspan="3" class= "text-right ">Sum</td>
+                  <td > <input
+                   class="form-control form-rounded form-control-sm "
+                   type="text"
+                   placeholder="Total"
+                  name="commnBaseRate"
+                  [(ngModel)]="TotalCommnRate"
+                 /></td>
+                 <td > <input
+                  class="form-control form-rounded form-control-sm "
+                  type="text"
+                  placeholder="Total"
+                 name="amount"
+                 [(ngModel)]="TotalAmmount"
+                /></td>
+                </tr>
+              </tbody>
+             
+           
+           
+             
+           
+         
+        </table>
+       
+      </form>
+      </div>
+    </div>
+    
+ 
+  </nb-card-body>
+</nb-card>

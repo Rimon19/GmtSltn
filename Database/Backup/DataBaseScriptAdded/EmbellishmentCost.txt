@@ -1,0 +1,16 @@
+
+-- DROP TABLE public.embellishment_cost_pre_costing;
+
+create table public."EmbellishmentCost"(
+ "Id" serial primary key,
+ "PrecostingId" integer,
+ "EmbelName" character varying(100),
+ "EmbelTypeId" integer,
+ "BodyPartId" integer,
+ "CountryId" integer,
+ "SupplierId" integer,
+ "Cons" numeric,
+ "Rate" numeric,
+ "Amount" numeric,
+ "Status" character varying(100)
+)

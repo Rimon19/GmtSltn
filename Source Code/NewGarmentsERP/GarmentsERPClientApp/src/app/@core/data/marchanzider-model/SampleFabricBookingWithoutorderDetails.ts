@@ -1,0 +1,40 @@
+export class SampleFabricBookingWithoutorderDetails {
+    id:number;
+    sfbWithoutOrderId: any ;
+  buyerProfileId: any ;
+  stypeRef: string ;
+  styleDes: string ;
+  sampletype: string ;
+  bodyPartEntryId: any ;
+  colorType: string ;
+  fabricDescriptionId: any ;
+  gsm: any ;
+  gmtsColor: string ;
+  fabricColor: string ;
+  gmtsSize: string ;
+  itemsize: string ;
+  diaWidth: string ;
+  finishFabric: any ;
+  processloss: any ;
+    grayFabric: string ;
+    articleNumber: string ;
+  rate: any ;
+  amount: any ;
+  bodyPartTypeId: any ;
+  itemQty: any ;
+  yarnDetails: string ;
+  fabricSource: string ;
+  knittingChargeKG: string ;
+  bhQty: any ;
+  rhQty: any ;
+  deliveryDate: string ;
+  remarks: string ;
+  uom: string ;
+  
+    entryDate :string;
+    entryBy :string;
+    approvedDate :string;
+    approvedBy :string;
+    isApproved :boolean;
+    status :string;
+   }

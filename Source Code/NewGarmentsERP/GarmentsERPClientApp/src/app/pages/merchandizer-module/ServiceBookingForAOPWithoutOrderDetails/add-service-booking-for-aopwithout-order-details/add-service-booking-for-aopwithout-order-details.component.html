@@ -1,0 +1,375 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Service Booking</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+         <div class="row">  <div class="col-sm-3">
+          <div class="form-group">
+            <label for="FabricSource" class="label text-dark">
+            Fabric Source
+            <span class="text-danger">*</span> </label>
+            <select
+              name="fabricSource"
+              required
+              #FabricSource="ngModel"
+              [(ngModel)]="
+              serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.fabricSource
+              "
+              id="FabricSource"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select Fabric Source</option>
+            <option
+              *ngFor="let item of dropdownValueService.fabricSourceList            "
+              value="{{item.value}}"
+              >{{item.value}}</option
+            >
+            </select>
+            <div
+              class="text-left text-danger text-responsive"
+              *ngIf="
+              serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.fabricSource== '' && FabricSource.touched
+              "
+            >
+            Fabric Source is required
+            </div>
+          </div>
+        </div>
+          <div class="col-sm-3">
+          <div class="form-group">
+            <label for="FabricDescriptionId" class="label text-dark">
+            Fabric Description
+            <span class="text-danger">*</span> </label>
+            <select
+              name="fabricDescriptionId"
+              required
+              #FabricDescriptionId="ngModel"
+              [(ngModel)]="
+              serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.fabricDescriptionId
+              "
+              id="FabricDescriptionId"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select Fabric Description</option>
+            <option
+              *ngFor="let item of dropdownValueService.fabricDescriptionList"
+              value="{{item.id}}"
+              >F.N-{{item.fabNature}},Const:{{item.construction}},comp-{{item.composition}}</option
+            >
+            </select>
+            <div
+              class="text-left text-danger text-responsive"
+              *ngIf="
+              serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.fabricDescriptionId== '' && FabricDescriptionId.touched
+              "
+            >
+            Fabric Description is required
+            </div>
+          </div>
+        </div> <div class="col-sm-3">
+      <div class="form-group">
+       <label for="AOPGSM" class="label text-dark">
+         AOP.GSM</label
+       >
+       <input
+         name="aOPGSM"    
+         [(ngModel)]="
+         serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.aOPGSM
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="AOPGSM"
+         placeholder=" AOP.GSM"
+       />
+      </div>
+      </div>
+         <div class="col-sm-3">
+      <div class="form-group">
+       <label for="AOPDia" class="label text-dark">
+         AOP.Dia</label
+       >
+       <input
+         name="aOPDia"    
+         [(ngModel)]="
+         serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.aOPDia
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="AOPDia"
+         placeholder=" AOP.Dia"
+       />
+      </div>
+      </div>
+    </div>
+         <div class="row">  <div class="col-sm-3">
+          <div class="form-group">
+            <label for="UOMId" class="label text-dark">
+            UOM
+            </label>
+            <select
+              name="uOMId"
+            
+              #UOMId="ngModel"
+              [(ngModel)]="
+              serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.uOMId
+              "
+              id="UOMId"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select UOM</option>
+            <option
+              *ngFor="let item of dropdownValueService.uomList                    "
+              value="{{item.id}}"
+              >{{ item.uomName}}</option
+            >
+            </select>
+            
+          </div>
+        </div>
+           <div class="col-sm-3">
+      <div class="form-group">
+       <label for="ArtworkNo" class="label text-dark">
+         Artwork No</label
+       >
+       <input
+         name="artworkNo"    
+         [(ngModel)]="
+         serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.artworkNo
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="ArtworkNo"
+         placeholder=" Artwork No"
+       />
+      </div>
+      </div>
+        
+          <!-- <div class="col-sm-3">
+          <div class="form-group">
+            <label for="GmtsColor" class="label text-dark">
+            GmtsColor
+            </label>
+            <select
+              name="gmtsColor"
+            
+              #GmtsColor="ngModel"
+              [(ngModel)]="
+              serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.gmtsColor
+              "
+              id="GmtsColor"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select GmtsColor</option>
+            <option
+              *ngFor="let item of dropdownValueService."
+              value="{{item.}}"
+              >{{ item.}}</option
+            >
+            </select>
+            
+          </div>
+        </div> -->
+           <div class="col-sm-3">
+      <div class="form-group">
+       <label for="WOQnty" class="label text-dark">
+         WO. Qnty</label
+       >
+       <input
+       (change)="WOQntyCalculate(serviceBookingForAOPWithoutOrderDetailsService)"
+         name="wOQnty"    
+         [(ngModel)]="
+         serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.wOQnty
+         "
+         class="form-control form-rounded form-control-sm"
+         type="number"
+         id="WOQnty"
+         placeholder=" WO. Qnty"
+       />
+      </div>
+      </div>
+        <div class="col-sm-3">
+         <div class="form-group">
+           <label for="AopRate" class="label text-dark">
+           Aop Rate<span class="text-danger">*</span></label
+           >
+           <input
+           (change)="WOQntyCalculate(serviceBookingForAOPWithoutOrderDetailsService)"
+             required
+             name="aopRate"
+             #AopRate="ngModel"
+             [(ngModel)]="
+             serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.aopRate
+             "
+             type="number"
+             class="form-control form-rounded form-control-sm"
+             id="AopRate"
+             placeholder="Aop Rate"
+           />
+           <div
+             class="text-left text-danger text-responsive"
+             *ngIf="
+             serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.aopRate ==
+                 '' && AopRate.touched
+             "
+           >
+           Aop Rate is required
+           </div>
+         </div>
+       </div></div>
+         <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="Amount" class="label text-dark">
+              Amount<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                name="amount"
+                #Amount="ngModel"
+                [(ngModel)]="
+                serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.amount
+                "
+                type="number"
+                class="form-control form-rounded form-control-sm"
+                id="Amount"
+                placeholder="Amount"
+              />
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.amount ==
+                    '' && Amount.touched
+                "
+              >
+              Amount is required
+              </div>
+            </div>
+          </div>
+              <div class="col-sm-3">
+             <div class="form-group">
+               <label for="DeliveryStartDate" class="label text-dark">
+                 Delivery Start Date<span class="text-danger">*</span>
+               </label>
+               <input readonly
+                 name="deliveryStartDate"
+                 required
+                 #deliveryStartDate="ngModel"
+                 [(ngModel)]="
+                   serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.deliveryStartDate
+                 "          
+                 type="text"
+                 class="form-control form-rounded form-control-sm"
+                 id="DeliveryStartDate"
+                 [nbDatepicker]="DeliveryStartDate"
+                 placeholder="Delivery Start Date"
+               />
+               <div
+                 class="text-left text-danger text-responsive"
+                 *ngIf="
+                 serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.deliveryStartDate ==
+                     '' &&deliveryStartDate.touched
+                 "
+               >
+               Delivery Start Date is required
+               </div>
+               <nb-datepicker #DeliveryStartDate></nb-datepicker>
+             </div>
+           </div>
+              <div class="col-sm-3">
+             <div class="form-group">
+               <label for="DeliveryEndDate" class="label text-dark">
+                 Delivery End Date	<span class="text-danger">*</span>
+               </label>
+               <input readonly
+                 name="deliveryEndDate"
+                 required
+                 #deliveryEndDate="ngModel"
+                 [(ngModel)]="
+                   serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.deliveryEndDate
+                 "          
+                 type="text"
+                 class="form-control form-rounded form-control-sm"
+                 id="DeliveryEndDate"
+                 [nbDatepicker]="DeliveryEndDate"
+                 placeholder="Delivery End Date	"
+               />
+               <div
+                 class="text-left text-danger text-responsive"
+                 *ngIf="
+                 serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.deliveryEndDate ==
+                     '' &&deliveryEndDate.touched
+                 "
+               >
+               Delivery End Date	 is required
+               </div>
+               <nb-datepicker #DeliveryEndDate></nb-datepicker>
+             </div>
+           </div>
+            <div class="col-sm-3">
+         <div class="form-group">
+          <label for="Remarks" class="label text-dark">
+            Remarks</label
+          >
+          <input
+            name="remarks"    
+            [(ngModel)]="
+            serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.remarks
+            "
+            class="form-control form-rounded form-control-sm"
+            type="text"
+            id="Remarks"
+            placeholder=" Remarks"
+          />
+         </div>
+         </div>
+         </div>
+  
+  
+  
+
+  
+    <!-- <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PrintingColor" class="label text-dark">
+      Printing Color
+      </label>
+      <select
+        name="printingColor"
+      
+        #PrintingColor="ngModel"
+        [(ngModel)]="
+        serviceBookingForAOPWithoutOrderDetailsService.serviceBookingForAOPWithoutOrderDetails.printingColor
+        "
+        id="PrintingColor"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Printing Color</option>
+      <option
+        *ngFor="let item of dropdownValueService."
+        value="{{item.}}"
+        >{{ item.}}</option
+      >
+      </select>
+      
+    </div>
+  </div> -->
+    
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

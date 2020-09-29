@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbHRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbHRM.dbo.vwEmpShortListDistinct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwEmpShortListDistinct">
+          <Key>
+            <PropertyRef Name="Emp_Id" />
+            <PropertyRef Name="Present_Salary" />
+            <PropertyRef Name="Comp_Name" />
+            <PropertyRef Name="Dept_Name" />
+            <PropertyRef Name="Emp_Name" />
+            <PropertyRef Name="Grade_Name" />
+            <PropertyRef Name="Religion" />
+            <PropertyRef Name="Sex" />
+            <PropertyRef Name="M_Status" />
+          </Key>
+          <Property Name="Emp_Id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Present_Salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Join_Date" Type="datetime" />
+          <Property Name="ServiceUpto" Type="float" />
+          <Property Name="Desig_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Comp_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dept_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Emp_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Emp_dob" Type="datetime" />
+          <Property Name="Perm_Add" Type="varchar" MaxLength="400" />
+          <Property Name="Pres_Add" Type="varchar" MaxLength="400" />
+          <Property Name="CardID" Type="varchar" MaxLength="50" />
+          <Property Name="Head_Quarter" Type="varchar" MaxLength="100" />
+          <Property Name="Grade_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalOthersAllowance" Type="numeric" Precision="38" Scale="0" />
+          <Property Name="Special" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="OldID" Type="varchar" MaxLength="50" />
+          <Property Name="Area" Type="varchar" MaxLength="50" />
+          <Property Name="Zone" Type="varchar" MaxLength="50" />
+          <Property Name="Sheet" Type="varchar" MaxLength="50" />
+          <Property Name="Section" Type="varchar" MaxLength="50" />
+          <Property Name="BankName" Type="varchar" MaxLength="100" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="50" />
+          <Property Name="Insurance" Type="varchar" MaxLength="50" />
+          <Property Name="TimeZoneID" Type="varchar" MaxLength="50" />
+          <Property Name="Emp_BGroup" Type="varchar" MaxLength="30" />
+          <Property Name="Religion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Emp_Ref1" Type="varchar" MaxLength="200" />
+          <Property Name="Emp_Ref2" Type="varchar" MaxLength="200" />
+          <Property Name="X_Emp" Type="varchar" MaxLength="50" />
+          <Property Name="Sex" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="M_Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AcademicRecords" Type="varchar" MaxLength="200" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="Job_Cat" Type="varchar" MaxLength="50" />
+          <Property Name="Job_Type" Type="varchar" MaxLength="50" />
+          <Property Name="Emp_Type" Type="varchar" MaxLength="50" />
+          <Property Name="Cont_Num" Type="varchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+          <Property Name="Personal_Phone" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="dbHRMModelStoreContainer">
+          <EntitySet Name="vwEmpShortListDistinct" EntityType="Self.vwEmpShortListDistinct" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwEmpShortListDistinct].[Emp_Id] AS [Emp_Id], 
+    [vwEmpShortListDistinct].[Present_Salary] AS [Present_Salary], 
+    [vwEmpShortListDistinct].[Join_Date] AS [Join_Date], 
+    [vwEmpShortListDistinct].[ServiceUpto] AS [ServiceUpto], 
+    [vwEmpShortListDistinct].[Desig_Name] AS [Desig_Name], 
+    [vwEmpShortListDistinct].[Comp_Name] AS [Comp_Name], 
+    [vwEmpShortListDistinct].[Dept_Name] AS [Dept_Name], 
+    [vwEmpShortListDistinct].[Emp_Name] AS [Emp_Name], 
+    [vwEmpShortListDistinct].[Emp_dob] AS [Emp_dob], 
+    [vwEmpShortListDistinct].[Perm_Add] AS [Perm_Add], 
+    [vwEmpShortListDistinct].[Pres_Add] AS [Pres_Add], 
+    [vwEmpShortListDistinct].[CardID] AS [CardID], 
+    [vwEmpShortListDistinct].[Head_Quarter] AS [Head_Quarter], 
+    [vwEmpShortListDistinct].[Grade_Name] AS [Grade_Name], 
+    [vwEmpShortListDistinct].[TotalOthersAllowance] AS [TotalOthersAllowance], 
+    [vwEmpShortListDistinct].[Special] AS [Special], 
+    [vwEmpShortListDistinct].[OldID] AS [OldID], 
+    [vwEmpShortListDistinct].[Area] AS [Area], 
+    [vwEmpShortListDistinct].[Zone] AS [Zone], 
+    [vwEmpShortListDistinct].[Sheet] AS [Sheet], 
+    [vwEmpShortListDistinct].[Section] AS [Section], 
+    [vwEmpShortListDistinct].[BankName] AS [BankName], 
+    [vwEmpShortListDistinct].[TimeZone] AS [TimeZone], 
+    [vwEmpShortListDistinct].[Insurance] AS [Insurance], 
+    [vwEmpShortListDistinct].[TimeZoneID] AS [TimeZoneID], 
+    [vwEmpShortListDistinct].[Emp_BGroup] AS [Emp_BGroup], 
+    [vwEmpShortListDistinct].[Religion] AS [Religion], 
+    [vwEmpShortListDistinct].[Emp_Ref1] AS [Emp_Ref1], 
+    [vwEmpShortListDistinct].[Emp_Ref2] AS [Emp_Ref2], 
+    [vwEmpShortListDistinct].[X_Emp] AS [X_Emp], 
+    [vwEmpShortListDistinct].[Sex] AS [Sex], 
+    [vwEmpShortListDistinct].[M_Status] AS [M_Status], 
+    [vwEmpShortListDistinct].[AcademicRecords] AS [AcademicRecords], 
+    [vwEmpShortListDistinct].[EntryDate] AS [EntryDate], 
+    [vwEmpShortListDistinct].[Job_Cat] AS [Job_Cat], 
+    [vwEmpShortListDistinct].[Job_Type] AS [Job_Type], 
+    [vwEmpShortListDistinct].[Emp_Type] AS [Emp_Type], 
+    [vwEmpShortListDistinct].[Cont_Num] AS [Cont_Num], 
+    [vwEmpShortListDistinct].[EmailAddress] AS [EmailAddress], 
+    [vwEmpShortListDistinct].[Personal_Phone] AS [Personal_Phone]
+    FROM [dbo].[vwEmpShortListDistinct] AS [vwEmpShortListDistinct]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbHRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="vwEmpShortListDistinct">
+          <Key>
+            <PropertyRef Name="Emp_Id" />
+            <PropertyRef Name="Present_Salary" />
+            <PropertyRef Name="Comp_Name" />
+            <PropertyRef Name="Dept_Name" />
+            <PropertyRef Name="Emp_Name" />
+            <PropertyRef Name="Grade_Name" />
+            <PropertyRef Name="Religion" />
+            <PropertyRef Name="Sex" />
+            <PropertyRef Name="M_Status" />
+          </Key>
+          <Property Name="Emp_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Present_Salary" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Join_Date" Type="DateTime" Precision="3" />
+          <Property Name="ServiceUpto" Type="Double" />
+          <Property Name="Desig_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comp_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dept_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Emp_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Emp_dob" Type="DateTime" Precision="3" />
+          <Property Name="Perm_Add" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Pres_Add" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="CardID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Head_Quarter" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Grade_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalOthersAllowance" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="Special" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OldID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sheet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insurance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TimeZoneID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emp_BGroup" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Emp_Ref1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Emp_Ref2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="X_Emp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="M_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AcademicRecords" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="Job_Cat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Job_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emp_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cont_Num" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Personal_Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="dbHRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="vwEmpShortListDistincts" EntityType="Self.vwEmpShortListDistinct" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbHRMModelStoreContainer" CdmEntityContainer="dbHRMEntities">
+          <EntitySetMapping Name="vwEmpShortListDistincts">
+            <EntityTypeMapping TypeName="dbHRMModel.vwEmpShortListDistinct">
+              <MappingFragment StoreEntitySet="vwEmpShortListDistinct">
+                <ScalarProperty Name="Emp_Id" ColumnName="Emp_Id" />
+                <ScalarProperty Name="Present_Salary" ColumnName="Present_Salary" />
+                <ScalarProperty Name="Join_Date" ColumnName="Join_Date" />
+                <ScalarProperty Name="ServiceUpto" ColumnName="ServiceUpto" />
+                <ScalarProperty Name="Desig_Name" ColumnName="Desig_Name" />
+                <ScalarProperty Name="Comp_Name" ColumnName="Comp_Name" />
+                <ScalarProperty Name="Dept_Name" ColumnName="Dept_Name" />
+                <ScalarProperty Name="Emp_Name" ColumnName="Emp_Name" />
+                <ScalarProperty Name="Emp_dob" ColumnName="Emp_dob" />
+                <ScalarProperty Name="Perm_Add" ColumnName="Perm_Add" />
+                <ScalarProperty Name="Pres_Add" ColumnName="Pres_Add" />
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+                <ScalarProperty Name="Head_Quarter" ColumnName="Head_Quarter" />
+                <ScalarProperty Name="Grade_Name" ColumnName="Grade_Name" />
+                <ScalarProperty Name="TotalOthersAllowance" ColumnName="TotalOthersAllowance" />
+                <ScalarProperty Name="Special" ColumnName="Special" />
+                <ScalarProperty Name="OldID" ColumnName="OldID" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Zone" ColumnName="Zone" />
+                <ScalarProperty Name="Sheet" ColumnName="Sheet" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="TimeZoneID" ColumnName="TimeZoneID" />
+                <ScalarProperty Name="Emp_BGroup" ColumnName="Emp_BGroup" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="Emp_Ref1" ColumnName="Emp_Ref1" />
+                <ScalarProperty Name="Emp_Ref2" ColumnName="Emp_Ref2" />
+                <ScalarProperty Name="X_Emp" ColumnName="X_Emp" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="M_Status" ColumnName="M_Status" />
+                <ScalarProperty Name="AcademicRecords" ColumnName="AcademicRecords" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Job_Cat" ColumnName="Job_Cat" />
+                <ScalarProperty Name="Job_Type" ColumnName="Job_Type" />
+                <ScalarProperty Name="Emp_Type" ColumnName="Emp_Type" />
+                <ScalarProperty Name="Cont_Num" ColumnName="Cont_Num" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Personal_Phone" ColumnName="Personal_Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

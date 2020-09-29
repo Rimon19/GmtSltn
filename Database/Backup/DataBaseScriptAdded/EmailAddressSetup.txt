@@ -1,0 +1,11 @@
+create table public."EmailAddressSetup"(
+"Id" serial primary key,
+"UserType" character varying(100),
+"RecipientName" character varying(100),
+"EmailAddress" character varying(100)
+)
+insert into public."EmailAddressSetup"(
+"UserType",
+"RecipientName",
+"EmailAddress"
+)values('a','a','a')

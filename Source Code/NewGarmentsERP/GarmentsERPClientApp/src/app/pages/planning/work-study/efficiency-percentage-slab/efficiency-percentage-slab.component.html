@@ -1,0 +1,82 @@
+<nb-card>
+    <nb-card-header>
+        <button (click)="backTo()" class="btn btn-outline-success">
+      <i class="fas fa-arrow-left"></i>
+    </button> Efficiency Percentage Slab
+        <button class="btn btn-outline-success float-right" (click)="EfficiencyPercentageSlabFormAction()">
+      <i class="fa fa-plus"></i>
+    </button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="col-md-12" style="overflow-x: scroll;">
+            <div class="smart-table-container" style="width: 800px;">
+                <form>
+                    <table border="1" class="border">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th colspan="2" class="text-center">SMV Range</th>
+                                <th colspan="2" scope="col" class="text-center">Order Qty</th>
+                                <th colspan="2" scope="col" class="text-center">
+                                    Efficiency %
+                                </th>
+                            </tr>
+                            <tr>
+                                <th scope="col" class="text-center">Action</th>
+                                <th scope="col" class="text-center">LowerLimit</th>
+                                <th scope="col" class="text-center">UpperLimit</th>
+                                <th scope="col" class="text-center">LowerLimit</th>
+                                <th scope="col" class="text-center">UpperLimit</th>
+                                <th scope="col" class="text-center">NewOrder</th>
+                                <th scope="col" class="text-center">Repeat</th>
+                            </tr>
+                        </thead>
+
+                        <tbody [formGroup]="fg" *ngFor="
+                let fg of EfficiencyPercentageSlabForm.controls;
+                let i = index
+              ">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-light ml-1 form-control form-rounded form-control-sm" (click)="onDelete(fg.value.id, i)">
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                  </button>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="LowerLimit" formControlName="lowerLimitForSMVRange" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="UpperLimit" formControlName="upperLimitForSMVRange" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="LowerLimit" formControlName="lowerLimitForOrderQty" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="UpperLimit" formControlName="upperLimitForOrderQty" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="NewOrder" formControlName="newOrderForEfficiency" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Repeat" formControlName="repeatOrderForEfficiency" />
+                                </td>
+                            </tr>
+
+                            <input type="hidden" formControlName="id" />
+
+                            <button [disabled]="EfficiencyPercentageSlabForm.invalid" *ngIf="i == count - 1" type="submit" (click)="onSubmit()" nbButton>
+                Submit
+              </button>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

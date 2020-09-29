@@ -1,0 +1,19 @@
+create table public."EmpCategory"(
+"Id" serial primary key,
+"Category" character varying(100),
+"EmpCatagoryId" integer
+)
+
+
+INSERT INTO public."EmpCategory"(
+	"Category", "EmpCatagoryId")
+ values('Production Manager',1),
+('Commercial Manager',2),
+('Marchendizer Manager',3),
+('Planning Manager',4),
+('Planning Manager',4),
+('Dealing Merchant',5),
+('Factory Merchant',6);
+
+
+select * from public."EmpCategory"

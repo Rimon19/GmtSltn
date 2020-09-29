@@ -1,0 +1,5 @@
+ create table public."Section"(
+ "Id" serial primary key,
+ "SectionName" character varying(100)
+
+)

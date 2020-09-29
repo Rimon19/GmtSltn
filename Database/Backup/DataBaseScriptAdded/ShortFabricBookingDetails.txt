@@ -1,0 +1,26 @@
+create table public."ShortFabricBookingDetails"(
+"Id" serial primary key,
+"ShortFabricBookingId" integer,
+  "FabricDescriptionId" integer,
+"GarmentsColor" character varying(100),
+"FabricColor" character varying(100),
+"Garmentssize" character varying(100),
+"Itemsize" character varying(100),
+"DiaOrWidth" character varying(100),
+"FinishFabric" numeric,
+"Processloss" numeric,
+"GrayFabric" numeric,
+"Rate" numeric,
+"Amount" numeric,
+"RmgQty" numeric,
+"Departments" character varying(100),
+"Responsibleperson" character varying(100),
+"Reason" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

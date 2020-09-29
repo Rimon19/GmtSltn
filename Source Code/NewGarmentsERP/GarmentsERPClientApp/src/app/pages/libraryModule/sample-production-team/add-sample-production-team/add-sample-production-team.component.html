@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Sample Production Team Entry
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="teamName" class="label text-dark">
+                  Team Name <span class="text-danger">*</span></label>
+                <input required  name="teamName" #TeamName="ngModel"
+                [(ngModel)]="sampleProductionTeamService.sampleProductionTeam.teamName" 
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="teamName" placeholder="Team Name">
+                
+                <div class="text-left text-danger"
+                *ngIf="sampleProductionTeamService.sampleProductionTeam.teamName==''&&TeamName.touched">
+                Team Name is required
+              </div>
+
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="location" class="label text-dark">
+                  Location <span class="text-danger">*</span></label>
+                  <select required name="location" #Location="ngModel"
+                  [(ngModel)]="sampleProductionTeamService.sampleProductionTeam.location" 
+                   id="location"  
+                  class="form-control form-rounded form-control-sm  " >
+                  <option value=''>Select location Name</option>
+                  <option  *ngFor="let btnAction of dropdownValueService.locationList" 
+                  value="{{btnAction.locationId}}">{{btnAction.location_Name}}</option>
+                  
+             </select>             
+             <div class="text-left text-danger"
+                *ngIf="sampleProductionTeamService.sampleProductionTeam.location==''&&Location.touched">
+                Location is required
+              </div>
+            </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="numberofMembers" class="label text-dark">
+                  Number of Members<span class="text-danger">*</span></label>
+                <input required name="numberofMembers" #NumberofMembers="ngModel"
+                [(ngModel)]="sampleProductionTeamService.sampleProductionTeam.numberofMembers" 
+               class="form-control form-rounded form-control-sm  " type="number" 
+                id="numberofMembers" placeholder="Number of Members">
+
+                <div class="text-left text-danger"
+                *ngIf="sampleProductionTeamService.sampleProductionTeam.numberofMembers==0&&NumberofMembers.touched">
+                Number of Members is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="teamEfficiency" class="label text-dark">
+                  Team Efficiency	</label>
+                  <input  name="teamEfficiency" #teamEfficiency="ngModel"
+                  [(ngModel)]="sampleProductionTeamService.sampleProductionTeam.teamEfficiency" 
+                 class="form-control form-rounded form-control-sm  " type="number" 
+                  id="teamEfficiency" placeholder="Team Efficiency">
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">
+                  Status </label>
+                  <select name="status" #status="ngModel"
+                  [(ngModel)]="sampleProductionTeamService.sampleProductionTeam.status" 
+                   id="status"  
+                  class="form-control form-rounded form-control-sm  " >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+               
+              </div>
+              
+            </div>
+          </div>
+      
+          <button type="submit" [disabled]="form.invalid
+          ||sampleProductionTeamService.sampleProductionTeam.numberofMembers==0" 
+           nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

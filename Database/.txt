@@ -1,0 +1,6 @@
+5	Dealing Merchant	5
+6	Factory Merchant	6
+1	Production Manager	1
+2	Commercial Manager	2
+3	Marchendizer Manager	3
+4	Planning Manager	4

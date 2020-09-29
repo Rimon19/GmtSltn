@@ -1,0 +1,5 @@
+ create table public."Religion"(
+ "Id" serial primary key,
+ "ReligionName" character varying(100)
+
+)

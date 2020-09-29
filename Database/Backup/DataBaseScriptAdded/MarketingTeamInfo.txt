@@ -1,0 +1,12 @@
+
+
+CREATE TABLE public."MarketingTeamInfo"
+(
+    "Id"  serial primary key,
+    "TeamName" character varying(100),
+    "TeamLeaderId" integer,
+    "Designation" character varying(100),
+    "Email" character varying(100),
+    "ContactNo" character varying(100),
+    "Status" character varying(100)
+)

@@ -1,0 +1,763 @@
+<div class="row">
+    <div class="col-lg-12">
+        <nb-card>
+            <nb-card-header>Country Information
+                <button class="float-right" mat-button (click)="onClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+            </nb-card-header>
+            <nb-card-body>
+                <form #form="ngForm" (submit)="onSubmit(form, sInformationForm)">
+                    <input name="input_Pannel_ID" [(ngModel)]="
+              inputPannelPodetailsService.inputPannelInfo.input_Pannel_ID
+            " type="hidden" id="Input_Pannel_ID" />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="Country" class="label text-dark">Country<span class="text-danger">*</span></label
+                >
+
+                <select
+                  id="Country"
+                  required
+                  #Country="ngModel"
+                  [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo.countryID
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  name="countryID"
+                >
+                  <option value="">Select Country </option>
+                  <option
+                    *ngFor="let countrylist of countryList"
+                    [value]="countrylist.regionID"
+                    >{{ countrylist.region_Name }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    inputPannelPodetailsService.inputPannelInfo.countryID ==
+                      0 && Country.touched
+                  "
+                >
+                  Country is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CountryType" class="label text-dark">Country Type</label>
+                                <!-- <input
+                  class="form-control form-rounded form-control-sm"
+                  name="country_Type"
+                  [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo.country_Type
+                  "
+                 
+                  type="text"
+                  id="CountryType"
+                  placeholder="Country Type"
+                /> -->
+                                <select class="form-control form-rounded form-control-sm" name="country_Type" [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo.country_Type
+                  " type="text" id="CountryType">
+                  <option value="">Select Country Type </option>
+                  <option
+                    *ngFor="let itemlist of countryTypelist"
+                    [value]="itemlist.value"
+                    >{{ itemlist.value }}</option
+                  >
+                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="cuttoffdate" class="label text-dark">Cutt Off Date<span class="text-danger">*</span></label
+                >
+                <input
+                  readonly
+                  disabled
+                  class="form-control form-rounded form-control-sm"
+                  id="cuttoffdate"
+                  required
+                  #Cuttoffdate="ngModel"
+                  name="cutt_off_Date"
+                  [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo.cutt_off_Date
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  placeholder="Cutt Off Date"
+                  [nbDatepicker]="cuttoffdate"
+                />
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    inputPannelPodetailsService.inputPannelInfo.cutt_off_Date ==
+                      '' && Cuttoffdate.touched
+                  "
+                >
+                  Cutt Off Date is required
+                </div>
+                <nb-datepicker #cuttoffdate></nb-datepicker>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Cutt"class="label text-dark">Cutt Off</label>
+                                <!-- <input
+                  class="form-control form-rounded form-control-sm"
+                  name="cutt_off"
+                  [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo.cutt_off
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="Cutt"
+                  placeholder="Cutt Off"
+                /> -->
+                                <select class="form-control form-rounded form-control-sm" name="cutt_off" [(ngModel)]="
+                  inputPannelPodetailsService.inputPannelInfo.cutt_off
+                " type="text" id="Cutt">
+                  <option value="">Select Cutt Off</option>
+                  <option
+                    *ngFor="let itemlist of cuttOfflist"
+                    [value]="itemlist.value"
+                    >{{ itemlist.value }}</option
+                  >
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="Shipment" class="label text-dark">Country Shipment Date<span class="text-danger"
+                    >*</span
+                  ></label
+                >
+                <input
+                  readonly
+                  class="form-control form-rounded form-control-sm"
+                  id="Shipment"
+                  required
+                  #Shipment="ngModel"
+                  name="country_Shipment_date"
+                  [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo
+                      .country_Shipment_date
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  placeholder="Cutt Off Date"
+                  [nbDatepicker]="CountryShipmentDate"
+                />
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    inputPannelPodetailsService.inputPannelInfo
+                      .country_Shipment_date == '' && Shipment.touched
+                  "
+                >
+                  Country Shipment Date is required
+                </div>
+                <nb-datepicker #CountryShipmentDate></nb-datepicker>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Remarks" class="label text-dark">Remarks</label>
+                                <input class="form-control form-rounded form-control-sm" name="remarks" [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo.remarks
+                  " class="form-control form-rounded form-control-sm" class="form-control form-rounded form-control-sm" type="text" id="Remarks" placeholder="Remarks" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="Packing" class="label text-dark">Packing<span class="text-danger">*</span></label
+                >
+                <select 
+                  id="Packing"
+                  required
+                  #Packing="ngModel"
+                  [(ngModel)]="
+                    inputPannelPodetailsService.inputPannelInfo.packing_ID
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  name="packing_ID"
+                >
+                  <option value="">Select Packing </option>
+                  <option
+                    *ngFor="let packingInfoeslist of packingInfoesItems"
+                    [value]="packingInfoeslist.packingID"
+                    >{{ packingInfoeslist.packing_Name }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    inputPannelPodetailsService.inputPannelInfo.packing_ID ==
+                      0 && Packing.touched
+                  "
+                >
+                  Packing is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group"></div>
+            </div>
+          </div>
+          <!-- <button type="submit" nbButton
+          [disabled]="form.invalid||form.value.packingId==0||form.value.countryId==0">Submit</button> -->
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<nb-card>
+  <nb-card-header
+    >Size Wise BrakDown Information
+    <button class="btn btn-outline-success float-right" (click)="sForm()">
+      <i class="fa fa-plus"></i>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width: 1500px;">
+        <form>
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Gmts Item<span class="text-danger">*</span></th>
+                <th scope="col">Article No</th>
+                <th scope="col">Color</th>
+                <th scope="col">Size<span class="text-danger">*</span></th>
+                <th scope="col">Order Qty<span class="text-danger">*</span></th>
+                <th scope="col">Rate<span class="text-danger">*</span></th>
+                <th scope="col">Amount<span class="text-danger">*</span></th>
+                <th scope="col">Plan Cut Qty.</th>
+                <th scope="col">Excess Cut</th>
+                <th scope="col">Status</th>
+                <th scope="col">Bar Code</th>
+              </tr>
+            </thead>
+
+            <tbody
+              [formGroup]="fg"
+              *ngFor="let fg of sInformationForm.controls; let i = index"
+            >
+              <tr>
+                <td>
+                  <input type="hidden" formControlName="sizePannelId" />
+                  <button
+                    class="btn btn-light ml-1"
+                    (click)="onDelete(fg.value.sizePannelId, i)"
+                  >
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                  </button>
+                </td>
+                <td>
+                  <select
+                    required
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="itemId"
+                   
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="
+                        let itemslist of dropdownValueService.garmentsItemList
+                      "
+                      [value]="itemslist.id"
+                      >{{ itemslist.itemName }}</option
+                    >
+                  </select>
+                </td>
+
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="text"
+                    placeholder="Article Number"
+                    formControlName="articleNumber"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="text"
+                    placeholder="Color"
+                    formControlName="color"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    required
+                    class="form-control form-rounded form-control-sm"
+                    type="text"
+                    placeholder="Size "
+                    formControlName="size"
+                    (keyup)="onSizeChangeCalculateTotal(sInformationForm, fg,i)"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    required
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="Quanity"
+                    placeholder="quanity"
+                    formControlName="quanity"
+                    (change)="CalculateTotal(sInformationForm,true,i)"
+                  />
+                </td>
+                <td>
+                  <input
+                    required
+                   
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="Rate"
+                    placeholder="Rate"
+                    formControlName="rate"
+                    (change)="CalculateTotal(sInformationForm,true,i)"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="Amount"
+                    placeholder="Amount"
+                    formControlName="amount"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="PlanCutQty"
+                    placeholder="Plan Cut Qty."
+                    formControlName="planCutQty"
+                    (change)="CalculateTotal(sInformationForm,true,i)"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="ExcessCut"
+                    placeholder="Excess Cut."
+                    formControlName="excessCut"
+                    (change)="CalculateTotal(sInformationForm,true,i)"
+                  />
+                </td>
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="status"
+                    (change)="test(fg.value.status)"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.statusList"
+                      [(value)]="item.id"
+                      >{{ item.value }}</option
+                    >
+                  </select>
+                </td>
+                <td>
+                  <div class="form-check mb-4">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="materialUnchecked"
+                      formControlName="barCode"
+                    />
+                  </div>
+                </td>
+              </tr>
+              <button
+                *ngIf="i == count - 1"
+                type="submit"
+                nbButton
+                [disabled]="form.invalid || sInformationForm.invalid"
+                (click)="onSubmit(form, sInformationForm)"
+              >
+                Submit
+              </button>
+            </tbody>
+
+            <tbody>
+              <tr>
+                <td colspan="5" class="text-right">Total</td>
+                <td>
+                  <!-- <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="ratio"
+                  
+                    placeholder="Set Ratio"
+                  /> -->
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="totalOrderQuantity"
+                    name="totalOrderQuantity"
+                    placeholder="Order Qnty"
+                    [(ngModel)]="totalOrderQuantity"
+                  />
+                </td>
+                <td>
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="totalRate"
+                    placeholder="Rate"
+                    name="totalRate"
+                    [(ngModel)]="totalRate"
+                  />
+                </td>
+                <td>
+                  <!-- <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="sew_smv_pcs"
+                    placeholder="Sew SMV/ Pcs"
+                    
+                  /> -->
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="totalAmount"
+                    placeholder="Amount"
+                    name="totalAmount"
+                    [(ngModel)]="totalAmount"
+                  />
+                </td>
+                <td>
+                  <!-- <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="cutSmv"
+                    placeholder="Cut SMV/ Pcs"
+                    
+                  /> -->
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="totalPlanCut"
+                    placeholder="Plan Cut Qty"
+                    name="totalPlanCut"
+                    [(ngModel)]="totalPlanCut"
+                  />
+                </td>
+                <td>
+                  <!-- <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="finSmv"
+                    placeholder="Fin SMV/ Pcs"
+                    
+                  /> -->
+
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="totalExcessCut"
+                    placeholder="ExcessCut"
+                    name="totalExcessCut"
+                    [(ngModel)]="totalExcessCut"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<!-- <!-- <div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header
+        >Size Wise BrakDown Information
+        <button
+          class="btn btn-outline-success float-right"
+          (click)="sizeWiseBrakDownForm()"
+        >
+          <i class="fa fa-plus"></i>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-1">
+            <div class="form-group">
+              <label for="GmtsItem" class="label">Gmts Item</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="ArticleNo" class="label">Article No</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="Color" class="label">Color</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="Size" class="label">Size</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="OrderQty" class="label">Order Qty</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="Rate" class="label">Rate</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="Country" class="label">Amount</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="Country" class="label">Excess Cut</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="PlanCutQty" class="label">Plan Cut Qty.</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="Status" class="label">Status</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="BarCode" class="label">Bar Code </label>
+                            </div>
+                        </div>
+                    </div>
+                    <form [formGroup]="fg" *ngFor="
+            let fg of sizeWiseBrakDownInformationForm.controls;
+            let i = index
+          ">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <select class="form-control form-rounded form-control-sm" formControlName="itemId">
+                  <option value="0">Select</option>
+                  <option
+                    *ngFor="let itemslist of itemsListItems"
+                    [value]="itemslist.itemID"
+                    >{{ itemslist.name }}</option
+                  >
+                </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-rounded form-control-sm" id="ArticleNo" placeholder="Article No" formControlName="articleNumber" />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input class="form-control form-rounded form-control-sm" type="text" id="Color" placeholder="Color" formControlName="color" />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input class="form-control form-rounded form-control-sm" type="text" id="Size" placeholder="Size" formControlName="size" (keyup)="
+                    onSizeChangeCalculateTotal(
+                      sizeWiseBrakDownInformationForm,
+                      fg
+                    )
+                  " />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input class="form-control form-rounded form-control-sm" type="text" id="OrderQty" placeholder="OrderQty" formControlName="quanity" (change)="
+                    onChangeOrderQtyCalculateTotal(
+                      sizeWiseBrakDownInformationForm
+                    )
+                  " />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input class="form-control form-rounded form-control-sm" type="text" id="Rate" placeholder="Rate" formControlName="rate" (change)="
+                    onRateOrderQtyCalculateTotal(
+                      sizeWiseBrakDownInformationForm
+                    )
+                  " />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input class="form-control form-rounded form-control-sm" type="text" id="Amount" placeholder="Amount" formControlName="amount" />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input class="form-control form-rounded form-control-sm" type="text" id="ExcessCut" placeholder="ExcessCut" formControlName="excessCut" (change)="
+                    onExcessCutCalculateTotal(sizeWiseBrakDownInformationForm)
+                  " />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <input class="form-control form-rounded form-control-sm" type="text" id="PlanCutQty" placeholder="Plan Cut Qty" formControlName="planCutQty" (change)="
+                    onPlanCutCalculateTotal(sizeWiseBrakDownInformationForm)
+                  " />
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <select class="form-control form-rounded form-control-sm " formControlName="status" (change)="test(fg.value.status)">
+                  <option value="">Select</option>
+                  <option *ngFor="let item of dropdownValueService.statusList" [(value)]="item.id" >{{item.value}}</option>
+                  </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="materialUnchecked" formControlName="barCode" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <button type="submit" nbButton [disabled]="
+            form.invalid 
+          " (click)="onSubmit(form, sizeWiseBrakDownInformationForm)">
+          Submit
+        </button>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div> -->
+<!-- <div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <label class="label">Total Order Qnty.</label>
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <label class="label">Total Rate</label>
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <label class="label">Total Amount</label>
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <label class="label">Total Excess Card</label>
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <label class="label">Total Plan Cut Qnty.</label>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+</div> -->
+<!-- <div class="row"> 
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <input
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="OrderQty"
+        placeholder="OrderQty"
+        [(ngModel)]="totalOrderQuantity"
+      />
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <input
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="Rate"
+        placeholder="Rate"
+        [(ngModel)]="totalRate"
+      />
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <input
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="Amount"
+        placeholder="Amount"
+        [(ngModel)]="totalAmount"
+      />
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <input
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="ExcessCut"
+        placeholder="ExcessCut"
+        [(ngModel)]="totalExcessCut"
+      />
+    </div>
+  </div>
+  <div class="col-sm-1">
+    <div class="form-group">
+      <input
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="PlanCutQty"
+        placeholder="Plan Cut Qty"
+        [(ngModel)]="totalPlanCut"
+      />
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1"></div>
+</div>  -->

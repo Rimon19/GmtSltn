@@ -1,0 +1,153 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Mail Recipient Group Entry</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="userType" class="label">
+                  Company Name <span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  name="companyName"
+                  #CompanyName="ngModel"
+                  [(ngModel)]="
+                    mailRecipientGroupService.mailRecipientGroup.companyName
+                  "
+                  id="companyName"
+                  class="form-control text-responsive"
+                >
+                  <option value="">Select Company Name</option>
+                  <option
+                    *ngFor="let btnAction of companyname"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    mailRecipientGroupService.mailRecipientGroup.companyName ==
+                      '' && CompanyName.touched
+                  "
+                >
+                  Company Name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="mailItem" class="label">
+                  Mail Item<span class="text-danger">*</span>
+                </label>
+                <select
+                  required
+                  name="mailItem"
+                  #MailItem="ngModel"
+                  [(ngModel)]="
+                    mailRecipientGroupService.mailRecipientGroup.mailItem
+                  "
+                  id="mailItem"
+                  class="form-control text-responsive"
+                >
+                  <option value="">Select Mail Item Name</option>
+                  <option
+                    *ngFor="let btnAction of mailitem"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    mailRecipientGroupService.mailRecipientGroup.mailItem ==
+                      '' && MailItem.touched
+                  "
+                >
+                  Mail Item is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="youHaveSelected" class="label">
+                  You Have Selected<span class="text-danger">*</span></label
+                >
+                <input
+                  required
+                  name="youHaveSelected"
+                  #YouHaveSelected="ngModel"
+                  [(ngModel)]="
+                    mailRecipientGroupService.mailRecipientGroup.youHaveSelected
+                  "
+                  class="form-control"
+                  type="text"
+                  id="youHaveSelected"
+                  placeholder="You Have Selected"
+                />
+
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    mailRecipientGroupService.mailRecipientGroup
+                      .youHaveSelected == '' && YouHaveSelected.touched
+                  "
+                >
+                You Have Selected is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label">
+                  Status <span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  name="status"
+                  #Status="ngModel"
+                  [(ngModel)]="
+                    mailRecipientGroupService.mailRecipientGroup.status
+                  "
+                  id="status"
+                  class="form-control text-responsive"
+                >
+                  <option value="">Select Status</option>
+                  <option
+                    *ngFor="let btnAction of Active_Inactive"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    mailRecipientGroupService.mailRecipientGroup.status == '' &&
+                    Status.touched
+                  "
+                >
+                  Status Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="form.invalid" nbButton>
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+
+
+
+  
+

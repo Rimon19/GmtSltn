@@ -1,0 +1,37 @@
+create table public."Shareholder"(
+
+"Id" serial primary key,
+"IdNo" character varying(100),
+"Name" character varying(100),
+"BoAccountId" character varying(100),
+"Fatherhusband" character varying(100),
+"MothersName" character varying(100),
+"Profession" character varying(100),
+"Organization" character varying(100),
+"Designation" character varying(100),
+"NationalId" character varying(100),
+"Tin" character varying(100),
+"Vat" character varying(100),
+"Email" character varying(100),
+"Phone" character varying(100),
+"Status" character varying(100),
+
+"PlotNoPr" character varying(100),
+"LevelNoPr" character varying(100),
+"RoadNoPr" character varying(100),
+"BlockNoPr" character varying(100),
+"CountryIdPr" integer,
+"ProvincePr" character varying(100),
+"CityOrTownPr" character varying(100),
+"ZipCodePr" character varying(100),
+
+"PlotNoPe" character varying(100),
+"LevelNoPe" character varying(100),
+"RoadNoPe" character varying(100),
+"BlockNoPe" character varying(100),
+"CountryIdPe" integer,
+"ProvincePe" character varying(100),
+"CityOrTownPe" character varying(100),
+"ZipCodePe" character varying(100)
+
+)

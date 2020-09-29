@@ -1,0 +1,580 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Multi Job Wise Service Booking Knitting Details</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+
+          <div class="row">
+         <div class="col-sm-3">
+   <div class="form-group">
+     <label for="OrderNo" class="label text-dark">
+     Order No<span class="text-danger">*</span></label
+     >
+     <input
+       required
+       name="orderNo"
+       #OrderNo="ngModel"
+       [(ngModel)]="
+       multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.orderNo
+       "
+       type="text"
+       class="form-control form-rounded form-control-sm"
+       id="OrderNo"
+       placeholder="Order No"
+     />
+     <div
+       class="text-left text-danger text-responsive"
+       *ngIf="
+       multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.orderNo ==
+           '' && OrderNo.touched
+       "
+     >
+     Order No is required
+     </div>
+   </div>
+ </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="MultiJobWSBKnittingId" class="label text-dark">
+   Masterid</label
+ >
+ <input
+   name="multiJobWSBKnittingId"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.multiJobWSBKnittingId
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="MultiJobWSBKnittingId"
+   placeholder=" Masterid"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ProcessId" class="label text-dark">
+      Process
+      </label>
+      <select
+        name="processId"
+      
+        #ProcessId="ngModel"
+        [(ngModel)]="
+        multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.processId
+        "
+        id="ProcessId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Process</option>
+      <option
+        *ngFor="let item of dropdownValueService.processList"
+        value="{{item.id}}"
+        >{{ item.productionProcessName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Sensitivity" class="label text-dark">
+      Sensitivity
+      </label>
+      <select
+        name="sensitivity"
+      
+        #Sensitivity="ngModel"
+        [(ngModel)]="
+        multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.sensitivity
+        "
+        id="Sensitivity"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Sensitivity</option>
+      <option
+        *ngFor="let item of dropdownValueService.sensitivityList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+</div>
+
+<div class="row">
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="ProgramNo" class="label text-dark">
+   Program No</label
+ >
+ <input
+   name="programNo"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.programNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ProgramNo"
+   placeholder=" Program No"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="JobNo" class="label text-dark">
+   Job No</label
+ >
+ <input
+   name="jobNo"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.jobNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="JobNo"
+   placeholder=" Job No"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="PoNumber" class="label text-dark">
+   Po Number</label
+ >
+ <input
+   name="poNumber"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.poNumber
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="PoNumber"
+   placeholder=" Po Number"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="FabricDescriptionId" class="label text-dark">
+      Fabric Description
+      </label>
+      <select
+        name="fabricDescriptionId"
+      
+        #FabricDescriptionId="ngModel"
+        [(ngModel)]="
+        multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.fabricDescriptionId
+        "
+        id="FabricDescriptionId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Fabric Description</option>
+      <option
+        *ngFor="let item of dropdownValueService.fabricDescriptionList"
+        value="{{item.id}}"
+        >{{ item.fabNature}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="ArtworkNo" class="label text-dark">
+   Artwork No</label
+ >
+ <input
+   name="artworkNo"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.artworkNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ArtworkNo"
+   placeholder=" Artwork No"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="Ycount" class="label text-dark">
+   Y.Count</label
+ >
+ <input
+   name="ycount"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.ycount
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Ycount"
+   placeholder=" Y.Count"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="Lot" class="label text-dark">
+   Lot</label
+ >
+ <input
+   name="lot"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.lot
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Lot"
+   placeholder=" Lot"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="Brand" class="label text-dark">
+   Brand</label
+ >
+ <input
+   name="brand"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.brand
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Brand"
+   placeholder=" Brand"
+ />
+</div>
+</div>
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="GmtsColor" class="label text-dark">
+   Gmts. Color</label
+ >
+ <input
+   name="gmtsColor"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.gmtsColor
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="GmtsColor"
+   placeholder=" Gmts. Color"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="ItemColor" class="label text-dark">
+   Item Color</label
+ >
+ <input
+   name="itemColor"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.itemColor
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ItemColor"
+   placeholder=" Item Color"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="ItemSize" class="label text-dark">
+   Item Size</label
+ >
+ <input
+   name="itemSize"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.itemSize
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ItemSize"
+   placeholder=" Item Size"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="FabMapping" class="label text-dark">
+   Fab. Mapping</label
+ >
+ <input
+   name="fabMapping"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.fabMapping
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="FabMapping"
+   placeholder=" Fab. Mapping"
+ />
+</div>
+</div>
+
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="MorcDiaXGG" class="label text-dark">
+   M/C DiaXGG</label
+ >
+ <input
+   name="morcDiaXGG"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.morcDiaXGG
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="MorcDiaXGG"
+   placeholder=" M/C DiaXGG"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="FinDia" class="label text-dark">
+   Fin Dia</label
+ >
+ <input
+   name="finDia"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.finDia
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="FinDia"
+   placeholder=" Fin Dia"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="FinGSM" class="label text-dark">
+   Fin GSM</label
+ >
+ <input
+   name="finGSM"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.finGSM
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="FinGSM"
+   placeholder=" Fin GSM"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="Slength" class="label text-dark">
+   S.length</label
+ >
+ <input
+   name="slength"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.slength
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Slength"
+   placeholder=" S.length"
+ />
+</div>
+</div>
+
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DeliveryStartDate" class="label text-dark">
+        Delivery Start Date
+      </label>
+      <input readonly
+        name="deliveryStartDate"
+        
+        #deliveryStartDate="ngModel"
+        [(ngModel)]="
+          multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.deliveryStartDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DeliveryStartDate"
+        [nbDatepicker]="DeliveryStartDate"
+        placeholder="Delivery Start Date"
+      />
+      
+      <nb-datepicker #DeliveryStartDate></nb-datepicker>
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DeliveryEndDate" class="label text-dark">
+        Delivery End Date
+      </label>
+      <input readonly
+        name="deliveryEndDate"
+        
+        #deliveryEndDate="ngModel"
+        [(ngModel)]="
+          multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.deliveryEndDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DeliveryEndDate"
+        [nbDatepicker]="DeliveryEndDate"
+        placeholder="Delivery End Date"
+      />
+      
+      <nb-datepicker #DeliveryEndDate></nb-datepicker>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="UomId" class="label text-dark">
+      UOM
+      </label>
+      <select
+        name="uomId"
+      
+        #UomId="ngModel"
+        [(ngModel)]="
+        multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.uomId
+        "
+        id="UomId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select UOM</option>
+      <option
+        *ngFor="let item of dropdownValueService.uomList"
+        value="{{item.id}}"
+        >{{ item.uomName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="WoQnty" class="label text-dark">
+   WO. Qnty</label
+ >
+ <input
+   name="woQnty"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.woQnty
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="WoQnty"
+   placeholder=" WO. Qnty"
+ />
+</div>
+</div>
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="Rate" class="label text-dark">
+   Rate</label
+ >
+ <input
+   name="rate"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.rate
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Rate"
+   placeholder=" Rate"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="Amount" class="label text-dark">
+   Amount</label
+ >
+ <input
+   name="amount"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.amount
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Amount"
+   placeholder=" Amount"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="PlanCutQnty" class="label text-dark">
+   Plan Cut Qnty</label
+ >
+ <input
+   name="planCutQnty"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.planCutQnty
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="PlanCutQnty"
+   placeholder=" Plan Cut Qnty"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="Remark" class="label text-dark">
+   Remark</label
+ >
+ <input
+   name="remark"    
+   [(ngModel)]="
+   multiJobWSBKnittingDetailsService.multiJobWSBKnittingDetails.remark
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Remark"
+   placeholder=" Remark"
+ />
+</div>
+</div>
+
+</div>
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

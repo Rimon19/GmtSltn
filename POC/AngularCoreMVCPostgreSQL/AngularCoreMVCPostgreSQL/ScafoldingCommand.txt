@@ -1,0 +1,13 @@
+﻿Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.Tools.DotNet
+Microsoft.NETCore.App
+Npgsql.EntityFrameworkCore.PostgreSQL
+Npgsql.EntityFrameworkCore.PostgreSQL.Design
+
+
+Using dotnet cli: (Make sure to execute this command in the same directory as the project.json file, or it will not work!)
+
+dotnet ef dbcontext scaffold "Host=localhost;Database=dbTest;Username=postgres;Password=123" Npgsql.EntityFrameworkCore.PostgreSQL -o Models -t Customer
+
+
+dotnet ef dbcontext scaffold "Host=localhost;Database=GarmentERP;Username=postgres;Password=123" Npgsql.EntityFrameworkCore.PostgreSQL -o Models -t t_user -t  t_access_right -t t_role -t t_access_type -t t_access_type_code -t t_role2access_right -t t_user2role -f

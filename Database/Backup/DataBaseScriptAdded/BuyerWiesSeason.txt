@@ -1,0 +1,6 @@
+CREATE TABLE public."BuyerWiesSeason"
+(
+    "Id"  serial primary key,
+    "BuyerId" integer,
+    "SeasonName" character varying(100)
+)

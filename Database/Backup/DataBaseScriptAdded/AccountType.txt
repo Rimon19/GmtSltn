@@ -1,0 +1,5 @@
+create table public."AccountType"(
+"Id" serial primary key,
+"AccountTypeName" character varying(100)
+
+)

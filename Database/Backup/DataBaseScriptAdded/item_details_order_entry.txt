@@ -1,0 +1,38 @@
+-- Table: public.item_details_order_entry
+
+-- DROP TABLE public.item_details_order_entry;
+
+CREATE TABLE public.item_details_order_entry
+(
+    id integer NOT NULL DEFAULT nextval('item_details_order_entry_id_seq'::regclass) ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    order_entry_id integer,
+    item character varying(255) COLLATE pg_catalog."default",
+    ratio double precision,
+    sew_smv_pcs double precision,
+    cut_smv_pcs double precision,
+    fin_smv_pcs double precision,
+    complexity character varying(255) COLLATE pg_catalog."default",
+    print character varying(255) COLLATE pg_catalog."default",
+    embro_yes_no character varying(255) COLLATE pg_catalog."default",
+    embro_number double precision,
+    wash_yes_no character varying(255) COLLATE pg_catalog."default",
+    wash_number double precision,
+    sp_works_yes_no character varying(255) COLLATE pg_catalog."default",
+    sp_works_number double precision,
+    gmts_dyeing_yes_no character varying(255) COLLATE pg_catalog."default",
+    gmts_dyeing_number double precision,
+    aop_yes_no character varying(255) COLLATE pg_catalog."default",
+    aop_number double precision,
+    CONSTRAINT item_details_order_entry_pkey PRIMARY KEY (id),
+    CONSTRAINT item_details_order_entry_order_entry_id_fkey FOREIGN KEY (order_entry_id)
+        REFERENCES public."tblInitialOrder" ("OrderAutoID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.item_details_order_entry
+    OWNER to postgres;

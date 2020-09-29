@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+<body>
+  <h4>{{title}}</h4>
+  <h3>Employee</h3>
+  <hr />
+  <form [formGroup]="initialoderForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+
+
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="jobNo">Job Number</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="jobNo">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'jobNo') && formDir.submitted">
+        jobNo is required.
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="companyId">companyId</label>
+      <div class="col-md-4">
+
+        <select formControlName="companyId" class="form-control" value="">
+          <option *ngFor="let item of complist" [value]="item.compId">
+            {{item.companyName}}
+          </option>
+        </select>
+
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'companyId') && formDir.submitted">
+        companyId is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="locationId">locationId</label>
+      <div class="col-md-4">
+
+        <select formControlName="locationId" class="form-control" value="">
+          <option *ngFor="let item of locationlist" [value]="item.locationId">
+            {{item.locationName}}
+          </option>
+        </select>
+
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'locationId') && formDir.submitted">
+        locationId is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="buyerId">buyerId</label>
+      <div class="col-md-4">
+
+        <select formControlName="buyerId" class="form-control" value="">
+          <option *ngFor="let item of buyerlist" [value]="item.buyerId">
+            {{item.buyerName}}
+          </option>
+        </select>
+
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'buyerId') && formDir.submitted">
+        buyerId is required
+      </span>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="styleRef">styleRef</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="styleRef">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'styleRef') && formDir.submitted">
+        styleRef is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="styleDescription">styleDescription</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="styleDescription" data-val="true">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'styleDescription') && formDir.submitted">
+        styleDescription is required
+      </span>
+    </div>
+
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="prodDeptId">prodDeptId</label>
+      <div class="col-md-4">
+
+        <select formControlName="prodDeptId" class="form-control" value="">
+          <option *ngFor="let item of proddeptlist" [value]="item.id">
+            {{item.prodDeptName}}
+          </option>
+        </select>
+
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'prodDeptId') && formDir.submitted">
+        prodDeptId is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="subDeptId">subDeptId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="subDeptId">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'subDeptId') && formDir.submitted">
+        subDeptId is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="currencyId">currencyId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="currencyId" data-val="true">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'currencyId') && formDir.submitted">
+        currencyId is required
+      </span>
+    </div>
+
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="regionId">regionId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="regionId">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'regionId') && formDir.submitted">
+        regionId is required.
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="productCatId">productCatId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="productCatId">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'productCatId') && formDir.submitted">
+        productCatId is required
+      </span>
+    </div>
+
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="dealingMerchantId">dealingMerchantId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="dealingMerchantId">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'dealingMerchantId') && formDir.submitted">
+        productCatId is required
+      </span>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="teamLeaderId">teamLeaderId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="teamLeaderId" data-val="true">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'teamLeaderId') && formDir.submitted">
+        teamLeaderId is required
+      </span>
+    </div>
+
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="bhMerchant">bhMerchant</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="bhMerchant">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'bhMerchant') && formDir.submitted">
+        Name is required.
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="remarks">remarks</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="remarks">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'remarks') && formDir.submitted">
+        remarks is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="shipmentModeId">shipmentModeId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="shipmentModeId" data-val="true">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'shipmentModeId') && formDir.submitted">
+        shipmentModeId is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="orderUomId">orderUomId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="orderUomId">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'orderUomId') && formDir.submitted">
+        orderUomId is required.
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="smv">smv</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="smv">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'smv') && formDir.submitted">
+        smv is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="packingId">packingId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="packingId" data-val="true">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'packingId') && formDir.submitted">
+        packingId is required
+      </span>
+    </div>
+
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="seasonId">seasonId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="seasonId">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'seasonId') && formDir.submitted">
+        seasonId is required.
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="agentId">agentId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="agentId">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'agentId') && formDir.submitted">
+        agentId is required
+      </span>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="userId">userId</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="userId" data-val="true">
+      </div>
+      <span class="text-danger" *ngIf="initialoderForm.hasError('required', 'userId') && formDir.submitted">
+        userId is required
+      </span>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">Save</button>
+      <button class="btn" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</body>
+</html>

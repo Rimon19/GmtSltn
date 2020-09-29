@@ -1,0 +1,6 @@
+ALTER TABLE public."Size_Pannel_PODetails" ADD COLUMN "Rate" numeric(255);
+ALTER TABLE public."Size_Pannel_PODetails" ADD COLUMN "Amount" numeric(255);
+ALTER TABLE public."Size_Pannel_PODetails" ADD COLUMN "ExcessCut" numeric(255);
+ALTER TABLE public."Size_Pannel_PODetails" ADD COLUMN "PlanCutQty" numeric(255);
+ALTER TABLE public."Size_Pannel_PODetails" ADD COLUMN "Status" varchar(255);
+ALTER TABLE public."Size_Pannel_PODetails" ADD COLUMN "BarCode" boolean;

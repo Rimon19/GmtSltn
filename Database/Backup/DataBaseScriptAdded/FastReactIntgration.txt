@@ -1,0 +1,9 @@
+create table public."FastReactIntgration"(
+"Id" serial primary key,
+"ExportPOReceivedfrom" character varying(100),
+"ExportModule" character varying(100)
+)
+insert into public."FastReactIntgration"(
+"ExportPOReceivedfrom",
+"ExportModule"
+)values('a','a')

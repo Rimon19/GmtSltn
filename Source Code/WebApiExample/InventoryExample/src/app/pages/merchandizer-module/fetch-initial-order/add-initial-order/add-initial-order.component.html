@@ -1,0 +1,184 @@
+<nb-card >
+  <nb-card-header>Order Entry Form</nb-card-header>
+  <nb-card-body >
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <input type="text" name="orderAutoId" [(ngModel)]="InitorderData.orderAutoId" nbInput required placeholder="Order No"> 
+    </div>
+    <div class="form-group col-md-3">
+      <nb-select  selected="0">
+        <nb-option value="0">Company Name</nb-option>
+        <nb-option *ngFor="let companyName of companyListItems" [value]="companyName">{{companyName}}</nb-option>
+      </nb-select> 
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Location Name</nb-option>
+        <nb-option *ngFor="let locationName of locationListItems" [value]="locationName">{{locationName}}</nb-option>
+       
+      </nb-select>  
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Buyer Name</nb-option>
+        <nb-option *ngFor="let buyerName of buyerListItems" [value]="locationName">{{buyerName}}</nb-option>
+        
+      </nb-select> 
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <input type="text" nbInput  placeholder="Style No"> 
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Items</nb-option>
+        <nb-option *ngFor="let itemsName of itemsListItems" [value]="itemsName">{{itemsName}}</nb-option>
+        
+      </nb-select>  
+    </div>
+    <!-- <div class="form-group col-md-3">
+      <input type="file" nbInput  placeholder="Order Image"> 
+    </div> -->
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Prod. Dept</nb-option>
+        <nb-option *ngFor="let ProductionDeptName of ProductionDeptInfoesListItems" [value]="ProductionDeptName">{{ProductionDeptName}}</nb-option>
+        
+      </nb-select>  
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Sub. Dept</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        
+      </nb-select> 
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <input type="text" nbInput  placeholder="Prod. Dept"> 
+    </div>
+    <div class="form-group col-md-3">
+      <nb-select  selected="0">
+        <nb-option value="0">User</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select> 
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Currency</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select>  
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Country</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select> 
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <input type="text" nbInput  placeholder="BH Merchant"> 
+    </div>
+    <div class="form-group col-md-3">
+      <nb-select  selected="0">
+        <nb-option value="0">Product Category</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select> 
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Marchandisert</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select>  
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Teamleader</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select> 
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <input type="text" nbInput  placeholder="Remarks"> 
+    </div>
+    <div class="form-group col-md-3">
+      <nb-select  selected="0">
+        <nb-option value="0">Ship Mode</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select> 
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Order Uom</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select>  
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Packing</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select> 
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <input type="text" nbInput  placeholder="SMV"> 
+    </div>
+    <div class="form-group col-md-3">
+      <nb-select  selected="0">
+        <nb-option value="0">Season </nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select> 
+    </div>
+    <div class="form-group col-md-3 ">
+      <nb-select  selected="0">
+        <nb-option value="0">Agent</nb-option>
+        <nb-option value="1">Option 2</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+      </nb-select>  
+    </div>
+    <div class="form-group col-md-2 ">
+      <div class="input-group">
+        <!-- <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div> -->
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile01"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+     
+    </div>
+    <div class="form-group col-md-2">
+      <button type="submit" nbButton status="success">Item Details</button>
+    </div>
+    <div class="form-group col-md-2 ">
+      <button type="submit" nbButton status="primary"  [disabled]="form.invalid" >Submit</button>
+    </div>
+  </div>
+</form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,19 @@
+
+-- Table: public."CostComponenetsMasterDetails"
+
+-- DROP TABLE public."CostComponenetsMasterDetails";
+
+CREATE TABLE public."CostComponenetsMasterDetails"
+(
+    "Id" serial primary key,
+    "PreCostingId" integer,
+    "CostComponetId" integer,
+    "BudgetedCost" double precision,
+    "QPrice" double precision,
+    "CostComponentName" character varying(200) COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."CostComponenetsMasterDetails"
+    OWNER to postgres;

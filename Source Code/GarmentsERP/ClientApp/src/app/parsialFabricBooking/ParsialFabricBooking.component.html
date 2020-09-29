@@ -1,0 +1,726 @@
+<h4>Parsial Fabric Booking</h4>
+<div>
+  <!--<input type="search" name="bookingNo" />-->
+  <label for="site-search">Search the Booking No:</label>
+  <input type="search" #box aria-label="Search through site content" (keyup)="bookingNoSearchChange(box.value)">
+  <button>Search</button>
+</div>
+<div style="overflow:auto; height:200px;border:5px solid #8DAFDA;padding:10px;margin-bottom:30px;">
+  <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:3px;border:1px solid #ddd;font-size:11px;" cellpadding="2" cellspacing="2">
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+      <th><button type="button" class="btn btn-info btn--sm" (click)="openModalFabricBooking()">Add New</button> </th>
+      <th>Booking No</th>
+      <th>Booking Month</th>
+      <th>Company Name</th>
+      <th>Buyer Name</th>
+      <th>Fabric Nature</th>
+      <th>Fabric Source</th>
+      <th>Booking Date</th>
+      <th>Delivery Date</th>
+      <th>Pay Mode</th>
+      <th>Supplier Name</th>
+      <th>Currency</th>
+      <th>Exchange Rate</th>
+      <th>Source</th>
+      <th>Attention</th>
+      <th>Booking Percent</th>
+      <th>Collar Excess Cut %</th>
+      <th>Cuff Excess Cut %</th>
+      <th>Ready To Approved</th>
+      <th>Internal Ref No</th>
+      <th>File No</th>
+      <th>Un-approve request</th>
+      <th>Fabric Composition</th>
+      <th>Level</th>
+      <th>Remarks</th>
+      <th>Action</th>
+    </tr>
+    <tbody style="overflow:scroll">
+    <tbody *ngFor="let parsialFabric of parsialFabricData" style="overflow:scroll">
+      <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}">
+        <td>
+          <button type="button" (click)=getParsialBookingDetails(parsialFabric.id)> Detail </button>
+          <button type="button" class="btn btn-info btn--sm" (click)="AddOrEditItem(parsialFabric.id)">Add</button>
+        </td>
+
+        <td><span style="color:#9F000F;">{{parsialFabric.bookingNo | uppercase}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.bookingMonth}} - {{parsialFabric.bookingYear}} </span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.companyName}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.buyerName}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.fabricNature}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.fabricSource}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.bookingDate}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.deliveryDate}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.payMode}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.supplierName}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.currency}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.exchangeRate}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.source}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.attention}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.bookingPercent}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.collarExcessCutPercentage}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.cuffExcessCutPercentage}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.readyToApproved}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.internalRefNo}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.fileNo}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.unApproveRequest}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.fabricComposition}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.level}}</span></td>
+        <td><span style="color:#9F000F">{{parsialFabric.remarks}}</span></td>
+        <td>
+          <button type="button" (click)="openModalFabricBooking(parsialFabric.id)">Edit</button>
+          <button type="button" (click)="deleteFabricBooking(parsialFabric.id)">Delete</button>
+        </td>
+        <!--<td>
+          <button type="button" (click)="deleteFabricBooking(parsialFabric.id)">Delete</button>
+        </td>-->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Here has  the design for the Insert/Edit operation of Parsial Fabric Booking-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog" [ngStyle]="{'display':displayParsialFabricBooking}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="ParsialFabricBookingForm" (ngSubmit)="saveParsialFabricBooking()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>bookingMonth</th>
+              <th>bookingYear</th>
+              <th>companyName</th>
+              <th>buyerName</th>
+              <th>fabricNature</th>
+              <th>fabricSource</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="bookingMonth">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'bookingMonth') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="bookingYear">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'bookingYear') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="companyName">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'companyName') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="buyerName">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'buyerName') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fabricNature">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'fabricNature') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fabricSource">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'fabricSource') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>bookingDate</th>
+              <th>deliveryDate</th>
+              <th>payMode</th>
+              <th>supplierName</th>
+              <th>currency</th>
+              <th>exchangeRate</th>
+              <th>source</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="bookingDate">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'bookingDate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="deliveryDate">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'deliveryDate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="payMode">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'payMode') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="supplierName">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'supplierName') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="currency">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'currency') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="exchangeRate">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'exchangeRate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="source">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'source') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>attention</th>
+              <th>bookingPercent</th>
+              <th>collarExcessCutPercentage</th>
+              <th>cuffExcessCutPercentage</th>
+              <th>readyToApproved</th>
+              <th>internalRefNo</th>
+              <th>fileNo</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="attention">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'attention') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="bookingPercent">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'bookingPercent') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="collarExcessCutPercentage">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'collarExcessCutPercentage') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="cuffExcessCutPercentage">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'cuffExcessCutPercentage') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="readyToApproved">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'readyToApproved') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="internalRefNo">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'internalRefNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fileNo">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'fileNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>unApproveRequest</th>
+              <th>fabricComposition</th>
+              <th>level</th>
+              <th>remarks</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="unApproveRequest">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'unApproveRequest') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fabricComposition">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'fabricComposition') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="level">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'level') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="remarks">
+                </div>
+                <span class="text-danger" *ngIf="ParsialFabricBookingForm.hasError('required', 'remarks') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <button type="button" class="btn btn-default" (click)="closeModalFabricBooking()">Close</button>
+              </td>
+              <td>
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog" [ngStyle]="{'display':displayParsialFabricBookingSearchData}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="ParsialFabricBookingSearchData" (ngSubmit)="saveParsialFabricBooking(ParsialFabricBookingSearchData.value)"
+              #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>Job No</th>
+              <th>Po No</th>
+              <th>Body Part</th>
+              <th>Color Type</th>
+              <th>Dia With Type</th>
+              <th>Constraction</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input type="text" class="form-control" formControlName="orderId">
+                </div>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="poNumber">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="bodyPart">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="colorType">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="diaWidthType">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="construction">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Composition</th>
+              <th>GSM</th>
+              <th>Gmts.Color</th>
+              <th>Item Color</th>
+              <th>Dia</th>
+              <!--<th>Balance Qty</th>-->
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="composition">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="gsm">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="gmtsColor">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="itemColor">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="dia">
+                </div>
+
+              </td>
+              <!--<td>
+                <div>
+                  <input class="form-control" type="number" formControlName="BalanceQty">
+                </div>
+
+              </td>-->
+            </tr>
+            <tr>
+              <th>Wo Qty</th>
+              <th>Adj Qty</th>
+              <th>Ac Wo Qty</th>
+              <!--<th>UOM</th>-->
+              <th>Rate</th>
+              <th>Amount</th>
+              <!--<th>Remark</th>-->
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="woQnty">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="adjQnty">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="acWoQnty">
+                </div>
+
+              </td>
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="UOM">
+                </div>
+
+              </td>-->
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="rate">
+                </div>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+                </div>
+              </td>
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="Remark" >
+                </div>
+              </td>-->
+
+            </tr>
+            <tr>
+              <td colspan="5">
+                <button type="submit" class="btn btn-default">Save</button>
+                <button class="btn" (click)="closeModalDialog()">Cancel</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div *ngIf="parsialFabricBookingDetails" style="overflow:auto; height:300px;border:5px solid #8DAFDA;padding:10px;margin-bottom:30px;">
+
+
+  <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:3px;border:1px solid #ddd;font-size:11px;" cellpadding="2" cellspacing="2">
+    <tr>
+      <td colspan="22" style="text-align:right">
+        <span *ngIf="notification" class="elementToFadeInAndOut">
+          <i class="fas fa-check-circle {{notification.class}}"></i>
+          {{notification.message}}
+        </span>
+      </td>
+
+    </tr>
+
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+      <!--<th><button type="button" class="btn btn-info btn--sm" (click)="openModalFabricBookingSearch()">Add New</button> </th>-->
+      <th></th>
+      <th>Job No</th>
+      <th>Po No</th>
+      <th>Body Part </th>
+      <th>color Type </th>
+      <th>Dia Width Type </th>
+      <th>Construction</th>
+      <th>Composition</th>
+      <th>GSM</th>
+      <th>Item</th>
+      <th>Fabric Nature</th>
+      <th>Fabric Source</th>
+      <th>Gmts Color</th>
+      <th>item Color </th>
+      <th>Dia</th>
+      <th>Wo.Qnty </th>
+      <th>Adj.Qnty </th>
+      <th>Ac.wo.Qnty </th>
+      <th>Rate </th>
+      <th>Amount </th>
+      <th colspan="2">Action</th>
+
+
+    </tr>
+    <tbody *ngFor="let bookingDetails of parsialFabricBookingDetails">
+      <tr>
+
+        <td></td>
+        <td>
+          <input name="JobNo" [(ngModel)]="bookingDetails.jobNo" class="form-control" style="width:100px">
+        </td>
+        <td>
+          <input name="poNumber" [(ngModel)]="bookingDetails.poNumber" class="form-control" style="width:100px">
+        </td>
+        <td><input name="BodyPart" [(ngModel)]="bookingDetails.bodyPart" class="form-control" style="width:100px"></td>
+        <td><input name="ColorType" [(ngModel)]="bookingDetails.colorType" class="form-control" style="width:100px"></td>
+        <td><input name="DiaWithType" [(ngModel)]="bookingDetails.diaWidthType" class="form-control" style="width:100px"></td>
+        <td>  <input name="Constraction" [(ngModel)]="bookingDetails.construction" class="form-control" style="width:100px"></td>
+        <td><input name="Composition" [(ngModel)]="bookingDetails.composition" class="form-control" style="width:100px"></td>
+        <td><input name="GSM" [(ngModel)]="bookingDetails.gsm" class="form-control" style="width:100px"></td>
+        <td> <input name="Item" [(ngModel)]="bookingDetails.item" class="form-control" style="width:100px"></td>
+        <td> <input name="FabricNature" [(ngModel)]="bookingDetails.fabricNature" class="form-control" style="width:100px"> </td>
+        <td><input name="FabricSource" [(ngModel)]="bookingDetails.fabricSource" class="form-control" style="width:100px"></td>
+        <td><input name="GmtsColor" [(ngModel)]="bookingDetails.gmtsColor" class="form-control" style="width:100px"></td>
+        <td><input name="ItemColor" [(ngModel)]="bookingDetails.itemColor" class="form-control" style="width:100px"></td>
+        <td><input name="Dia" [(ngModel)]="bookingDetails.dia" class="form-control" style="width:100px"></td>
+        <td><input name="WoQty" [(ngModel)]="bookingDetails.woQnty" class="form-control" style="width:100px"></td>
+        <td><input name="AdjQty" [(ngModel)]="bookingDetails.adjQnty" class="form-control" style="width:100px"></td>
+        <td><input name="AcWoQty" [(ngModel)]="bookingDetails.acWoQnty" class="form-control" style="width:100px"></td>
+        <td><input name="Rate" [(ngModel)]="bookingDetails.rate" class="form-control" style="width:100px"></td>
+        <td>
+          <input name="Amount" [(ngModel)]="bookingDetails.amount" class="form-control" style="width:100px">
+          <input type="hidden" name="id" [(ngModel)]="bookingDetails.id" class="form-control">
+        </td>
+        <td>
+          <a class="btn btn-sm btn-info text-white" (click)="updateParsialFabricBooking(bookingDetails)"><i class="fa fa-pencil"></i></a>
+        </td>
+        <td><a class="btn text-danger" (click)="deleteinputpannel(bookingDetails.id)"><i class="fa fa-trash fa-lg"></i></a></td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+<!--Here has  the design for the Search & show fabric booking -->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog" [ngStyle]="{'display':displayFabricBookingSearch}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <!--<th>Company</th>
+              <th>Buyer</th>
+              <th>year</th>-->
+              <th>Job No</th>
+              <!--<th>Internal Ref</th>
+              <th>File No</th>
+              <th>Style Ref</th>
+              <th>Order No</th>
+              <th>Date Range</th>-->
+            </tr>
+
+
+            <tr>
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="company">
+
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'company') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="buyer">
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'buyer') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="year">
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'year') && formDir.submitted">
+                  *
+                </span>
+              </td>-->
+              <td>
+                <div>
+                  <input class="form-control" type="text" [(ngModel)]="jobNo" name="jobNo">
+                </div>
+                <!--<span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'jobNo') && formDir.submitted">
+                  *
+                </span>-->
+              </td>
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="internalRef">
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'internalRef') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fileNo">
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'fileNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="styleRef">
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'styleRef') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="orderNo">
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'orderNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="dateRange">
+                </div>
+                <span class="text-danger" *ngIf="FabricBookingSearchForm.hasError('required', 'dateRange') && formDir.submitted">
+                  *
+                </span>
+              </td>-->
+            </tr>
+          </table>
+          <div class="modal-footer">
+            <button type="submit" (click)="searchFabricItems(jobNo)" class="btn btn-default">Search</button>
+            <button type="button" class="btn btn-default" (click)="closeModalFabricBookingSearch()">Close</button>
+          </div>
+        </form>
+        <h4>Here is place for hold data</h4>
+        <hr />
+        <div>
+          <div style="overflow:auto; height:200px;border:5px solid #8DAFDA;padding:10px;margin-bottom:30px;">
+            <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:3px;border:1px solid #ddd;font-size:11px;" cellpadding="2" cellspacing="2">
+              <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+                <th>Job No</th>
+                <th>Po No</th>
+                <th>Item</th>
+                <th>Body Part</th>
+                <th>Contruction</th>
+                <th>Composition</th>
+                <th>GSM</th>
+                <th>Fabric Nature</th>
+                <th>Fabric Source</th>
+                <th>UOM</th>
+                <th></th>
+              </tr>
+              <tbody style="overflow:scroll">
+              <tbody *ngFor="let result of jobNoSearchResult" style="overflow:scroll">
+                <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}">
+                  <td><span style="color:#9F000F">{{result.jobNo ||result.jobNo}}</span></td>
+                  <td><span style="color:#9F000F">{{result.poNo || result.poNo}}</span></td>
+                  <td><span style="color:#9F000F">{{result.item}}</span></td>
+                  <td><span style="color:#9F000F">{{result.bodyPart}}</span></td>
+                  <td><span style="color:#9F000F">{{result.contruction}}</span></td>
+                  <td><span style="color:#9F000F">{{result.composition}}</span></td>
+                  <td><span style="color:#9F000F">{{result.gsm}}</span></td>
+                  <td><span style="color:#9F000F">{{result.fabricNature}}</span></td>
+                  <td><span style="color:#9F000F">{{result.fabricSource}}</span></td>
+                  <td><span style="color:#9F000F">{{result.uom}}</span></td>
+                  <td>
+                    <button type="button" (click)="saveParsialFabricBooking(result)">Add</button>
+                  </td>
+                  <!--<td>
+                    <button type="button" (click)="deleteFabricBooking(parsialFabric.id)">Delete</button>
+                  </td>-->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

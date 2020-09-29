@@ -1,0 +1,28 @@
+
+create table public."SampleFabricBooking"(
+"Id" serial primary key,
+"SampleRequisitionId" integer,
+  "BookingNo" character varying(100),
+"BookingDate" character varying(100),
+"StyleDesc" character varying(100),
+"CurrencyId" integer,
+"ExchangeRate" double precision ,
+"Attention" character varying(100),
+"PayMode" character varying(100),
+"SupplierNameId" integer,
+"ReadyToApproved" character varying(100),
+"TeamLeader" integer,
+"DealingMerchant" integer,
+"FabricSource" character varying(100),
+"Source" character varying(100),
+"BuyerReqNo" character varying(100),
+"Revise" character varying(100),
+"File" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

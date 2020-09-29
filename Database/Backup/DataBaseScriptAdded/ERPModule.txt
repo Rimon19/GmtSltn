@@ -1,0 +1,18 @@
+create table public."ERPModule"(
+"Id" serial primary key,
+"ModuleId" integer,
+"ModuleName" character varying(100)
+)
+insert into public."ERPModule"(
+"ModuleId",
+"ModuleName"
+)
+values
+(1,'Merchandising'),
+(2,'TNA'),
+(3,'Planning'),
+(4,'Commercial'),
+(5,'Production'),
+(6,'Inventory'),
+(7,'Accounting'),
+(8,'Subcontract')

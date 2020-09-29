@@ -1,0 +1,151 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header
+      > <button (click)="backToProductInfo()"
+      class="btn btn-outline-success "
+      
+    >
+    <i class="fas fa-arrow-left"></i>
+    </button>
+     Product Entry
+     
+     
+    </nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="catagory" class="label"> Product Category </label>               
+                  <select name="catagory"  #catagory="ngModel" (change)="OnCategoryDDLChange(Product.catagory)"
+                  [(ngModel)]="Product.catagory" class="form-control">
+                    <option > Select Product</option>
+                    <option *ngFor="let productCategorie of productCategories" [value]="productCategorie.ProductName">{{productCategorie.ProductName}}</option>
+                </select>
+                     <div class="text-left text-danger"
+                     *ngIf="catagory.invalid&&catagory.touched">
+                     Catagory is Required !
+                   </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="subCategory" class="label"> Sub Category </label>               
+                  <select name="subCategory"  #subCategory="ngModel"
+                  [(ngModel)]="Product.subCategory" class="form-control">
+                    <option value=''> Select sub Category</option>
+                    <option *ngFor="let productSubCategorie of productSubCategories"  [value]="productSubCategorie.SubCategoreisName">{{productSubCategorie.SubCategoreisName}}</option>
+                </select>
+                     
+                </div>
+              </div>
+          
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name" class="label">Product Name</label>
+                   <input name="name"  #name="ngModel"
+                   [(ngModel)]="Product.name" type="text" class="form-control" class="form-control"
+                     id="name" placeholder="Product Name" required>
+                     <div class="text-left text-danger"
+                     *ngIf="name.invalid&&name.touched">
+                     Product Name is Required !
+                   </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="quantity" class="label">Quantity</label>
+                  <input name="quantity"  #quantity="ngModel"
+                  [(ngModel)]="Product.quantity" type="text" class="form-control" class="form-control"
+                    id="quantity" placeholder="Quantity" required>
+                    <div class="text-left text-danger"
+                    *ngIf="quantity.invalid&&quantity.touched">
+                    Quantity is Required !
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                        <label for="date" class="label">Select Date</label>               
+                        <input
+                        class="form-control"
+                        [matDatepicker]="picker"
+                        name="date" 
+                         #date="ngModel"
+                        readonly
+                        [(ngModel)]="Product.date"
+                         
+                         placeholder="{{Product.date}}"
+                        required >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                     
+                          <div class="text-left text-danger"
+                          *ngIf="date.invalid&&date.touched">
+                          Date is Required !
+                       
+                       </div>
+                        
+                </div>
+                
+              </div>
+             
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="importedForm" class="label">Imported From</label>
+                   <input name="importedForm"  #importedForm="ngModel"
+                   [(ngModel)]="Product.importedForm" type="text" class="form-control" class="form-control"
+                     id="importedForm" placeholder="Imported Form" required>
+                    
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="cost" class="label">Price</label>
+                   <input name="cost"  #cost="ngModel"
+                   [(ngModel)]="Product.cost" type="text" class="form-control" class="form-control"
+                     id="cost" placeholder="Price" required>
+                     <div class="text-left text-danger"
+                     *ngIf="cost.invalid&&cost.touched">
+                     Price  is Required !
+                   </div>
+                </div>
+              </div>
+             
+            </div>
+            
+          
+             <div class="row">
+              <div class="col-sm-3 ">
+                <div class="form-group ">
+                  <button *ngIf="editkey==null" [disabled]="Product.catagory==''||Product.name==''" class="mr-1" nbButton (click)="save(Product)">Submit</button>
+                  <button *ngIf="editkey!=null" class="mr-1" nbButton (click)="edit(Product)">Update</button>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                 
+                </div>
+              </div>
+            </div> 
+            
+          </form>
+        </nb-card-body>
+     
+    </nb-card>
+  </div>
+</div>

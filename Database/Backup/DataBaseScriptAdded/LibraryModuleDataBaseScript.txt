@@ -1,0 +1,63 @@
+CREATE TABLE public."YarnBrand"
+(
+    "yarnBrandId"  serial primary key,
+    "yarnBrandName" character varying(100),
+    "sequenceNo" integer,
+    "status" character varying(100)
+    
+)
+CREATE TABLE public."TNATaskNameEntry"
+(
+    "Id" serial primary key,
+    "TNATaskName" character varying(100),
+    "Status" character varying(100)
+)
+create table public."TNATaskEntry"(
+"Id" serial primary key,
+"TaskNameId" integer,
+"TaskShortName" character varying(100),
+"Penalty" character varying(100),
+"SequenceNo" integer,
+"Completion%" integer,
+"GroupName" character varying(100),
+"Status" character varying(100),
+"GroupSeqNo" integer
+)
+create table public.PartyType(
+ Id serial primary key,
+ PartyTypeName character varying(100),
+ Status character varying(100)
+)
+create table public.ItemCategory(
+ Id serial primary key,
+ ItemCategoryName character varying(100),
+ Status character varying(100)
+)  
+create table public."OtherPartyProfile"(
+"Id" serial primary key,
+"OtherPartyName" character varying(100),
+"ShortName" character varying(100),
+"Address"	character varying(100),
+"ContactPerson" character varying(100),
+"CountryNameId"	integer,
+"Designation" character varying(100),
+"Remark" character varying(100),
+ "ContactNo" character varying(100),
+ "Status" character varying(100),
+"Email" character varying(100),
+"URLName" character varying(100),
+"ImageName" character varying(100),
+"ImagePathName" character varying(100)
+)
+create table public."GroupProfile"(
+"Id" serial primary key,
+"GroupName" character varying(100),
+"ContactPerson" character varying(100),
+"ContactNumber" character varying(100),
+"CountryId" integer,
+"Website" character varying(100),
+"Email" character varying(100),
+"Address" character varying(200),
+"Remark"  character varying(200),
+"Status"  character varying(100)
+)

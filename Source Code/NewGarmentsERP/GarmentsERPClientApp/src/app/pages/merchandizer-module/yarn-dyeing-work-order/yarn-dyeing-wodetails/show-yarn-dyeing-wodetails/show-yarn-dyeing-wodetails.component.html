@@ -1,0 +1,184 @@
+<nb-card>
+  <nb-card-header>
+    <button (click)="backTo()"
+    class="btn btn-outline-success ">
+   <i class="fas fa-arrow-left"></i></button>
+    Yarn Dyeing Wo Detail</nb-card-header>
+  <div class="example-container mat-elevation-z8">
+     <div class="example-header">
+         
+         <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field>
+        <mat-label style="font-size:15px;font-weight: bold;">Search All Here ..</mat-label>
+          <input
+            matInput
+            #filter
+            (change)="applyFilter($event.target.value)"
+           
+          />
+        
+         
+          <button
+            mat-icon-button
+            matSuffix
+            aria-label="clear"
+            *ngIf="filter.value"
+            (click)="filter.value = ''; applyFilter('')"
+          >
+            <mat-icon>close</mat-icon>
+            
+          
+          </button>
+         
+          
+          <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
+        </mat-form-field>
+        <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+         </div>
+       </div>
+     
+       <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+        <mat-label style="font-size:15px;font-weight: bold;">Search {{filter.name}}</mat-label>
+          <input  matInput  
+          name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+          (change)="filterChange(filter,$event)">
+          
+        </mat-form-field>
+       </div>
+
+         <mat-table
+           [dataSource]="dataSource"
+           matSort
+           mat-table
+         >
+         
+         <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef class="text-dark">   
+           <button class="btn btn-outline-success ml-2" (click)="redirectToAddPage()"> <i class="fa fa-plus"></i></button>
+         </mat-header-cell>
+         <mat-cell *matCellDef="let element" >       
+           <button *ngIf="element.id!=0"  mat-icon-button (click)="redirectToEditPage(element)" > <mat-icon>launch</mat-icon></button>
+           <button *ngIf="element.id!=0" mat-icon-button (click)="onDelete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+           
+         </mat-cell>
+       </ng-container>
+           
+          <ng-container matColumnDef="jobNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Job No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.jobNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="lotNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Lot No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.lotNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="countId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Count</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.countId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="yarnDescription">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Yarn Description</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.yarnDescription }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="yarnColorId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Yarn Color</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.yarnColorId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="colorRangeId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Color Range</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.colorRangeId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="refNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Ref No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.refNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="uomId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >UOM</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.uomId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="bookingBalance">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Booking Balance</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.bookingBalance }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="yarnWoQnty">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Yarn Wo Qnty</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.yarnWoQnty }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="dyeingCharge">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Dyeing Charge</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.dyeingCharge }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="amount">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Amount</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.amount }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="noofBag">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >No of Bag</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.noofBag }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="noofCone">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >No of Cone</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.noofCone }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="minReqCone">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Min Req Cone</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.minReqCone }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="fileNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >File No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fileNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="internalRefNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Internal Ref No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.internalRefNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="remarks">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Remarks</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.remarks }}</mat-cell>
+</ng-container>
+
+           <mat-header-row
+             *matHeaderRowDef="displayedColumns"
+           ></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+         </mat-table>
+
+      </div>
+ <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

@@ -1,0 +1,6 @@
+CREATE TABLE public."AdminSuperior"
+(
+    "Id" serial primary key, 
+    "AdminSuperiorName" character varying(100) COLLATE pg_catalog."default"
+   
+)

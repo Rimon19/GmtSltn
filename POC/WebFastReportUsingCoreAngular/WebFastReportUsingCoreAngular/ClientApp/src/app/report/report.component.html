@@ -1,0 +1,9 @@
+<div>
+  <p>Enter Buyer ID</p>
+  <input [(ngModel)]="BuyerID">
+
+  <input type="button" (click)="Clicked()" value="Show Report" />
+  <div *ngIf="show">
+    <iframe id="report" height="1000" width="1000" [src]="url | safeUrl"></iframe>
+  </div>
+</div>

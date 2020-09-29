@@ -1,0 +1,31 @@
+<nb-card >
+  <nb-card-header>Company Entry Form</nb-card-header>
+  <nb-card-body >
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="CompanyName" class="label">Company Name</label>
+          <input type="email" nbInput fullWidth id="company-name" placeholder="Company Name"
+               name="CompanyName"
+                #CompanyName="ngModel"
+                [(ngModel)]="companyService.companyFormData.companyName">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="CompanyDetails" class="label">Company Details</label>
+          <input type="text" nbInput fullWidth id="company-details" placeholder="Company Details"
+                name="details"
+                #details="ngModel"
+                [(ngModel)]="companyService.companyFormData.details">
+        </div>
+      </div>
+    </div>
+    <button type="submit" nbButton>Submit</button>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button>
+  </nb-card-footer>
+</nb-card>

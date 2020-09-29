@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>  
+        <button (click)="backToaColourentryHomePage()"
+       class="btn btn-outline-success "
+ 
+      >
+      <i class="fas fa-arrow-left"></i>
+     </button>Colour Entry
+   </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="colorName" class="label text-dark">
+                  Color Name <span class="text-danger">*</span></label>
+                <input required  name="colorName" #ColorName="ngModel"
+                [(ngModel)]="colourEntryService.colourEntry.colorName" 
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="colorName" placeholder="Color Name">
+                <div class="text-left text-danger"
+                *ngIf="colourEntryService.colourEntry.colorName==''&&ColorName.touched">
+                Color Name  is required
+              </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="buyerNameId" class="label text-dark">
+                  Tag Buyer Name<span class="text-danger">*</span></label>
+                  <select required  name="buyerNameId" #BuyerNameId="ngModel"
+                  [(ngModel)]="colourEntryService.colourEntry.buyerNameId"
+                   id="buyerNameId" 
+                   class="form-control form-rounded form-control-sm">
+                   <option value=''>Select Buyer </option>
+                   <option
+                   *ngFor="let buyerList of buyerListItems"
+                   [value]="buyerList.id"
+                   >{{ buyerList.contactName }}</option
+                 >
+                  
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="colourEntryService.colourEntry.buyerNameId==0&&BuyerNameId.touched">
+              Tag Buyer Name  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ContactNumber" class="label text-dark">
+                  Status</label>
+                  <select   name="status" #Status="ngModel"
+                  [(ngModel)]="colourEntryService.colourEntry.status"
+                   id="Status" 
+                   class="form-control form-rounded form-control-sm">
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+           
+            
+          </div>
+        
+           
+        
+       
+          <button type="submit" [disabled]="form.invalid||colourEntryService.colourEntry.buyerNameId==0"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

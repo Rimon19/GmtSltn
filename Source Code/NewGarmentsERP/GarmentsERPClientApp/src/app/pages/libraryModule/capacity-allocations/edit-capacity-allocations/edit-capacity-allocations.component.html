@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>   
+        <button (click)="backToaCapacityAllocationsSetupHomePage()"
+        class="btn btn-outline-success "
+  
+       >
+       <i class="fas fa-arrow-left"></i>
+      </button>  Monthly Capacity Allocation
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="company"  class="label text-dark">
+                  Company <span class="text-danger">*</span></label>
+                  <select   id="company" required name="company" #Company="ngModel"
+                  [(ngModel)]="capacityAllocationsService.capacityAllocations.company"
+                   class="form-control form-rounded form-control-sm" >
+                 <option value=''>Select Company Name</option>
+                   <option  *ngFor="let btnAction of company"  
+                   value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="capacityAllocationsService.capacityAllocations.company==''&&Company.touched">
+             Company  is required
+           </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="location"  class="label text-dark">
+                  Location	 </label>
+                  <select  id="location"  name="location" #Location="ngModel"
+                  [(ngModel)]="capacityAllocationsService.capacityAllocations.location"
+                   class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select location Name</option>
+                  <option  *ngFor="let btnAction of locations" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="yearId"  class="label text-dark">
+                  Year	</label>
+                <select id="yearId"  name="yearId" #yearId="ngModel"
+                [(ngModel)]="capacityAllocationsService.capacityAllocations.yearId" 
+                 class="form-control form-rounded form-control-sm"  >
+                  <option [ngValue]=0>Select Year</option>
+                  <option *ngFor="let yearlist of yearListItems" [value]="yearlist.id">{{yearlist.year}}</option>
+                </select>
+                
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="monthId"  class="label text-dark">
+                  Month</label>
+                  <select  id="monthId"  name="monthId" #monthId="ngModel"
+                  [(ngModel)]="capacityAllocationsService.capacityAllocations.monthId"
+                    class="form-control form-rounded form-control-sm" >
+                   <option [ngValue]=0>Select Month</option>
+                   <option *ngFor="let monthlist of monthListItems" [value]="monthlist.id">{{monthlist.monthName}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+            
+          </div>
+        
+          <button type="submit" [disabled]="form.invalid"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

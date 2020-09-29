@@ -1,0 +1,150 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Group Profile Edit
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="GroupName" class="label text-dark">
+                  Group Name <span class="text-danger">*</span></label>
+                <input  required name="groupName" #GroupName="ngModel"
+                [(ngModel)]="groupProfileService.groupProfile.groupName"
+                 class="form-control form-rounded form-control-sm" type="text" 
+                id="GroupName" placeholder="GroupName">
+                <div class="text-left text-danger"
+                *ngIf="groupProfileService.groupProfile.groupName==''&&GroupName.touched">
+                Group Name is required
+              </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ContactPerson" class="label text-dark">
+                  Contact Person </label>
+                <input name="contactPerson" #ContactPerson="ngModel"
+                [(ngModel)]="groupProfileService.groupProfile.contactPerson"
+                 class="form-control form-rounded form-control-sm" type="text" 
+                id="ContactPerson" placeholder="Contact Person">
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ContactNumber" class="label text-dark">
+                  Contact Number</label>
+                <input  name="contactNumber" #ContactNumber="ngModel"
+                [(ngModel)]="groupProfileService.groupProfile.contactNumber"
+                 class="form-control form-rounded form-control-sm" type="text" 
+                id="ContactNumber" placeholder="Contact Number">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CountryName" class="label text-dark">
+                  Country Name</label>
+                  <select  name="countryId" #CountryId="ngModel"
+                  [(ngModel)]="groupProfileService.groupProfile.countryId"
+                    class="form-control form-rounded form-control-sm" >
+                  <option [ngValue]=0>Select Country Name</option>
+                  <option *ngFor="let countrylist of countryList" [value]="countrylist.regionID">{{countrylist.region_Name}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Website" class="label text-dark">
+                  Website </label>
+                <input name="website" #Website="ngModel"
+                [(ngModel)]="groupProfileService.groupProfile.website"
+                 class="form-control form-rounded form-control-sm" type="text" 
+                id="Website" placeholder="Website ">
+               
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Email" class="label text-dark">
+                  Email </label>
+                <input  name="email" #Email="ngModel"
+                [(ngModel)]="groupProfileService.groupProfile.email"
+                 class="form-control form-rounded form-control-sm" type="text" 
+                id="Email" placeholder="Email">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">
+                  Status</label>
+                  <select  name="status" #Status="ngModel"
+                  [(ngModel)]="groupProfileService.groupProfile.status"
+                   id="Status" 
+                    class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Address" class="label text-dark">
+                  Address </label>
+             
+                <div class="form-group">
+                  
+                  <textarea name="address" #Address="ngModel"
+                  [(ngModel)]="groupProfileService.groupProfile.address"
+                   class="form-control form-rounded form-control-sm" id="Address" rows="1"></textarea>
+                </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Remark" class="label text-dark">
+                  Remark </label>
+                
+                <textarea name="remark" #Remark="ngModel"
+                [(ngModel)]="groupProfileService.groupProfile.remark"
+                 class="form-control form-rounded form-control-sm" id="Remark" rows="1"></textarea>
+              </div>
+              
+            </div>
+           
+           
+          
+          </div>
+          <button type="submit" [disabled]="form.invalid"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

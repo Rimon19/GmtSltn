@@ -1,0 +1,470 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+    Edit  Sample Fabric Booking -Without order</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+              <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="BookingNo" class="label text-dark">
+                      Booking No</label
+                    >
+                    <input
+                      name="bookingNo"  
+                      readonly  
+                      [(ngModel)]="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.bookingNo
+                      "
+                      class="form-control form-rounded form-control-sm"
+                      type="text"
+                      id="BookingNo"
+                      placeholder=" Booking No"
+                    />
+                  </div>
+                 </div>
+                     
+                       <div class="col-sm-3">
+                       <div class="form-group">
+                         <label for="BuyerProfileId" class="label text-dark">
+                         Buyer Name
+                         <span class="text-danger">*</span> </label>
+                         <select
+                           name="buyerProfileId"
+                           required
+                           #BuyerProfileId="ngModel"
+                           [(ngModel)]="
+                           sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.buyerProfileId
+                           "
+                           id="BuyerProfileId"
+                           class="form-control form-rounded form-control-sm"
+                         >
+                         <option value="">Select Buyer Name</option>
+                         <option
+                           *ngFor="let item of dropdownValueService.buyerList"
+                           value="{{item.id}}"
+                           >{{ item.contactName}}</option
+                         >
+                         </select>
+                         <div
+                           class="text-left text-danger text-responsive"
+                           *ngIf="
+                           sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.buyerProfileId== '' && BuyerProfileId.touched
+                           "
+                         >
+                         Buyer Name is required
+                         </div>
+                       </div>
+                     </div>
+                       <div class="col-sm-3">
+                       <div class="form-group">
+                         <label for="FabricNature" class="label text-dark">
+                         Fabric Nature
+                         <span class="text-danger">*</span> </label>
+                         <select
+                           name="fabricNature"
+                           required
+                           #FabricNature="ngModel"
+                           [(ngModel)]="
+                           sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.fabricNature
+                           "
+                           id="FabricNature"
+                           class="form-control form-rounded form-control-sm"
+                         >
+                         <option value="">Select Fabric Nature</option>
+                         <option
+                           *ngFor="let item of dropdownValueService.fabricNatureList"
+                           value="{{item.fabricNatureName}}"
+                           >{{ item.fabricNatureName}}</option
+                         >
+                         </select>
+                         <div
+                           class="text-left text-danger text-responsive"
+                           *ngIf="
+                           sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.fabricNature== '' && FabricNature.touched
+                           "
+                         >
+                         Fabric Nature is required
+                         </div>
+                       </div>
+                     </div>
+                       <div class="col-sm-3">
+                       <div class="form-group">
+                         <label for="FabricSource" class="label text-dark">
+                         Fabric Source
+                         </label>
+                         <select
+                           name="fabricSource"
+                         
+                           #FabricSource="ngModel"
+                           [(ngModel)]="
+                           sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.fabricSource
+                           "
+                           id="FabricSource"
+                           class="form-control form-rounded form-control-sm"
+                         >
+                         <option value="">Select Fabric Source</option>
+                         <option
+                           *ngFor="let item of dropdownValueService.fabricSourceList"
+                           value="{{item.value}}"
+                           >{{ item.value}}</option
+                         >
+                         </select>
+                         
+                       </div>
+                     </div>
+          </div>
+     
+     
+          <div class="row">
+              <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="BookingDate" class="label text-dark">
+                      Booking Date
+                    </label>
+                    <input readonly
+                      name="bookingDate"
+                      
+                      #bookingDate="ngModel"
+                      [(ngModel)]="
+                        sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.bookingDate
+                      "          
+                      type="text"
+                      class="form-control form-rounded form-control-sm"
+                      id="BookingDate"
+                      [nbDatepicker]="BookingDate"
+                      placeholder="Booking Date"
+                    />
+                    
+                    <nb-datepicker #BookingDate></nb-datepicker>
+                  </div>
+                </div>
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="Currency" class="label text-dark">
+                    Currency
+                    </label>
+                    <select
+                      name="currency"
+                    
+                      #Currency="ngModel"
+                      [(ngModel)]="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.currency
+                      "
+                      id="Currency"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Currency</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.currencyList"
+                      value="{{item.discountMethodName}}"
+                      >{{ item.discountMethodName}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div>
+                   <div class="col-sm-3">
+             <div class="form-group">
+               <label for="ExchangeRate" class="label text-dark">
+                 Exchange Rate</label
+               >
+               <input
+                 name="exchangeRate"    
+                 [(ngModel)]="
+                 sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.exchangeRate
+                 "
+                 class="form-control form-rounded form-control-sm"
+               
+                 id="ExchangeRate"
+                 placeholder=" Exchange Rate"
+                 type="number"
+               />
+             </div>
+            </div>
+                
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="Source" class="label text-dark">
+                    Source
+                    </label>
+                    <select
+                      name="source"
+                    
+                      #Source="ngModel"
+                      [(ngModel)]="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.source
+                      "
+                      id="Source"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Source</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.sourceList"
+                      value="{{item.value}}"
+                      >{{ item.value}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div>
+                  
+          </div>
+          <div class="row">
+              <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="DeliveryDate" class="label text-dark">
+                      Delivery Date<span class="text-danger">*</span>
+                    </label>
+                    <input readonly
+                      name="deliveryDate"
+                      required
+                      #deliveryDate="ngModel"
+                      [(ngModel)]="
+                        sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.deliveryDate
+                      "          
+                      type="text"
+                      class="form-control form-rounded form-control-sm"
+                      id="DeliveryDate"
+                      [nbDatepicker]="deliveryDate"
+                      placeholder="Delivery Date"
+                    />
+                    <div
+                      class="text-left text-danger text-responsive"
+                      *ngIf="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.deliveryDate ==
+                          '' &&deliveryDate.touched
+                      "
+                    >
+                    Delivery Date is required
+                    </div>
+                    <nb-datepicker #deliveryDate></nb-datepicker>
+                  </div>
+                </div>
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="PayMode" class="label text-dark">
+                    Pay Mode
+                    <span class="text-danger">*</span> </label>
+                    <select
+                      name="payMode"
+                      required
+                      #PayMode="ngModel"
+                      [(ngModel)]="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.payMode
+                      "
+                      id="PayMode"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Pay Mode</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.payModeList"
+                      value="{{item.value}}"
+                      >{{ item.value}}</option
+                    >
+                    </select>
+                    <div
+                      class="text-left text-danger text-responsive"
+                      *ngIf="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.payMode== '' && PayMode.touched
+                      "
+                    >
+                    Pay Mode is required
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="SupplierProfileId" class="label text-dark">
+                    Supplier Name
+                    </label>
+                    <select
+                      name="supplierProfileId"
+                    
+                      #SupplierProfileId="ngModel"
+                      [(ngModel)]="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.supplierProfileId
+                      "
+                      id="SupplierProfileId"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Supplier Name</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.subpplierList"
+                      value="{{item.id}}"
+                      >{{ item.supplierName}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div>
+                  
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="ReadyToApproved" class="label text-dark">
+                    Ready To Approved
+                    </label>
+                    <select
+                      name="readyToApproved"
+                    
+                      #ReadyToApproved="ngModel"
+                      [(ngModel)]="
+                      sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.readyToApproved
+                      "
+                      id="ReadyToApproved"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Ready To Approved</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.readyToApprovedList"
+                      value="{{item.value}}"
+                      >{{ item.value}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div>
+          </div>
+   
+    <div class="row">
+      <div class="col-sm-3">
+          <div class="form-group">
+            <label for="TeamLeaderId" class="label text-dark">
+            Team Leader
+            </label>
+            <select
+              name="teamLeaderId"
+            
+              #TeamLeaderId="ngModel"
+              [(ngModel)]="
+              sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.teamLeaderId
+              "
+              id="TeamLeaderId"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select Team Leader</option>
+            <option
+              *ngFor="let item of dropdownValueService.teamleaderList"
+              value="{{item.id}}"
+              >{{ item.userId}}</option
+            >
+            </select>
+            
+          </div>
+        </div>
+          
+          <div class="col-sm-3">
+          <div class="form-group">
+            <label for="DealingMerchantId" class="label text-dark">
+            Dealing Merchant
+            </label>
+            <select
+              name="dealingMerchantId"
+            
+              #DealingMerchantId="ngModel"
+              [(ngModel)]="
+              sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.dealingMerchantId
+              "
+              id="DealingMerchantId"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select Dealing Merchant</option>
+            <option
+              *ngFor="let item of dropdownValueService.dealiningMarchandList"
+              value="{{item.id}}"
+              >{{ item.userId}}</option
+            >
+            </select>
+            
+          </div>
+        </div>
+           <div class="col-sm-3">
+     <div class="form-group">
+       <label for="CopyFrom" class="label text-dark">
+         Copy From</label
+       >
+       <input
+         name="copyFrom"    
+         [(ngModel)]="
+         sampleFabricBookingWithoutOrderMasterService.sampleFabricBookingWithoutOrderMaster.copyFrom
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="CopyFrom"
+         placeholder=" Copy From"
+       />
+     </div>
+    </div>
+         <div class="col-sm-3">
+          <div class="form-group">
+            <label for="Image" class="label text-dark">
+           Click to Add Image</label>
+            
+            <input
+              name="image"
+              (dblclick)="onAddImage()"
+              class="form-control form-rounded form-control-sm"
+              type="text"
+              id="Image"
+              placeholder="Double click"
+              
+            />
+            
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+          <div class="form-group">
+            <label for="Accessories" class="label text-dark">
+              Accessories</label>
+            
+            <input
+              name="accessories"
+              (dblclick)="onAddImage()"
+              class="form-control form-rounded form-control-sm"
+              type="text"
+              id="Accessories"
+              placeholder="Double click"
+              
+            />
+            
+          </div>
+        </div> <div class="col-sm-3">
+          <div class="form-group">
+            <label for="TermsNCondition" class="label text-dark">
+              Terms and Conditions</label>
+            
+            <input
+              name="termsNCondition"
+              (dblclick)="onAddImage()"
+              class="form-control form-rounded form-control-sm"
+              type="text"
+              id="TermsNCondition"
+              placeholder="Double click"
+              
+            />
+            
+          </div>
+        </div>
+    </div>
+ 
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

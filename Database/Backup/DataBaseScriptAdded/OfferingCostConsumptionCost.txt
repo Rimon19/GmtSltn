@@ -1,0 +1,22 @@
+CREATE TABLE public."OfferingCostConsumptionCost"
+(
+    "Id" serial primary key,
+    "OfferingCostId" integer,
+    "OrderAutoId" integer,
+    "Measurment" character varying(100) COLLATE pg_catalog."default",
+    "Actual" double precision,
+    "Allowance" double precision,
+    "GSM" double precision,
+    "FabDzn" double precision,
+    "SolidSixPercent" double precision,
+    "CAD" double precision,
+    "NeckcuffDzn" double precision,
+    "Pocket" double precision,
+    "TTLFabKg" double precision,
+    "EntryDate" character varying(100) COLLATE pg_catalog."default",
+    "EntryBy" character varying(100) COLLATE pg_catalog."default",
+    "ApprovedDate" character varying(100) COLLATE pg_catalog."default",
+    "IsApproved" boolean,
+    "ApprovedBy" character varying(100) COLLATE pg_catalog."default",
+    "Status" character varying(100) COLLATE pg_catalog."default"
+)

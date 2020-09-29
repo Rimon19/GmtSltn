@@ -1,0 +1,12 @@
+create table public."SalesForecastEntry"(
+"Id" serial primary key,
+"BuyerId" integer,
+"AgentId" integer,
+"TeamLeaderId" integer,
+"Designation" character varying(100),
+"Month"character varying(100),
+"Year" character varying(100),
+"EntryDate" character varying(100),
+"EntryBy" character varying(100),
+"Status" character varying(100)
+)

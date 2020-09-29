@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i>
+      </button>  Trims Group Edit 
+    </nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="trimsGroupName" class="label text-dark">Composition Name <span class="text-danger">*</span></label>
+                  <input name="trimsGroupName"
+                  #trimsGroupName="ngModel"
+                 [(ngModel)]="trimsGroupService.trimsGroup.trimsGroupName" type="text"  class="form-control form-rounded form-control-sm  " id="trimsGroupName" placeholder="Composition Name">
+                 <div class="text-left text-danger"
+                *ngIf="trimsGroupService.trimsGroup.trimsGroupName==''&&trimsGroupName.touched">
+                Composition  Name is required
+                </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="status" class="label text-dark">Status <span class="text-danger">*</span></label>
+                  <select id="status"  required #status="ngModel"
+                  [(ngModel)]="trimsGroupService.trimsGroup.status"
+                   class="form-control form-rounded form-control-sm  " name="status">
+                 <option value="">Select Status </option>
+                 <option value="Active">Active </option>
+                 <option value=" In Active"> In Active </option>    
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="trimsGroupService.trimsGroup.status==''&&status.touched">
+             Status is required
+             </div>
+                </div>
+              </div>
+          
+         
+             
+             
+            </div>
+           
+            <div class="row">
+              <div class="col-sm-3 ">
+                <div class="form-group ">
+                  <button  class="mr-1" [disabled]="trimsGroupService.trimsGroup.trimsGroupName==''||trimsGroupService.trimsGroup.status==''" nbButton (click)="save(trimsGroupService.trimsGroup)">Submit</button>
+                
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                 
+                </div>
+              </div>
+            </div> 
+          
+       
+            
+          </form>
+        </nb-card-body>
+     
+    </nb-card>
+  </div>
+</div>

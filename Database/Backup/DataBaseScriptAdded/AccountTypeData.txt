@@ -1,0 +1,16 @@
+INSERT INTO public."AccountType"("AccountTypeName") VALUES ( 'BTB Margin/DFC/BLO/DAD A/C');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'ERQ/FCAD A/C');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'CD Account');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'STD A/C');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'CC Account');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'OD A/C');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'Packing Credit');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'Bi-Salam/PC');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'Export Cash Credit');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'Sundry A/C');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'MDA Special');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'others Fund(sinking)');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'MDA Normal');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'Settlement A/C');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'Cash Security A/C');
+INSERT INTO public."AccountType"("AccountTypeName")VALUES ( 'Loan A/C');

@@ -1,0 +1,25 @@
+CREATE TABLE public."tblPODetailsInfro"
+(
+    "PoDetID" serial primary key,
+    "InitialOrderID" integer,
+    "POOrderStatusID" integer,
+    "PO_No" character varying(60) COLLATE pg_catalog."default",
+    "PO_Received_Date" character varying(100),
+    "Pub_Shipment_Date" character varying(100),
+    "Org_Shipment_Date" character varying(100),
+    "Fac_Receive_Date" character varying(100),
+    "PO_Quantity" double precision,
+    "Avg_Price" double precision,
+    "Amount" double precision,
+    "Excess_Cut" double precision,
+    "Plan_Cut" double precision,
+    "PoStatusID" integer,
+    "Projected_Po" character varying(80) COLLATE pg_catalog."default",
+    "TNA_FromOrUpto" character varying(255) COLLATE pg_catalog."default",
+    "Internal_RefOrGrouping" character varying(80) COLLATE pg_catalog."default",
+    "Delay_For" character varying(100) COLLATE pg_catalog."default",
+    "Packing_ID" integer,
+    "File_No" character varying(80) COLLATE pg_catalog."default",
+    "SCorLC" character varying(80) COLLATE pg_catalog."default",
+    "Remarks" character varying(200) COLLATE pg_catalog."default"
+)

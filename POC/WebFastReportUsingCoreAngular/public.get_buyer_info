@@ -1,0 +1,40 @@
+-- FUNCTION: public.get_buyer_info(integer)
+
+-- DROP FUNCTION public.get_buyer_info(integer);
+
+CREATE OR REPLACE FUNCTION public.get_buyer_info(
+	p_buyerid integer)
+    RETURNS TABLE(buyerid integer, buyer_name character varying, details character varying) 
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    ROWS 1000
+AS $BODY$
+
+BEGIN
+        
+	IF p_buyerid > 0 THEN 
+	RETURN QUERY
+        SELECT          
+		"BuyerID",
+		"Buyer_Name",
+        "Details"
+		FROM "tblBuyerInfo"
+		WHERE "BuyerID"=p_buyerid;
+   ELSE
+   RETURN QUERY
+        SELECT          
+		"BuyerID",
+		"Buyer_Name",
+        "Details"
+		FROM "tblBuyerInfo";
+   END IF;
+   
+   
+END;
+
+$BODY$;
+
+ALTER FUNCTION public.get_buyer_info(integer)
+    OWNER TO postgres;

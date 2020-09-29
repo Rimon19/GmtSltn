@@ -1,0 +1,8 @@
+create table public."CommercialCost"(
+"Id" serial primary key,
+"Item" character varying(100),
+"PoNo" integer,
+"RateIn" double precision,
+"Amount" double precision,
+"Status" character varying(100)
+)

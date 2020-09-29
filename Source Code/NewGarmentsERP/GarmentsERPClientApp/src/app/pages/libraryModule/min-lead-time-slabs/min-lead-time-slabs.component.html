@@ -1,0 +1,62 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+     
+  
+        
+          <div class="example-header">
+            <h5>Min Lead Time Slab</h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success ml-2" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" >       
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            
+            </ng-container>  
+          <ng-container matColumnDef="companyId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Company</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.companyId}}</mat-cell> 
+               
+          </ng-container>   
+          <ng-container matColumnDef="locationId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Location Name </mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.locationId}}</mat-cell>  
+            
+          
+          </ng-container>  
+          <ng-container matColumnDef="yearId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Year</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.yearId}}</mat-cell>  
+            
+          
+          </ng-container>  
+          <ng-container matColumnDef="monthId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Month</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.monthId}}</mat-cell>  
+          </ng-container>  
+       
+        
+          
+          
+
+         
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+     
+  
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>  

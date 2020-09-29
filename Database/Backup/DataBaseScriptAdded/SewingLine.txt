@@ -1,0 +1,11 @@
+CREATE TABLE public."SewingLine"
+(
+    "Id" serial primary key,
+    "CompanyId" integer,
+    "LocationId" integer,
+    "FloorId" integer,
+    "SewingLineSequence" integer,
+    "LineName" character varying(100) ,
+    "SewingGroup" character varying(100) ,
+    "Status" character varying(100)
+)

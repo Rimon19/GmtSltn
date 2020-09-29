@@ -1,0 +1,123 @@
+
+<nb-card>
+  <!-- <div class="col-md-12" style = "overflow-x: scroll;">
+    <div class="smart-table-container" style = "width:2000px;"> -->
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+            <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" matSort >
+                  <!-- Action Column -->
+                  <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef> Actions  
+                      <button class="btn btn-outline-success" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" > 
+                      <button *ngIf="element.precostingId==0"  class="btn btn-outline-success" (click)="save(element)">save</button>
+                    
+                      <button *ngIf="element.precostingId!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                      <button *ngIf="element.precostingId!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+                    </mat-cell>
+
+                  </ng-container>
+
+            <!-- Fav Column -->
+            <ng-container matColumnDef="btnActionPreCosting">
+              <mat-header-cell *matHeaderCellDef mat-sort-header >Cost type Actions </mat-header-cell>
+              <mat-cell *matCellDef="let element" >
+                <mat-form-field floatLabel="never">
+                  <mat-select    placeholder="Cost type Action">
+                    <mat-option value="">Select</mat-option>  
+                    <mat-option *ngFor="let btnActionPreCosting of btnActionsPreCosting" [(value)]="btnActionPreCosting.btnActionPreCosting">{{btnActionPreCosting.val}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="precostingId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header >pre-costing</mat-header-cell>
+              <mat-cell   *matCellDef="let element" >
+               
+                  {{element.precostingId}}
+               
+              </mat-cell>
+            </ng-container>
+         
+
+          <!-- precosting -->
+          <ng-container matColumnDef="orderId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Job No: </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-form-field  floatLabel="never">
+                <mat-select    [(value)]="element.orderId" placeholder="Job No" >
+               <mat-option value="">Select</mat-option>               
+                <mat-option *ngFor="let order of OrderInfo" [value]="order.orderAutoId">{{order.jobNo}}</mat-option>                              
+                </mat-select>
+                
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+
+         <!-- costing date -->
+         <ng-container matColumnDef="costingDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Costing Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-form-field  floatLabel="never">
+              <input matInput [matDatepicker]="picker" [(ngModel)]="element.costingDate" [(value)]="element.costingDate" placeholder="Choose Costing Date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>             
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+             
+           <!-- incoterm -->
+            <ng-container matColumnDef="incoterm">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Incoterm</mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-form-field floatLabel="never">
+                  <input matInput placeholder="Incoterm" [value]="element.incoterm" [(ngModel)]="element.incoterm">
+                </mat-form-field>
+              </mat-cell>
+            
+            </ng-container>
+
+
+                <!-- incoterm Place -->
+            <ng-container matColumnDef="incotermPlace">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Incoterm</mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-form-field floatLabel="never">
+                  <input matInput placeholder="Incoterm Place" [value]="element.incotermPlace" [(ngModel)]="element.incotermPlace">
+                </mat-form-field>
+              </mat-cell>
+            
+            </ng-container>
+
+              <!-- incoterm Place -->
+              <ng-container matColumnDef="sewEfficiency">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Sew Efficiency</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <mat-form-field floatLabel="never">
+                    <input matInput placeholder="Sew Efficiency" [value]="element.sewEfficiency" [(ngModel)]="element.sewEfficiency">
+                  </mat-form-field>
+                </mat-cell>
+              
+              </ng-container>
+  
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+  
+
+</nb-card>

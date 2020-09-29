@@ -1,0 +1,13 @@
+create table public."MailRecipientGroup"(
+"Id" serial primary key,
+"CompanyName" character varying(100),
+"MailItem" character varying(100),
+"YouHaveSelected" character varying(100),
+"Status" character varying(100)
+)
+insert into public."MailRecipientGroup"(
+"CompanyName",
+"MailItem",
+"YouHaveSelected",
+"Status"
+)values('a','a','a','a')

@@ -1,0 +1,113 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NbToastrService } from '@nebular/theme';
+import { Router } from '@angular/router';
+import { Tostr } from '../../../../@core/data/tostr.model';
+import { NgForm, FormBuilder, FormArray } from '@angular/forms';
+import { YarnCountDeterminationComponent } from '../yarn-count-determination.component';
+import { YarnCountsService } from '../../../../@core/mock/marchandizer/yarn-counts.service';
+import { YarnCountDeterminationService } from '../../../../@core/mock/library/yarn-count-determination.service';
+
+
+@Component({
+  selector: 'ngx-add-yarn-count-determination',
+  templateUrl: './add-yarn-count-determination.component.html',
+  styleUrls: ['./add-yarn-count-determination.component.scss']
+})
+export class AddYarnCountDeterminationComponent implements OnInit {
+
+ // public countryList:CountryInfo[]=[];
+  Tostr=new Tostr();
+  YarnCountDetermitionSubForm: FormArray = this.fb.array([]);
+  public count=0;
+  constructor(
+  private router:Router,
+  private toastrService:NbToastrService,
+  private yarnCountDeterminationService:YarnCountDeterminationService,
+  private fb: FormBuilder
+    ) { }
+
+  ngOnInit() {
+   
+    this.resetForm();
+  }
+
+   resetForm(form?:NgForm){
+    if(form!=null)
+    form.resetForm();
+    this.yarnCountDeterminationService.yarnCountDetermination = {
+      id :0,
+      fabricNature:'',
+      construction:'',
+      colorRange:'',
+      gsm:'',
+      status:'',
+      stitchLength :0,
+      processLoss :0,
+      sequenceNo :0,
+      yarnCountDeterminationChildList[]
+    }
+    
+   }
+
+  
+   resetSubForm() {
+    this.count=this.count+1;
+    this.YarnCountDetermitionSubForm.push(this.fb.group({
+      id:0,
+      compositionId: 0,
+      percentage: 0,
+      yarnCountId: 0,
+      type: '',
+    
+    }));
+  }
+
+  onDeleteSubForm(YarnCountDetermitionSubForm,k) {
+    this.count=this.count-1;
+    YarnCountDetermitionSubForm.value.splice(k, 1);
+    this.YarnCountDetermitionSubForm= this.fb.array([]);
+                  (YarnCountDetermitionSubForm.value).forEach((item: any) => {
+                    this.YarnCountDetermitionSubForm.push(this.fb.group({
+                      id:item.id,
+                      compositionId: item.compositionId,
+                      percentage: item.percentage,
+                      yarnCountId: item.yarnCountId,
+                      type: item.type
+                  
+                    }));
+              });                       
+    }
+
+   onSubmit(form:NgForm){
+    console.log(form);
+    this.yarnCountDeterminationService.add(form.value).subscribe(res=>{
+       console.log(res);       
+      this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
+      this.router.navigate(["/pages/yarn-count-determination"]);
+      this.resetForm();
+    })
+  
+  }
+  backTo(){
+    this.router.navigate(['/pages/yarn-count-determination']);
+  }
+
+
+}
+
+
+
+
+
+
+
+
+.table td, .table th {
+    width:180px;
+}
+.form-rounded {
+    border-radius: 1rem;
+    }
+    .text-responsive {
+        font-size: calc(10px);
+      }

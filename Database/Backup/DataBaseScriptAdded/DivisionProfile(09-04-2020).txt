@@ -1,0 +1,14 @@
+create table public."DivisionProfile"(
+"Id" serial primary key,
+"DivisionName" character varying(100),
+"ShortName" character varying(100),
+"CompanyName" integer,
+"Address" character varying(200),
+"ContactNumber" character varying(100),
+"Remark" character varying(100),
+"CountryId" integer,
+"Website" character varying(100),
+"Status" character varying(100),
+"Email"  character varying(100),
+"ContactPerson"character varying(100)
+)

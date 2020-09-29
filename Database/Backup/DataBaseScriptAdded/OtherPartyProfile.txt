@@ -1,0 +1,16 @@
+create table public."OtherPartyProfile"(
+"Id" serial primary key,
+"OtherPartyName" character varying(100),
+"ShortName" character varying(100),
+"Address"	character varying(100),
+"ContactPerson" character varying(100),
+"CountryNameId"	integer,
+"Designation" character varying(100),
+"Remark" character varying(100),
+ "ContactNo" character varying(100),
+ "Status" character varying(100),
+"Email" character varying(100),
+"URLName" character varying(100),
+"ImageName" character varying(100),
+"ImagePathName" character varying(100)
+)

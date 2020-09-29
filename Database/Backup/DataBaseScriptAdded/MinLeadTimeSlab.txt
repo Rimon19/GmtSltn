@@ -1,0 +1,8 @@
+CREATE TABLE public."MinLeadTimeSlab"
+(
+    "Id" serial primary key,
+    "CompanyId" integer,
+    "LocationId" integer,
+    "YearId" integer,
+    "MonthId" integer
+)

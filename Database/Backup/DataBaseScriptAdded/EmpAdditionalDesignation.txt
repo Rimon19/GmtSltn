@@ -1,0 +1,14 @@
+create table public."EmpAdditionalDesignation"(
+"Id" serial primary key,
+"Designation" character varying(100),
+"EmpAdditionalDesignationId" integer
+)
+
+insert into public."EmpAdditionalDesignation"(
+"Designation","EmpAdditionalDesignationId" )
+values('Team Leader',1),
+('Sub Team Leader',2),
+('Group Team Leader',3);
+
+
+select * from public."EmpAdditionalDesignation"

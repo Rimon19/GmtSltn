@@ -1,0 +1,42 @@
+ <div>
+  
+  <p>Enter Buyer ID</p>
+  <input [(ngModel)]="BuyerID">
+
+  <input type="button" (click)="Clicked()" value="Show Report" />
+  <div *ngIf="show">
+    <iframe id="report" height="1000" width="1000" [src]="url | safeUrl"></iframe>
+  </div>
+</div> 
+<!-- accept="image/*" -->
+<!-- <label>Add Image</label>
+<img [src]="output_image" hieght="100" width="100" />
+<input type="file"   (change)="detectFilesForImageUrlFile($event)"  name="image"  class="form-control text-responsive" 
+  multiple="multiple" placeholder="image">
+<button   type="button" (click)="onSubmit()" >Upload</button>
+
+
+<img [src]="transform()">
+<!-- <img [src]="imageSource" alt="Image Source"> -->
+
+
+<table class="table table-hover">
+  <tr>
+    <th>ImageName</th>
+    <th>Path Name</th>
+    <th>Image</th>
+  </tr>
+  <tr *ngFor="let cd of fetchInitialOrderService.imageList">
+    <td>{{cd.orderImageName}}</td>
+    <td >{{cd.orderImagePath}}</td>
+    <td>
+      <img src="http://localhost:4186/{{cd.orderImagePath}}"  
+      class="rounded-circle"   
+      height="40" width="40"   
+      asp-append-version="true" />  
+    </td>
+   
+   
+  </tr>
+ 
+</table> -->

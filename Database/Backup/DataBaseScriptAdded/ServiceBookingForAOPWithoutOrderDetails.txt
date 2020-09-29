@@ -1,0 +1,25 @@
+CREATE TABLE public."ServiceBookingForAOPWithoutOrderDetails"
+(
+    "Id" serial primary key,
+    "ServiceBookingForAOPWithoutOrderId" integer,
+    "FabricSource" character varying(100) COLLATE pg_catalog."default",
+    "FabricDescriptionId" integer,
+    "AOPGSM" character varying(100) COLLATE pg_catalog."default",
+    "AOPDia" character varying(100) COLLATE pg_catalog."default",
+    "UOMId" integer,
+    "ArtworkNo" character varying(100) COLLATE pg_catalog."default",
+    "GmtsColor" character varying(100) COLLATE pg_catalog."default",
+    "WOQnty" double precision,
+    "AopRate" double precision,
+    "Amount" double precision,
+    "DeliveryStartDate" character varying(100) COLLATE pg_catalog."default",
+    "DeliveryEndDate" character varying(100) COLLATE pg_catalog."default",
+    "Remarks" character varying(100) COLLATE pg_catalog."default",
+    "PrintingColor" character varying(100) COLLATE pg_catalog."default",
+    "EntryDate" character varying(100) COLLATE pg_catalog."default",
+    "EntryBy" character varying(100) COLLATE pg_catalog."default",
+    "ApprovedDate" character varying(100) COLLATE pg_catalog."default",
+    "IsApproved" boolean,
+    "ApprovedBy" character varying(100) COLLATE pg_catalog."default",
+    "Status" character varying(100) COLLATE pg_catalog."default"
+)

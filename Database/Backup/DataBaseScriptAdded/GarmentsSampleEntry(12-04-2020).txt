@@ -1,0 +1,6 @@
+create table public."GarmentsSampleEntry"(
+	"Id" serial primary key,
+	"SampleName" character varying(100) ,
+	"SampleTypeId" integer,
+	"Status" character varying(100)
+)

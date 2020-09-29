@@ -1,0 +1,23 @@
+create table public."SampleDevelopmentOrderDetails"(
+"Id" serial primary key,
+  "BuyerId" integer,
+"StyleName" character varying(100),
+"ProductDept" character varying(100),
+"ArticleNumber" character varying(100),
+"GarmentsItemId" integer,
+"ProductCategoryId" integer,
+"RegionId" integer,
+"AgentId" integer,
+"TeamLeaderId" integer,
+"DealingMerchantId" integer,
+"BHMerchant" character varying(100),
+"EstShipDate" character varying(100),
+"Season" character varying(100),
+"Remarks" character varying(100),
+"Images" character varying(100),
+"File" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "Status" character varying(100)
+  )

@@ -1,0 +1,655 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+    Edit  Cut and Lay Roll Wise  </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+         <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="LocationId" class="label text-dark">
+              Locaton
+              </label>
+              <select
+                name="locationId"
+              
+                #LocationId="ngModel"
+                [(ngModel)]="
+                cutandLayEntryRollWiseService.cutandLayEntryRollWise.locationId
+                "
+                id="LocationId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Locaton</option>
+              <option
+                *ngFor="let item of dropdownValueService.locationList"
+                value="{{item.locationId}}"
+                >{{ item.location_Name}}</option
+              >
+              </select>
+              
+            </div>
+          </div>
+            
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="FloorId" class="label text-dark">
+              Floor
+              </label>
+              <select
+                name="floorId"
+              
+                #FloorId="ngModel"
+                [(ngModel)]="
+                cutandLayEntryRollWiseService.cutandLayEntryRollWise.floorId
+                "
+                id="FloorId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Floor</option>
+              <option
+                *ngFor="let item of dropdownValueService.floorsList"
+                value="{{item.id}}"
+                >{{ item.floorName}}</option
+              >
+              </select>
+              
+            </div>
+          </div>
+             <div class="col-sm-3">
+        <div class="form-group">
+         <label for="TableNo" class="label text-dark">
+           Table No</label
+         >
+         <input
+           name="tableNo"    
+           [(ngModel)]="
+           cutandLayEntryRollWiseService.cutandLayEntryRollWise.tableNo
+           "
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="TableNo"
+           placeholder=" Table No"
+         />
+        </div>
+        </div>
+           <div class="col-sm-3">
+        <div class="form-group">
+         <label for="CadMarkerlength" class="label text-dark">
+           CAD Marker length</label
+         >
+         <input
+           name="cadMarkerlength"    
+           [(ngModel)]="
+           cutandLayEntryRollWiseService.cutandLayEntryRollWise.cadMarkerlength
+           "
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="CadMarkerlength"
+           placeholder=" CAD Marker length"
+         />
+        </div>
+        </div>
+
+      </div>
+   <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+       <label for="CadMarkerWidthOrDia" class="label text-dark">
+         CAD Marker Width/Dia</label
+       >
+       <input
+         name="cadMarkerWidthOrDia"    
+         [(ngModel)]="
+         cutandLayEntryRollWiseService.cutandLayEntryRollWise.cadMarkerWidthOrDia
+         "
+         class="form-control form-rounded form-control-sm"
+         type="number"
+         id="CadMarkerWidthOrDia"
+         placeholder=" CAD Marker Width/Dia"
+       />
+      </div>
+      </div>
+         <div class="col-sm-3">
+      <div class="form-group">
+       <label for="CadFabricWidthOrDia" class="label text-dark">
+         CAD Fabric Width/Dia</label
+       >
+       <input
+         name="cadFabricWidthOrDia"    
+         [(ngModel)]="
+         cutandLayEntryRollWiseService.cutandLayEntryRollWise.cadFabricWidthOrDia
+         "
+         class="form-control form-rounded form-control-sm"
+         type="number"
+         id="CadFabricWidthOrDia"
+         placeholder=" CAD Fabric Width/Dia"
+       />
+      </div>
+      </div>
+         <div class="col-sm-3">
+      <div class="form-group">
+       <label for="CadGsm" class="label text-dark">
+         CAD GSM</label
+       >
+       <input
+         name="cadGsm"    
+         [(ngModel)]="
+         cutandLayEntryRollWiseService.cutandLayEntryRollWise.cadGsm
+         "
+         class="form-control form-rounded form-control-sm"
+         type="number"
+         id="CadGsm"
+         placeholder=" CAD GSM"
+       />
+      </div>
+      </div>
+         <div class="col-sm-3">
+          <div class="form-group">
+            <label for="JobNo" class="label text-dark">
+              Job No<span class="text-danger">*</span></label>
+            
+            <input
+              name="jobNo"
+              [(ngModel)]="cutandLayEntryRollWiseService.cutandLayEntryRollWise.jobNo"
+              (dblclick)="onAddjobNo()"
+              class="form-control form-rounded form-control-sm"
+              type="text"
+              id="JobNo"
+              placeholder="Double click"
+              
+            />
+            
+          </div>
+        </div>
+   </div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="YearId" class="label text-dark">
+      Year
+      </label>
+      <select
+        name="yearId"
+      
+        #YearId="ngModel"
+        [(ngModel)]="
+        cutandLayEntryRollWiseService.cutandLayEntryRollWise.yearId
+        "
+        id="YearId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Year</option>
+      <option
+        *ngFor="let item of dropdownValueService.yearList"
+        value="{{item.id}}"
+        >{{ item.year}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    <div class="col-sm-3">
+   <div class="form-group">
+     <label for="Batch" class="label text-dark">
+     Batch</label
+     >
+     <input
+       
+       name="batch"
+       #Batch="ngModel"
+       [(ngModel)]="
+       cutandLayEntryRollWiseService.cutandLayEntryRollWise.batch
+       "
+       type="text"
+       class="form-control form-rounded form-control-sm"
+       id="Batch"
+       placeholder="Batch"
+     />
+   
+   </div>
+ </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BuyerProfileId" class="label text-dark">
+      Buyer
+      </label>
+      <select
+        name="buyerProfileId"
+      
+        #BuyerProfileId="ngModel"
+        [(ngModel)]="
+        cutandLayEntryRollWiseService.cutandLayEntryRollWise.buyerProfileId
+        "
+        id="BuyerProfileId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Buyer</option>
+      <option
+        *ngFor="let item of dropdownValueService.buyerList"
+        value="{{item.id}}"
+        >{{ item.contactName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+     <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PlanStartDate" class="label text-dark">
+        Plan Start Date<span class="text-danger">*</span>
+      </label>
+      <input readonly
+        name="planStartDate"
+        required
+        #planStartDate="ngModel"
+        [(ngModel)]="
+          cutandLayEntryRollWiseService.cutandLayEntryRollWise.planStartDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="PlanStartDate"
+        [nbDatepicker]="PlanStartDate"
+        placeholder="Plan Start Date"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        cutandLayEntryRollWiseService.cutandLayEntryRollWise.planStartDate ==
+            '' &&planStartDate.touched
+        "
+      >
+      Plan Start Date is required
+      </div>
+      <nb-datepicker #PlanStartDate></nb-datepicker>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+     <label for="StartTimeHour" class="label text-dark">
+       Start Time</label
+     >
+     <div class="row">
+      <div class="col-sm-6">
+        <input
+       name="startTimeHour"    
+       [(ngModel)]="
+       cutandLayEntryRollWiseService.cutandLayEntryRollWise.startTimeHour
+       "
+       class="form-control form-rounded form-control-sm"
+       type="number"
+       id="StartTimeHour"
+       placeholder="HH"
+     />
+      </div>
+      
+      <div class="col-sm-6">
+        <input
+        name="startTimeMinute"    
+        [(ngModel)]="
+        cutandLayEntryRollWiseService.cutandLayEntryRollWise.startTimeMinute
+        "
+        class="form-control form-rounded form-control-sm"
+        type="number"
+        id="StartTimeMinute"
+        placeholder="MM"
+      />
+      </div>
+     </div>
+     
+    
+    </div>
+    </div>
+       
+       <div class="col-sm-3">
+        <div class="form-group">
+          <label for="PlanEndDate" class="label text-dark">
+            Plan End Date
+          </label>
+          <input readonly
+            name="planEndDate"
+            
+            #planEndDate="ngModel"
+            [(ngModel)]="
+              cutandLayEntryRollWiseService.cutandLayEntryRollWise.planEndDate
+            "          
+            type="text"
+            class="form-control form-rounded form-control-sm"
+            id="PlanEndDate"
+            [nbDatepicker]="PlanEndDate"
+            placeholder="Plan End Date"
+          />
+          
+          <nb-datepicker #PlanEndDate></nb-datepicker>
+        </div>
+      </div>
+       <div class="col-sm-3">
+    <div class="form-group">
+     <label for="EndTimeHour" class="label text-dark">
+       End Time</label
+     >
+     <div class="row">
+      <div class="col-sm-6">
+        <input
+        name="endTimeHour"    
+        [(ngModel)]="
+        cutandLayEntryRollWiseService.cutandLayEntryRollWise.endTimeHour
+        "
+        class="form-control form-rounded form-control-sm"
+        type="number"
+        id="EndTimeHour"
+        placeholder="HH"
+      />
+      </div>
+      <div class="col-sm-6">
+        <input
+       name="endTimeMinute"    
+       [(ngModel)]="
+       cutandLayEntryRollWiseService.cutandLayEntryRollWise.endTimeMinute
+       "
+       class="form-control form-rounded form-control-sm"
+       type="number"
+       id="EndTimeMinute"
+       placeholder="MM"
+     />
+      </div>
+     </div>
+    
+     
+    </div>
+    </div>
+     
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="WidthOrDiaType" class="label text-dark">
+          Width/Dia Type
+          </label>
+          <select
+            name="widthOrDiaType"
+          
+            #WidthOrDiaType="ngModel"
+            [(ngModel)]="
+            cutandLayEntryRollWiseService.cutandLayEntryRollWise.widthOrDiaType
+            "
+            id="WidthOrDiaType"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Width/Dia Type</option>
+          <option value="Open Width">Open Width</option>
+          <option value="Tubular">Tubular</option>
+          <option value="Needle Open">Needle Open</option>
+         
+          
+          <!-- <option
+            *ngFor="let item of dropdownValueService.buyerList"
+            value="{{item.id}}"
+            >{{ item.diaName}}</option
+          > -->
+          </select>
+          
+        </div>
+      </div>
+</div>
+<div class="row">
+  
+       <div class="col-sm-3">
+    <div class="form-group">
+     <label for="CadMarkerConsOrDzn" class="label text-dark">
+       CAD Marker Cons/Dzn</label
+     >
+     <input
+       name="cadMarkerConsOrDzn"    
+       [(ngModel)]="
+       cutandLayEntryRollWiseService.cutandLayEntryRollWise.cadMarkerConsOrDzn
+       "
+       class="form-control form-rounded form-control-sm"
+       type="number"
+       id="CadMarkerConsOrDzn"
+       placeholder=" CAD Marker Cons/Dzn"
+     />
+    </div>
+    </div>
+       
+     
+</div>
+   
+   
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+
+
+
+<nb-card>
+  <nb-card-header
+  > <button (click)="backTo()"
+  class="btn btn-outline-success "
+  
+>
+<i class="fas fa-arrow-left"></i>
+</button>
+  Cut and Lay Roll Wise details
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="CutandLaydetailsFormAction()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:2500px;">
+        <form>
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Order No<span class="text-danger">*</span></th>
+<th scope="col">Order Cut No<span class="text-danger">*</span></th>
+<th scope="col">Ship Date</th>
+<th scope="col">Gmt Item</th>
+<th scope="col">Color</th>
+<th scope="col">Batch</th>
+<th scope="col">Plies<span class="text-danger">*</span></th>
+<th scope="col">Size Ratio</th>
+<th scope="col">Marker Qnty</th>
+<th scope="col">Order qty</th>
+<th scope="col">Total Lay qty</th>
+<th scope="col">Lay balance qty</th>
+
+
+ 
+              </tr>
+            </thead>
+         
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of CutandLaydetailsForm.controls;let i=index" >
+                <tr>
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm " (click)="onDelete(fg.value.id,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+
+                   
+      <td>              
+      <select class="form-control form-rounded form-control-sm " required formControlName="poId">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.PodetailsList" [(value)]="item.poDetID" >{{item.pO_No}}</option>
+      </select>
+      <div class="text-danger" *ngIf="fg.controls['poId'].hasError('required')&& fg.controls['poId'].touched" >
+        Order No is Required.
+      </div>
+    </td>
+
+    
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        required
+        placeholder="Order Cut No"
+        formControlName="orderCutNo"
+      />
+      <div class="text-danger" *ngIf="fg.controls['orderCutNo'].hasError('required')&& fg.controls['orderCutNo'].touched" >
+        Order Cut No is Required.
+      </div>
+      </td>
+
+      
+      <input
+      class="form-control form-rounded form-control-sm " 
+      formControlName="shipDate"
+      type="text"
+      readonly
+      
+      placeholder="Ship Date"
+      [nbDatepicker]="date">
+      
+    <nb-datepicker #date></nb-datepicker>
+  
+      
+      <td>              
+      <select class="form-control form-rounded form-control-sm "  formControlName="garmentsItemId">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.garmentsItemList" [(value)]="item.id" >{{item.itemName}}</option>
+      </select>
+      
+    </td>
+
+    
+      <td>              
+      <select class="form-control form-rounded form-control-sm "  formControlName="garmentsColor">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.garmentsColorList" [(value)]="item.color" >{{item.color}}</option>
+      </select>
+      
+    </td>
+
+    <td>              
+      <select class="form-control form-rounded form-control-sm "  formControlName="batch">
+      <option value="">Select</option>
+      <!-- <option *ngFor="let item of dropdownValueService.garmentsColorList" [(value)]="item.color" >{{item.color}}</option> -->
+      </select>
+      
+    </td>
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        required
+        placeholder="Plies"
+        formControlName="plies"
+      />
+      <div class="text-danger" *ngIf="fg.controls['plies'].hasError('required')&& fg.controls['plies'].touched" >
+        Plies is Required.
+      </div>
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Size Ratio"
+        formControlName="sizeRatio"
+      />
+      
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Marker Qnty"
+        formControlName="markerQnty"
+      />
+      
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Order qty"
+        formControlName="orderqty"
+      />
+      
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Total Lay qty"
+        formControlName="totalLayqty"
+      />
+      
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Lay balance qty"
+        formControlName="laybalanceqty"
+      />
+      
+      </td>
+
+      
+     
+      
+
+                </tr>
+
+                <input
+             type="hidden"
+                formControlName="id"
+               
+              />
+
+                <button [disabled]="CutandLaydetailsForm.invalid" *ngIf="i==count-1" type="submit" (click)=" onSubmitCutNLayDetails()" nbButton>Submit</button>
+              </tbody>
+         
+           
+          </table>
+        </form>
+
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,12 @@
+-- Table: public."tblRegionInfo"
+
+-- DROP TABLE public."tblRegionInfo";
+
+CREATE TABLE public."tblRegionInfo"
+(
+    "RegionID" serial primary key,
+    "Region_Name" character varying(50) COLLATE pg_catalog."default",
+	"CuttOff" character varying(50) COLLATE pg_catalog."default"
+    
+)
+

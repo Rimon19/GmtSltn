@@ -1,0 +1,616 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backToTaskEntriesHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Quotation Inquery</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" >
+          <!-- <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SystemID" class="label text-dark text-responsive1">
+                  System ID</label
+                >
+                <input
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="SystemID"
+                  placeholder="System ID"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3"></div>
+          </div> -->
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="companyId" class="label text-dark">
+                  Company <span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #companyName="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.companyId
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  name="companyId"
+                >
+                  <option value="">Select Company Name</option>
+                  <option
+                    *ngFor="let companyList of companyListItems"
+                    [value]="companyList.compID"
+                    >{{ companyList.company_Name }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery.companyId == 0 &&
+                    companyName.touched
+                  "
+                >
+                  Company name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="buyerId" class="label text-dark">
+                  Buyer<span class="text-danger">*</span>
+                </label>
+                <select
+                  required
+                  #buyerName="ngModel"
+                  [(ngModel)]="quotationInqueryService.quotationInquery.buyerId"
+                  class="form-control form-rounded form-control-sm"
+                  name="buyerId"
+                  id="buyerId"
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option value="">Select Buyer Name</option>
+                  <option
+                    *ngFor="let buyerList of buyerListItems"
+                    [value]="buyerList.id"
+                    >{{ buyerList.contactName }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery.buyerId == 0 &&
+                    buyerName.touched
+                  "
+                >
+                  Buyer name is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="StyleRefName" class="label text-dark">
+                  Style Ref/Name<span class="text-danger">*</span>
+                </label>
+                <input
+                  required
+                  name="styleRefName"
+                  #styleRefName="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.styleRefName
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="StyleRefName"
+                  placeholder="Style Ref/Name"
+                />
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery.styleRefName ==
+                      '' && styleRefName.touched
+                  "
+                >
+                  Style Ref/Name is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Season" class="label text-dark"> Season</label>
+                <select
+                  id="Season"
+                  name="season"
+                  #season="ngModel"
+                  [(ngModel)]="quotationInqueryService.quotationInquery.season"
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option value="">Select Season Name</option>
+                  <option
+                    *ngFor="let seasonInfoeslist of seasonInfoesItems"
+                    [value]="seasonInfoeslist.seasonID"
+                    >{{ seasonInfoeslist.season_Name}}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="InqRcvdDate" class="label text-dark">
+                  Inq.Rcvd Date<span class="text-danger">*</span></label
+                >
+                <input readonly
+                  required
+                  name="inqRcvdDate"
+                  #inqRcvdDate="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.inqRcvdDate
+                  "
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="InqRcvdDate"
+                  [nbDatepicker]="InqRcvdDate"
+                  placeholder="Inq.Rcvd Date"
+                />
+                <nb-datepicker #InqRcvdDate></nb-datepicker>
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery.inqRcvdDate ==
+                      '' && inqRcvdDate.touched
+                  "
+                >
+                  Inq.Rcvd Date is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark"> Status</label>
+                <select
+                  id="Status"
+                  name="status"
+                  #status="ngModel"
+                  [(ngModel)]="quotationInqueryService.quotationInquery.status"
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option value="">Select Status</option>
+                  <option
+                    *ngFor="let btnAction of Active_Inactive"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BuyerInquiryNo" class="label text-dark">
+                  Buyer Inquiry No<span class="text-danger">*</span></label
+                >
+                <input
+                  required
+                  name="buyerInquiryNo"
+                  #buyerInquiryNo="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.buyerInquiryNo
+                  "
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="BuyerInquiryNo"
+                  placeholder="Buyer Inquiry No"
+                />
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery.buyerInquiryNo ==
+                      '' && buyerInquiryNo.touched
+                  "
+                >
+                  Buyer Inquiry No. is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="DealingMerchant" class="label text-dark">
+                  Dealing Merchant
+                </label>
+                <select
+                  name="dealingMerchantId"
+                  required
+                  #DealingMerchantId="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.dealingMerchantId
+                  "
+                  id="DealingMerchant"
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option value="">Select Dealing Merchant</option>
+                  <option
+                    *ngFor="let marchandizerInfolist of MarchandizerInfoItems"
+                    [value]="marchandizerInfolist.id"
+                    >{{ marchandizerInfolist.userId }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery
+                      .dealingMerchantId == '' && DealingMerchantId.touched
+                  "
+                >
+                  Dealing Merchant is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Fabrication	" class="label text-dark">
+                  Fabrication<span class="text-danger">*</span></label
+                >
+                <input
+                  name="fabrication"
+                  required
+                  readonly
+                  #Fabrication="ngModel"
+                  (dblclick)="onAdd()"
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="fabrication"
+                  placeholder="Double click"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.fabrication
+                  "
+                />
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery.fabrication ==
+                      '' && Fabrication.touched
+                  "
+                >
+                  Fabrication is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BulkOfferQty" class="label text-dark">
+                  Bulk Offer Qty</label
+                >
+                <input
+                  name="bulkOfferQty"
+                  
+                  #bulkOfferQty="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.bulkOfferQty
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="number"
+                  id="BulkOfferQty"
+                  placeholder="Bulk Offer Qty"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BodyColor" class="label text-dark">
+                  Body Color
+                </label>
+                <input
+                  name="bodyColor"
+                  #bodyColor="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.bodyColor
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="BodyColor"
+                  placeholder="Body Color"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="TargetReqQuotDate" class="label text-dark">
+                  Target Req. Quot. Date
+                </label>
+                <input readonly
+                  name="targetReqQuotDate"
+                  #targetReqQuotDate="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.targetReqQuotDate
+                  "
+                  name="TargetReqQuotDate"
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="TargetReqQuotDate"
+                  [nbDatepicker]="TargetReqQuotDate"
+                  placeholder="Target Req. Quot. Date"
+                />
+                <nb-datepicker #TargetReqQuotDate></nb-datepicker>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="GmtsItem" class="label text-dark">
+                  Gmts Item
+                </label>
+                <select
+                  id="GmtsItem"
+                  name="gmtsItemId"
+                  #gmtsItemId="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.gmtsItemId
+                  "
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option [ngValue]="0">Select Gmts Item</option>
+                  <option *ngFor="let g of garmentItemList" [(value)]="g.id">{{
+                    g.itemName
+                  }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BulkEstShipDate" class="label text-dark">
+                  Bulk Est. Ship Date<span class="text-danger">*</span>
+                </label>
+                <input readonly
+                  name="bulkEstShipDate"
+                  required
+                  #bulkEstShipDate="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.bulkEstShipDate
+                  "
+                  name="BulkEstShipDate"
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="BulkEstShipDate"
+                  [nbDatepicker]="BulkEstShipDate"
+                  placeholder="Bulk Est. Ship Date"
+                />
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                    quotationInqueryService.quotationInquery.bulkEstShipDate ==
+                      '' && bulkEstShipDate.touched
+                  "
+                >
+                  Bulk Est. Ship Date is required
+                </div>
+                <nb-datepicker #BulkEstShipDate></nb-datepicker>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="TargetSampSubDate" class="label text-dark">
+                  Target Samp Sub:Date
+                </label>
+                <input readonly
+                  name="targetSampSubDate"
+                  #targetSampSubDate="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.targetSampSubDate
+                  "
+                  name="costingDate"
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="TargetSampSubDate"
+                  [nbDatepicker]="TargetSampSubDate"
+                  placeholder="Target Samp Sub:Date  "
+                />
+                <nb-datepicker #TargetSampSubDate></nb-datepicker>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ActualSampSendDate" class="label text-dark">
+                  Actual Samp.Send Date
+                </label>
+                <input readonly
+                  name="actualSampSendDate"
+                  #actualSampSendDate="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.actualSampSendDate
+                  "
+                  name="ActualSampSendDate"
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="ActualSampSendDate"
+                  [nbDatepicker]="ActualSampSendDate"
+                  placeholder="Actual Samp.Send Date "
+                />
+                <nb-datepicker #ActualSampSendDate></nb-datepicker>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="DepartmentName" class="label text-dark">
+                  Department Name</label
+                >
+                <input
+                  name="departmentName"
+                  #departmentName="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.departmentName
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="DepartmentName"
+                  placeholder="Department Name"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ActualQuotDate" class="label text-dark">
+                  Actual Quot. Date</label
+                >
+                <input readonly
+                  name="actualQuotDate"
+                  #actualQuotDate="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.actualQuotDate
+                  "
+                  name="ActualQuotDate"
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="ActualQuotDate"
+                  [nbDatepicker]="ActualQuotDate"
+                  placeholder="Actual Quot. Date"
+                />
+                <nb-datepicker #ActualQuotDate></nb-datepicker>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BuyerTargetPrice" class="label text-dark">
+                  Buyer Target Price
+                </label>
+                <input
+                  name="buyerTargetPrice"
+                  
+                  #buyerTargetPrice="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.buyerTargetPrice
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="number"
+                  id="BuyerTargetPrice"
+                  placeholder="Buyer Target Price"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Email" class="label text-dark">
+                  Buyer Submit Price
+                </label>
+                <input
+                  name="buyerSubmitPrice"
+                  #buyerSubmitPrice="ngModel"
+                  [(ngModel)]="
+                    quotationInqueryService.quotationInquery.buyerSubmitPrice
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="number"
+                  id="Buyer Submit Price"
+                  placeholder="Buyer Submit Price"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Remarks" class="label text-dark"> Remarks </label>
+                <input
+                  name="remarks"
+                  #remarks="ngModel"
+                  [(ngModel)]="quotationInqueryService.quotationInquery.remarks"
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="Remarks"
+                  placeholder="Remarks"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Images" class="label text-dark">ADD File</label>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01"
+                      >Upload</span
+                    >
+                  </div>
+                  <div class="custom-file">
+                    <input
+                      class="custom-file-input"
+                      id="inputGroupFile01"
+                      aria-describedby="inputGroupFileAddon01"
+                      type="file"
+                      accept=".pdf,.doc,.docx"
+                      (change)="detectFilesForImageUrlFile($event)"
+                    />
+                    <label class="custom-file-label" for="inputGroupFile01"
+                      >Choose file </label
+                    >
+                   
+                  </div>
+                </div>
+                {{output_image}}
+              </div>
+            
+
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Images" class="label text-dark"
+                  >CLICK TO Add/VIEW TO IMAGE
+                </label>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01"
+                      >Upload</span
+                    >
+                  </div>
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      id="inputGroupFile01"
+                      aria-describedby="inputGroupFileAddon01"
+                      accept="image/*"
+                      (change)="detectFilesForViewToImageUrlFile($event)"
+                    />
+                    <label class="custom-file-label" for="inputGroupFile01"
+                      >Choose file</label
+                    >
+                    
+                  </div>
+                  
+                </div>
+                <img title=""
+                      [src]="output_image_ViewToImage"
+                      hieght="100"
+                      width="100"
+                    />
+              </div>
+            </div>
+
+            <div class="col-sm-3"></div>
+          </div>
+
+          <button type="submit" [disabled]="form.invalid"
+          (click)="update(quotationInqueryService.quotationInquery)"
+           nbButton>
+            Update
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

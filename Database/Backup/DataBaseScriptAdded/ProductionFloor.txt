@@ -1,0 +1,9 @@
+create table public."ProductionFloor"(
+"Id" serial primary key,
+"Company" character varying(100),
+"Location" character varying(100),
+"Floor" integer,
+"FloorSequence" integer,
+"ProductionProcessId" integer,
+"Status" character varying(100)
+)

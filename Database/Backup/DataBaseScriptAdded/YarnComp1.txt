@@ -1,0 +1,7 @@
+-- DROP TABLE public."YarnComp1";
+
+CREATE TABLE public."YarnComp1"
+(
+    "Id" serial primary key,
+    "Name" character varying(100) COLLATE pg_catalog."default"
+)

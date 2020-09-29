@@ -1,0 +1,22 @@
+create table public."ServiceBookingForAOPWithoutOrder"(
+"Id" serial primary key,
+  "WoNo" character varying(100),
+"CompanyNameId" integer,
+"FabBookingNoId" integer,
+"BuyerNameId" integer,
+"BookingDate" character varying(100),
+"CurrencyId" integer,
+"ExchangeRate" integer,
+"PayMode" character varying(100),
+"Source" character varying(100),
+"AopSource" character varying(100),
+"SupplierNameId" integer,
+"Attention" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

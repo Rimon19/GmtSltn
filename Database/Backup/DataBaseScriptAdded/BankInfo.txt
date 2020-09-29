@@ -1,0 +1,19 @@
+create table public."BankInfo"(
+"Id" serial primary key,
+"BankName" character varying(100),
+"BranchName" character varying(100),
+"BankCode" character varying(100),
+"Address" character varying(100),
+"Email" character varying(100),
+"SwiftCode" character varying(100),
+"WebSite" character varying(100),
+"ContactPerson" character varying(100),
+"PhoneNo" character varying(50),
+"LienBank" character varying(50),
+"IssuingBank" character varying(50),
+"SalaryBank" character varying(50),
+"AdvisingBank"character varying(50),
+"Remarks" character varying(50),
+"Status"character varying(50)
+
+)

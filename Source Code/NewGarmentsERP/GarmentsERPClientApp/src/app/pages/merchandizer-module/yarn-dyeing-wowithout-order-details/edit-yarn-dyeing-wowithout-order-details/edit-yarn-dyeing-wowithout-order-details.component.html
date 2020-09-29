@@ -1,0 +1,390 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Yarn Dyeing WO Without Order Detail</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+          <!-- <div class="col-sm-3">
+<div class="form-group">
+ <label for="YarnDyeingWOWithoutOrderMasterId" class="label text-dark">
+   YarnDyeingWOWithoutOrderMaster</label
+ >
+ <input
+   name="yarnDyeingWOWithoutOrderMasterId"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.yarnDyeingWOWithoutOrderMasterId
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="YarnDyeingWOWithoutOrderMasterId"
+   placeholder=" YarnDyeingWOWithoutOrderMaster"
+ />
+</div>
+</div> -->
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="SampleDevelopId" class="label text-dark">
+   Sample Develop Id</label
+ >
+ <input
+   name="sampleDevelopId"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.sampleDevelopId
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="SampleDevelopId"
+   placeholder=" Sample Develop Id"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="SampleName" class="label text-dark">
+      Sample Name
+      </label>
+      <select
+        name="sampleName"
+      
+        #SampleName="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.sampleName
+        "
+        id="SampleName"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Sample Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.sampleNameList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    <div class="col-sm-3">
+   <div class="form-group">
+     <label for="LotNo" class="label text-dark">
+     Lot No<span class="text-danger">*</span></label
+     >
+     <input
+       required
+       name="lotNo"
+       #LotNo="ngModel"
+       [(ngModel)]="
+       yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.lotNo
+       "
+       type="text"
+       class="form-control form-rounded form-control-sm"
+       id="LotNo"
+       placeholder="Lot No"
+     />
+     <div
+       class="text-left text-danger text-responsive"
+       *ngIf="
+       yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.lotNo ==
+           '' && LotNo.touched
+       "
+     >
+     Lot No is required
+     </div>
+   </div>
+ </div>
+ <div class="col-sm-3">
+  <div class="form-group">
+    <label for="YarnCountId" class="label text-dark">
+    Count
+    </label>
+    <select
+      name="yarnCountId"
+    
+      #YarnCountId="ngModel"
+      [(ngModel)]="
+      yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.yarnCountId
+      "
+      id="YarnCountId"
+      class="form-control form-rounded form-control-sm"
+    >
+    <option value="">Select Count</option>
+    <option
+      *ngFor="let item of dropdownValueService.yarnCountList "
+      value="{{item.id}}"
+      >{{ item.name}}</option
+    >
+    </select>
+    
+  </div>
+</div>
+</div>
+
+<div class="row">
+    
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="YarnDescription" class="label text-dark">
+   Yarn Description</label
+ >
+ <input
+   name="yarnDescription"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.yarnDescription
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="YarnDescription"
+   placeholder=" Yarn Description"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="YarnColor" class="label text-dark">
+   Yarn Color</label
+ >
+ <input
+   name="yarnColor"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.yarnColor
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="YarnColor"
+   placeholder=" Yarn Color"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ColorRangeId" class="label text-dark">
+      Color Range
+      </label>
+      <select
+        name="colorRangeId"
+      
+        #ColorRangeId="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.colorRangeId
+        "
+        id="ColorRangeId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Color Range</option>
+      <option
+        *ngFor="let item of dropdownValueService.colorRangeList"
+        value="{{item.id}}"
+        >{{ item.colorRangeName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+     <label for="RefNo" class="label text-dark">
+       Ref. No</label
+     >
+     <input
+       name="refNo"    
+       [(ngModel)]="
+       yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.refNo
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="RefNo"
+       placeholder=" Ref. No"
+     />
+    </div>
+    </div>
+
+</div>
+
+<div class="row">
+ 
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="UomId" class="label text-dark">
+      UOM
+      </label>
+      <select
+        name="uomId"
+      
+        #UomId="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.uomId
+        "
+        id="UomId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select UOM</option>
+      <option
+        *ngFor="let item of dropdownValueService.uomList"
+        value="{{item.id}}"
+        >{{ item.uomName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="YarnWoQnty" class="label text-dark">
+      Yarn Wo. Qnty<span class="text-danger">*</span></label
+      >
+      <input (click)="onAmount()" 
+        required
+        name="yarnWoQnty"
+        #YarnWoQnty="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.yarnWoQnty
+        "
+        type="number"
+        class="form-control form-rounded form-control-sm"
+        id="YarnWoQnty"
+        placeholder="Yarn Wo. Qnty"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.yarnWoQnty ==
+            '' && YarnWoQnty.touched
+        "
+      >
+      Yarn Wo. Qnty is required
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-3">
+ <div class="form-group">
+  <label for="DyeingCharge" class="label text-dark">
+    Dyeing Charge</label
+  >
+  <input
+    name="dyeingCharge"  (click)="onAmount()"  
+    [(ngModel)]="
+    yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.dyeingCharge
+    "
+    class="form-control form-rounded form-control-sm"
+    type="number"
+    id="DyeingCharge"
+    placeholder=" Dyeing Charge"
+  />
+ </div>
+ </div>
+ <div class="col-sm-3">
+   <div class="form-group">
+    <label for="Amount" class="label text-dark">
+      Amount</label
+    >
+    <input readonly
+      name="amount"    
+      [(ngModel)]="
+      yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.amount
+      "
+      class="form-control form-rounded form-control-sm"
+      type="number"
+      id="Amount"
+      placeholder=" Amount"
+    />
+   </div>
+   </div>
+
+</div>
+
+<div class="row">
+
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="NoofBag" class="label text-dark">
+   No of Bag</label
+ >
+ <input
+   name="noofBag"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.noofBag
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="NoofBag"
+   placeholder=" No of Bag"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="NoofCone" class="label text-dark">
+   No of Cone</label
+ >
+ <input
+   name="noofCone"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.noofCone
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="NoofCone"
+   placeholder=" No of Cone"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="MinReqCone" class="label text-dark">
+   Min Req. Cone</label
+ >
+ <input
+   name="minReqCone"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.minReqCone
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="MinReqCone"
+   placeholder=" Min Req. Cone"
+ />
+</div>
+</div>
+<div class="col-sm-3">
+  <div class="form-group">
+   <label for="Remarks" class="label text-dark">
+     Remarks</label
+   >
+   <input
+     name="remarks"    
+     [(ngModel)]="
+     yarnDyeingWOWithoutOrderDetailService.yarnDyeingWOWithoutOrderDetail.remarks
+     "
+     class="form-control form-rounded form-control-sm"
+     type="text"
+     id="Remarks"
+     placeholder=" Remarks"
+   />
+  </div>
+  </div>
+
+</div>
+
+
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

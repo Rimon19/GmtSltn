@@ -1,0 +1,5 @@
+ALTER TABLE "tblPODetailsInfro" ALTER COLUMN "PO_Received_Date" TYPE varchar(255);
+ALTER TABLE "tblPODetailsInfro" ALTER COLUMN "Pub_Shipment_Date" TYPE varchar(255);
+ALTER TABLE public."tblPODetailsInfro" ALTER COLUMN "Org_Shipment_Date" TYPE varchar(255);
+ALTER TABLE public."tblPODetailsInfro" ALTER COLUMN "Fac_Receive_Date" TYPE varchar(255);
+ALTER TABLE "tblPODetailsInfro" ALTER COLUMN "TNA_FromOrUpto" TYPE varchar(255);

@@ -1,0 +1,7 @@
+create table public."JournalSetup"(
+"Id" serial primary key,
+"JournalTypeId" integer,
+"PreFix" character varying(100),
+"StartingNumber" integer,
+"Status" character varying(100)
+)

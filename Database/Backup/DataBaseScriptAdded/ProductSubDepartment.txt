@@ -1,0 +1,6 @@
+create table public."ProductSubDepartment"(
+"Id" serial primary key,
+"SubDepartmentName" character varying(100),
+"DepartnemtName" character varying(100),
+"BuyerNameId" integer
+)

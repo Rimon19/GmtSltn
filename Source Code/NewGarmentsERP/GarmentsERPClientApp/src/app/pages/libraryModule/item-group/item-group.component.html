@@ -1,0 +1,82 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+ 
+          <div class="example-header">
+           
+            <h5>Item Group Info.</h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            </ng-container>
+              <!-- Fav Column -->
+              <ng-container matColumnDef="itemCategoryId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Item Category </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.itemCategoryId}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="groupCode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Group Code </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.groupCode}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="itemGroupName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Item Group </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.itemGroupName}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="itemType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Item Type </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.itemType}}</mat-cell>
+                 
+              </ng-container>
+
+              <ng-container matColumnDef="orderUom">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Order Uom</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.orderUom}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="consUom">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Cons Uom </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.consUom}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="convFactor">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Conv. Factor </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.convFactor}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="fancyItem">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Fancy Item </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.fancyItem}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="calParameter">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Cal Parameter </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.calParameter}}</mat-cell>
+                 
+              </ng-container>
+
+     
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+    
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>

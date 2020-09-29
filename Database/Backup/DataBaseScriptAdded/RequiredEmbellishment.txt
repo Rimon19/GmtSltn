@@ -1,0 +1,22 @@
+create table public."RequiredEmbellishment"(
+"Id" serial primary key,
+  "SampleFabricBookingId" integer,
+"OrderId" integer,
+"SampleRequisitionId" integer,
+"SampleName" character varying(100),
+"GarmentItemId" integer,
+"EmbellishmentName" character varying(100),
+"EmbellishmentTypeListId" integer,
+"BodyPartEntrieId" integer,
+"SupplierProfileId" integer,
+"Remarks" character varying(100),
+"DeliveryDate" character varying(100),
+"Image" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

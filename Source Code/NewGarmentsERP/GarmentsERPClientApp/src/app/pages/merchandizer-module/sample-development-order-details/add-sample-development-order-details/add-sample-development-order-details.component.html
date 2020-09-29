@@ -1,0 +1,1042 @@
+<div class="row">
+  <div class="col-lg-12">
+  <nb-card>
+  <nb-card-header>
+  Order Details</nb-card-header>
+  <nb-card-body>
+  <form #form="ngForm" (submit)="onSubmit()">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+        <label for="ArticleNumber" class="label text-dark">
+               Article Number </label
+             >
+             <input   [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.articleNumber
+           "
+           #ArticleNumber="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="ArticleNumber"
+             name="articleNumber"
+             placeholder="Article Number"
+           />
+           </div>
+           </div>
+           
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="BHMerchant" class="label text-dark">
+               BH Merchant </label
+             >
+             <input   [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.bHMerchant
+           "
+           #BHMerchant="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="BHMerchant"
+             name="bHMerchant"
+             placeholder="BH Merchant"
+           />
+           </div>
+           </div>
+           
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="Remarks" class="label text-dark">
+               Remarks </label
+             >
+             <input   [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.remarks
+           "
+           #Remarks="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="Remarks"
+             name="remarks"
+             placeholder="Remarks"
+           />
+           </div>
+           </div>
+           <div class="col-sm-3">
+            <div class="form-group">
+            <label for="StyleName" class="label text-dark">
+                    Style Name<span class="text-danger">*</span></label
+                 >
+                 <input required  [(ngModel)]="
+                 sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.styleName
+               "
+               #StyleName="ngModel"
+                 class="form-control form-rounded form-control-sm"
+                 type="text"
+                 id="StyleName"
+                 name="styleName"
+                 placeholder="Style Name"
+               />
+               <div
+               class="text-left text-danger text-responsive"
+               *ngIf="
+               sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.styleName==
+                   '' &&StyleName.touched
+               "
+             >
+             Style Name Name is required
+             </div>
+               </div>
+               </div>  
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+        <label for="ProductCategoryId" class="label text-dark">
+               Product Category </label
+             >
+            <select name="productCategoryId"
+             [(ngModel)]="
+               sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.productCategoryId
+             "
+             #ProductCategoryId="ngModel"
+               class="form-control form-rounded form-control-sm"
+               type="text"
+               id="ProductCategoryId"
+          >
+            <option value="">Select Product Category</option>
+            <option
+              *ngFor="let ProductCategoryId of dropdownValueService.productCategoryList"
+              value="{{ ProductCategoryId.id }}"
+              >{{ ProductCategoryId.productCategoryName }}</option
+            >
+          </select>
+           </div>
+           </div>
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="RegionId" class="label text-dark">
+               Region </label
+             >
+            <select name="regionId"
+             [(ngModel)]="
+               sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.regionId
+             "
+             #RegionId="ngModel"
+               class="form-control form-rounded form-control-sm"
+               type="text"
+               id="RegionId"
+          >
+            <option value="">Select Region</option>
+            <option
+              *ngFor="let RegionId of dropdownValueService.regionList"
+              value="{{ RegionId.regionID }}"
+              >{{ RegionId.region_Name }}</option
+            >
+          </select>
+           </div>
+           </div>
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="AgentId" class="label text-dark">
+               Agent </label
+             >
+            <select name="agentId"
+             [(ngModel)]="
+               sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.agentId
+             "
+             #AgentId="ngModel"
+               class="form-control form-rounded form-control-sm"
+               type="text"
+               id="AgentId"
+          >
+            <option value="">Select Agent</option>
+            <option
+              *ngFor="let AgentId of dropdownValueService.agentList"
+              value="{{ AgentId.agentID }}"
+              >{{ AgentId.agent_Name }}</option
+            >
+          </select>
+           </div>
+           </div>
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="Season" class="label text-dark">
+               Season </label>
+            <select name="season"
+             [(ngModel)]="
+               sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.season
+             "
+             #Season="ngModel"
+               class="form-control form-rounded form-control-sm"
+               type="text"
+               id="Season"
+          >
+            <option value="">Select Season</option>
+            <option
+              *ngFor="let Season of dropdownValueService.sampleDevelopmentSeasonList"
+              value="{{ Season.value }}"
+              >{{ Season.value }}</option
+            >
+          </select>
+           </div>
+           </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+        <label for="BuyerId" class="label text-dark">
+               Buyer Name<span class="text-danger">*</span> </label
+             >
+          <select name="buyerId" required
+           [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.buyerId
+           "
+           #BuyerId="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="BuyerId"
+        >
+          <option value="">Select Buyer Name</option>
+          <option
+            *ngFor="let BuyerId of dropdownValueService.buyerList"
+            value="{{ BuyerId.id }}"
+            >{{ BuyerId.contactName }}</option
+          >
+        </select>
+        <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.buyerId==
+            '' &&BuyerId.touched
+        "
+      >
+      Buyer Name is required
+      </div>
+           </div>
+           </div>
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="ProductDept" class="label text-dark">
+               Product Dept <span class="text-danger">*</span></label
+             >
+          <select name="productDept" required
+           [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.productDept
+           "
+           #ProductDept="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="ProductDept"
+        >
+          <option value="">Select Product Dept</option>
+          <option
+            *ngFor="let ProductDept of dropdownValueService.productDeptList"
+            value="{{ ProductDept.value }}"
+            >{{ ProductDept.value }}</option
+          >
+        </select>
+        <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.productDept==
+            '' &&ProductDept.touched
+        "
+      >
+      Product Dept is required
+      </div>
+           </div>
+           </div>
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="GarmentsItemId" class="label text-dark">
+               Garments Item <span class="text-danger">*</span> </label
+             >
+          <select name="garmentsItemId" required
+           [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.garmentsItemId
+           "
+           #GarmentsItemId="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="GarmentsItemId"
+        >
+          <option value="">Select GarmentsItem</option>
+          <option
+            *ngFor="let GarmentsItemId of dropdownValueService.garmentsItemList"
+            value="{{ GarmentsItemId.id }}"
+            >{{ GarmentsItemId.itemName }}</option
+          >
+        </select>
+        <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.garmentsItemId==
+            '' &&GarmentsItemId.touched
+        "
+      >
+      Garments Item is required
+      </div>
+           </div>
+           </div>
+<div class="col-sm-3">
+        <div class="form-group">
+        <label for="TeamLeaderId" class="label text-dark">
+               Team Leader <span class="text-danger">*</span></label
+             >
+          <select name="teamLeaderId" required
+           [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.teamLeaderId
+           "
+           #TeamLeaderId="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="TeamLeaderId"
+        >
+          <option value="">Select Team Leader</option>
+          <option
+            *ngFor="let TeamLeaderId of dropdownValueService.teamleaderList"
+            value="{{ TeamLeaderId.id }}"
+            >{{ TeamLeaderId.userId }}</option
+          >
+        </select>
+        <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.teamLeaderId==
+            '' &&TeamLeaderId.touched
+        "
+      >
+      Team Leader is required
+      </div>
+           </div>
+           </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+        <label for="DealingMerchantId" class="label text-dark">
+               Dealing Merchant <span class="text-danger">*</span> </label
+             >
+          <select name="dealingMerchantId"  required
+           [(ngModel)]="
+             sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.dealingMerchantId
+           "
+           #DealingMerchantId="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="DealingMerchantId"
+        >
+          <option value="">Select Dealing Merchant</option>
+          <option
+            *ngFor="let DealingMerchantId of dropdownValueService.dealiningMarchandList "
+            value="{{ DealingMerchantId.id }}"
+            >{{ DealingMerchantId.userId }}</option
+          >
+        </select>
+        <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.dealingMerchantId==
+            '' &&DealingMerchantId.touched
+        "
+      >
+      Dealing Merchant is required
+      </div>
+           </div>
+           </div>
+           <div class="col-sm-3">
+         <div class="form-group">
+         <label for="EstShipDate" class="label text-dark">
+         Est Ship Date </label>
+           <input 
+           [(ngModel)]="
+           sampleDevelopmentOrderDetailsService.sampleDevelopmentOrderDetails.estShipDate
+         "
+         #EstShipDate="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="EstShipDate"
+           name="estShipDate"
+             [nbDatepicker]="EstShipDate"
+           />
+           <nb-datepicker #EstShipDate></nb-datepicker>
+         </div>
+       </div>
+       <div class="col-sm-3">
+        <div class="form-group">
+          <label for="image	" class="label text-dark">
+            Image</label
+          >
+          <input
+            name="image"
+            (dblclick)="onAddImage()"
+            class="form-control form-rounded form-control-sm"
+            type="text"
+            id="file"
+            placeholder="Double click"
+            
+          />
+          
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="file	" class="label text-dark">
+            File</label
+          >
+          <input
+            name="file"
+            (dblclick)="onAdd()"
+            class="form-control form-rounded form-control-sm"
+            type="text"
+            id="file"
+            placeholder="Double click"
+            
+          />
+          
+        </div>
+      </div>
+    </div>
+  
+  
+                 <button
+                 type="submit"
+                 nbButton
+                 [disabled]="
+                   form.invalid
+                 "
+               >
+                 Submit
+               </button>
+  </form>
+</nb-card-body>
+
+   </nb-card>
+   </div>
+  </div>
+
+  <!-- for sample devlopment entry -->
+
+
+  <div class="row">
+<div class="col-lg-12">
+<nb-card>
+<nb-card-header>
+
+    <!-- <button (click)="backTo()"
+    class="btn btn-outline-success "
+   >
+   <i class="fas fa-arrow-left"></i></button> -->
+    Sample Development Entry</nb-card-header>
+<nb-card-body>
+<form #form1="ngForm" (submit)="onSubmitOfEntry()">
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+      <label for="WorkingFactory" class="label text-dark">
+             Working Factory </label
+           >
+           <input name="workingFactory"  [(ngModel)]="
+           sampleDevelopmentEntryService.sampleDevelopmentEntry.workingFactory
+         "
+         #WorkingFactory="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="WorkingFactory"
+           placeholder="Working Factory"
+         />
+         </div>
+         </div>
+         
+<div class="col-sm-3">
+      <div class="form-group">
+      <label for="Fabrication" class="label text-dark">
+             Fabrication </label
+           >
+           <input name="fabrication"  [(ngModel)]="
+           sampleDevelopmentEntryService.sampleDevelopmentEntry.fabrication
+         "
+         #Fabrication="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="Fabrication"
+           placeholder="Fabrication"
+         />
+         </div>
+         </div>
+         
+<div class="col-sm-3">
+      <div class="form-group">
+      <label for="KeyPointOrValDrive" class="label text-dark">
+             Key Point/Val Drive </label
+           >
+           <input name="keyPointOrValDrive"  [(ngModel)]="
+           sampleDevelopmentEntryService.sampleDevelopmentEntry.keyPointOrValDrive
+         "
+         #KeyPointOrValDrive="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="KeyPointOrValDrive"
+           placeholder="Key Point/Val Drive"
+         />
+         </div>
+         </div>
+         
+<div class="col-sm-3">
+      <div class="form-group">
+      <label for="Department" class="label text-dark">
+             Department </label
+           >
+           <input name="department"  [(ngModel)]="
+           sampleDevelopmentEntryService.sampleDevelopmentEntry.department
+         "
+         #Department="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="Department"
+           placeholder="Department"
+         />
+         </div>
+         </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+      <label for="SampleCharge" class="label text-dark">
+             Sample Charge </label
+           >
+      
+          <input name="sampleCharge"  [(ngModel)]="sampleDevelopmentEntryService.sampleDevelopmentEntry.sampleCharge"
+        #SampleCharge="ngModel"
+          class="form-control form-rounded form-control-sm"
+          type="number"
+          id="sampleCharge"
+          placeholder="Sample Charge"
+        />
+        
+         
+
+
+
+         </div>
+         </div>
+         
+<div class="col-sm-3">
+      <div class="form-group">
+      <label for="BuyerReqNo" class="label text-dark">
+             Buyer Req. No </label
+           >
+           <input name="buyerReqNo"  [(ngModel)]="
+           sampleDevelopmentEntryService.sampleDevelopmentEntry.buyerReqNo
+         "
+         #BuyerReqNo="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="BuyerReqNo"
+           placeholder="Buyer Req. No"
+         />
+         </div>
+         </div>
+         
+<div class="col-sm-3">
+      <div class="form-group">
+      <label for="Comments" class="label text-dark">
+             Comments </label
+           >
+           <input name="comments"  [(ngModel)]="
+           sampleDevelopmentEntryService.sampleDevelopmentEntry.comments
+         "
+         #Comments="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="Comments"
+           placeholder="Comments"
+         />
+         </div>
+         </div>
+         <div class="col-sm-3">
+          <div class="form-group">
+          <label for="sampleColor" class="label text-dark">
+                  Sample Color<span class="text-danger">*</span></label
+               >
+               <div class="row">
+               <div class="col-sm-7 ">
+                <input name="sampleColor" required  [(ngModel)]="
+                sampleDevelopmentEntryService.sampleDevelopmentEntry.sampleColor
+              "
+              #SampleColor="ngModel"
+                class="form-control form-rounded form-control-sm"
+                type="text"
+                id="sampleColor"
+                placeholder="Sample Color"
+              />
+               </div>
+               <div class="col-md-5">
+                <input readonly
+                name="image"
+                (dblclick)="onSizeDits()"
+                class="form-control form-rounded form-control-sm"
+                type="text"
+                id="file"
+                placeholder="SizeDits "
+                
+              />
+               </div>
+              </div>
+              
+             <div
+             class="text-left text-danger text-responsive"
+             *ngIf="
+             sampleDevelopmentEntryService.sampleDevelopmentEntry.sampleColor==
+                 '' &&SampleColor.touched
+             "
+           >
+           Sample Color Name is required
+           </div>
+             </div>
+             </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+      <label for="FabricSource" class="label text-dark">
+             Fabric Source </label>
+           
+           <select name="fabricSource"
+           [(ngModel)]="
+             sampleDevelopmentEntryService.sampleDevelopmentEntry.fabricSource
+           "
+           #FabricSource="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="FabricSource"
+        >
+          <option value="">Select Fabric Source</option>
+          <option
+            *ngFor="let FabricSource of dropdownValueService.fabricSourceList"
+            value="{{ FabricSource.value }}"
+            >{{ FabricSource.value }}</option
+          >
+        </select>
+         </div>
+         </div>
+<div class="col-sm-3">
+      <div class="form-group">
+      <label for="ApprovalStatus" class="label text-dark">
+             Approval Status </label>
+          
+           <select name="approvalStatus"
+           [(ngModel)]="
+             sampleDevelopmentEntryService.sampleDevelopmentEntry.approvalStatus
+           "
+           #ApprovalStatus="ngModel"
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="ApprovalStatus"
+        >
+          <option value="">Select Approval Status</option>
+          <option
+            *ngFor="let ApprovalStatus of dropdownValueService.approvalStatusList"
+            value="{{ ApprovalStatus.value }}"
+            >{{ ApprovalStatus.value }}</option
+          >
+        </select>
+         </div>
+         </div>
+<div class="col-sm-3">
+      <div class="form-group">
+      <label for="sampleTypeId" class="label text-dark">
+             Sample Name <span class="text-danger">*</span></label
+           >
+         <select  name="sampleTypeId" required
+         [(ngModel)]="
+           sampleDevelopmentEntryService.sampleDevelopmentEntry.sampleTypeId
+         "
+         #SampleTypeId="ngModel"
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="sampleTypeId"
+      >
+        <option value="">Select Sample Name</option>
+        <option
+          *ngFor="let sampleTypeId of dropdownValueService.sampleTypeList"
+          value="{{ sampleTypeId.id }}"
+          >{{ sampleTypeId.sampleTypeName }}</option
+        >
+      </select>
+      <div
+      class="text-left text-danger text-responsive"
+      *ngIf="
+      sampleDevelopmentEntryService.sampleDevelopmentEntry.sampleTypeId==
+          '' &&SampleTypeId.touched
+      "
+    >
+    Sample Name is required
+    </div>
+         </div>
+         </div>
+         <div class="col-sm-3">
+       <div class="form-group">
+       <label for="rcvDateFromBuyer" class="label text-dark">
+       Rcv. Date From Buyer </label>
+         <input name="rcvDateFromBuyer"
+         [(ngModel)]="
+         sampleDevelopmentEntryService.sampleDevelopmentEntry.rcvDateFromBuyer
+       "
+       #RcvDateFromBuyer="ngModel"
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="rcvDateFromBuyer"
+           [nbDatepicker]="rcvDateFromBuyer"
+         />
+         <nb-datepicker #rcvDateFromBuyer></nb-datepicker>
+       </div>
+     </div>
+         
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+      <label for="tfReceivDate" class="label text-dark">
+      TF Receive Date </label>
+        <input name="tfReceivDate"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.tfReceivDate
+      "
+      #TfReceiv Date="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="tfReceivDate"
+          [nbDatepicker]="tfReceivDate"
+        />
+        <nb-datepicker #tfReceivDate></nb-datepicker>
+      </div>
+    </div><div class="col-sm-3">
+      <div class="form-group">
+      <label for="BuyerDeadLine" class="label text-dark">
+      Buyer Dead Line </label>
+        <input name="buyerDeadLine"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.buyerDeadLine
+      "
+      #BuyerDeadLine="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="BuyerDeadLine"
+          [nbDatepicker]="BuyerDeadLine"
+        />
+        <nb-datepicker #BuyerDeadLine></nb-datepicker>
+      </div>
+    </div><div class="col-sm-3">
+      <div class="form-group">
+      <label for="SentToSmplDept" class="label text-dark">
+      Sent To Smpl Dept. </label>
+        <input name="sentToSmplDept"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.sentToSmplDept
+      "
+      #SentToSmplDept="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="SentToSmplDept"
+          [nbDatepicker]="SentToSmplDept"
+        />
+        <nb-datepicker #SentToSmplDept></nb-datepicker>
+      </div>
+    </div><div class="col-sm-3">
+      <div class="form-group">
+      <label for="DeadLine" class="label text-dark">
+      Dead Line </label>
+        <input name="deadLine"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.deadLine
+      "
+      #DeadLine="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="DeadLine"
+          [nbDatepicker]="DeadLine"
+        />
+        <nb-datepicker #DeadLine></nb-datepicker>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+      <label for="RcvFromSmplDept" class="label text-dark">
+      Rcv.From Smpl Dept. </label>
+        <input name="rcvFromSmplDept"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.rcvFromSmplDept
+      "
+      #RcvFromSmplDept="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="RcvFromSmplDept"
+          [nbDatepicker]="RcvFromSmplDept"
+        />
+        <nb-datepicker #RcvFromSmplDept></nb-datepicker>
+      </div>
+    </div><div class="col-sm-3">
+      <div class="form-group">
+      <label for="SentToBuyer" class="label text-dark">
+      Sent to Buyer </label>
+        <input name="sentToBuyer"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.sentToBuyer
+      "
+      #SentToBuyer="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="SentToBuyer"
+          [nbDatepicker]="SentToBuyer"
+        />
+        <nb-datepicker #SentToBuyer></nb-datepicker>
+      </div>
+    </div><div class="col-sm-3">
+      <div class="form-group">
+      <label for="StatusDate" class="label text-dark">
+      Status Date </label>
+        <input name="statusDate"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.statusDate
+      "
+      #StatusDate="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="StatusDate"
+          [nbDatepicker]="StatusDate"
+        />
+        <nb-datepicker #StatusDate></nb-datepicker>
+      </div>
+    </div><div class="col-sm-3">
+      <div class="form-group">
+      <label for="BuyerMeeting" class="label text-dark">
+      Buyer Meeting </label>
+        <input name="buyerMeeting"
+        [(ngModel)]="
+        sampleDevelopmentEntryService.sampleDevelopmentEntry.buyerMeeting
+      "
+      #BuyerMeeting="ngModel"
+        class="form-control form-rounded form-control-sm"
+        type="text"
+        id="BuyerMeeting"
+          [nbDatepicker]="BuyerMeeting"
+        />
+        <nb-datepicker #BuyerMeeting></nb-datepicker>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-sm-3">
+      <div class="form-group">
+      <label for="currency" class="label text-dark">
+        Currency </label>
+           
+             <select name="currency"
+             [(ngModel)]="
+             sampleDevelopmentEntryService.sampleDevelopmentEntry.currency
+             "
+             #Currency="ngModel"
+               class="form-control form-rounded form-control-sm"
+               type="text"
+               id="currency"
+          >
+            <option value="">Select</option>
+            <option
+              *ngFor="let currency of dropdownValueService.currencyList"
+              value="{{ currency.id }}"
+              >{{ currency.discountMethodName  }}</option
+            >
+          </select>
+         </div>
+         </div>
+  
+  </div>
+                 
+
+
+    <button
+            type="submit"
+            nbButton
+            [disabled]="
+            form1.invalid
+            "
+          >
+            Submit
+          </button>
+    </form></nb-card-body>
+ </nb-card>
+ </div>
+</div>
+
+
+  <!-- for dispaly page for sample devlopment entry -->
+
+  <nb-card>
+
+    <div class="example-container mat-elevation-z8">
+       <div class="example-header">
+        <nb-card-header>Sample Development Entry List</nb-card-header>
+           
+           <mat-form-field>
+             <input
+               matInput
+               #filter
+               (keyup)="applyFilterForInitialOrder($event.target.value)"
+               placeholder="Search Here.."
+             />
+             <button
+               mat-icon-button
+               matSuffix
+               aria-label="clear"
+               *ngIf="filter.value"
+               (click)="filter.value = ''; applyFilter('')"
+             >
+               <mat-icon>close</mat-icon>
+             </button>
+           </mat-form-field>
+         </div>
+        
+           <mat-table
+             [dataSource]="dataSource"
+             matSort
+             mat-table
+           >
+           
+             <ng-container matColumnDef="id" sticky>
+               <mat-header-cell *matHeaderCellDef>
+                 Actions
+                 <button
+                   class="btn btn-outline-success m-2"
+                   (click)="redirectToAddPage()"
+                 >
+                   <i class="fa fa-plus"></i>
+                 </button>
+               </mat-header-cell>
+               <mat-cell *matCellDef="let element">
+                 
+                 <section>
+                   <div class="example-button-row">
+                     <button
+                     *ngIf="element.id != 0"
+                     mat-icon-button
+                     (click)="onChangeForUpdateOfEntry(element.id)"
+                   >
+                     <mat-icon>launch</mat-icon>
+                   </button>
+                   <button
+                   *ngIf="element.id != 0"
+                   mat-button
+                   (click)="onDelete(element.id)"
+                 >
+                   <i class="far fa-trash-alt fa-lg text-danger"></i>
+                 </button>              
+                   </div>
+                 </section>
+   
+               </mat-cell>
+             </ng-container>
+             
+            <ng-container matColumnDef="sampleTypeId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Sample Name</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.sampleTypeId }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="sampleColor">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Sample Color</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.sampleColor }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="rcvDateFromBuyer">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Rcv. Date From Buyer</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.rcvDateFromBuyer }}</mat-cell>
+  </ng-container>
+
+
+<ng-container matColumnDef="workingFactory">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Working Factory</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.workingFactory }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="sentToSmplDept">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Sent To Smpl Dept.</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.sentToSmplDept }}</mat-cell>
+  </ng-container>
+
+
+<ng-container matColumnDef="fabrication">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Fabrication</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.fabrication }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="fabricSource">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Fabric Source</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.fabricSource }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="sentToBuyer">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Sent to Buyer</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.sentToBuyer }}</mat-cell>
+  </ng-container>
+
+
+<ng-container matColumnDef="approvalStatus">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Approval Status</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.approvalStatus }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="statusDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Status Date</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.statusDate }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="buyerMeeting">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Buyer Meeting</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.buyerMeeting }}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="sampleCharge">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Sample Charge</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">{{ element.sampleCharge }}{{ element.currency }}</mat-cell>
+  </ng-container>
+
+
+             <mat-header-row
+               *matHeaderRowDef="displayedColumns"
+             ></mat-header-row>
+             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+           </mat-table>
+
+        </div>
+   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>
+
+
+
+  
+  
+  
+  

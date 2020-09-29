@@ -1,0 +1,13 @@
+CREATE TABLE public."YarnCountDetermination"
+(
+    "Id"  serial primary key,
+    "FabricNature" character varying(100),
+    "Construction" character varying(100),
+    "ColorRange" character varying(100),
+    "GSM" character varying(100),
+    "Status" character varying(100),
+    "StitchLength" numeric,
+    "ProcessLoss" numeric,
+    "SequenceNo" numeric
+)
+

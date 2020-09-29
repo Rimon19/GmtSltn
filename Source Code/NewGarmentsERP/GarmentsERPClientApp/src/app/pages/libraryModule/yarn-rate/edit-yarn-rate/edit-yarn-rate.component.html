@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+        Yarn Rate Edit.
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="supplierId" class="label text-dark">Supplier <span class="text-danger">*</span></label>
+                <select required #supplierId="ngModel"  
+                [(ngModel)]="yarnRateService.yarnRate.supplierId" class="form-control form-rounded form-control-sm"name="supplierId" >
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let s of supplierList" [value]="s.id">{{s.supplierName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="yarnRateService.yarnRate.supplierId==0&&supplierId.touched">
+              Supplier is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="yarnCountId" class="label text-dark">Yarn Count <span class="text-danger">*</span></label>
+                <select required #yarnCountId="ngModel"
+                [(ngModel)]="yarnRateService.yarnRate.yarnCountId" class="form-control form-rounded form-control-sm"name="yarnCountId" >
+                  <option [ngValue]=0>Select</option>
+                  <option *ngFor="let y of yarnCountList" [value]="y.id">{{y.name}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="yarnRateService.yarnRate.yarnCountId==0&&yarnCountId.touched">
+              Yarn Count  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="compositionId" class="label text-dark">Composition <span class="text-danger">*</span></label>
+                <select required #compositionId="ngModel"
+                [(ngModel)]="yarnRateService.yarnRate.compositionId" class="form-control form-rounded form-control-sm"name="compositionId" >
+                  <option [ngValue]=0>Select</option>
+                  <option *ngFor="let c of compositionList" [value]="c.id">{{c.compositionName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="yarnRateService.yarnRate.compositionId==0&&compositionId.touched">
+              Composition  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">%</label>
+                <input   #percentage="ngModel"
+                [(ngModel)]="yarnRateService.yarnRate.percentage" class="form-control form-rounded form-control-sm"
+                   name="percentage"  type="text" 
+                    placeholder="%">
+                    
+              </div>
+              
+            </div>
+      
+          </div>
+          <div class="row">
+          
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="type" class="label text-dark">Type <span class="text-danger">*</span></label>
+                <select required #type="ngModel"
+                [(ngModel)]="yarnRateService.yarnRate.type" class="form-control form-rounded form-control-sm"name="type" >
+                  <option value=''>Select</option>
+                  <option *ngFor="let t of typeList" [value]="t.id">{{t.typeName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="yarnRateService.yarnRate.type==''&&type.touched">
+              Type  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Rate/Kg</label>
+                <input   #rateOrKg="ngModel"
+                [(ngModel)]="yarnRateService.yarnRate.rateOrKg" class="form-control form-rounded form-control-sm"
+                   name="rateOrKg" type="text" 
+                    placeholder="Rate/Kg">
+                    
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Effective Date</label>
+                <input   #effectiveDate="ngModel"
+                [(ngModel)]="yarnRateService.yarnRate.effectiveDate" class="form-control form-rounded form-control-sm"
+                   name="effectiveDate"   type="text" 
+                    placeholder="Effective Date" [nbDatepicker]="date">
+                          
+                    <nb-datepicker #date></nb-datepicker>
+                    
+              </div>
+              
+            </div>
+      
+          </div>
+          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

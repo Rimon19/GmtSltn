@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Conversion Cost</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)" >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="conversionCostId" class="label">Conversion Cost</label>
+                <input [(ngModel)]="conversionCost.conversionCostId" name="conversionCostId"
+                #conversionCostId="ngModel" type="text" nbInput fullWidth id="conversionCostId" placeholder="Conversion Cost">
+              <div *ngIf="conversionCostId.invalid&&conversionCostId.touched"
+              class="alert alert-danger">
+              Conversion Cost is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="preCostingId" class="label">Pre Costing Id</label>
+                <input [(ngModel)]="conversionCost.preCostingId" name="preCostingId"
+                #preCostingId="ngModel" type="text" nbInput fullWidth id="preCostingId" placeholder="Pre Costing Id">
+              <div *ngIf="preCostingId.invalid&&preCostingId.touched"
+              class="alert alert-danger">
+              Pre Costing Id is required
+                </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="fabDescId" class="label">Fabric Description</label>
+                <input [(ngModel)]="conversionCost.fabDescId" name="fabDescId"
+                #fabDescId="ngModel" type="text" nbInput fullWidth id="fabDescId" placeholder="Fabric Description">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="conversionProcessId" class="label">Conversion Process Id</label>
+                <input [(ngModel)]="conversionCost.conversionProcessId" name="conversionProcessId"
+                #conversionProcessId="ngModel" type="text" nbInput fullWidth id="conversionProcessId" placeholder="Conversion Process Id">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="processLoss" class="label">Process Loss</label>
+                <input [(ngModel)]="conversionCost.processLoss" name="processLoss"
+                #processLoss="ngModel" type="text" nbInput fullWidth id="processLoss" placeholder="Process Loss">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="reqQty" class="label">Request Quantity</label>
+                <input [(ngModel)]="conversionCost.reqQty" name="fabDescId"
+                #reqQty="ngModel" type="text" nbInput fullWidth id="reqQty" placeholder="Request Quantity">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="avgReqQty" class="label">Average Request Quantity</label>
+                <input  [(ngModel)]="conversionCost.avgReqQty" name="avgReqQty"
+                #avgReqQty="ngModel" type="text" nbInput fullWidth id="avgReqQty" placeholder="Average Request Quantity">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="nominatedSupplier" class="label">Nominated Supplier</label>
+                <input [(ngModel)]="conversionCost.nominatedSupplierId" name="nominatedSupplierId"
+                #nominatedSupplierId="ngModel" type="text" nbInput fullWidth id="nominatedSupplier" placeholder="nominated Supplier">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="chargeUnit" class="label">Charge Unit</label>
+                <input [(ngModel)]="conversionCost.chargeUnit" name="chargeUnit"
+                #chargeUnit="ngModel" type="text" nbInput fullWidth id="chargeUnit" placeholder="Charge Unit">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="amount" class="label">Amount</label>
+                <input [(ngModel)]="conversionCost.amount" name="amount"
+                #amount="ngModel" type="text" nbInput fullWidth id="chargeUnit" placeholder="amount">
+                
+              </div>
+            
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label">Status</label>
+                <select required
+                [(ngModel)]="conversionCost.status" name="status"
+                 class="form-control" >
+                  <option value=''>Select Status</option>
+                 
+                  <option value="Active">Active</option>
+                  <option value="InActive">InActive</option>
+                  <option value="Cancelled">Cancelled</option>
+                 
+                 
+              </select>
+                
+              </div>
+            
+            </div>
+           </div>
+           
+          <button type="submit" nbButton [disabled]="form.invalid">Submit</button>
+        </form>
+    
+            
+
+      
+     
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  
+</div>

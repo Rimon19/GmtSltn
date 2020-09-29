@@ -1,0 +1,4 @@
+create table public."TblAgentInfo"(
+"AgentID" serial primary key,
+"Agent_Name" character varying(100)
+)

@@ -1,0 +1,160 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Update Service Booking For Kniting Detail</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+          <!-- <div class="col-sm-3">
+<div class="form-group">
+ <label for="ServiceBookingForKnitingId" class="label text-dark">
+   MasterId</label
+ >
+ <input
+   name="serviceBookingForKnitingId"    
+   [(ngModel)]="
+   serviceBookingForKnitingDetailService.serviceBookingForKnitingDetail.serviceBookingForKnitingId
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ServiceBookingForKnitingId"
+   placeholder=" MasterId"
+ />
+</div>
+</div> -->
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ProcessId" class="label text-dark">
+      Process
+      </label>
+      <select
+        name="processId"
+      
+        #ProcessId="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnitingDetailService.serviceBookingForKnitingDetail.processId
+        "
+        id="ProcessId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Process</option>
+      <option
+        *ngFor="let item of dropdownValueService.processList"
+        value="{{item.id}}"
+        >{{ item.productionProcessName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Sensitivity" class="label text-dark">
+      Sensitivity
+      </label>
+      <select
+        name="sensitivity"
+      
+        #Sensitivity="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnitingDetailService.serviceBookingForKnitingDetail.sensitivity
+        "
+        id="Sensitivity"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Sensitivity</option>
+      <option
+        *ngFor="let item of dropdownValueService.sensitivityList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="ProgramNo" class="label text-dark">
+   Program No</label
+ >
+ <input
+   name="programNo"    
+   [(ngModel)]="
+   serviceBookingForKnitingDetailService.serviceBookingForKnitingDetail.programNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ProgramNo"
+   placeholder=" Program No"
+ />
+</div>
+</div>
+<div class="col-sm-3">
+  <div class="form-group">
+    <label for="FabricDescriptionId" class="label text-dark">
+    Fabric Description
+    </label>
+    <select
+      name="fabricDescriptionId"
+    
+      #FabricDescriptionId="ngModel"
+      [(ngModel)]="
+      serviceBookingForKnitingDetailService.serviceBookingForKnitingDetail.fabricDescriptionId
+      "
+      id="FabricDescriptionId"
+      class="form-control form-rounded form-control-sm"
+    >
+    <option value="">Select Fabric Description</option>
+    <option
+      *ngFor="let item of dropdownValueService.fabricDescriptionList"
+      value="{{item.id}}"
+      >{{ item.fabNature}}</option
+    >
+    </select>
+    
+  </div>
+</div>
+</div>
+
+<div class="row">
+  
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="Dia" class="label text-dark">
+   Dia</label
+ >
+ <input
+   name="dia"    
+   [(ngModel)]="
+   serviceBookingForKnitingDetailService.serviceBookingForKnitingDetail.dia
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Dia"
+   placeholder=" Dia"
+ />
+</div>
+</div>
+
+</div>
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

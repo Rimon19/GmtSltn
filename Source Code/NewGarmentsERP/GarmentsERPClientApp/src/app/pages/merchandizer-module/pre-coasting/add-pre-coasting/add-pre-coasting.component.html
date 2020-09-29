@@ -1,0 +1,742 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+        
+      >
+      <i class="fas fa-arrow-left"></i>
+      </button>
+        PreCosting </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(precostingService.preCosting,poselectedItems)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="OrderNo" class="label text-dark">
+                Job No<span class="text-danger">*</span></label
+                >
+                <input  (dblclick)="onLoadOrderOrJobSelectionFormComponent()"
+                 readonly
+                  required
+                  name="orderId"
+                  #OrderNo="ngModel"
+                  [(ngModel)]="
+                  precostingService.preCosting.JobNo
+                  "
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="OrderNo"
+                  placeholder="Job No"
+                />
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                  precostingService.preCosting.JobNo ==
+                      '' && OrderNo.touched
+                  "
+                >
+                Job No is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="companyName" class="label text-dark"
+                  >Company Name<span class="text-danger">*</span></label
+                >
+                <select
+                  id="companyName"
+                  required
+                  #companyName="ngModel"
+                  [(ngModel)]="precostingService.preCosting.companyId"
+                  class="form-control form-rounded form-control-sm"
+                  name="companyID"
+                >
+                  <option value=0>Select Company</option>
+                  <option
+                    *ngFor="let companyList of companyInfo"
+                    [value]="companyList.compID"
+                    >{{ companyList.company_Name}}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                precostingService.preCosting.companyId == ''&&
+                  companyName.touched
+                "
+              >
+                Company name is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="quotationID" class="label text-dark">Quotation ID</label>
+                <input
+                  name="quotationId"
+                  #quotationId="ngModel"
+                  [(ngModel)]="precostingService.preCosting.quotationId"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="quotationID"
+                  placeholder="quotationID"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="styleref" class="label text-dark">Style Ref</label>
+                <input
+                  name="styleRef"
+                  #styleRef="ngModel"
+                  [(ngModel)]="precostingService.preCosting.styleRef"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="styleref"
+                  placeholder="Style Ref"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="poselectedItems" class="label text-dark"
+                  >PO Number<span class="text-danger">*</span></label
+                >
+
+                <ng-multiselect-dropdown
+               
+                name="poselectedItems"
+                [placeholder]="'PO No'"
+                [data]="jobNoWPodropdownList"
+                [(ngModel)]="poselectedItems"
+                [settings]="podropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (onDeSelect)="onItemDeSelect($event)"
+                (onDeSelectAll)="onDeSelectAll($event)"
+              >
+              </ng-multiselect-dropdown>
+              </div>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                poselectedItems == '' && poselectedItems.touched
+                "
+              >
+                PO No is required
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="StyleDesc" class="label text-dark">Style Desc.</label>
+                <input
+                  name="styleDesc"
+                  #styleDesc="ngModel"
+                  [(ngModel)]="precostingService.preCosting.styleDesc"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark"
+                  >Buyer Name<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #buyerName="ngModel"
+                  [(ngModel)]="precostingService.preCosting.buyerId"
+                 
+                  class="form-control form-rounded form-control-sm"
+                  name="buyerId"
+                >
+                  <option value=0>Select Buyer </option>
+                  <option
+                    *ngFor="let buyerList of byerInfo"
+                    [value]="buyerList.id"
+                    >{{ buyerList.contactName }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                precostingService.preCosting.buyerId == ''&&
+                  buyerName.touched
+                "
+              >
+                Buyer name is required
+              </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Currency" class="label text-dark">Currency</label>
+                
+                <select
+                
+                name="currencyName"
+                #currencyName="ngModel"
+                [(ngModel)]="precostingService.preCosting.currencyId"
+                class="form-control form-rounded form-control-sm"
+                name="currencyId"
+              >
+                <option value=0>Select Currency</option>
+                <option
+                  *ngFor="let currencylist of currencyList"
+                  [value]="currencylist.id"
+                  >{{ currencylist.discountMethodName }}</option
+                >
+              </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ER" class="label text-dark">ER.</label>
+                <input
+                  name="eR"
+                  #eR="ngModel"
+                  [(ngModel)]="precostingService.preCosting.eR"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="ER"
+                  placeholder="ER"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Agent" class="label text-dark"
+                  >Agent</label
+                >
+                <select
+                 
+                  #agentName="ngModel"
+                  [(ngModel)]="precostingService.preCosting.agent"
+                  class="form-control form-rounded form-control-sm"
+                  name="agent_ID"
+                >
+                  <option value=''>Select Agent</option>
+                  <option
+                    *ngFor="let agentInfoeslist of dropdownValueService.agentList"
+                    [value]="agentInfoeslist.agentID"
+                    >{{ agentInfoeslist.agent_Name }}</option
+                  >
+                </select>
+       
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="JobQty" class="label text-dark">Job Qty.</label>
+                <input
+                  name="jobQty"
+                  #jobQty="ngModel"
+                  [(ngModel)]="precostingService.preCosting.jobQty"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="JobQty"
+                  placeholder="Job Qty"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="OrderUom" class="label text-dark"
+                  >Order Uom<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+               
+                  #orderUomName="ngModel"
+                  [(ngModel)]="precostingService.preCosting.orderUOMId"
+                  class="form-control form-rounded form-control-sm"
+                  name="order_Uom_ID"
+                >
+                  <option value=0>Select Order Uom</option>
+                  <option
+                    *ngFor="let orderUomInfolist of orderUomInfo"
+                    [value]="orderUomInfolist.id"
+                    >{{ orderUomInfolist.uomName}}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                precostingService.preCosting.orderUOMId ==''&&
+                  orderUomName.touched
+                "
+              >
+                Order Uom is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">&nbsp;</label>
+                <button class="form-control 
+                text-center form-rounded btn btn-success form-control-sm" type="button" >Item Details</button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CostingDate" class="label text-dark"
+                  >Costing Date<span class="text-danger">*</span></label
+                >
+                <input
+                  name="costingDate"
+                  #costingDate="ngModel"
+                  [(ngModel)]="precostingService.preCosting.costingDate"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="CostingDate"
+                  [nbDatepicker]="Costing"
+                  placeholder="Costing Date"
+                />
+                <nb-datepicker #Costing></nb-datepicker>
+              </div>
+
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  precostingService.preCosting.costingDate == '' &&
+                  costingDate.touched
+                "
+              >
+                Costing Date is required
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Incoterm" class="label text-dark"
+                  >Incoterm<span class="text-danger">*</span></label
+                >
+                <input
+                  name="incoterm"
+                  #Incoterm="ngModel"
+                  [(ngModel)]="precostingService.preCosting.incoterm"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="Incoterm"
+                  placeholder="Incoterm"
+                />
+              </div>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  precostingService.preCosting.incoterm == '' &&
+                  Incoterm.touched
+                "
+              >
+                Incoterm is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="incotermplace" class="label text-dark"
+                  >Incoterm Place<span class="text-danger">*</span></label
+                >
+                <input
+                  name="incotermPlace"
+                  #IncotermPlace="ngModel"
+                  [(ngModel)]="precostingService.preCosting.incotermPlace"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="incotermplace"
+                  placeholder="Incoterm Place"
+                />
+              </div>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  precostingService.preCosting.incotermPlace == '' &&
+                  IncotermPlace.touched
+                "
+              >
+                Incoterm Place is required
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Machine/Line" class="label text-dark">Machine/Line</label>
+                <input
+                  name="machineLine"
+                  #machineLine="ngModel"
+                  [(ngModel)]="precostingService.preCosting.machineLine"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="Machine/Line"
+                  placeholder="Machine/Line"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Prod/Line/Hr" class="label text-dark">Prod/Line/Hr</label>
+                <input
+                  name="prodLineHr"
+                  #prodLineHr="ngModel"
+                  [(ngModel)]="precostingService.preCosting.prodLineHr"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="Prod/Line/Hr"
+                  placeholder="Prod/Line/Hr"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CostingPer" class="label text-dark"
+                  >Costing Per<span class="text-danger">*</span></label
+                >
+                <input
+                  name="costingPer"
+                  #CostingPer="ngModel"
+                  [(ngModel)]="precostingService.preCosting.costingPer"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="CostingPer"
+                  placeholder="Costing Per"
+                />
+              </div>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  precostingService.preCosting.costingPer == '' &&
+                  CostingPer.touched
+                "
+              >
+                Costing Per is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Region" class="label text-dark"
+                  >Region</label
+                >
+                <select
+                 
+                  #regionName="ngModel"
+                  [(ngModel)]="precostingService.preCosting.regionId"
+                  class="form-control form-rounded form-control-sm"
+                  name="regionID"
+                >
+                  <option value=0>Select Region </option>
+                  <option
+                    *ngFor="let countrylist of countryInfo"
+                    [value]="countrylist.regionID"
+                    >{{ countrylist.region_Name }}</option
+                  >
+                </select>
+            
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Approved" class="label text-dark">Approved</label>
+                <input
+                  name="approvedId"
+                  #approvedId="ngModel"
+                  [(ngModel)]="precostingService.preCosting.approvedId"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="Approved"
+                  placeholder="Approved"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SewSMV" class="label text-dark"
+                  >Sew. SMV<span class="text-danger">*</span></label
+                >
+                <input
+                  name="sewSMV"
+                  #SewSMV="ngModel"
+                  [(ngModel)]="precostingService.preCosting.sewSMV"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="SewSMV"
+                  placeholder="Sew. SMV"
+                />
+              </div>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  precostingService.preCosting.sewSMV == 0 && SewSMV.touched
+                "
+              >
+                Sew. SMV is required
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SewEfficiency" class="label text-dark"
+                  >Sew Efficiency %<span class="text-danger">*</span></label
+                >
+                <input required 
+                  name="sewEfficiency"
+                  #SewEfficiency="ngModel"
+                  [(ngModel)]="precostingService.preCosting.sewEfficiency"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="SewEfficiency"
+                  placeholder="Sew Efficiency"
+                />
+              </div>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  precostingService.preCosting.sewEfficiency == 0 &&
+                  SewEfficiency.touched
+                "
+              >
+                Sew Efficiency is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CutSMV" class="label text-dark">Cut. SMV</label>
+                <input
+                  name="cutSMV"
+                  #cutSMV="ngModel"
+                  [(ngModel)]="precostingService.preCosting.cutSMV"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="CutSMV"
+                  placeholder="Cut. SMV"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CutEfficiency" class="label text-dark"
+                  >Cut Efficiency %</label
+                >
+                <input
+                  name="cutEfficiency"
+                  #cutEfficiency="ngModel"
+                  [(ngModel)]="precostingService.preCosting.cutEfficiency"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="CutEfficiency"
+                  placeholder="Cut Efficiency %"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ReadyToApproved" class="label text-dark">
+                Ready To Approved
+                </label>
+                <select
+                  name="readyToApproved"
+                
+                  #ReadyToApproved="ngModel"
+                  [(ngModel)]="
+                  precostingService.preCosting.readyToApproved
+                  "
+                  id="ReadyToApproved"
+                  class="form-control form-rounded form-control-sm"
+                >
+                <option value="">Select Ready To Approved</option>
+                <option
+                  *ngFor="let item of dropdownValueService.yesNoList"
+                  value="{{item.value}}"
+                  >{{ item.value}}</option
+                >
+                </select>
+                
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BudgetMinuite" class="label text-dark">Budget Minuite</label>
+                <input
+                  name="budgetMinuite"
+                  #budgetMinuite="ngModel"
+                  [(ngModel)]="precostingService.preCosting.budgetMinuite"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="BudgetMinuite"
+                  placeholder="Budget Minuite"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="form-group">
+                <label for="Remarks" class="label text-dark">Remarks</label>
+                <input
+                  name="remark"
+                  #remark="ngModel"
+                  [(ngModel)]="precostingService.preCosting.remark"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="Remarks"
+                  placeholder="Remarks"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Fabrication	" class="label text-dark">
+                  CLICK TO Add/VIEW TO IMAGE<span class="text-danger">*</span></label
+                >
+                <input
+                  name="image"
+                  (dblclick)="onAdd()"
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="image"
+                  placeholder="Double click"
+                  
+                />
+                
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Fileno" class="label text-dark">File no</label>
+                <input
+                  name="fileno"
+                  #fileno="ngModel"
+                  [(ngModel)]="precostingService.preCosting.fileno"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="Fileno"
+                  placeholder="File no"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="InternalRef" class="label text-dark">Internal Ref</label>
+                <input
+                  name="internalRef"
+                  #internalRef="ngModel"
+                  [(ngModel)]="precostingService.preCosting.internalRef"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="InternalRef"
+                  placeholder="Internal Ref"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CopyFrom" class="label text-dark">Copy From </label>
+                <input
+                  name="copyFrom"
+                  #copyFrom="ngModel"
+                  [(ngModel)]="precostingService.preCosting.copyFrom"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="CopyFrom"
+                  placeholder="Copy From"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Un-approverequest" class="label text-dark"
+                  >Un-approve request</label
+                >
+                <input
+                  name="unapproverequest"
+                  #unapproverequest="ngModel"
+                  [(ngModel)]="precostingService.preCosting.unapproverequest"
+                  type="text"
+                    class="form-control form-rounded form-control-sm"
+                  id="Un-approverequest"
+                  placeholder="Un-approve Request"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="Pord.Dept" class="label text-dark">Pord. Dept.</label>
+                   <input name=""  #="ngModel"
+                   [(ngModel)]="preCosting."  type="text"   class="form-control form-rounded form-control-sm"  
+                    id="Pord.Dept" placeholder="Pord. Dept.">
+                   
+                </div>
+              </div>
+            </div> -->
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <button
+                  *ngIf="editedId == null"
+                  class="mr-1"
+                  nbButton
+                  [disabled]="
+                    form.invalid ||
+                    form.value.orderId == 0 ||
+                    form.value.poId == 0 ||
+                    form.value.costingPer == '' ||
+                    form.value.Incoterm == '' ||
+                    form.value.incotermPlace == '' ||
+                    form.value.costingDate == '' ||
+                    form.value.sewSMV == 0 ||
+                    form.value.sewEfficiency == 0
+                   
+                  "
+                >
+                  Submit
+                </button>
+
+                <!-- <button  nbButton>Approved</button> -->
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group"></div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group"></div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group"></div>
+            </div>
+          </div>
+        </form>
+        <div>
+          <button
+            *ngIf="editedId != null"
+            (click)="editPreCOsting(precostingService.preCosting,poselectedItems)"
+            class="mr-1"
+            nbButton
+          >
+            Update
+          </button>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

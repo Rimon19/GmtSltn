@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Edit Members info
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="memberNameOrUserId" class="label text-dark">Member Name <span class="text-danger">*</span></label>
+                <select required #memberNameOrUserId="ngModel" 
+                [(ngModel)]="memberInfoService.memberInfo.memberNameOrUserId" class="form-control form-rounded form-control-sm  " name="memberNameOrUserId" >
+                  <option value=''>Select </option>
+                  <option *ngFor="let ui of userInfoList" [value]="ui.userId">{{ui.fullName}}({{ui.userTypeId}})</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="memberInfoService.memberInfo.memberNameOrUserId==0&&memberNameOrUserId.touched">
+              Member Name  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="teamLeaderId" class="label text-dark">Team Leader <span class="text-danger">*</span></label>
+                <select required #teamLeaderId="ngModel" (change)="onChangeTeamLeader(memberInfoService.memberInfo.teamLeaderId)"
+                [(ngModel)]="memberInfoService.memberInfo.teamLeaderId" class="form-control form-rounded form-control-sm  " name="teamLeaderId" >
+                  <option value=''>Select </option>
+                  <option *ngFor="let ui of userInfoList" [value]="ui.userId">{{ui.fullName}}({{ui.userTypeId}})</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="memberInfoService.memberInfo.teamLeaderId==0&&teamLeaderId.touched">
+              Team Leader  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Designation</label>
+                <input #designation="ngModel"
+                [(ngModel)]="memberInfoService.memberInfo.designation" class="form-control form-rounded form-control-sm  " 
+                   name="designation"   type="text" 
+                    placeholder="Designation">
+              </div>
+            </div>
+        
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Email</label>
+                <input #email="ngModel"
+                [(ngModel)]="memberInfoService.memberInfo.email" class="form-control form-rounded form-control-sm  " 
+                   name="email"   type="text" 
+                    placeholder="Email">
+              </div>
+            </div>  
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">Team Status</label>
+                <select id="status"   #status="ngModel" class="form-control form-rounded form-control-sm  " 
+                [(ngModel)]="memberInfoService.memberInfo.status"
+                  name="status">
+               <option value=''>Select Status </option>
+               <option value="Active">Active </option>
+               <option value=" In Active"> In Active </option>    
+           </select>
+         
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Contact No</label>
+                <input  #contactNo="ngModel"
+                [(ngModel)]="memberInfoService.memberInfo.contactNo" class="form-control form-rounded form-control-sm  " 
+                   name="contactNo"   type="text" 
+                    placeholder="Contact No">
+              </div>
+            </div>
+         
+        
+      
+            
+          </div>
+          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

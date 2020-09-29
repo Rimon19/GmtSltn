@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Fabric Des PreCost Entry 
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+     
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="fabNature" class="label text-dark">Fab Nature</label>
+                <input  name="fabNature" #FabNature="ngModel"
+                [(ngModel)]="fabricDesPreCostService.fabricDesPreCost.fabNature"
+               class="form-control form-rounded form-control-sm" type="text" 
+                id="fabNature" placeholder="Fab Nature">
+                
+              </div>
+              
+            </div>
+
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="construction" class="label text-dark">Construction</label>
+                <input  name="construction" #Construction="ngModel"
+                [(ngModel)]="fabricDesPreCostService.fabricDesPreCost.construction"
+               class="form-control form-rounded form-control-sm" type="text" 
+                id="construction" placeholder="Construction">
+                
+              </div>
+              
+            </div>
+
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="gsmWeight" class="label text-dark">GsmWeight</label>
+                <input  name="gsmWeight" #GsmWeight="ngModel"
+                [(ngModel)]="fabricDesPreCostService.fabricDesPreCost.gsmWeight"
+               class="form-control form-rounded form-control-sm" type="number" 
+                id="gsmWeight" placeholder="GsmWeight">
+                
+              </div>
+              
+            </div>
+
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="colorRange" class="label text-dark">Color Range</label>
+                <input  name="colorRange" #ColorRange="ngModel"
+                [(ngModel)]="fabricDesPreCostService.fabricDesPreCost.colorRange"
+               class="form-control form-rounded form-control-sm" type="text" 
+                id="colorRange" placeholder="Color Range">
+                
+              </div>
+              
+            </div>
+
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="stichLength" class="label text-dark">StichLength</label>
+                <input  name="stichLength" #StichLength="ngModel"
+                [(ngModel)]="fabricDesPreCostService.fabricDesPreCost.stichLength"
+               class="form-control form-rounded form-control-sm" type="number" 
+                id="stichLength" placeholder="StichLength">
+                
+              </div>
+              
+            </div>
+
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="processLoss" class="label text-dark">Process Loss</label>
+                <input  name="processLoss" #ProcessLoss="ngModel"
+                [(ngModel)]="fabricDesPreCostService.fabricDesPreCost.processLoss"
+               class="form-control form-rounded form-control-sm" type="number" 
+                id="processLoss" placeholder="ProcessLoss">
+                
+              </div>
+              
+            </div>
+
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="composition" class="label text-dark">Composition</label>
+                <input  name="composition" #Composition="ngModel"
+                [(ngModel)]="fabricDesPreCostService.fabricDesPreCost.composition"
+               class="form-control form-rounded form-control-sm" type="text" 
+                id="composition" placeholder="Composition">
+                
+              </div>
+              
+            </div>
+
+          
+            
+          </div>
+          <button type="submit" [disabled]="form.invalid" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

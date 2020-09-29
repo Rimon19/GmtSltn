@@ -1,0 +1,28 @@
+<div style="padding: 50px; width:400px;">
+
+  <mat-card>
+
+    <mat-card-title>Angular Material 8 Checkboxes</mat-card-title>
+
+    <mat-card-content>
+
+      <mat-list>
+
+        <mat-list-item>
+          <mat-checkbox [(ngModel)]="master_checked"
+                        [(indeterminate)]="master_indeterminate"
+                        (change)="master_change()"><b>Check/ Uncheck All</b></mat-checkbox>
+        </mat-list-item>
+
+        <mat-list-item *ngFor="let item of checkbox_list">
+          <mat-checkbox [(ngModel)]="item.checked"
+                        [disabled]="item.disabled"
+                        [labelPosition]="item.labelPosition"
+                        (change)="list_change()">{{ item.name }}</mat-checkbox>
+        </mat-list-item>
+
+      </mat-list>
+
+    </mat-card-content>
+  </mat-card>
+</div>

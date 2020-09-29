@@ -1,0 +1,941 @@
+<nb-card>
+    <nb-card-header>
+        <button (click)="backTo()" class="btn btn-outline-success">
+      <i class="fas fa-arrow-left"></i>
+    </button> Sample details
+        <button class="btn btn-outline-success float-right" (click)="SampledetailsFormAction()">
+      <i class="fa fa-plus"></i>
+    </button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="col-md-12" style="overflow-x: scroll;">
+            <div class="smart-table-container" style="width: 2500px;">
+                <form>
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th scope="col">Action</th>
+                                <th scope="col">Sample Name</th>
+                                <th scope="col">Garment Item</th>
+                                <th scope="col">SMV</th>
+                                <th scope="col">Article No</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Sample Req. Qty.</th>
+                                <th scope="col">Submn Qty.</th>
+                                <th scope="col">Delv. Start Date</th>
+                                <th scope="col">Delv. End Date</th>
+                                <th scope="col">Buyer Sub. Date</th>
+                                <th scope="col">Charge Unit</th>
+                                <th scope="col">Currency</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Comments</th>
+                            </tr>
+                        </thead>
+
+                        <tbody [formGroup]="fg" *ngFor="let fg of SampledetailsForm.controls; let i = index">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-light ml-1 form-control form-rounded form-control-sm" (click)="onDelete(fg.value.id, i)">
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                  </button>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="sampleName">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.sampleNameList"
+                      [(value)]="item.value"
+                      >{{ item.value }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['sampleName'].hasError('required') &&
+                      fg.controls['sampleName'].touched
+                    ">
+                                        Sample Name is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="garmentItem">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.garmentsItemList"
+                      [(value)]="item.id"
+                      >{{ item.itemName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['garmentItem'].hasError('required') &&
+                      fg.controls['garmentItem'].touched
+                    ">
+                                        Garment Item is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="SMV" formControlName="smv" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['smv'].hasError('required') &&
+                      fg.controls['smv'].touched
+                    ">
+                                        SMV is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Article No" formControlName="articleNo" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['articleNo'].hasError('required') &&
+                      fg.controls['articleNo'].touched
+                    ">
+                                        Article No is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="color">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.colorList"
+                      [(value)]="item.id"
+                      >{{ item.colorName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['color'].hasError('required') &&
+                      fg.controls['color'].touched
+                    ">
+                                        color is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input (dblclick)="onAdd()" class="form-control form-rounded form-control-sm" type="text" required placeholder="Sample Req. Qty." formControlName="sampleReqQty" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['sampleReqQty'].hasError('required') &&
+                      fg.controls['sampleReqQty'].touched
+                    ">
+                                        sampleReqQty is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" required placeholder="Submn Qty." formControlName="submnQty" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['submnQty'].hasError('required') &&
+                      fg.controls['submnQty'].touched
+                    ">
+                                        submnQty is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" formControlName="delvStartDate" type="text" readonly required placeholder="Delv. Start Date" [nbDatepicker]="delvStartDate" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['delvStartDate'].hasError('required') &&
+                      fg.controls['delvStartDate'].touched
+                    ">
+                                        Delv StartDate is Required.
+                                    </div>
+                                    <nb-datepicker #delvStartDate></nb-datepicker>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" formControlName="delvEndDate" type="text" readonly required placeholder="Delv. End Date" [nbDatepicker]="delvEndDatedate" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['delvEndDate'].hasError('required') &&
+                      fg.controls['delvEndDate'].touched
+                    ">
+                                        Delv. EndDate is Required.
+                                    </div>
+                                    <nb-datepicker #delvEndDatedate></nb-datepicker>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" formControlName="buyerSubDate" type="text" readonly placeholder="Buyer Sub. Date" [nbDatepicker]="buyerSubDate" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['buyerSubDate'].hasError('required') &&
+                      fg.controls['buyerSubDate'].touched
+                    ">
+                                        Buyer Sub. Date is Required.
+                                    </div>
+                                    <nb-datepicker #buyerSubDate></nb-datepicker>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Charge Unit" formControlName="chargeUnit" />
+
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" formControlName="currencyId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.currencyList"
+                      [(value)]="item.id"
+                      >{{ item.discountMethodName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['currencyId'].hasError('required') &&
+                      fg.controls['currencyId'].touched
+                    ">
+                                        Currency is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Image	" formControlName="image" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['image'].hasError('required') &&
+                      fg.controls['image'].touched
+                    ">
+                                        Image is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Comments" formControlName="comments" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['comments'].hasError('required') &&
+                      fg.controls['comments'].touched
+                    ">
+                                        Comments EndDate is Required.
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <input type="hidden" formControlName="id" />
+
+                            <button [disabled]="SampledetailsForm.invalid" *ngIf="i == count - 1" type="submit" (click)="onSubmit(SampledetailsForm)" nbButton>
+                Submit
+              </button>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-card-header>
+        <button (click)="backTo()" class="btn btn-outline-success">
+      <i class="fas fa-arrow-left"></i>
+    </button> Required Fabric
+        <button class="btn btn-outline-success float-right" (click)="RequiredFabricFormAction()">
+      <i class="fa fa-plus"></i>
+    </button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="col-md-12" style="overflow-x: scroll;">
+            <div class="smart-table-container" style="width: 2500px;">
+                <form>
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th scope="col">Action</th>
+                                <th scope="col">Sample Name</th>
+                                <th scope="col">Garment Item</th>
+                                <th scope="col">Body Part</th>
+                                <th scope="col">Fabric Nature</th>
+                                <th scope="col">Fabric Description</th>
+                                <th scope="col">GSM</th>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Color Type</th>
+                                <th scope="col">width/Dia</th>
+                                <th scope="col">Uom</th>
+                                <th scope="col">Finish Req. Qty.</th>
+                                <th scope="col">Process Loss</th>
+                                <th scope="col">Grey Req. Qty.</th>
+                                <th scope="col">Fabric Del. Date</th>
+                                <th scope="col">Fabric Source</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Remarks</th>
+                            </tr>
+                        </thead>
+
+                        <tbody [formGroup]="fg" *ngFor="let fg of RequiredFabricForm.controls; let i = index">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-light ml-1 form-control form-rounded form-control-sm" (click)="onDeleteRequiredFabric(fg.value.id, i)">
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                  </button>
+                                </td>
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="sampleName">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.sampleNameList"
+                      [(value)]="item.value"
+                      >{{ item.value }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['sampleName'].hasError('required') &&
+                      fg.controls['sampleName'].touched
+                    ">
+                                        Sample Name is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="garmentItemId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.garmentsItemList"
+                      [(value)]="item.id"
+                      >{{ item.itemName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['garmentItemId'].hasError('required') &&
+                      fg.controls['garmentItemId'].touched
+                    ">
+                                        Garment Item is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="bodyPartId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.bodyPartList"
+                      [(value)]="item.id"
+                      >{{ item.bodyPartFullName}}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['bodyPartId'].hasError('required') &&
+                      fg.controls['bodyPartId'].touched
+                    ">
+                                        Body Part is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="fabricNature">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.fabricNatureList"
+                      [(value)]="item.id"
+                      >{{ item.fabricNatureName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['fabricNature'].hasError('required') &&
+                      fg.controls['fabricNature'].touched
+                    ">
+                                        Fabric Nature is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="fabricDescriptionId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="
+                        let item of dropdownValueService.fabricDescriptionList
+                      "
+                      [(value)]="item.id"
+                      >F.N-{{ item.fabNature }},Const:{{
+                        item.construction
+                      }},comp-{{ item.composition }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['fabricDescriptionId'].hasError('required') &&
+                      fg.controls['fabricDescriptionId'].touched
+                    ">
+                                        Fabric Description is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" required placeholder="GSM" formControlName="gsm" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['gsm'].hasError('required') &&
+                      fg.controls['gsm'].touched
+                    ">
+                                        GSM is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Dia" formControlName="dia" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['dia'].hasError('required') &&
+                      fg.controls['ia'].touched
+                    ">
+                                        Dia is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="colorId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.colorList"
+                      [(value)]="item.id"
+                      >{{ item.colorName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['colorId'].hasError('required') &&
+                      fg.controls['colorId'].touched
+                    ">
+                                        Color is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="colorTypeId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.colorTypeList"
+                      [(value)]="item.id"
+                      >{{ item.colorTypeName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['colorTypeId'].hasError('required') &&
+                      fg.controls['colorTypeId'].touched
+                    ">
+                                        Color Type is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="width/Dia" formControlName="widthDia" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['widthDia'].hasError('required') &&
+                      fg.controls['widthDia'].touched
+                    ">
+                                        width/Dia is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="uomId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.uomList"
+                      [(value)]="item.id"
+                      >{{ item.uomName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['uomId'].hasError('required') &&
+                      fg.controls['uomId'].touched
+                    ">
+                                        Uom is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" required placeholder="Finish Req. Qty." formControlName="finishReqQty" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['finishReqQty'].hasError('required') &&
+                      fg.controls['finishReqQty'].touched
+                    ">
+                                        Finish Req. Qty. is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Process Loss" formControlName="processLoss" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['processLoss'].hasError('required') &&
+                      fg.controls['processLoss'].touched
+                    ">
+                                        Process Loss is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Grey Req. Qty." formControlName="greyReqQty" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['greyReqQty'].hasError('required') &&
+                      fg.controls['greyReqQty'].touched
+                    ">
+                                        Grey Req. Qty. is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input readonly [nbDatepicker]="date" class="form-control form-rounded form-control-sm" type="text" placeholder="Fabric Del. Date" formControlName="fabricDelDate" />
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['fabricDelDate'].hasError('required') &&
+                      fg.controls['fabricDelDate'].touched
+                    ">
+                                        Fabric Del. Date is Required.
+                                    </div>
+                                    <nb-datepicker #date></nb-datepicker>
+                                </td>
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" formControlName="fabricSource">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="
+                        let item of dropdownValueService.fabricSourceList
+                      "
+                      [(value)]="item.value"
+                      >{{ item.value }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['fabricSource'].hasError('required') &&
+                      fg.controls['fabricSource'].touched
+                    ">
+                                        Fabric Source is Required.
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Image" formControlName="image" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Remarks" formControlName="remarks" />
+                                </td>
+                            </tr>
+
+                            <input type="hidden" formControlName="id" />
+
+                            <button [disabled]="RequiredFabricForm.invalid" *ngIf="i == count1 - 1" type="submit" (click)="onSubmitRequiredFabricForm(RequiredFabricForm)" nbButton>
+                Submit
+              </button>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<!-- <button [disabled]="RequiredAccessoriesForm.invalid" *ngIf="i==count1-1" type="submit" (click)="onSubmitRequisitionAccessories()" nbButton>Submit</button>
+              </tbody>
+         
+           
+          </table>
+        </form>
+
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card> -->
+
+<nb-card>
+  <nb-card-header
+  > <button (click)="backTo()"
+  class="btn btn-outline-success "
+  
+>
+<i class="fas fa-arrow-left"></i>
+</button>
+  Required Accessories
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="RequiredAccessoriesFormAction()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:2500px;">
+        <form>
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Sample Name<span class="text-danger">*</span></th>
+<th scope="col">Garment Item<span class="text-danger">*</span></th>
+<th scope="col">Trims Group<span class="text-danger">*</span></th>
+<th scope="col">Supplier<span class="text-danger">*</span></th>
+<th scope="col">Brand/ Supp. Ref</th>
+<th scope="col">Description<span class="text-danger">*</span></th>
+
+<th scope="col">UOM<span class="text-danger">*</span></th>
+<th scope="col">Req/Dzn</th>
+<th scope="col">Req. Qty</th>
+<th scope="col">Acc. Del. Date</th>
+<th scope="col">Acc. Source</th>
+<th scope="col">Remarks</th>
+<th scope="col">Image</th>
+
+ 
+              </tr>
+            </thead>
+         
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of RequiredAccessoriesForm.controls;let i=index" >
+                <tr>
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm " (click)="onDeleteRequisitionAccessories(fg.value.id,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+
+                   
+      <td>              
+      <select class="form-control form-rounded form-control-sm " required formControlName="sampleName">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.sampleNameList" [(value)]="item.value" >{{item.value}}</option>
+      </select>
+      <div class="text-danger" *ngIf="fg.controls['sampleName'].hasError('required')&& fg.controls['sampleName'].touched" >
+        Sample Name is Required.
+      </div>
+    </td>
+
+    
+      <td>              
+      <select class="form-control form-rounded form-control-sm " required formControlName="garmentsItemId">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.garmentsItemList" [(value)]="item.id" >{{item.itemName}}</option>
+      </select>
+      <div class="text-danger" *ngIf="fg.controls['garmentsItemId'].hasError('required')&& fg.controls['garmentsItemId'].touched" >
+        Garments Item is Required.
+      </div>
+    </td>
+
+    
+      <td>              
+      <select class="form-control form-rounded form-control-sm " required formControlName="trimsGroupId">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.trimsgroupList" [(value)]="item.id" >{{item.trimsGroupName}}</option>
+      </select>
+      <div class="text-danger" *ngIf="fg.controls['trimsGroupId'].hasError('required')&& fg.controls['trimsGroupId'].touched" >
+        Trims Group is Required.
+      </div>
+    </td>
+
+    
+      <td>              
+      <select class="form-control form-rounded form-control-sm " required formControlName="supplierProfileId">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.subpplierList" [(value)]="item.id" >{{item.supplierName}}</option>
+      </select>
+      <div class="text-danger" *ngIf="fg.controls['supplierProfileId'].hasError('required')&& fg.controls['supplierProfileId'].touched" >
+        Supplier Profile is Required.
+      </div>
+    </td>
+
+    
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Brand/ Supp. Ref"
+        formControlName="brandOrSuppRef"
+      />
+      
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        required
+        placeholder="Description"
+        formControlName="description"
+      />
+      <div class="text-danger" *ngIf="fg.controls['description'].hasError('required')&& fg.controls['description'].touched" >
+        description is Required.
+      </div>
+      </td>
+
+      
+    
+
+      
+      <td>              
+      <select class="form-control form-rounded form-control-sm " required formControlName="uom">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.uomList" [(value)]="item.uomName" >{{item.uomName}}</option>
+      </select>
+      <div class="text-danger" *ngIf="fg.controls['uom'].hasError('required')&& fg.controls['uom'].touched" >
+        uom is Required.
+      </div>
+    </td>
+
+    
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Req/Dzn"
+        formControlName="reqDzn"
+      />
+      
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Req. Qty"
+        formControlName="reqQty"
+      />
+     
+      </td>
+
+      
+      <input
+      class="form-control form-rounded form-control-sm " 
+      formControlName="accDelDate"
+      type="text"
+      readonly
+      
+      placeholder="Acc. Del. Date"
+      [nbDatepicker]="date">
+      
+    <nb-datepicker #date></nb-datepicker>
+  
+      
+      <td>              
+      <select class="form-control form-rounded form-control-sm "  formControlName="accSource">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService.accountSourceList" [(value)]="item.value" >{{item.value}}</option>
+      </select>
+     
+    </td>
+
+    
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Remarks"
+        formControlName="remarks"
+      />
+     
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Image"
+        formControlName="image"
+      />
+      
+      </td>
+
+      
+
+                </tr>
+
+                <input
+             type="hidden"
+                formControlName="id"
+               
+              />
+
+                <button [disabled]="RequiredAccessoriesForm.invalid" *ngIf="i==count2-1" type="submit" (click)="onSubmitRequisitionAccessories()" nbButton>Submit</button>
+              </tbody>
+         
+           
+          </table>
+        </form>
+
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<!-- Required Embellishment  -->
+<nb-card>
+    <nb-card-header>
+        <button (click)="backTo()" class="btn btn-outline-success">
+      <i class="fas fa-arrow-left"></i>
+    </button> Required Embellishment
+        <button class="btn btn-outline-success float-right" (click)="RequiredEmbellishmentFormAction()">
+      <i class="fa fa-plus"></i>
+    </button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="col-md-12" style="overflow-x: scroll;">
+            <div class="smart-table-container" style="width: 2500px;">
+                <form>
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th scope="col">Action</th>
+                                <!-- <th scope="col">Sample Fabric Booking</th>
+<th scope="col">OrderId</th>
+<th scope="col">SampleRequisitionId</th> -->
+                                <th scope="col">Sample Name</th>
+                                <th scope="col">Garment Item</th>
+                                <th scope="col">Embellishment Name</th>
+                                <th scope="col">Embellishment Type</th>
+                                <th scope="col">Body Part Name</th>
+                                <th scope="col">supplier</th>
+                                <th scope="col">Remarks</th>
+                                <th scope="col">Delivery Date</th>
+                                <th scope="col">Image</th>
+                            </tr>
+                        </thead>
+
+                        <tbody [formGroup]="fg" *ngFor="
+                let fg of RequiredEmbellishmentForm.controls;
+                let i = index
+              ">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-light ml-1 form-control form-rounded form-control-sm" (click)="onDelete(fg.value.id, i)">
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                  </button>
+                                </td>
+
+                                <!-- <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="Sample Fabric Booking"
+        formControlName="sampleFabricBookingId"
+      />
+      
+      </td> -->
+
+                                <!--       
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        
+        placeholder="OrderId"
+        formControlName="orderId"
+      />
+      
+      </td> -->
+
+                                <!-- <td>              
+      <select class="form-control form-rounded form-control-sm "  formControlName="sampleRequisitionId">
+      <option value="">Select</option>
+      <option *ngFor="let item of dropdownValueService." [(value)]="item." >{{item.}}</option>
+      </select>
+      
+    </td> -->
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="sampleName">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.sampleNameList"
+                      [(value)]="item.value"
+                      >{{ item.value }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['sampleName'].hasError('required') &&
+                      fg.controls['sampleName'].touched
+                    ">
+                                        Sample Name is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="garmentItemId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.garmentsItemList"
+                      [(value)]="item.id"
+                      >{{ item.itemName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['garmentItemId'].hasError('required') &&
+                      fg.controls['garmentItemId'].touched
+                    ">
+                                        Garment Item is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="embellishmentName">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="
+                        let item of dropdownValueService.embellishmentNameList
+                      "
+                      [(value)]="item.value"
+                      >{{ item.value }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['embellishmentName'].hasError('required') &&
+                      fg.controls['embellishmentName'].touched
+                    ">
+                                        Embellishment Name is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" required formControlName="embellishmentTypeListId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="
+                        let item of dropdownValueService.embellishmentTypeList
+                      "
+                      [(value)]="item.id"
+                      >{{ item.typeName }}</option
+                    >
+                  </select>
+                                    <div class="text-danger" *ngIf="
+                      fg.controls['embellishmentTypeListId'].hasError(
+                        'required'
+                      ) && fg.controls['embellishmentTypeListId'].touched
+                    ">
+                                        Embellishment Type is Required.
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" formControlName="bodyPartEntrieId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.bodyPartList"
+                      [(value)]="item.id"
+                      >{{ item.bodyPartFullName }}</option
+                    >
+                  </select>
+                                </td>
+
+                                <td>
+                                    <select class="form-control form-rounded form-control-sm" formControlName="supplierProfileId">
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.subpplierList"
+                      [(value)]="item.id"
+                      >{{ item.supplierName }}</option
+                    >
+                  </select>
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Remarks" formControlName="remarks" />
+                                </td>
+
+                                <input class="form-control form-rounded form-control-sm" formControlName="deliveryDate" type="text" readonly placeholder="Delivery Date" [nbDatepicker]="date" />
+
+                                <nb-datepicker #date></nb-datepicker>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Image" formControlName="image" />
+                                </td>
+                            </tr>
+
+                            <input type="hidden" formControlName="id" />
+
+                            <button [disabled]="RequiredEmbellishmentForm.invalid" *ngIf="i == count3 - 1" type="submit" (click)="onRequiredEmbellishmentSubmit()" nbButton>
+                Submit
+              </button>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

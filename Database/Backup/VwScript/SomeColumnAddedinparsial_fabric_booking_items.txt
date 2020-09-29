@@ -1,0 +1,14 @@
+ALTER TABLE public."parsial_fabric_booking_items" ADD COLUMN "Job_No" character;
+ALTER TABLE public."parsial_fabric_booking_items" ADD COLUMN "Items" character;
+ALTER TABLE public."parsial_fabric_booking_items" ADD COLUMN "Fabric_Nature" character;
+ALTER TABLE public."parsial_fabric_booking_items" ADD COLUMN "Fabric_Source" character;
+ALTER TABLE public."parsial_fabric_booking_items" ADD COLUMN "UOM" character;
+
+------All Column Modified-------
+
+ALTER TABLE "parsial_fabric_booking_items" ALTER COLUMN "UOM" TYPE varchar(255);
+ALTER TABLE "parsial_fabric_booking_items" ALTER COLUMN "UOM" TYPE varchar(255);
+ALTER TABLE public."parsial_fabric_booking_items" ALTER COLUMN "Job_No" TYPE varchar(255);
+ALTER TABLE public."parsial_fabric_booking_items" ALTER COLUMN "Items" TYPE varchar(255);
+ALTER TABLE public."parsial_fabric_booking_items" ALTER COLUMN "Fabric_Nature" TYPE varchar(255);
+ALTER TABLE public."parsial_fabric_booking_items" ALTER COLUMN "Fabric_Source" TYPE varchar(255);

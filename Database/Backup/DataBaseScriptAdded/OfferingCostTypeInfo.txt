@@ -1,0 +1,40 @@
+CREATE TABLE public."OfferingCostTypeInfo"
+(
+    "Id" serial primary key,
+    "OfferingCostTypeName" character varying(100)
+)
+
+
+
+INSERT INTO public."OfferingCostTypeInfo"(
+	 "OfferingCostTypeName")
+	VALUES 
+	('Yarn Price'),
+	('Lycra Yarn Price'),
+	('Knitting Charge Tk.'),
+	('Fab. Dye. Charge with E+S'),
+	('Yarn Deying Charge'),
+	('Wash  With E+S'),
+	('Peach Finish'),
+	('Stander + Compecting'),
+	('Total'),
+	('Deying Process Lost Percentage'),
+	('Fabric Price'),
+	('Fabric Value'),
+	('Accessories factory'),
+	('Accessories Nomination'),
+	('Print'),
+	('Embroidery'),
+	('All over print'),
+	('Woven Fabrics'),
+	('CM'),
+	('TEST'),
+	('CIF Cost'),
+	('Total Cost'),
+	('L/C + Com Charge Percentage'),
+	('Total Cost'),
+	('Total Cost/pc'),
+	('Price/pc With profit Percentage'),
+	('Buying Commssion'),
+	('FOB With B.Com Percentage');
+	

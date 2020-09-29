@@ -1,0 +1,6 @@
+CREATE TABLE public."TrimsGroup"
+(
+     "Id"  serial primary key,
+    "TrimsGroupName" character varying(100),
+    "status" character varying(100)
+)

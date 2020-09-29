@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Report Setting  Update 
+    </nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="companyId" class="label">
+                    Company Name <span class="text-danger">*</span></label>
+                    <select required name="companyId" #CompanyId="ngModel"
+                    [(ngModel)]="reportSettingService.reportSetting.companyId"
+                     id="companyId"  
+                    class="form-control text-responsive" >
+                    <option [ngValue]=0>Select Company</option>
+                    <option *ngFor="let companyList of company" [value]="companyList.compId">{{companyList.companyName}}</option>
+                   
+               </select>
+               <div class="text-left text-danger"
+               *ngIf="reportSettingService.reportSetting.companyId==0&&CompanyId.touched">
+               Company Name  is required
+             </div>
+                </div>
+                
+              </div>
+              
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="moduleId" class="label">
+                    Module Name <span class="text-danger">*</span></label>
+                    <select required name="moduleId" #ModuleId="ngModel"
+                    [(ngModel)]="reportSettingService.reportSetting.moduleId"
+                     id="moduleId"  
+                    class="form-control text-responsive" >
+                    <option [ngValue]=0>Select Module</option>
+                    <option *ngFor="let modulesList of modules" [value]="modulesList.id">{{modulesList.moduleName}}</option>
+                   
+               </select>
+               <div class="text-left text-danger"
+               *ngIf="reportSettingService.reportSetting.moduleId==0&&ModuleId.touched">
+               Module Name  is required
+             </div>
+                </div>
+                
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="reportId" class="label">
+                    Report Name <span class="text-danger">*</span></label>
+                    <select required  name="reportId" #ReportId="ngModel"
+                    [(ngModel)]="reportSettingService.reportSetting.reportId"
+                     id="reportId"  
+                    class="form-control text-responsive" >
+                    <option [ngValue]=0>Select Report</option>
+                    <option *ngFor="let reportsList of reports" [value]="reportsList.id">{{reportsList.reportName}}</option>
+                   
+               </select>
+               <div class="text-left text-danger"
+               *ngIf="reportSettingService.reportSetting.reportId==0&&ReportId.touched">
+               Report Name  is required
+             </div>
+                </div>
+                
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="reportFormatId" class="label">
+                    Report Format Name <span class="text-danger">*</span></label>
+                    <select required name="reportFormatId" #ReportFormatId="ngModel"
+                    [(ngModel)]="reportSettingService.reportSetting.reportFormatId"
+                     id="reportFormatId"  
+                    class="form-control text-responsive" >
+                    <option [ngValue]=0>Select Report Format</option>
+                    <option *ngFor="let reportFormatsList of reportFormats" [value]="reportFormatsList.id">{{reportFormatsList.reportFormatName}}</option>
+                   
+               </select>
+               <div class="text-left text-danger"
+               *ngIf="reportSettingService.reportSetting.reportFormatId==0&&ReportFormatId.touched">
+               Report Format Name  is required
+             </div>
+                </div>
+                
+              </div>
+  
+              
+  
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="status" class="label">Status</label>
+                     <select  name="status" #Status="ngModel"
+                     [(ngModel)]="reportSettingService.reportSetting.status"
+                      id="Status" 
+                      class="form-control text-responsive" >
+                     <option value=''>Select Status</option>
+                     <option  *ngFor="let btnAction of Active_Inactive" 
+                     value="{{btnAction.val}}">{{btnAction.btn}}</option> 
+                     
+                 </select>
+                 
+                </div>
+              </div>
+              
+             
+            </div>
+           
+            <div class="row">
+              <div class="col-sm-3 ">
+                <div class="form-group ">
+                  <button  class="mr-1"
+                   [disabled]="reportSettingService.reportSetting.companyId==0||reportSettingService.reportSetting.moduleId==0||reportSettingService.reportSetting.reportId==0||reportSettingService.reportSetting.reportFormatId==0" nbButton
+                    (click)="update(reportSettingService.reportSetting)">Update</button>
+                
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                 
+                </div>
+              </div>
+            </div> 
+          
+       
+            
+          </form>
+        </nb-card-body>
+     
+    </nb-card>
+  </div>
+</div>
+

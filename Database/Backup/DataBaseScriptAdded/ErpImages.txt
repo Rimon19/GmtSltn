@@ -1,0 +1,9 @@
+create table public."ErpImages"(
+"Id" serial primary key,
+"PageId" integer,
+"PageSpecificationId" integer,
+"ImageName" character varying(200),
+"ImagePath" character varying(300),
+"EntryDate" character varying(100),
+"EntryBy" character varying(100)
+)

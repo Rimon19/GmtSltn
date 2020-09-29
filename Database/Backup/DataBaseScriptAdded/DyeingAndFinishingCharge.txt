@@ -1,0 +1,15 @@
+create table public."DyeingAndFinishingCharge"(
+"Id" serial primary key,
+"CompanyName" character varying(100),
+"ConstCompo" character varying(100),
+"ProcessType" character varying(100),
+"ProcessName" character varying(100),
+"Color" character varying(100),
+"WidthDiatype" character varying(100),
+"InHouseRate" character varying(100),
+"UOMId" integer,
+"Ratetype" character varying(100),
+"CustomerRate" character varying(100),
+"SubconBuyer" character varying(100),
+"Status" character varying(100)
+)

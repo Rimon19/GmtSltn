@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backToTNATaskNameEntryHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>TNA Task Name Edit 
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="tnaTaskName" class="label text-dark">TNA Task Name <span class="text-danger">*</span></label>
+                <input required name="tnaTaskName" #TnaTaskName="ngModel"
+                [(ngModel)]="tNATaskNameEntryService.tNATaskNameEntry.tnaTaskName"
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="tnaTaskName" placeholder="TNA Task Name">
+                <div class="text-left text-danger"
+               *ngIf="tNATaskNameEntryService.tNATaskNameEntry.tnaTaskName==''&&TnaTaskName.touched">
+               TNA Task Name is required
+             </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">Status <span class="text-danger">*</span></label>
+                   <select required name="status" #Status="ngModel"
+                   [(ngModel)]="tNATaskNameEntryService.tNATaskNameEntry.status"
+                    id="Status" 
+                    class="form-control form-rounded form-control-sm  ">
+                   <option value=''>Select Status</option>
+                   <option  *ngFor="let btnAction of Active_Inactive" 
+                   value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                   
+               </select>
+               <div class="text-left text-danger"
+               *ngIf="tNATaskNameEntryService.tNATaskNameEntry.status==''&&Status.touched">
+               Status is required
+             </div>
+              </div>
+            </div>
+            
+          </div>
+          <button type="submit" [disabled]="form.invalid" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

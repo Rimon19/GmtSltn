@@ -1,0 +1,5 @@
+create table public."ItemCategory"(
+ "Id" serial primary key,
+ "ItemCategoryName" character varying(100),
+ "Status" character varying(100)
+)  

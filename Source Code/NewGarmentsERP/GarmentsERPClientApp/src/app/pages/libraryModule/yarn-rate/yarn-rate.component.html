@@ -1,0 +1,75 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+      
+  
+       
+          <div class="example-header">
+           
+            <h5>Yarn Rate</h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            </ng-container>
+              <!-- Fav Column -->
+              <ng-container matColumnDef="supplierId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Supplier</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.supplierId}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="yarnCountId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Yarn Count </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.yarnCountId}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="compositionId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Composition </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.compositionId}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="percentage">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">%</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.percentage}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Type </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.type}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="rateOrKg">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Rate/Kg </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.rateOrKg}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="effectiveDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Effective Date </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.effectiveDate|date}}</mat-cell>
+                 
+              </ng-container>
+     
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+       
+       
+  
+    
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>

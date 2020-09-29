@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Buyer Wies Season Entry 
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="buyerName" class="label text-dark">Buyer Name<span class="text-danger">*</span></label>
+                <select required name="buyerId" [(ngModel)]="buyerWiesSeasonService.buyerWiesSeason.buyerId"
+                id="buyerName" #BuyerName="ngModel" 
+               class="form-control form-rounded form-control-sm" >
+               <option [ngValue]=0>Select Buyer Name</option>
+               <option *ngFor="let buyerProfileEntryList of buyerProfileListItems" [value]="buyerProfileEntryList.id">{{buyerProfileEntryList.contactName}}</option>
+               
+                </select>
+          
+              </div>
+              <div class="text-left text-danger"
+              *ngIf="buyerWiesSeasonService.buyerWiesSeason.buyerId==0&&BuyerName.touched">
+              Buyer Name is required
+            </div>
+            </div>
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="seasonName" class="label text-dark">Season Name <span class="text-danger">*</span></label>
+                <input required name="seasonName" #SeasonName="ngModel"
+                [(ngModel)]="buyerWiesSeasonService.buyerWiesSeason.seasonName"
+               class="form-control form-rounded form-control-sm" type="text" 
+                id="seasonName" placeholder="Season Name">
+                <div class="text-left text-danger"
+               *ngIf="buyerWiesSeasonService.buyerWiesSeason.seasonName==''&&SeasonName.touched">
+               Season Name is required
+             </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <button type="submit" [disabled]="form.invalid||buyerWiesSeasonService.buyerWiesSeason.buyerId==0" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

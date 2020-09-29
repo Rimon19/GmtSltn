@@ -1,0 +1,160 @@
+<h4 class="dispaly-4">Garments Order Entry</h4>
+<hr>
+<form #form="ngForm" autocomplete="off"  (submit)="onSubmit(form)">
+  <!--First Row for order Entry-->
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Order No</label>
+      <input name="OrderNo" class="form-control" [(ngModel)]="formData.OrderNo">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Company Name</label>
+      <select name="CompanyId" class="form-control" [(ngModel)]="formData.CompanyId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Location Name</label>
+      <select name="LocationId" class="form-control" [(ngModel)]="formData.LocationId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Buyer Name</label>
+      <select name="BuyerId" class="form-control" [(ngModel)]="formData.BuyerId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Style No</label>
+      <input name="StyleRef" class="form-control" [(ngModel)]="formData.StyleRef">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Items</label>
+      <select name="Items" class="form-control" >
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+  </div>
+  <!--Second Row for order Entry-->
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Prod. Dept</label>
+      <input name="ProdDeptId" class="form-control" [(ngModel)]="formData.ProdDeptId">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Sub. Dept</label>
+      <select name="SubDeptId" class="form-control" [(ngModel)]="formData.SubDeptId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Currency</label>
+      <select name="CurrencyId" class="form-control" [(ngModel)]="formData.CurrencyId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Country</label>
+      <select name="Country" class="form-control">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Product Category</label>
+      <select name="ProductCatId" class="form-control" [(ngModel)]="formData.ProductCatId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Marchandisert</label>
+      <select name=" DealingMerchantId" class="form-control" [(ngModel)]="formData.DealingMerchantId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+  </div>
+  <!--Third Row for order Entry-->
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Teamleader</label>
+      <select name="Teamleader" class="form-control" [(ngModel)]="formData.TeamLeaderId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>BH Merchant</label>
+      <input name="BHMerchant" class="form-control" [(ngModel)]="formData.BHMerchant">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Remarks</label>
+      <input name="Remarks" class="form-control" [(ngModel)]="formData.Remarks">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Ship Mode</label>
+      <select name="ShipmentModeId" class="form-control"[(ngModel)]="formData.ShipmentModeId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Order Uom</label>
+      <select name="OrderUomId" class="form-control" [(ngModel)]="formData.OrderUomId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>SMV</label>
+      <input name="SMV" class="form-control" [(ngModel)]="formData.Smv">
+    </div>
+  </div>
+  <div style="margin-left: 859px;margin-top:-2px;">
+    <th>
+      <a class="btn btn-sm btn-success text-white">Item Details</a>
+    </th>
+  </div>
+  <!--Fourth Row for order Entry-->
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Packing</label>
+      <select name="PackingId" class="form-control" [(ngModel)]="formData.PackingId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Season</label>
+      <select name="SeasonId" class="form-control" [(ngModel)]="formData.SeasonId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Agent</label>
+      <select name="AgentId" class="form-control" [(ngModel)]="formData.AgentId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label>User</label>
+      <select name="UserId" class="form-control" [(ngModel)]="formData.UserId">
+        <option value="0">-Select-</option>
+      </select>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Order Image</label>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <span class="btn btn-default btn-file">
+              Browse… <input type="file" id="imgInp">
+            </span>
+          </span>
+          <input type="text" class="form-control">
+        </div>
+        <img id='img-upload' />
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+  </div>
+</form>

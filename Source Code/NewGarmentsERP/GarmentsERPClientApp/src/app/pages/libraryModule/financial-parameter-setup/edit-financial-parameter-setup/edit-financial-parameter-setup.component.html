@@ -1,0 +1,291 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backToaFinancialParameterSetupHomePage()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i>
+      </button> Edit Financial Parameter Setup
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="companyName" class="label text-dark">
+                  Company Name <span class="text-danger">*</span></label>
+                  <select id="companyName" required name="companyName" #CompanyName="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.companyName"
+                    class="form-control form-rounded form-control-sm" >
+                   <option value=''>Select Company Name</option>
+                   <option  *ngFor="let btnAction of company" 
+                   value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="financialParameterSetupService.financialParameterSetup.companyName==''&&CompanyName.touched">
+              Company Name  is required
+            </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="applyingPeriod" class="label text-dark">
+                  Applying Period<span class="text-danger">*</span> </label>
+                <input required name="applyingPeriod" #ApplyingPeriod="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.applyingPeriod"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="applyingPeriod" [nbDatepicker]="applyingPeriod" placeholder="Applying Period">
+                <nb-datepicker #applyingPeriod></nb-datepicker>
+                <div class="text-left text-danger"
+              *ngIf="financialParameterSetupService.financialParameterSetup.applyingPeriod==''&&ApplyingPeriod.touched">
+              Applying Period  is required
+            </div>
+              </div>
+
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="to" class="label text-dark">
+                  To</label>
+                <input   name="to" #To="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.to"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="to" [nbDatepicker]="to" placeholder="To">
+                <nb-datepicker #to></nb-datepicker>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="bepcm" class="label text-dark">
+                  BEP CM %</label>
+                  <input  name="bepcm" #Bepcm="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.bepcm"
+                  class="form-control form-rounded form-control-sm" type="text" 
+                  id="bepcm" placeholder="BEP CM%">
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="askingProfit" class="label text-dark">
+                  Asking Profit %<span class="text-danger">*</span> </label>
+                <input required name="askingProfit" #AskingProfit="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.askingProfit"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="askingProfit" placeholder="Asking Profit% ">
+                <div class="text-left text-danger"
+                *ngIf="financialParameterSetupService.financialParameterSetup.askingProfit==0&&AskingProfit.touched">
+                Asking Profit  is required
+              </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="askingCM" class="label text-dark">
+                  Asking CM % </label>
+                <input   name="noOfFactoryMachine" #askingCM="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.askingCM"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="askingCM" placeholder="Asking CM%">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="noOfFactoryMachine" class="label text-dark">
+                  No. of Factory Machine<span class="text-danger">*</span> </label>
+                <input  required name="noOfFactoryMachine" #NoOfFactoryMachine="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.noOfFactoryMachine"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="noOfFactoryMachine" placeholder="No. Of Factory Machine">
+                <div class="text-left text-danger"
+                *ngIf="financialParameterSetupService.financialParameterSetup.noOfFactoryMachine==0&&NoOfFactoryMachine.touched">
+                No. of Factory Machine  is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="monthlyCMExpense" class="label text-dark">
+                  Monthly CM Expense<span class="text-danger">*</span> </label>
+                <input  required name="monthlyCMExpense" #MonthlyCMExpense="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.monthlyCMExpense"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="monthlyCMExpense" placeholder="Monthly CM Expense">
+                <div class="text-left text-danger"
+                *ngIf="financialParameterSetupService.financialParameterSetup.monthlyCMExpense==0&&MonthlyCMExpense.touched">
+                Monthly CM Expense  is required
+              </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="workingHour" class="label text-dark">
+                  Working Hour<span class="text-danger">*</span></label>
+                  <input required name="workingHour" #WorkingHour="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.workingHour"
+                  class="form-control form-rounded form-control-sm" type="text" 
+                  id="workingHour" placeholder="Working Hour">
+                  <div class="text-left text-danger"
+                  *ngIf="financialParameterSetupService.financialParameterSetup.workingHour==0&&WorkingHour.touched">
+                  Working Hour is required
+                </div>
+                </div>
+
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="costPerMinute" class="label text-dark">
+                  Cost Per Minute<span class="text-danger">*</span></label>
+                <input required name="costPerMinute" #CostPerMinute="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.costPerMinute"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="costPerMinute" placeholder="Cost Per Minute">
+                <div class="text-left text-danger"
+                *ngIf="financialParameterSetupService.financialParameterSetup.costPerMinute==0&&CostPerMinute.touched">
+                Cost Per Minute  is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="actualCM" class="label text-dark">
+                  Actual CM </label>
+                  <input  name="actualCM" #ActualCM="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.actualCM"
+                  class="form-control form-rounded form-control-sm" type="text" 
+                  id="actualCM" placeholder="Contact Person">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="askingAVGRate" class="label text-dark">Asking AVG Rate<span class="text-danger">*</span></label>              
+                <input  required name="askingAVGRate" #AskingAVGRate="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.askingAVGRate"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="askingAVGRate" placeholder="askingAVGRate">
+                <div class="text-left text-danger"
+                *ngIf="financialParameterSetupService.financialParameterSetup.askingAVGRate==0&&AskingAVGRate.touched">
+                Asking AVG Rate  is required
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Remark" class="label text-dark">
+                  Status<span class="text-danger">*</span></label>
+                  <select required name="status" #Status="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.status" 
+                  id="status" 
+                   class="form-control form-rounded form-control-sm" >
+                 <option value=''>Select Status</option>
+                 <option  *ngFor="let btnAction of Active_Inactive" 
+                 value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="financialParameterSetupService.financialParameterSetup.status==''&&Status.touched">
+             Status  is required
+           </div>
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="maxProfi" class="label text-dark">
+                  Max Profit % </label>
+                  <input   name="maxProfi" #maxProfi="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.maxProfi"
+                  class="form-control form-rounded form-control-sm" type="text" 
+                  id="maxProfi" placeholder="maxProfi">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="depreciationAndAmortization" class="label text-dark">Depreciation & Amortization %</label>              
+                
+                <input   name="depreciationAndAmortization" #DepreciationAndAmortization="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.depreciationAndAmortization"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="depreciationAndAmortization" placeholder="Remark">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="interestExpenses" class="label text-dark">
+                  Interest Expenses %	</label>
+                  <input required name="interestExpenses" #interestExpenses="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.interestExpenses" 
+                  class="form-control form-rounded form-control-sm" type="text" 
+                  id="interestExpenses" placeholder="Remark">
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">      
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="incomeTax" class="label text-dark">
+                  Income Tax % </label>
+                <input   name="incomeTax" #incomeTax="ngModel"
+                [(ngModel)]="financialParameterSetupService.financialParameterSetup.incomeTax"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="incomeTax" placeholder="incomeTax">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="operatingExpenses" class="label text-dark">
+                  Operating Expenses % </label>
+                  <input   name="operatingExpenses" #operatingExpenses="ngModel"
+                  [(ngModel)]="financialParameterSetupService.financialParameterSetup.operatingExpenses"
+                  class="form-control form-rounded form-control-sm" type="text" 
+                  id="operatingExpenses" placeholder="Remark">
+              </div>
+              
+            </div>
+          </div>
+          <button type="submit"  [disabled]="form.invalid||
+          financialParameterSetupService.financialParameterSetup.askingProfit==0||
+          financialParameterSetupService.financialParameterSetup.noOfFactoryMachine==0||
+          financialParameterSetupService.financialParameterSetup.monthlyCMExpense==0||
+          financialParameterSetupService.financialParameterSetup.workingHour==0||
+          financialParameterSetupService.financialParameterSetup.costPerMinute==0||
+          financialParameterSetupService.financialParameterSetup.askingAVGRate==0||
+          financialParameterSetupService.financialParameterSetup.status==''"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

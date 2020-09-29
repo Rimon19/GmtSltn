@@ -1,0 +1,37 @@
+create table public."MultiJobWiseServiceBookingKnitting"(
+"Id" serial primary key,
+  "BookingNo" character varying(100),
+"MonthId" integer,
+"YearId" integer,
+"BuyerProfileId" integer,
+"CurrencyId" integer,
+"ExchangeRate" integer,
+"BookingDate" character varying(100),
+"DeliveryDate" character varying(100),
+"PayMode" character varying(100),
+"Source" character varying(100),
+"SupplierProfileId" integer,
+"ReadyToApproved" character varying(100),
+"Attention" character varying(100),
+"Remark" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "Status" character varying(100),
+
+"MerchandApprovalDate" character varying(100),
+    "MerchandApproval" boolean,
+    "ApprovedByMerchandUserId" character varying(100),
+
+    "AgmApprovalDate" character varying(100),
+    "AgmApproval" boolean,
+    "ApprovedByAgmUserId" character varying(100),
+
+     "GmApprovalDate" character varying(100),
+     "GmApproval" boolean,
+     "ApprovedByGmUserId" character varying(100),
+
+     "MdApprovalDate" character varying(100),
+     "MdApproval" boolean,
+     "ApprovedByMdUserId" character varying(100)
+  )

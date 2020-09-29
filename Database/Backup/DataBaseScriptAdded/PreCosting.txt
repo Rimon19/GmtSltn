@@ -1,0 +1,64 @@
+-- Table: public."PreCosting"
+
+-- DROP TABLE public."PreCosting";
+
+CREATE TABLE public."PreCosting"
+(
+    "PrecostingId" serial primary key,
+    "OrderId" integer,
+    "CostingDate" date,
+    "Incoterm" character varying(100) COLLATE pg_catalog."default",
+    "IncotermPlace" character varying(100) COLLATE pg_catalog."default",
+    "eR" numeric(255,0),
+    "CutSMV" numeric(255,0),
+    "SewSMV" numeric(255,0),
+    "QuotationId" integer,
+    "ApprovedId" integer,
+    "currencyId" integer,
+    "jobQty" integer,
+    "companyId" integer,
+    "orderUOMId" integer,
+    "RegionId" integer,
+    "BudgetMinuite" integer,
+    "StyleRef" character varying(255) COLLATE pg_catalog."default",
+    "StyleDesc" character varying(255) COLLATE pg_catalog."default",
+    "Remark" character varying(255) COLLATE pg_catalog."default",
+    agent character varying(255) COLLATE pg_catalog."default",
+    "machineLine" character varying(255) COLLATE pg_catalog."default",
+    "prodLineHr" character varying(255) COLLATE pg_catalog."default",
+    "ReadyToApproved" character varying(255) COLLATE pg_catalog."default",
+    "imagesPath" character varying(300) COLLATE pg_catalog."default",
+    "Fileno" character varying(255) COLLATE pg_catalog."default",
+    "internalRef" character varying(255) COLLATE pg_catalog."default",
+    "CopyFrom" character varying(255) COLLATE pg_catalog."default",
+    "Unapproverequest" character varying(255) COLLATE pg_catalog."default",
+    "PoId" character varying(400),
+    "BuyerId" integer,
+    "CutEfficiency" numeric(100,0),
+    "SewEfficiency" double precision,
+
+
+
+    "Status" character varying(100),
+    "EntryDate" character varying(100),
+    "EntryBy" character varying(100),
+
+    "MerchandApprovalDate" character varying(100),
+    "MerchandApproval" boolean,
+    "ApprovedByMerchandUserId" character varying(100),
+
+    "AgmApprovalDate" character varying(100),
+    "AgmApproval" boolean,
+    "ApprovedByAgmUserId" character varying(100),
+
+     "GmApprovalDate" character varying(100),
+     "GmApproval" boolean,
+     "ApprovedByGmUserId" character varying(100),
+
+     "MdApprovalDate" character varying(100),
+     "MdApproval" boolean,
+     "ApprovedByMdUserId" character varying(100)
+
+
+)
+

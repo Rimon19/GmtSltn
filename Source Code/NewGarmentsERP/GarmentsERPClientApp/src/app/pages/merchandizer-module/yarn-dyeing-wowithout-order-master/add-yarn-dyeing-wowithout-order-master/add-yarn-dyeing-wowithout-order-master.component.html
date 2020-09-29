@@ -1,0 +1,345 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Yarn Dyeing WO Without Order</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+
+          <div class="row">
+          <div class="col-sm-3">
+<div class="form-group">
+ <label for="YarnDyeingWoNo" class="label text-dark">
+   Yarn Dyeing Wo No</label
+ >
+ <input
+   name="yarnDyeingWoNo"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.yarnDyeingWoNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="YarnDyeingWoNo"
+   placeholder=" Yarn Dyeing Wo No"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="YarnDyeingFactory" class="label text-dark">
+      Yarn Dyeing Factory
+      <span class="text-danger">*</span> </label>
+      <select
+        name="yarnDyeingFactory"
+        required
+        #YarnDyeingFactory="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.yarnDyeingFactory
+        "
+        id="YarnDyeingFactory"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Yarn Dyeing Factory</option>
+      <option
+        *ngFor="let item of dropdownValueService.subpplierList "
+        value="{{item.id}}"
+        >{{ item.supplierName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.yarnDyeingFactory== '' && YarnDyeingFactory.touched
+        "
+      >
+      Yarn Dyeing Factory is required
+      </div>
+    </div>
+  </div>
+     <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingDate" class="label text-dark">
+        Booking Date<span class="text-danger">*</span>
+      </label>
+      <input 
+        name="bookingDate"
+        required
+        #bookingDate="ngModel"
+        [(ngModel)]="
+          yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.bookingDate
+        "          
+        type="date"
+        class="form-control form-rounded form-control-sm"
+        id="BookingDate"
+        
+        placeholder="Booking Date"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.bookingDate ==
+            '' &&bookingDate.touched
+        "
+      >
+      Booking Date is required
+      </div>
+     
+    </div>
+  </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="Attention" class="label text-dark">
+   Attention</label
+ >
+ <input
+   name="attention"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.attention
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Attention"
+   placeholder=" Attention"
+ />
+</div>
+</div>
+</div>
+
+<div class="row">
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="CurrencyId" class="label text-dark">
+      Currency
+      </label>
+      <select
+        name="currencyId"
+      
+        #CurrencyId="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.currencyId
+        "
+        id="CurrencyId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Currency</option>
+      <option
+        *ngFor="let item of dropdownValueService.currencyList"
+        value="{{item.id}}"
+        >{{ item.discountMethodName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="ExchangeRate" class="label text-dark">
+   Exchange Rate</label
+ >
+ <input
+   name="exchangeRate"    
+   [(ngModel)]="
+   yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.exchangeRate
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="ExchangeRate"
+   placeholder=" Exchange Rate"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PayMode" class="label text-dark">
+      Pay Mode
+      <span class="text-danger">*</span> </label>
+      <select
+        name="payMode"
+        required
+        #PayMode="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.payMode
+        "
+        id="PayMode"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Pay Mode</option>
+      <option
+        *ngFor="let item of dropdownValueService.payModeList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.payMode== '' && PayMode.touched
+        "
+      >
+      Pay Mode is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Source" class="label text-dark">
+      Source
+      </label>
+      <select
+        name="source"
+      
+        #Source="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.source
+        "
+        id="Source"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.sourceList "
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+
+</div>
+<div class="row">
+     <div class="col-sm-3">
+    <div class="form-group">
+      <label for="GorYIssueStart" class="label text-dark">
+        G/Y Issue Start
+      </label>
+      <input 
+        name="gorYIssueStart"
+        
+        #gorYIssueStart="ngModel"
+        [(ngModel)]="
+          yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.gorYIssueStart
+        "          
+        type="date"
+        class="form-control form-rounded form-control-sm"
+        id="GorYIssueStart"
+       
+        placeholder="G/Y Issue Start"
+      />
+      
+     
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="GorYIssueEnd" class="label text-dark">
+        G/Y Issue End
+      </label>
+      <input 
+        name="gorYIssueEnd"
+        
+        #gorYIssueEnd="ngModel"
+        [(ngModel)]="
+          yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.gorYIssueEnd
+        "          
+        type="date"
+        class="form-control form-rounded form-control-sm"
+        id="GorYIssueEnd"
+       
+        placeholder="G/Y Issue End"
+      />
+      
+      
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DorYDeliveryStart" class="label text-dark">
+        D/Y Delivery Start	
+      </label>
+      <input 
+        name="dorYDeliveryStart"
+        
+        #dorYDeliveryStart="ngModel"
+        [(ngModel)]="
+          yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.dorYDeliveryStart
+        "          
+        type="date"
+        class="form-control form-rounded form-control-sm"
+        id="DorYDeliveryStart"
+       
+        placeholder="D/Y Delivery Start	"
+      />
+      
+      
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DorYDeliveryEnd" class="label text-dark">
+        D/Y Delivery End
+      </label>
+      <input 
+        name="dorYDeliveryEnd"
+        
+        #dorYDeliveryEnd="ngModel"
+        [(ngModel)]="
+          yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.dorYDeliveryEnd
+        "          
+        type="date"
+        class="form-control form-rounded form-control-sm"
+        id="DorYDeliveryEnd"
+        
+        placeholder="D/Y Delivery End"
+      />
+      
+     
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ItemCategoryId" class="label text-dark">
+      Item Category
+      </label>
+      <select
+        name="itemCategoryId"
+      
+        #ItemCategoryId="ngModel"
+        [(ngModel)]="
+        yarnDyeingWOWithoutOrderMasterService.yarnDyeingWOWithoutOrderMaster.itemCategoryId
+        "
+        id="ItemCategoryId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Item Category</option>
+      <option
+        *ngFor="let item of dropdownValueService.itemCategoryList"
+        value="{{item.id}}"
+        >{{ item.itemCategoryName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+</div>
+    
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

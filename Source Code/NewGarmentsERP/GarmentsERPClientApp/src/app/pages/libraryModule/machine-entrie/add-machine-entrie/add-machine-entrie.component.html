@@ -1,0 +1,349 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Machine Entry 
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="company" class="label text-dark">
+                  Company <span class="text-danger">*</span></label>
+                  <select  required  name="company" #Company="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.company"  
+                  id="company" 
+                   class="form-control form-rounded form-control-sm  " >
+                 <option value=''>Select </option>
+                 <option  *ngFor="let btnAction of dropdownValueService.companyList" 
+                 value="{{btnAction.compID}}">{{btnAction.company_Name}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="machineEntrieService.machineEntrie.company==''&&Company.touched">
+             Company is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="attachment" class="label text-dark">
+                  Attachment</label>
+                <input   name="attachment" #Attachment="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.attachment"
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="attachment" placeholder="Attachment">
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="location" class="label text-dark">
+                  Location<span class="text-danger">*</span></label>
+                  <select  required  name="location" #Location="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.location"
+                  id="location" 
+                   class="form-control form-rounded form-control-sm  " >
+                 <option value=''>Select Status</option>
+                 <option  *ngFor="let btnAction of dropdownValueService.locationList" 
+                 value="{{btnAction.locationId}}">{{btnAction.location_Name}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="machineEntrieService.machineEntrie.location==''&&Location.touched">
+             Location is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="prodCapacity" class="label text-dark">
+                  Prod. Capacity</label>
+                  <input     name="prodCapacity" #ProdCapacity="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.prodCapacity"
+                  id="prodCapacity" class="form-control form-rounded form-control-sm  " type="number" 
+                   placeholder="Prod. Capacity">
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="floorNo" class="label text-dark">
+                  Floor No<span class="text-danger">*</span></label>
+                  <select required  name="floorNo" #FloorNo="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.floorNo"    
+                  id="floorNo" 
+                   class="form-control form-rounded form-control-sm  " >
+                 <option value=''>Select Floor No</option>
+                 <option  *ngFor="let btnAction of dropdownValueService.floorsList" 
+                 value="{{btnAction.id}}">{{btnAction.floorName}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="machineEntrieService.machineEntrie.floorNo==''&&FloorNo.touched">
+             Floor No is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="capacityUOMId" class="label text-dark">
+                  Capacity UOM </label>
+                  <select    name="capacityUOMId" #CapacityUOMId="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.capacityUOMId"    
+                  id="capacityUOMId" 
+                   class="form-control form-rounded form-control-sm  " >
+                  <option [ngValue]=0>Select UOM </option>
+                  <option *ngFor="let orderUOMList of orderUOM" [value]="orderUOMList.id">{{orderUOMList.uomName}}</option>
+                 
+             </select>
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="machineNo" class="label text-dark">
+                  Machine No<span class="text-danger">*</span> </label>
+                <input required  name="machineNo" #MachineNo="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.machineNo"    
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="machineNo" placeholder="Machine No">
+               
+                <div class="text-left text-danger"
+                *ngIf="machineEntrieService.machineEntrie.machineNo==''&&MachineNo.touched">
+                Machine No is required
+              </div>
+
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="brand" class="label text-dark">
+                  Brand	 </label>
+                <input   name="brand" #Brand="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.brand"    
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="brand" placeholder="Brand">
+               
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">   
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="category" class="label text-dark">
+                  Category<span class="text-danger">*</span></label>
+                  <select  required  name="category" #Category="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.category"    
+                   id="category" 
+                    class="form-control form-rounded form-control-sm  " >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of category" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              <div class="text-left text-danger"
+                *ngIf="machineEntrieService.machineEntrie.category==''&&Category.touched">
+                Category is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="origin" class="label text-dark">
+                  Origin	</label>
+                <input   name="origin" #Origin="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.origin"    
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="origin" placeholder="Origin">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="group" class="label text-dark">
+                  Group	 </label>
+                  <input   name="group" #Group="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.group"    
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="group" placeholder="Group">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="purchaseDate" class="label text-dark">	Purchase Date</label>              
+                <input  name="purchaseDate" #purchaseDate="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.purchaseDate"    
+                 id="purchaseDate" class="form-control form-rounded form-control-sm  "
+                 type="text" [nbDatepicker]="PurchaseDate"   placeholder="Purchase Date">
+                 <nb-datepicker #PurchaseDate></nb-datepicker>
+              </div>
+            </div>
+          </div>
+          <div class="row"> 
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="diaWidth" class="label text-dark">
+                  Dia/Width	</label>
+                  <input  name="diaWidth" #diaWidth="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.diaWidth"   
+                  class="form-control form-rounded form-control-sm  " type="number" 
+                  id="diaWidth" placeholder="Dia Width">
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="purchaseCost" class="label text-dark">
+                  Purchase Cost</label>
+                <input  name="purchaseCost" #PurchaseCost="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.purchaseCost"   
+                class="form-control form-rounded form-control-sm  " type="number" 
+                id="purchaseCost" placeholder="Purchase Cost">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="gauge" class="label text-dark">
+                  Gauge	 </label>
+                  <input name="gauge" #Gauge="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.gauge"    
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="gauge" placeholder="Gauge">
+                  
+           
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="accumulatedDep" class="label text-dark">Accumulated Dep.</label>              
+                
+                <input  name="accumulatedDep" #AccumulatedDep="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.accumulatedDep"   
+                class="form-control form-rounded form-control-sm  " type="number" 
+                id="accumulatedDep" placeholder="Accumulated Dep.">
+              </div>
+            </div>
+          </div>
+          <div class="row">  
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="extraCylinder" class="label text-dark">
+                  Extra Cylinder</label>
+                  <input  name="extraCylinder" #ExtraCylinder="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.extraCylinder" 
+                  class="form-control form-rounded form-control-sm  " type="text" 
+                  id="extraCylinder" placeholder="Extra Cylinder">
+              </div>    
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="depreciationRate" class="label text-dark">
+                  Depreciation Rate</label>
+                <input   name="depreciationRate" #DepreciationRate="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.depreciationRate"
+                class="form-control form-rounded form-control-sm  " type="number" 
+                id="depreciationRate" placeholder="Depreciation Rate">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="nooffeeder" class="label text-dark">No of feeder</label>              
+                <input  name="nooffeeder" #nooffeeder="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.nooffeeder" 
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="nooffeeder" placeholder="No of feeder">
+                  
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="depreciationMethod" class="label text-dark">
+                  Depreciation Method	</label>
+                  <select   name="depreciationMethod" #DepreciationMethod="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.depreciationMethod"
+                   id="depreciationMethod" 
+                    class="form-control form-rounded form-control-sm  " >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of depreciationMethod" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Remark" class="label text-dark">
+                  Remarks</label>
+                <input   name="remarks" #Remarks="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.remarks"
+                class="form-control form-rounded form-control-sm  " type="text" 
+                id="Remark" placeholder="Remark">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="sequenceNo" class="label text-dark">
+                  Sequence No	 </label>
+                  <input   name="sequenceNo" #SequenceNo="ngModel"
+                  [(ngModel)]="machineEntrieService.machineEntrie.sequenceNo"
+                  class="form-control form-rounded form-control-sm  " type="number" 
+                  id="sequenceNo" placeholder="sequence No">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">Status</label>              
+                <select   name="status" #Status="ngModel"
+                [(ngModel)]="machineEntrieService.machineEntrie.status"
+                id="Status" 
+                 class="form-control form-rounded form-control-sm  " >
+               <option value=''>Select Status</option>
+               <option  *ngFor="let btnAction of Active_Inactive" 
+               value="{{btnAction.val}}">{{btnAction.btn}}</option>
+               
+           </select>
+                  
+              </div>
+            </div>
+          </div>
+          <button type="submit" [disabled]="form.invalid"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

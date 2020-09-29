@@ -1,0 +1,3114 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Merchandising Variable Settings</nb-card-header>
+      <nb-card-body>
+        <form
+          #form="ngForm"
+          (submit)="
+            onSubmit()
+          "
+        >
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="Status" class="label"> Company Name</label>
+                <select
+                  id="Status"
+                  name="companyId"
+                  class="form-control form-rounded form-control-sm"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.companyId
+                  "
+                >
+                  <option value="0">Select Company Name</option>
+                  <option
+                    *ngFor="let companyList of companyListItems"
+                    [value]="companyList.compID"
+                    >{{ companyList.company_Name }}</option
+                  >
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="Status" class="label"> Variable List </label>
+                <select
+                  id="Status"
+                  name="variableListId"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .variableListId
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  (change)="
+                    onChangeVariableList(
+                      variableSettingsTableService.variableSettingsTable
+                        .variableListId,
+                      form
+                    )
+                  "
+                >
+                  <option value="0">Select Variable List</option>
+                  <option
+                    *ngFor="let variablelist of variableList"
+                    [value]="variablelist.id"
+                    >{{ variablelist.variableName }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngFor="let v of hideNShowList">
+            <div class="col-sm-6">
+              <div class="form-group" *ngIf="v.id == 1 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 2 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of tNA_Integrated"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 3 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }}</option>
+                  <option
+                    *ngFor="let btnAction of budget_exceeds_quot"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 4 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of cm_cost_predefined_method"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> Based On </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of based_on"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> CM Cost Compulsory </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .valueThree
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of cm_cost_compulsory"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label">Always Editable </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueFour"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueFour
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of always_editable"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .labelThree
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelFour"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelFour
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 5 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of cm_cost_predefined_method"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> CM Cost Compulsory </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of cm_cost_compulsory"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 6 && v.isHideNShow">
+                <label for="Status" class="label">In Master Part </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of in_Master_Part"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 7 && v.isHideNShow">
+                <label for="Status" class="label"> Color From Library </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of color_From_library"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 8 && v.isHideNShow">
+                <label for="Status" class="label"> Commercial Cost </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of commercial_cost"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> Percent </label>
+                <input
+                  knifeOnlyNumbers
+                  name="valueTwo"
+                  class="form-control form-rounded form-control-sm"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                />
+                <label for="Status" class="label"> Editable </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .valueThree
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .labelThree
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 9 && v.isHideNShow">
+                <label for="Status" class="label"> Commercial Cost </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="
+                      let btnAction of commercial_cost_for_price_quotation
+                    "
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> Percent </label>
+                <input
+                  knifeOnlyNumbers
+                  name="valueTwo"
+                  class="form-control form-rounded form-control-sm"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                />
+                <label for="Status" class="label"> Editable </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .valueThree
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .labelThree
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 10 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of consumption_basis"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 11 && v.isHideNShow">
+                <div class="float-left">
+                  <label for="Status" class="label"> Rate Type </label>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueOne"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueOne
+                    "
+                  >
+                    <option value="">Select Type</option>
+                    <option
+                      *ngFor="let btnAction of rate_type"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueTwo"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueTwo
+                    "
+                  >
+                    <option value="">Select Type</option>
+                    <option
+                      *ngFor="let btnAction of rate_type"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueThree"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueThree
+                    "
+                  >
+                    <option value="">Select Type</option>
+                    <option
+                      *ngFor="let btnAction of rate_type"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueFour"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueFour
+                    "
+                  >
+                    <option value="">Select Type</option>
+                    <option
+                      *ngFor="let btnAction of rate_type"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </div>
+                <div class="float-right">
+                  <label for="Status" class="label">
+                    Conversion From Chart
+                  </label>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueFive"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueFive
+                    "
+                  >
+                    <option value="">Select Conversion From Chart</option>
+                    <option
+                      *ngFor="let btnAction of common_yes_no"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueSix"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueSix
+                    "
+                  >
+                    <option value="">Select Conversion From Chart</option>
+                    <option
+                      *ngFor="let btnAction of common_yes_no"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueSeven"
+                    [(ngModel)]="valueSeven"
+                  >
+                    <option value="">Select Conversion From Chart</option>
+                    <option
+                      *ngFor="let btnAction of common_yes_no"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueEight"
+                    [(ngModel)]="valueEight"
+                  >
+                    <option value="">Select Conversion From Chart</option>
+                    <option
+                      *ngFor="let btnAction of common_yes_no"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </div>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 12 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 13 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of cost_control_source"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 14 && v.isHideNShow">
+                <label for="Status" class="label"> Currier Cost </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of currier_cost"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> Percent </label>
+                <input
+                  knifeOnlyNumbers
+                  name="valueTwo"
+                  class="form-control form-rounded form-control-sm"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                />
+                <label for="Status" class="label"> Editable </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .valueThree
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .labelThree
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 15 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of default_fabric_nature"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 16 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of default_fabric_nature"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 17 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 18 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of efficiency_source"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 19 && v.isHideNShow">
+                <div class="float-left">
+                  <label for="Status" class="label">Embellishment Type</label>
+                  <input
+                    type="text"
+                    name="valueOne"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueOne
+                    "
+                    class="form-control form-rounded form-control-sm"
+                  />
+                  <input
+                    type="text"
+                    name="valueTwo"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueTwo
+                    "
+                    class="form-control form-rounded form-control-sm"
+                  />
+                  <input
+                    type="text"
+                    name="valueThree"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueThree
+                    "
+                    class="form-control form-rounded form-control-sm"
+                  />
+                  <input
+                    type="text"
+                    name="valueFour"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueFour
+                    "
+                    class="form-control form-rounded form-control-sm"
+                  />
+                  <input
+                    type="text"
+                    name="valueFive"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueFive
+                    "
+                    class="form-control form-rounded form-control-sm"
+                  />
+                  <input
+                    type="text"
+                    name="valueSix"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueSix
+                    "
+                    class="form-control form-rounded form-control-sm"
+                  />
+                </div>
+
+                <div class="float-right">
+                  <label for="Status" class="label"
+                    >Embellishment Budget On</label
+                  >
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueSeven"
+                    [(ngModel)]="valueSeven"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of embellishment_budget_on"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueEight"
+                    [(ngModel)]="valueEight"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of embellishment_budget_on"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueNine"
+                    [(ngModel)]="valueNine"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of embellishment_budget_on"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueTen"
+                    [(ngModel)]="valueTen"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of embellishment_budget_on"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueEleven"
+                    [(ngModel)]="valueEleven"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of embellishment_budget_on"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueTwelve"
+                    [(ngModel)]="valueTwelve"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of embellishment_budget_on"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </div>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 20 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of excess_cut_level_in_order_entry"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 21 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of excess_cut_source_in_order_entry"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label">Is Editable</label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 22 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of rabric_req_qty_source"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 23 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of fabric_source_for_aOP"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 24 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Size wise repeat </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 25 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 26 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 27 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 28 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 29 && v.isHideNShow">
+                <label for="Status" class="label">Item Category </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select</option>
+                  <option
+                    *ngFor="let btnAction of item_category"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> Exceed Budget Qty(%) </label>
+                <input
+                  class="form-control form-rounded form-control-sm"
+                  name="valueTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                />
+
+                <label for="Status" class="label">
+                  Exceed Budget Amount(%)</label
+                >
+                <input
+                  class="form-control form-rounded form-control-sm"
+                  name="valueThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .valueThree
+                  "
+                />
+
+                <label for="Status" class="label">Amount Exceed Level</label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueFour"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueFour
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of amount_exceed_level"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"
+                  >Exceed Qty Level Above Exceed Budget Qty(%)</label
+                >
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueFive"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueFive
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelThree"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .labelThree
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelFour"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelFour
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelFive"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelFive
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 30 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 31 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label">Capacity Exceed Level </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of capacity_exceed_level"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 32 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 33 && v.isHideNShow">
+                <label for="Status" class="label"> Update Period(Hr) </label>
+                <input
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                />
+
+                <label for="Status" class="label">User</label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let userInfoeslist of userInfoesItems"
+                    [value]="userInfoeslist.userId"
+                    >{{ userInfoeslist.userName }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 34 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 35 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of per_cost_approval"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 36 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value=""> Select </option>
+                  <option
+                    *ngFor="let btnAction of per_cost_approval"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 37 && v.isHideNShow">
+                <div class="float-left">
+                  <label for="Status" class="label">Process Loss Method</label>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueOne"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueOne
+                    "
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueTwo"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueTwo
+                    "
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueThree"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueThree
+                    "
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueFour"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueFour
+                    "
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueFive"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueFive
+                    "
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueSix"
+                    [(ngModel)]="
+                      variableSettingsTableService.variableSettingsTable
+                        .valueSix
+                    "
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueSeven"
+                    [(ngModel)]="valueSeven"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueEight"
+                    [(ngModel)]="valueEight"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of item_category_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </div>
+
+                <div class="float-right">
+                  <label for="Status" class="label">Process Loss Method</label>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueNine"
+                    [(ngModel)]="valueNine"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueTen"
+                    [(ngModel)]="valueTen"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueEleven"
+                    [(ngModel)]="valueEleven"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueTwelve"
+                    [(ngModel)]="valueTwelve"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueThirteen"
+                    [(ngModel)]="valueThirteen"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueFourteen"
+                    [(ngModel)]="valueFourteen"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueFifteen"
+                    [(ngModel)]="valueFifteen"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    name="valueSixteen"
+                    [(ngModel)]="valueSixteen"
+                  >
+                    <option value="">Select</option>
+                    <option
+                      *ngFor="let btnAction of process_loss_method_DDL"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </div>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 38 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 39 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of qc_cons_from"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 40 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of report_date_catagory"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 41 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 42 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let monthlist of monthItems"
+                    [value]="monthlist.id"
+                    >{{ monthlist.monthName }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 43 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 44 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 45 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 46 && v.isHideNShow">
+                <label for="Status" class="label">
+                  Style & SMV Source/Combinations
+                </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of style_sMV_source_combinations"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+                <label for="Status" class="label"> Style from library </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueTwo
+                  "
+                >
+                  <option value="">Select </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelTwo"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelTwo
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 47 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yes_no_btn"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 48 && v.isHideNShow">
+                <label class="label"> {{ v.variableName }} </label>
+                <input
+                  name="valueOne"
+                  #tNAProcessStartDate="ngModel"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  [nbDatepicker]="tNAProcessStartDate"
+                  placeholder="TNA Process Start Date"
+                />
+                <nb-datepicker #tNAProcessStartDate></nb-datepicker>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 49 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of rna_process_type"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 50 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of rna_process_type"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 51 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of trim_rate"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 52 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of work_study_mapping"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 53 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 54 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of yarn_dyeing_work_order"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+              <div class="form-group" *ngIf="v.id == 55 && v.isHideNShow">
+                <label for="Status" class="label"> {{ v.variableName }} </label>
+                <select
+                  class="form-control form-rounded form-control-sm"
+                  name="valueOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.valueOne
+                  "
+                >
+                  <option value="">Select {{ v.variableName }} </option>
+                  <option
+                    *ngFor="let btnAction of common_yes_no"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+
+                <input
+                  name="countPageInputField"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable
+                      .countPageInputField
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="labelOne"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.labelOne
+                  "
+                  type="hidden"
+                />
+                <input
+                  name="id"
+                  [(ngModel)]="
+                    variableSettingsTableService.variableSettingsTable.id
+                  "
+                  type="hidden"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button *ngIf="isShowSaveButton" type="submit" class="mr-2" nbButton>
+            Submit
+          </button>
+          <button *ngIf="isShowEditButton" type="submit" class="mr-2" nbButton>
+            Update
+          </button>
+          <button
+            *ngIf="isShowDeleteButton"
+            type="button"
+            (click)="
+              onDelete(variableSettingsTableService.variableSettingsTable.id)
+            "
+            class="mr-2"
+            nbButton
+          >
+            Delete
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

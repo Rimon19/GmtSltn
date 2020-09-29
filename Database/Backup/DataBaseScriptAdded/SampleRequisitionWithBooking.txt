@@ -1,0 +1,28 @@
+create table public."SampleRequisitionWithBooking"(
+"Id" serial primary key,
+  "RequisitionId" character varying(100),
+"SampleStage" character varying(100),
+"RequisitionDate" character varying(100),
+"StyleRefId" character varying(100),
+"CompanyNameId" integer,
+"LocationId" integer,
+"BuyerNameId" integer,
+"SeasonId" integer,
+"ProductDept" character varying(100),
+"DealingMerchantId" integer,
+"AgentNameId" integer,
+"BuyerRef" character varying(100),
+"BHMerchant" character varying(100),
+"EstShipDate" character varying(100),
+"RemarksDesc" character varying(100),
+"File" character varying(100),
+"ReadyToApproved" character varying(100),
+"MaterialDeliveryDate" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

@@ -1,0 +1,232 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+  
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Sewing Operation Entry
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="operation" class="label text-dark">
+                  Operation <span class="text-danger">*</span></label
+                >
+                <input
+                  required
+                  name="operation"
+                  #Operation="ngModel"
+                  [(ngModel)]="sewingOperationService.sewingOperation.operation"
+                  id="operation"
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="operation"
+                  placeholder="Operation"
+                />
+
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    sewingOperationService.sewingOperation.operation == '' &&
+                    Operation.touched
+                  "
+                >
+                  Operation Name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="rate" class="label text-dark">
+                  Rate <span class="text-danger">*</span>
+                </label>
+                <input
+                  name="rate"
+                  #Rate="ngModel"
+                  [(ngModel)]="sewingOperationService.sewingOperation.rate"
+                  id="rate"
+                  class="form-control form-rounded form-control-sm"
+                  type="number"
+                  id="rate"
+                  placeholder="Rate"
+                />
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    sewingOperationService.sewingOperation.rate == 0 &&
+                    Rate.touched
+                  "
+                >
+                  Rate is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="uomId" class="label text-dark">
+                  UOM <span class="text-danger">*</span></label
+                >
+                <select
+                  name="uomId"
+                  #UomId="ngModel"
+                  [(ngModel)]="sewingOperationService.sewingOperation.uomId"
+                  id="uomId"
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option [ngValue]="0">Select UOM </option>
+                  <option
+                    *ngFor="let orderUOMList of orderUOM"
+                    [value]="orderUOMList.id"
+                    >{{ orderUOMList.uomName }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    sewingOperationService.sewingOperation.uomId == 0 &&
+                    UomId.touched
+                  "
+                >
+                  UOM Name is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="resourceId" class="label text-dark">
+                  Resource <span class="text-danger">*</span></label
+                >
+                <select
+                  name="resourceId"
+                  #ResourceId="ngModel"
+                  [(ngModel)]="
+                    sewingOperationService.sewingOperation.resourceId
+                  "
+                  id="resourceId"
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option [ngValue]="0">Select Resource </option>
+                  <option
+                    *ngFor="let resourcesList of resources"
+                    [value]="resourcesList.id"
+                    >{{ resourcesList.resourceName }}</option
+                  >
+                </select>
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    sewingOperationService.sewingOperation.resourceId == 0 &&
+                    ResourceId.touched
+                  "
+                >
+                  Resource Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="operatorSMV" class="label text-dark">
+                  Operator SMV
+                </label>
+                <input
+                  name="operatorSMV"
+                  #operatorSMV="ngModel"
+                  [(ngModel)]="
+                    sewingOperationService.sewingOperation.operatorSMV
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  type="number"
+                  id="operatorSMV"
+                  placeholder="Operator SMV"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="helperSMV" class="label text-dark">
+                  Helper SMV
+                </label>
+                <input
+                  name="helperSMV"
+                  #helperSMV="ngModel"
+                  [(ngModel)]="sewingOperationService.sewingOperation.helperSMV"
+                  class="form-control form-rounded form-control-sm"
+                  type="number"
+                  id="helperSMV"
+                  placeholder="Helper SMV"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="totalSMV" class="label text-dark">
+                  Total SMV <span class="text-danger">*</span>
+                </label>
+                <input
+                  name="totalSMV"
+                  #TotalSMV="ngModel"
+                  [(ngModel)]="sewingOperationService.sewingOperation.totalSMV"
+                  class="form-control form-rounded form-control-sm"
+                  type="number"
+                  id="totalSMV"
+                  placeholder="Total SMV"
+                />
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    sewingOperationService.sewingOperation.totalSMV == 0 &&
+                    TotalSMV.touched
+                  "
+                >
+                  Total SMV is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="action" class="label text-dark"> Action </label>
+                <select
+                  name="action"
+                  #Action="ngModel"
+                  [(ngModel)]="sewingOperationService.sewingOperation.action"
+                  id="action"
+                  class="form-control form-rounded form-control-sm"
+                >
+                  <option value="">Select Status</option>
+                  <option
+                    *ngFor="let btnAction of Active_Inactive"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="
+              form.invalid ||
+              sewingOperationService.sewingOperation.totalSMV == 0 ||
+              sewingOperationService.sewingOperation.resourceId == 0 ||
+              sewingOperationService.sewingOperation.uomId == 0 ||
+              sewingOperationService.sewingOperation.rate == 0
+            "
+            nbButton
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

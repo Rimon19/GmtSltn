@@ -1,0 +1,6 @@
+CREATE TABLE public."CostComponentsMaster"
+(
+    "Id" integer NOT NULL,
+    "Cost_ComponetName" character varying COLLATE pg_catalog."default",
+    CONSTRAINT "CostComponentsMaster_pkey" PRIMARY KEY ("Id")
+)

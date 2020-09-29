@@ -1,0 +1,13 @@
+CREATE TABLE public."InputPannelPodetails"
+(
+    "Input_Pannel_ID" serial primary key,
+    "Po_details_ID" integer,
+    "CountryID" integer,
+    "Country_Type" character varying(100) COLLATE pg_catalog."default",
+    "Cutt_off_Date" character varying(100),
+    "Cutt_off" character varying(150) COLLATE pg_catalog."default",
+    "Country_Shipment_date" character varying(100),
+    "Remarks" character varying(300) COLLATE pg_catalog."default",
+    "Packing_ID" integer,
+    "Quantity" double precision
+)

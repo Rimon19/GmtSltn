@@ -1,0 +1,192 @@
+
+<!-- Precosting  -->
+<nb-card>
+  <!-- <div class="col-md-12" style = "overflow-x: scroll;">
+    <div class="smart-table-container" style = "width:2000px;"> -->
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <h5>Price Quotation</h5>
+          <mat-form-field>
+            <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+            <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" #sort="matSort"  mat-table
+        matSort >
+                  <!-- Action Column -->
+                  <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef> Actions  
+                      <button class="btn btn-outline-success" (click)="addnewPreCostingInputform()"> <i class="fa fa-plus"></i></button>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" > 
+                      <button *ngIf="element.precostingId==0"  class="btn btn-outline-success" (click)="save(element)">save</button>
+                    
+                      <button *ngIf="element.precostingId!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                      <button *ngIf="element.precostingId!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+                    </mat-cell>
+
+                  </ng-container>
+
+          <!-- precosting -->
+          <ng-container matColumnDef="orderId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Job No: </mat-header-cell>
+            <mat-header-cell *matCellDef="let element" >{{element.orderId}}</mat-header-cell>
+          </ng-container>
+
+         <!-- costing date -->
+         <ng-container matColumnDef="costingDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Costing Date</mat-header-cell>
+          <mat-header-cell *matCellDef="let element" >{{element.costingDate|date}}</mat-header-cell>
+          
+        </ng-container>
+
+    
+           <!-- incoterm -->
+            <ng-container matColumnDef="incoterm">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Incoterm</mat-header-cell>
+              <mat-header-cell *matCellDef="let element" >{{element.incoterm}}</mat-header-cell>
+            
+            </ng-container>
+
+
+                <!-- incoterm Place -->
+            <ng-container matColumnDef="incotermPlace">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Incoterm Place</mat-header-cell>
+              <mat-header-cell *matCellDef="let element" >{{element.incotermPlace}}</mat-header-cell>
+
+            </ng-container>
+
+              <!-- incoterm Place -->
+              <ng-container matColumnDef="sewEfficiency">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Sew Efficiency</mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.sewEfficiency}}</mat-header-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="jobQty">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Job Quantity</mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.jobQty}}</mat-header-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="sewSMV">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Sew SMV</mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.sewSMV}}</mat-header-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="cutSMV">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Cut SMV</mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.cutSMV}}</mat-header-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="remark">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Remark</mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.remark}}</mat-header-cell>
+
+              </ng-container>
+  
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator  #MatPaginator="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+  
+
+</nb-card>
+
+<nb-card >
+  <div class="row">
+    <div class="col-sm-3 ">
+      <div style="margin-left:14px;" class="form-group ">
+        <label for="PO" class="label">PO Number</label>
+        
+          <select name="poId"    
+          [(ngModel)]="poId" 
+          (change)="onChangePoNo(poId)"
+          class="form-control">
+            <option [ngValue]=0>Select PO No</option>
+            <option *ngFor="let poNumber of PobNumberItems" [value]="poNumber.poDetId">{{poNumber.poNo}}</option>
+            
+        </select>
+      </div>
+    </div>
+  </div> 
+
+  <div class="row" >
+    <div class="col-sm-3">
+      <div class="form-group" >
+        <div style="margin-left:14px;" class="form-group">
+          <strong>Cost Components</strong>         
+          </div>
+     
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <strong><label for="">Budgeted Cost</label></strong>
+     
+      </div>
+     
+    </div>
+   
+    <div class="col-sm-3">
+      <div class="form-group">
+       <strong><label for="">% To Q.price</label></strong>
+     
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="fg"  *ngFor="let fg of costComponentForm.controls; let i=index;" >
+   
+    <div class="row"  >
+      <div class="col-sm-3">
+        <div style="margin-left:14px;" class="form-group" >
+          <input  name="costComponent"
+          type="text" class="form-control" readonly  fullWidth id="costComponent" formControlName="costComponentName" >       
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+       
+          <input  name="fabNature"
+          type="text" class="form-control"  fullWidth id="fabricNature" formControlName="budgetedCost" >
+       
+        </div>
+       
+      </div>
+     
+      <div class="col-sm-3">
+        <div class="form-group">
+          <input  name="QPrice"
+          type="text" class="form-control"  fullWidth id="QPrice" formControlName="qPrice" >
+          
+          <input type="hidden" formControlName="id" >
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group">
+       
+         
+          <button *ngIf="i==0||i==1||i==2||i==3||i==4||i==18" class="primary" nbButton (click)="addCostMultipleRow(i,poId)">add cost</button>
+        </div>
+      </div>
+    </div>
+
+  
+  </form>
+  <div class="row"  >
+    <div class="col-sm-4">
+      <button  (click)="submitCostComponent(costComponentForm)" nbButton >Submit</button>
+      <button  (click)="deletCostComponent(costComponentForm)" nbButton >Delete</button>
+    
+        </div>
+    </div>
+  
+  
+</nb-card>
+

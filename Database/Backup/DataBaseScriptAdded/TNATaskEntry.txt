@@ -1,0 +1,14 @@
+create table public."TNATaskEntry"(
+"Id" serial primary key,
+"TaskNameId" integer,
+"TaskShortName" character varying(100),
+"Penalty" character varying(100),
+"SequenceNo" integer,
+"Completion" integer,
+"GroupName" character varying(100),
+"Status" character varying(100),
+"GroupSeqNo" integer
+)
+INSERT INTO public."TNATaskEntry"(
+	"Id", "TaskNameId", "TaskShortName", "Penalty", "SequenceNo", "Completion%", "GroupName", "Status", "GroupSeqNo")
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);

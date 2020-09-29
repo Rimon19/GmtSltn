@@ -1,0 +1,138 @@
+import { Component, OnInit } from '@angular/core';
+import { CountryInfo } from '../../../../@core/data/country-info.model';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Tostr } from '../../../../@core/data/tostr.model';
+import { NbToastrService } from '@nebular/theme';
+import { DepoLocationMappingService } from '../../../../@core/mock/library/depo-location-mapping.service';
+import { CountryLocationMapping } from '../../../../@core/data/Library-Modul-model/country-location-mapping';
+
+
+ public countryList:CountryInfo[]=[];
+  public ultimateCountryList:CountryLocationMapping[]=[];
+  public filterUltimateCountryList:CountryLocationMapping[]=[];
+  Tostr=new Tostr();
+  constructor(
+  private depoLocationMappingService:DepoLocationMappingService,
+  private router:Router,
+  private toastrService:NbToastrService,
+    ) { }
+
+  ngOnInit() {
+   
+    this.resetForm();
+  }
+
+   resetForm(form?:NgForm){
+    if(form!=null)
+    form.resetForm();
+    this.depoLocationMappingService.depoLocationMapping = {
+      id: 0,
+      countryId: 0,
+      ultimateCountryId:0,
+      countryDepoName:'',
+      status:''
+    }
+    
+   }
+   onSubmit(form:NgForm){
+    console.log(form);
+    this.depoLocationMappingService.add(form.value).subscribe(res=>{
+       console.log(res);       
+      this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
+   //   this.router.navigate(["/pages/yarn-brand"]);
+   this.resetForm();
+    })
+  
+  }
+  backTo(){
+    this.router.navigate(['/pages/depo-location-mapping']);
+  }
+
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+        Yarn Rate Entry.
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="countryId" class="label">Country Name<span class="text-danger">*</span></label>
+                <select required #countryName="ngModel"  
+                [(ngModel)]="depoLocationMappingService.depoLocationMapping.countryId" class="form-control text-responsive" name="countryId" >
+                  <option [ngValue]=0>Select Country </option>
+                  <option *ngFor="let countrylist of countryList" [value]="countrylist.regionId">{{countrylist.regionName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="depoLocationMappingService.depoLocationMapping.countryId==0&&countryName.touched">
+              Country name is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ultimateCountryId" class="label">Ultimate Country</label>
+                <select required #ultimateCountryId="ngModel"
+                [(ngModel)]="depoLocationMappingService.depoLocationMapping.ultimateCountryId" class="form-control text-responsive" name="ultimateCountryId" >
+                  <option [ngValue]=0>Select Ultimate Country </option>
+                  <option *ngFor="let ultmateCountry of filterUltimateCountryList" [value]="ultmateCountry.id">{{ultmateCountry.ultimateCountryName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="depoLocationMappingService.depoLocationMapping.ultimateCountryId==0&&ultimateCountryId.touched">
+              Ultimate  Country is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label">Country Depo Name</label>
+                <input  required #countryDepoName="ngModel"
+                [(ngModel)]="depoLocationMappingService.depoLocationMapping.countryDepoName" class="form-control text-responsive" 
+                   name="countryDepoName"  class="form-control" type="text" 
+                    placeholder="Country Depo Name">
+                    <div class="text-left text-danger"
+              *ngIf="depoLocationMappingService.depoLocationMapping.countryDepoName==''&&countryDepoName.touched">
+              Country Depo Name is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label">Status</label>
+                <select id="status"   #status="ngModel"
+                [(ngModel)]="depoLocationMappingService.depoLocationMapping.status"
+                 class="form-control" name="status">
+               <option [ngValue]=0>Select Status </option>
+               <option value="Active">Active </option>
+               <option value=" In Active"> In Active </option>    
+           </select>
+         
+              </div>
+            </div>
+            
+          </div>
+          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+

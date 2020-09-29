@@ -1,0 +1,10 @@
+
+create table public."ShareholderShareDetails"(
+"Id" serial primary key,
+"CompanyId" integer,
+"NoOfShare" character varying(100),
+"FaceValue" character varying(100),
+"Premium"  character varying(100),
+"ShareValue" character varying(100),
+"ShareholderId" integer
+)

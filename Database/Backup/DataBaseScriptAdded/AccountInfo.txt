@@ -1,0 +1,13 @@
+create table public."AccountInfo"(
+"Id" serial primary key,
+"BankInfoId" integer,
+"AccountTypeId" integer,
+"AccountNo" character varying(100),
+"CurrencyId" integer,
+"LoanLimit" integer,
+"LimitType" character varying(100),
+"CompanyId" integer,
+"ChartOfAccount" character varying(100),
+"Status" character varying(50)
+
+)

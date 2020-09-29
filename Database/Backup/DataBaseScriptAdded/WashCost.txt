@@ -1,0 +1,11 @@
+create table public."WashCost"(
+ "Id" serial primary key,
+ "PrecostingId" integer,
+ "Name" character varying(100),
+ "TypeId" integer,
+"CountryId" integer,
+"ConsOneDznGmts" character varying(100),
+"Rate" double precision,
+"Amount" double precision,
+"Status" character varying(80)
+)

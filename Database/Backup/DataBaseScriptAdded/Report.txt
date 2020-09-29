@@ -1,0 +1,4 @@
+create table public."Report"(
+"Id" serial primary key,
+"ReportName" character varying(100)
+)

@@ -1,0 +1,625 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Sample Fabric Booking -Without Order(Details)</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+     <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+         <label for="StypeRef" class="label text-dark">
+           Style Ref</label
+         >
+         <input
+           name="stypeRef"    
+           [(ngModel)]="
+           sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.stypeRef
+           "
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="StypeRef"
+           placeholder=" Style Ref"
+         />
+        </div>
+        </div>
+           <div class="col-sm-3">
+        <div class="form-group">
+         <label for="StyleDes" class="label text-dark">
+           Style Des</label
+         >
+         <input
+           name="styleDes"    
+           [(ngModel)]="
+           sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.styleDes
+           "
+           class="form-control form-rounded form-control-sm"
+           type="text"
+           id="StyleDes"
+           placeholder=" Style Des"
+         />
+        </div>
+        </div>
+          
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="Sampletype" class="label text-dark">
+              Sample type
+              <span class="text-danger">*</span> </label>
+              <select
+                name="sampletype"
+                required
+                #Sampletype="ngModel"
+                [(ngModel)]="
+                sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.sampletype
+                "
+                id="Sampletype"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Sample type</option>
+              <option
+                *ngFor="let item of dropdownValueService.sampleTypeList"
+                value="{{item.id}}"
+                >{{ item.sampleTypeName}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.sampletype== '' && Sampletype.touched
+                "
+              >
+              Sample type is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="BodyPartEntryId" class="label text-dark">
+              Body Part
+              <span class="text-danger">*</span> </label>
+              <select
+                name="bodyPartEntryId"
+                required
+                #BodyPartEntryId="ngModel"
+                [(ngModel)]="
+                sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.bodyPartEntryId
+                "
+                id="BodyPartEntryId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Body Part</option>
+              <option
+                *ngFor="let item of dropdownValueService.bodyPartList"
+                value="{{item.id}}"
+                >{{ item.bodyPartFullName}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.bodyPartEntryId== '' && BodyPartEntryId.touched
+                "
+              >
+              Body Part is required
+              </div>
+            </div>
+          </div>
+     </div>  
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ColorType" class="label text-dark">
+      Color Type
+      </label>
+      <select
+        name="colorType"
+      
+        #ColorType="ngModel"
+        [(ngModel)]="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.colorType
+        "
+        id="ColorType"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Color Type</option>
+      <option
+        *ngFor="let item of dropdownValueService.colorTypeList"
+        value="{{item.id}}"
+        >{{ item.colorTypeName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="FabricDescriptionId" class="label text-dark">
+      Fabric Description
+      <span class="text-danger">*</span> </label>
+      <select
+        name="fabricDescriptionId"
+        required
+        #FabricDescriptionId="ngModel"
+        [(ngModel)]="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.fabricDescriptionId
+        "
+        id="FabricDescriptionId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Fabric Description</option>
+      <option
+        *ngFor="let f of dropdownValueService.fabricDescriptionList"
+        value="{{f.id}}"
+        >F.N-{{f.fabNature}},Const:{{f.construction}},comp-{{f.composition}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.fabricDescriptionId== '' && FabricDescriptionId.touched
+        "
+      >
+      Fabric Description is required
+      </div>
+    </div>
+  </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="Gsm" class="label text-dark">
+   GSM</label
+ >
+ <input
+   name="gsm"    
+   [(ngModel)]="
+   sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.gsm
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Gsm"
+   placeholder=" GSM"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="GmtsColor" class="label text-dark">
+   Gmts Color</label
+ >
+ <input
+   name="gmtsColor"    
+   [(ngModel)]="
+   sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.gmtsColor
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="GmtsColor"
+   placeholder=" Gmts Color"
+ />
+</div>
+</div>
+ </div>
+ 
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="FabricColor" class="label text-dark">
+      Fabric Color<span class="text-danger">*</span></label
+      >
+      <input
+        required
+        name="fabricColor"
+        #FabricColor="ngModel"
+        [(ngModel)]="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.fabricColor
+        "
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="FabricColor"
+        placeholder="Fabric Color"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.fabricColor ==
+            '' && FabricColor.touched
+        "
+      >
+      Fabric Color is required
+      </div>
+    </div>
+  </div> <div class="col-sm-3">
+ <div class="form-group">
+  <label for="GmtsSize" class="label text-dark">
+    Gmts size</label
+  >
+  <input
+    name="gmtsSize"    
+    [(ngModel)]="
+    sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.gmtsSize
+    "
+    class="form-control form-rounded form-control-sm"
+    type="text"
+    id="GmtsSize"
+    placeholder=" Gmts size"
+  />
+ </div>
+ </div>
+    <div class="col-sm-3">
+ <div class="form-group">
+  <label for="Itemsize" class="label text-dark">
+    Item size</label
+  >
+  <input
+    name="itemsize"    
+    [(ngModel)]="
+    sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.itemsize
+    "
+    class="form-control form-rounded form-control-sm"
+    type="text"
+    id="Itemsize"
+    placeholder=" Item size"
+  />
+ </div>
+ </div>
+    <div class="col-sm-3">
+ <div class="form-group">
+  <label for="DiaWidth" class="label text-dark">
+    Dia/ Width</label
+  >
+  <input
+    name="diaWidth"    
+    [(ngModel)]="
+    sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.diaWidth
+    "
+    class="form-control form-rounded form-control-sm"
+    type="text"
+    id="DiaWidth"
+    placeholder=" Dia/ Width"
+  />
+ </div>
+ </div>
+ </div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="FinishFabric" class="label text-dark">
+      Finish Fabric<span class="text-danger">*</span></label
+      >
+      <input
+        required
+        name="finishFabric"
+        #FinishFabric="ngModel"
+        [(ngModel)]="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.finishFabric
+        "
+        type="number"
+        class="form-control form-rounded form-control-sm"
+        id="FinishFabric"
+        placeholder="Finish Fabric"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.finishFabric ==
+            '' && FinishFabric.touched
+        "
+      >
+      Finish Fabric is required
+      </div>
+    </div>
+  </div> <div class="col-sm-3">
+ <div class="form-group">
+  <label for="Processloss" class="label text-dark">
+    Process loss</label
+  >
+  <input
+    name="processloss"    
+    [(ngModel)]="
+    sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.processloss
+    "
+    class="form-control form-rounded form-control-sm"
+    type="number"
+    id="Processloss"
+    placeholder=" Process loss"
+  />
+ </div>
+ </div>
+    <div class="col-sm-3">
+ <div class="form-group">
+  <label for="GrayFabric" class="label text-dark">
+    Gray Fabric</label
+  >
+  <input
+    name="grayFabric"    
+    [(ngModel)]="
+    sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.grayFabric
+    "
+    class="form-control form-rounded form-control-sm"
+    type="text"
+    id="GrayFabric"
+    placeholder=" Gray Fabric"
+  />
+ </div>
+ </div>
+    <div class="col-sm-3">
+ <div class="form-group">
+  <label for="ArticleNumber" class="label text-dark">
+    Article Number</label
+  >
+  <input
+    name="articleNumber"    
+    [(ngModel)]="
+    sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.articleNumber
+    "
+    class="form-control form-rounded form-control-sm"
+    type="text"
+    id="ArticleNumber"
+    placeholder=" Article Number"
+  />
+ </div>
+ </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+     <label for="Rate" class="label text-dark">
+       Rate</label
+     >
+     <input
+       name="rate"    
+       [(ngModel)]="
+       sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.rate
+       "
+       class="form-control form-rounded form-control-sm"
+       type="number"
+       id="Rate"
+       placeholder=" Rate"
+     />
+    </div>
+    </div>
+       <div class="col-sm-3">
+    <div class="form-group">
+     <label for="Amount" class="label text-dark">
+       Amount</label
+     >
+     <input
+       name="amount"    
+       [(ngModel)]="
+       sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.amount
+       "
+       class="form-control form-rounded form-control-sm"
+       type="number"
+       id="Amount"
+       placeholder=" Amount"
+     />
+    </div>
+    </div>
+      
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="BodyPartTypeId" class="label text-dark">
+          Body Type
+          </label>
+          <select
+            name="bodyPartTypeId"
+          
+            #BodyPartTypeId="ngModel"
+            [(ngModel)]="
+            sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.bodyPartTypeId
+            "
+            id="BodyPartTypeId"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Body Type</option>
+          <option
+            *ngFor="let item of dropdownValueService.bodyPartTypeList"
+            value="{{item.id}}"
+            >{{ item.bodyPartTypeName}}</option
+          >
+          </select>
+          
+        </div>
+      </div>
+         <div class="col-sm-3">
+    <div class="form-group">
+     <label for="ItemQty" class="label text-dark">
+       Item Qty</label
+     >
+     <input
+       name="itemQty"    
+       [(ngModel)]="
+       sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.itemQty
+       "
+       class="form-control form-rounded form-control-sm"
+       type="number"
+       id="ItemQty"
+       placeholder=" Item Qty"
+     />
+    </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+     <label for="YarnDetails" class="label text-dark">
+       Yarn Details</label
+     >
+     <input
+       name="yarnDetails"    
+       [(ngModel)]="
+       sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.yarnDetails
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="YarnDetails"
+       placeholder=" Yarn Details"
+     />
+    </div>
+    </div>
+      
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="FabricSource" class="label text-dark">
+          Fabric Source
+          </label>
+          <select
+            name="fabricSource"
+          
+            #FabricSource="ngModel"
+            [(ngModel)]="
+            sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.fabricSource
+            "
+            id="FabricSource"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Fabric Source</option>
+          <option
+            *ngFor="let item of dropdownValueService.fabricSourceList"
+            value="{{item.value}}"
+            >{{ item.value}}</option
+          >
+          </select>
+          
+        </div>
+      </div>
+         <div class="col-sm-3">
+    <div class="form-group">
+     <label for="KnittingChargeKG" class="label text-dark">
+       Knitting Charge/KG</label
+     >
+     <input
+       name="knittingChargeKG"    
+       [(ngModel)]="
+       sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.knittingChargeKG
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="KnittingChargeKG"
+       placeholder=" Knitting Charge/KG"
+     />
+    </div>
+    </div>
+       <div class="col-sm-3">
+    <div class="form-group">
+     <label for="BhQty" class="label text-dark">
+      GMT Qty</label
+     >
+     <div class="row">
+       <div class="col-sm-6">
+        <input
+        name="bhQty"    
+        [(ngModel)]="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.bhQty
+        "
+        class="form-control form-rounded form-control-sm"
+        type="number"
+        id="BhQty"
+        placeholder=" Bh Qty"
+      />
+       </div>
+       <div class="col-sm-6">
+        <input
+        name="rhQty"    
+        [(ngModel)]="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.rhQty
+        "
+        class="form-control form-rounded form-control-sm"
+        type="number"
+        id="RhQty"
+        placeholder=" RH Qty"
+      />
+       </div>
+     </div>
+    
+     
+    </div>
+    </div>
+      
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DeliveryDate" class="label text-dark">
+        Delivery Date
+      </label>
+      <input readonly
+        name="deliveryDate"
+        
+        #deliveryDate="ngModel"
+        [(ngModel)]="
+          sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.deliveryDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DeliveryDate"
+        [nbDatepicker]="DeliveryDate"
+        placeholder="Delivery Date"
+      />
+      
+      <nb-datepicker #DeliveryDate></nb-datepicker>
+    </div>
+  </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="Remarks" class="label text-dark">
+   Remarks</label
+ >
+ <input
+   name="remarks"    
+   [(ngModel)]="
+   sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.remarks
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Remarks"
+   placeholder=" Remarks"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Uom" class="label text-dark">
+      Uom
+      </label>
+      <select
+        name="uom"
+      
+        #Uom="ngModel"
+        [(ngModel)]="
+        sampleFabricBookingWithoutorderDetailsService.sampleFabricBookingWithoutorderDetails.uom
+        "
+        id="Uom"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Uom</option>
+      <option
+        *ngFor="let item of dropdownValueService.uomList"
+        value="{{item.id}}"
+        >{{ item.uomName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+</div>
+ 
+    
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+

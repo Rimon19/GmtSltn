@@ -1,0 +1,8 @@
+CREATE TABLE public."YarnCount"
+(
+    "Id" serial primary key,
+    "Name" character varying(100) COLLATE pg_catalog."default",
+    "Sequence" numeric(100,0),
+    "Status" character varying(100) COLLATE pg_catalog."default"
+    
+)

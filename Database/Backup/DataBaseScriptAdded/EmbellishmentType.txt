@@ -1,0 +1,5 @@
+create table public."EmbellishmentType"(
+ "Id" serial primary key,
+ "TypeName" character varying(100),
+ "Status" character varying(100)
+)

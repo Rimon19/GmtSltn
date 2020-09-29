@@ -1,0 +1,26 @@
+create table public."EmbellishmentWorkOrderV2"(
+"Id" serial primary key,
+  "WoNo" character varying(100),
+"JobNo" character varying(100),
+"BuyerProfileId" integer,
+"WODate" character varying(100),
+"DeliveryDate" character varying(100),
+"CurrencyId" integer,
+"ExchangeRate" integer,
+"PayMode" character varying(100),
+"SupplierName" character varying(100),
+"ReadyToApprove" character varying(100),
+"Source" character varying(100),
+"Attention" character varying(100),
+"CalculationBasis" character varying(100),
+"Level" character varying(100),
+"IsShort" character varying(100),
+"SeasonId" integer,
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

@@ -1,0 +1,658 @@
+<div class="row">
+    <div class="col-lg-12">
+        <nb-card>
+            <nb-card-header>
+                <button (click)="backTo()" class="btn btn-outline-success ">
+      <i class="fas fa-arrow-left"></i>
+      </button> Edit Garments Order</nb-card-header>
+            <nb-card-body>
+                <form #form="ngForm" (submit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="JobNo" class="label text-dark">Job No</label>
+                                <input (dblclick)="onLoadOrderOrJobSelectionFormComponent()" [(ngModel)]="fetchInitialOrderService.orderInfo.jobNo" name="jobNo" class="form-control form-rounded form-control-sm" readonly type="text" id="JobNo" placeholder="Job No" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="companyName" class="label text-dark">Company Name<span class="text-danger">*</span></label
+                >
+                <select
+                  id="companyName"
+                  required
+                  #companyName="ngModel" 
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.companyID"
+                  class="form-control form-rounded form-control-sm"
+                  name="companyID"
+                >
+                  <option value=''>Select Company</option>
+                  <option
+                    *ngFor="let companyList of companyListItems"
+                    [value]="companyList.compID"
+                    >{{ companyList.company_Name}}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.companyID == ''&&
+                  companyName.touched
+                "
+              >
+                Company name is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark"
+                  >Location Name<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #locationName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.locationID"
+                  class="form-control form-rounded form-control-sm"
+                  name="locationID"
+                >
+                  <option value=''>Select Location </option>
+                  <option
+                    *ngFor="let locationList of locationListItems"
+                    [value]="locationList.locationId"
+                    >{{ locationList.location_Name }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.locationID == ''&&
+                  locationName.touched
+                "
+              >
+                Location name is required
+              </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark"
+                  >Buyer Name<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #buyerName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.buyerID"
+                  class="form-control form-rounded form-control-sm"
+                  name="buyerID"
+                >
+                  <option value=''>Select Buyer </option>
+                  <option
+                    *ngFor="let buyerList of buyerListItems"
+                    [value]="buyerList.id"
+                    >{{ buyerList.contactName }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.buyerID == ''&&
+                  buyerName.touched
+                "
+              >
+                Buyer name is required
+              </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="styleRef" class="label text-dark"
+                  >Style Ref.<span class="text-danger">*</span></label
+                >
+                <input    class="form-control form-rounded form-control-sm"
+                  required
+                  name="style_Ref"
+                  #styleRef="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.style_Ref"
+                  type="text"
+                  id="styleRef"
+                  placeholder="Style Ref"
+                />
+                <div
+                class="text-left text-danger"
+                *ngIf="fetchInitialOrderService.orderInfo.style_Ref=='' &&styleRef.touched"
+              >
+                Style Ref. is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="styleDescription" class="label text-dark"
+                  >Style Description</label
+                >
+                <input    class="form-control form-rounded form-control-sm"
+                  name="style_Description"
+                  #styleDescription="ngModel"
+                  [(ngModel)]="
+                    fetchInitialOrderService.orderInfo.style_Description
+                  "
+                  type="text"
+                  
+                  
+                  id="styleDescription"
+                  placeholder="Style Description"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Prod.Dept." class="label text-dark"
+                  >Prod. Dept.<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #prodDeptName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.prod_DeptID"
+                  class="form-control form-rounded form-control-sm"
+                  name="prod_DeptID"
+                >
+                  <option value=''>Select Prod. Dept. </option>
+                  <option
+                    *ngFor="
+                      let productionDeptInfoeslist of ProductionDeptInfoesListItems
+                    "
+                    [value]="productionDeptInfoeslist.id"
+                    >{{ productionDeptInfoeslist.prodDeptName }}</option
+                  >
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.prod_DeptID == ''&&
+                  prodDeptName.touched
+                "
+              >
+                Product Dept. is required
+              </div>
+              </div>
+            
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Sub.Dept" class="label text-dark"
+                  >Sub. Dept</label
+                >
+                <select
+                  
+                  #subDeptName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.sub_DeptID"
+                  class="form-control form-rounded form-control-sm"
+                  name="sub_DeptID"
+                >
+                  <option value=''>Select Sub. Dept </option>
+                  <option
+                    *ngFor="let subDeptInfoeslist of subDeptInfoesItems"
+                    [value]="subDeptInfoeslist.subDeptID"
+                    >{{ subDeptInfoeslist.sub_dept_Name }}</option
+                  >
+                </select>
+           
+              </div>
+             
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Currency" class="label text-dark"
+                  >Currency<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #currencyName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.currencyID"
+                  class="form-control form-rounded form-control-sm"
+                  name="currencyID"
+                >
+                  <option value=''>Select Currency</option>
+                  <option
+                    *ngFor="let currencylist of currencyList"
+                    [value]="currencylist.id"
+                    >{{ currencylist.discountMethodName }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.currencyID == ''&&
+                  currencyName.touched
+                "
+              >
+                Currency is required
+              </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="repeatNoJob" class="label text-dark"
+                  >Repeat No/Job</label
+                >
+                <input    class="form-control form-rounded form-control-sm"
+                  name="repeat_No_Job"
+                  #repeatNoJob="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.repeat_No_Job"
+                  type="text"
+                  
+                  
+                  id="repeatNoJob"
+                  placeholder="Repeat No/Job"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Region" class="label text-dark"
+                  >Region</label
+                >
+                <select
+                  
+                  #regionName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.regionID"
+                  class="form-control form-rounded form-control-sm"
+                  name="regionID"
+                >
+                  <option value=''>Select Region </option>
+                  <option
+                    *ngFor="let countrylist of countryList"
+                    [value]="countrylist.regionID"
+                    >{{ countrylist.region_Name }}</option
+                  >
+                </select>
+                
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ProductCategory" class="label text-dark"
+                  >Product Category<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #prodCategoryName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.product_CatID"
+                  class="form-control form-rounded form-control-sm"
+                  name="product_CatID"
+                >
+                  <option value=''>Select Product Category </option>
+                  <option
+                    *ngFor="let productCategorylist of productCategoryItems"
+                    [value]="productCategorylist.id"
+                    >{{ productCategorylist.productCategoryName}}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.product_CatID == ''&&
+                  prodCategoryName.touched
+                "
+              >
+                Product Category is required
+              </div>
+              </div>
+            
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="TeamLeader" class="label text-dark"
+                  >Team Leader<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #teamLeaderName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.team_Leader_ID"
+                  class="form-control form-rounded form-control-sm"
+                  name="team_Leader_ID"
+                >
+                  <option value=''>Select Team Leader</option>
+                  <option
+                    *ngFor="let marchandizerInfolist of teamLeaderItems"
+                    [value]="marchandizerInfolist.id"
+                    >{{ marchandizerInfolist.userId }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.team_Leader_ID == ''&&
+                  teamLeaderName.touched
+                "
+              >
+                Team Leader is required
+              </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="DealingMerchant" class="label text-dark"
+                  >Dealing Merchant<span class="text-danger">*</span></label
+                >   
+                <select
+                required
+                #dealingMerchant="ngModel"
+                [(ngModel)]="
+                  fetchInitialOrderService.orderInfo.dealing_Merchant_ID
+                "
+                class="form-control form-rounded form-control-sm"
+                name="dealing_Merchant_ID"
+                >
+                  <option value="">Select Dealing Merchant</option>
+                  <option
+                    *ngFor="let marchandizerInfolist of MarchandizerInfoItems"
+                    [value]="marchandizerInfolist.id"
+                    >{{ marchandizerInfolist.userId }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.dealing_Merchant_ID == ''&&
+                  dealingMerchant.touched
+                "
+              >
+                Dealing Merchant is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="FactoryMerchant" class="label text-dark"
+                  >Factory Merchant<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #userName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.factory_merchant"
+                  class="form-control form-rounded form-control-sm"
+                  name="factory_merchant"
+                >
+                  <option value=''>Select Factory Merchant</option>
+                  <option
+                    *ngFor="let userInfoeslist of factoryMerchantInfoItems"
+                    [value]="userInfoeslist.id"
+                    >{{ userInfoeslist.userId }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.factory_merchant== ''&&
+                  userName.touched
+                "
+              >
+                Factory Merchant is required
+              </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="bhMerchant" class="label text-dark"
+                  >BH Merchant</label
+                >
+                <input    class="form-control form-rounded form-control-sm"
+                  name="bH_Merchant"
+                  #bhMerchant="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.bH_Merchant"
+                  type="text"
+                  
+                  
+                  id="bhMerchant"
+                  placeholder="BH Merchant"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="remarks" class="label text-dark">Remarks</label>
+                                <input class="form-control form-rounded form-control-sm" name="remarks" #remarks="ngModel" [(ngModel)]="fetchInitialOrderService.orderInfo.remarks" type="text" id="Remarks" placeholder="Remarks " />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="ShipMode" class="label text-dark">Ship Mode<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #shipmentMode="ngModel"
+                  [(ngModel)]="
+                    fetchInitialOrderService.orderInfo.shipment_Mode_ID
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  name="shipment_Mode_ID"
+                >
+                  <option value=''>Select Ship Mode </option>
+                  <option
+                    *ngFor="let shipmentModeInfoes of shipmentModeInfoesItems"
+                    [value]="shipmentModeInfoes.id"
+                    >{{ shipmentModeInfoes.shipment_Mode}}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.shipment_Mode_ID == ''&&
+                  shipmentMode.touched
+                "
+              >
+                Shipment Mode is required
+              </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="OrderUom" class="label text-dark"
+                  >Order Uom<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #orderUomName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.order_Uom_ID"
+                  class="form-control form-rounded form-control-sm"
+                  name="order_Uom_ID"
+                >
+                  <option value=''>Select Order Uom</option>
+                  <option
+                    *ngFor="let orderUomInfolist of orderUomInfoItems"
+                    [value]="orderUomInfolist.id"
+                    >{{ orderUomInfolist.uomName}}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.order_Uom_ID ==''&&
+                  orderUomName.touched
+                "
+              >
+                Order Uom is required
+              </div>
+              </div>
+              
+            </div>
+            
+            <div class="col-sm-3">
+              <div>
+                <label class="label text-dark">&nbsp;</label>
+                                <button type="button" class="form-control 
+                text-center form-rounded btn btn-success form-control-sm" (click)="onAdd(fetchInitialOrderService.orderInfo.orderAutoID)">
+                  Item Details
+                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="smv" class="label text-dark">SMV<span class="text-danger">*</span></label
+                >
+                <input    readonly
+                 class="form-control form-rounded form-control-sm"
+                  name="smv"
+                  #smvValue="ngModel"
+                  required
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.smv"
+                  type="number"
+                  id="smv"
+                  placeholder="SMV"
+                />
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.sMV==''&&
+                  smvValue.touched
+                "
+              >
+                SMV is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Packing" class="label text-dark"
+                  >Packing<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #packingName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.packing_ID"
+                  class="form-control form-rounded form-control-sm"
+                  name="packing_ID"
+                >
+                  <option value=''>Select Packing</option>
+                  <option
+                    *ngFor="let packingInfoeslist of packingInfoesItems"
+                    [value]="packingInfoeslist.packingID"
+                    >{{ packingInfoeslist.packing_Name }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  fetchInitialOrderService.orderInfo.packing_ID == 0 &&
+                  packingName.touched
+                "
+              >
+                Packing name is required
+              </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Season" class="label text-dark"
+                  >Season</label
+                >
+                <select
+                  
+                  #seasonName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.season_ID"
+                  class="form-control form-rounded form-control-sm"
+                  name="season_ID"
+                >
+                  <option value=''>Select Seasion</option>
+                  <option
+                    *ngFor="let seasonInfoeslist of seasonInfoesItems"
+                    [value]="seasonInfoeslist.seasonID"
+                    >{{ seasonInfoeslist.season_Name}}</option
+                  >
+                </select>
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Agent" class="label text-dark"
+                  >Agent</label
+                >
+                <select
+  
+                  #agentName="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.agent_ID"
+                  class="form-control form-rounded form-control-sm"
+                  name="agent_ID"
+                >
+                  <option value=''>Select Agent</option>
+                  <option
+                    *ngFor="let agentInfoeslist of agentInfoesItems"
+                    [value]="agentInfoeslist.agentID"
+                    >{{ agentInfoeslist.agent_Name }}</option
+                  >
+                </select>
+              
+              </div>
+             
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderNumber" class="label text-dark"
+                  >Order No</label
+                >
+                <input    class="form-control form-rounded form-control-sm"
+                  name="order_Number"
+                  #orderNumber="ngModel"
+                  [(ngModel)]="fetchInitialOrderService.orderInfo.order_Number"
+                  type="text"
+                  
+                  
+                  id="orderNumber"
+                  placeholder="Order No"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label>Add Image</label>
+                                <img [src]="output_image" hieght="100" width="100" />
+                                <input type="file" accept="image/*" (change)="detectFilesForImageUrlFile($event)" name="image" class="form-control form-rounded form-control-sm" multiple="multiple" placeholder="image" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group"></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group"></div>
+                        </div>
+                    </div>
+                    <button type="submit" nbButton [disabled]="
+              form.invalid
+            ">
+            Submit
+          </button>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

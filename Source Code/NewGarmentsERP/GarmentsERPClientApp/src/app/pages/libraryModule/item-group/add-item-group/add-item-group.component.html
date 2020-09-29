@@ -1,0 +1,188 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Item Group Entry
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="itemCategoryId"class="label text-dark">Item Category<span class="text-danger">*</span></label>
+                <select required #itemCategoryId="ngModel" 
+                [(ngModel)]="this.itemGroupService.itemGroup.itemCategoryId"  class="form-control form-rounded form-control-sm  " name="itemCategoryId" >
+                  <option [ngValue]=0>Select Item Category </option>
+                
+                  <option *ngFor="let itmCtg of itemCategoryList" [value]="itmCtg.id">{{itmCtg.itemCategoryName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="this.itemGroupService.itemGroup .itemCategoryId==0&&itemCategoryId.touched">
+              Item Category is required .
+            </div>
+              </div>
+              
+            </div>
+         
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Group Code<span class="text-danger">*</span></label>
+                <input  required #groupCode="ngModel"
+                [(ngModel)]="this.itemGroupService.itemGroup.groupCode" 
+                   name="groupCode"   class="form-control form-rounded form-control-sm " type="text" 
+                    placeholder="Group Code">
+                    <div class="text-left text-danger"
+              *ngIf="this.itemGroupService.itemGroup.groupCode==''&&groupCode.touched">
+              Group Code is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Item Group<span class="text-danger">*</span></label>
+                <input  required #itemGroupName="ngModel"
+                [(ngModel)]="this.itemGroupService.itemGroup.itemGroupName"
+                   name="itemGroupName"   class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Item Group">
+                    <div class="text-left text-danger"
+              *ngIf="this.itemGroupService.itemGroup.itemGroupName==''&&itemGroupName.touched">
+            Item Group is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="itemType"class="label text-dark">Trims Type</label>
+                <select #itemType="ngModel" 
+                [(ngModel)]="this.itemGroupService.itemGroup.itemType"  class="form-control form-rounded form-control-sm  " name="itemType" >
+                  <option value="">Select Trims Type </option>
+                  <option value="Sewing">Sewing </option>
+                  <option value="Packing/Finishing">Packing/Finishing </option>
+                  
+               </select>
+              
+              </div>
+              
+            </div>
+       
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderUom"class="label text-dark">Order Uom<span class="text-danger">*</span></label>
+                <select required #orderUom="ngModel" 
+                [(ngModel)]="this.itemGroupService.itemGroup.orderUom" class="form-control form-rounded form-control-sm  " name="orderUom" >
+                  <option value="">Select Order Uom </option>
+                  <option *ngFor="let u of uomList" [value]="u.uomName">{{u.uomName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="this.itemGroupService.itemGroup .orderUom==''&&orderUom.touched">
+             Order Uom is required .
+            </div>
+              </div>
+              
+            </div>
+         
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderUom"class="label text-dark">Cons Uom<span class="text-danger">*</span></label>
+                <select required #consUom="ngModel" 
+                [(ngModel)]="this.itemGroupService.itemGroup.consUom"  class="form-control form-rounded form-control-sm  " name="consUom" >
+                  <option value="">Select Cons Uom </option>
+                  <option *ngFor="let u of uomList" [value]="u.uomName">{{u.uomName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="this.itemGroupService.itemGroup .consUom==''&&consUom.touched">
+             Cons Uom is required .
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Conv. Factor</label>
+                <input  required #convFactor="ngModel"
+                [(ngModel)]="this.itemGroupService.itemGroup.convFactor" 
+                   name="convFactor"   class="form-control form-rounded form-control-sm  " type="number" 
+                    placeholder="Conv. Factor">
+                    <!-- <div class="text-left text-danger"
+              *ngIf="this.itemGroupService.itemGroup.convFactor==''&&convFactor.touched">
+            Conv. Factor is required
+            </div> -->
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="itemType"class="label text-dark">Fancy Item</label>
+                <select  #fancyItem="ngModel" 
+                [(ngModel)]="this.itemGroupService.itemGroup.fancyItem"  class="form-control form-rounded form-control-sm  " name="fancyItem" >
+                  <option value="">Select Fancy Item </option>
+                  <option value="Yes">Yes </option>
+                  <option value="No">No </option>
+                  
+               </select>
+              
+              </div>
+              
+            </div>
+           
+            
+          </div>
+          <div class="row">
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="calParameter"class="label text-dark">Cal Parameter<span class="text-danger">*</span></label>
+                <select required #calParameter="ngModel" 
+                [(ngModel)]="this.itemGroupService.itemGroup.calParameter"  class="form-control form-rounded form-control-sm  " name="calParameter" >
+                  <option value="">Select Cal Parameter </option>
+                  <option value="Sewing Thread">Sewing Thread </option>
+                  <option value="Carton"> Carton</option>
+                  <option value="Carton Sticker"> Carton Sticker</option>
+                  <option value="Blister Poly"> Blister Poly</option>
+                  <option value="Elastic">Elastic </option>
+                  <option value="Gum Tap">Gum Tap </option>
+                  <option value="Tag Pin">Tag Pin </option>
+                  <option value="Sequines">Sequines </option>
+                  <option value="Eyelet">Eyelet </option>
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="this.itemGroupService.itemGroup .calParameter==''&&calParameter.touched">
+              Cal Parameter is required .
+            </div>
+              </div>
+              
+            </div>
+                <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status"class="label text-dark">Status</label>
+                <select id="status"   #status="ngModel"
+                [(ngModel)]="this.itemGroupService.itemGroup .status"
+                  class="form-control form-rounded form-control-sm  " name="status">
+               <option value="">Select Status </option>
+               <option value="Active">Active </option>
+               <option value=" In Active"> In Active </option>    
+           </select>
+         
+              </div>
+            </div>
+            
+          </div>
+          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

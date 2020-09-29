@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Store Location Update Form
+      </nb-card-header>
+      
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="storeName" class="label">
+                  Store Name <span class="text-danger">*</span></label>
+                <input id="storeName" required #StoreName="ngModel" 
+                [(ngModel)]="storeLocationService.storeLocation.storeName"
+                 class="form-control text-responsive" name="storeName" 
+                 type="text" placeholder=" Store Name">
+
+                 
+                 <div class="text-left text-danger"
+                 *ngIf="storeLocationService.storeLocation.storeName==''&&StoreName.touched">
+                 Store Name  is required
+               </div>
+
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="companyName" class="label">
+                  Company Name <span class="text-danger">*</span> </label>
+                  <select required id="companyName" name="companyName" #CompanyName="ngModel" 
+                  [(ngModel)]="storeLocationService.storeLocation.companyName" 
+                   class="form-control text-responsive" >
+                   <option value=''>Select Company Name</option>
+                   <option  *ngFor="let btnAction of company" 
+                   value="{{btnAction.val}}">{{btnAction.btn}}</option>                  
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="storeLocationService.storeLocation.companyName==''&&CompanyName.touched">
+              Company Name  is required
+            </div>
+              </div>
+            
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="location" class="label">
+                  Location<span class="text-danger">*</span></label>
+                  <select  id="location" name="location" required #Location="ngModel" 
+                  [(ngModel)]="storeLocationService.storeLocation.location" 
+                  class="form-control text-responsive" >
+                  <option value=''>Select location Name</option>
+                  <option  *ngFor="let btnAction of locations" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="storeLocationService.storeLocation.location==''&&Location.touched">
+             Location Name  is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="itemCategoryselectedItems" class="label">
+                  Item Category<span class="text-danger">*</span></label>
+                  <ng-multiselect-dropdown
+                  name="itemCategoryselectedItems"
+                  [placeholder]="'Item Category'"
+                  [data]="itemCategorydropdownList"
+                  [(ngModel)]="itemCategoryselectedItems"
+                  [settings]="ItemCategorydropdownSettings"  
+                                 
+                  >
+                  </ng-multiselect-dropdown>
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+           
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label">
+                  Status  </label>
+                  <select  id="status" name="status" #Status="ngModel" 
+                  [(ngModel)]="storeLocationService.storeLocation.status"  
+                   class="form-control text-responsive" >
+                   <option value=''>Select Status</option>
+                   <option  *ngFor="let btnAction of Active_Inactive" 
+                   value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              
+              </div>
+              
+            </div>
+           
+            
+          </div>
+          <button type="submit"
+          
+          [disabled]="form.invalid"  nbButton>Update </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

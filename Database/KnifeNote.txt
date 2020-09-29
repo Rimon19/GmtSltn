@@ -1,0 +1,11 @@
+<!-- No Spaces -->
+<input knifeNoSpaces type="text" placeholder="No Spaces">
+ 
+<!-- No Copy Paste -->
+<input knifeNoCopyPaste type="text" placeholder="No Copy Paste">
+  
+<!-- Alphanumeric -->
+<input knifeAlphanumeric type="text" placeholder="Alphanumeric">
+ 
+<!-- Only Numbers -->
+<input knifeOnlyNumbers type="text" placeholder="Only Numbers">

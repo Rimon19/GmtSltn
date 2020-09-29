@@ -1,0 +1,137 @@
+// @nebular theming framework
+@import '~@nebular/theme/styles/theming';
+// @nebular out of the box themes
+@import '~@nebular/theme/styles/themes';
+$nb-themes: nb-register-theme(( layout-padding-top: 2.25rem, menu-item-icon-margin: 0 0.5rem 0 0, card-height-tiny: 13.5rem, card-height-small: 21.1875rem, card-height-medium: 28.875rem, card-height-large: 36.5625rem, card-height-giant: 44.25rem, card-margin-bottom: 1.875rem, card-header-with-select-padding-top: 0.5rem, card-header-with-select-padding-bottom: 0.5rem, select-min-width: 6rem, slide-out-background: #f7f9fc, slide-out-shadow-color: 0 4px 14px 0 #8f9bb3, slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3, ), default, default);
+$nb-themes: nb-register-theme(( layout-padding-top: 2.25rem, menu-item-icon-margin: 0 0.5rem 0 0, card-height-tiny: 13.5rem, card-height-small: 21.1875rem, card-height-medium: 28.875rem, card-height-large: 36.5625rem, card-height-giant: 44.25rem, card-margin-bottom: 1.875rem, card-header-with-select-padding-top: 0.5rem, card-header-with-select-padding-bottom: 0.5rem, select-min-width: 6rem, slide-out-background: #252547, slide-out-shadow-color: 2px 0 3px #29157a, slide-out-shadow-color-rtl: -2px 0 3px #29157a, ), cosmic, cosmic);
+$nb-themes: nb-register-theme(( layout-padding-top: 2.25rem, menu-item-icon-margin: 0 0.5rem 0 0, card-height-tiny: 13.5rem, card-height-small: 21.1875rem, card-height-medium: 28.875rem, card-height-large: 36.5625rem, card-height-giant: 44.25rem, card-margin-bottom: 1.875rem, card-header-with-select-padding-top: 0.5rem, card-header-with-select-padding-bottom: 0.5rem, select-min-width: 6rem, slide-out-background: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%), slide-out-shadow-color: 0 4px 14px 0 #8f9bb3, slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3, ), corporate, corporate);
+$nb-themes: nb-register-theme(( layout-padding-top: 2.25rem, menu-item-icon-margin: 0 0.5rem 0 0, card-height-tiny: 13.5rem, card-height-small: 21.1875rem, card-height-medium: 28.875rem, card-height-large: 36.5625rem, card-height-giant: 44.25rem, card-margin-bottom: 1.875rem, card-header-with-select-padding-top: 0.5rem, card-header-with-select-padding-bottom: 0.5rem, select-min-width: 6rem, slide-out-background: linear-gradient(270deg, #222b45 0%, #151a30 100%), slide-out-shadow-color: 0 4px 14px 0 #8f9bb3, slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3, ), dark, dark);
+//Gobal CSS have used every components
+.text-dark {
+    font-size: calc(14px);
+}
+
+.text-danger {
+    font-size: calc(13px);
+}
+
+@include nb-install-component() {}
+
+nb-card-body {
+    overflow: visible;
+    padding-top: 0;
+    >* {
+        margin-top: 1rem;
+    }
+}
+
+.full-name-inputs {
+    display: flex;
+    margin: 0 -0.5rem;
+    >* {
+        margin: 0 0.5rem;
+    }
+}
+
+.checkbox-radio {
+    display: flex;
+}
+
+.demo-items {
+    flex: 1 0 33%;
+}
+
+.text-responsive {
+    font-size: calc(13px);
+}
+
+.table td,
+.table th {
+    width: 100px;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+    border-color: #dc3545;
+}
+
+.form-rounded {
+    border-radius: 1rem;
+}
+
+.text-responsive {
+    font-size: calc(10px);
+}
+
+.text-responsive2 {
+    font-size: calc(13px);
+}
+
+// // scroll bar CSS
+// .example-container {
+//   display: flex;
+//   flex-direction: column;
+//   min-width: 300px;
+// }
+// .container{
+//     background-color: white;
+//     border: 1.5px solid black;
+//     border-radius: 10px;
+//     text-align: center;
+// }
+// .mat-table {
+//   overflow: auto;
+//   max-height: 500px;
+// }
+// .container{
+//     background-color: white;
+//     border: 1.5px solid black;
+//     border-radius: 10px;
+//     text-align: center;
+// }
+// .mat-table{
+//     background-color: rgba(255, 255, 255, 0.959);
+//     height : 100vh;
+//     overflow: auto;   
+//     width: 1123px;
+// }
+// .mat-header-cell, .mat-cell {
+//      min-height: 48px;
+//     font-size:15px;
+//     width: 100%;
+//     color: black;
+// }
+// .mat-form-field-underline{
+//     background-color:transparent;
+// }    
+// .mat-form-field-flex{
+//     font-size: 14px;
+//     line-height: 1em;
+//     color: #555;
+//     background-image: none;
+//   //  border: 1px solid #29157a;
+//     border-radius: 4px;
+//     margin-top: 8px;
+//     padding: 2px;
+// }
+// .mat-form-field-wrapper{
+//     padding-bottom: 1.25em;
+//     padding-top: 1.25em;
+// }
+// .mat-form-field-infix{
+//     border:0px;
+// }
+// .mat-form-field {
+//     font-size: 18px;
+//     width: 70%;
+//   }
+// .mat-paginator{
+//     background-color:white;
+// }
+// .mat-row, .mat-header-row {
+//     min-width: 1800px;
+//     width: 100%;
+//   }
+
+
+

@@ -1,0 +1,123 @@
+<nb-card>
+  <nb-card-header
+  > <button (click)="backTo()"
+  class="btn btn-outline-success "
+  
+>
+<i class="fas fa-arrow-left"></i>
+</button>
+  Size Dits
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="SizeDitsFormAction()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:2500px;">
+        <form>
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Size </th>
+<th scope="col">Gmts Pcs </th>
+<th scope="col">BH Qty </th>
+
+ 
+              </tr>
+            </thead>
+         
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of SizeDitsForm.controls;let i=index" >
+                <tr>
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm " (click)="onDelete(fg.value.id,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+
+                   
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="text"
+        required
+        placeholder="Size "
+        formControlName="size"
+      />
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="number"
+        
+        placeholder="Gmts Pcs "
+        formControlName="gmtsPcs"
+        (change)="onChangeSum()"
+      />
+      </td>
+
+      
+      <td>
+      <input
+        class="form-control form-rounded form-control-sm "
+        type="number"
+        
+        placeholder="BH Qty "
+        formControlName="bhQty"
+        (change)="onChangeSum()"
+      />
+      </td>
+
+      
+
+                </tr>
+
+                <input
+             type="hidden"
+                formControlName="id"
+               
+              />
+
+              
+              </tbody>
+         
+           
+          </table>
+          <table>
+            <tr>
+              <td></td>
+              <td>
+               <label for="total" class="label text-dark">Total:</label > 
+                
+              </td>
+              <td>
+                <input type="text" class="form-control form-rounded form-control-sm " value="" readonly>
+              </td>
+              <td>
+                
+               <input type="text" class="form-control form-rounded form-control-sm " value="{{sumOfgmtsPcs}}" readonly>
+              </td>
+              <td>
+                <input type="text" class="form-control form-rounded form-control-sm " value="{{sumOfbhQty}}"readonly>
+              </td>
+            
+  
+            </tr>
+          </table>
+          <button [disabled]="SizeDitsForm.invalid"  *ngIf="i==count-1" type="submit" (click)=" onSubmit()" nbButton>Submit</button>
+        </form>
+       
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

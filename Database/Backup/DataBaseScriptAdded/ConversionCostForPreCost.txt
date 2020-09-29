@@ -1,0 +1,14 @@
+CREATE TABLE public."ConversionCostForPreCost"
+(
+    "Id" serial primary key,
+     "PrecostingId" integer,
+    "FabricDescriptionId" integer,
+    "ProcessId" integer,
+     "PoNo" integer,
+    "ProcessLoss" double precision,
+    "ReqQty" double precision,
+    "AvgReqQty" double precision,
+    "ChargeUnit" double precision,
+    "Amount" double precision,
+    "Status" character varying(100) 
+)

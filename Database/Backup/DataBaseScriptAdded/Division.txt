@@ -1,0 +1,5 @@
+ create table public."Division"(
+ "Id" serial primary key,
+ "DivisionName" character varying(100)
+
+)

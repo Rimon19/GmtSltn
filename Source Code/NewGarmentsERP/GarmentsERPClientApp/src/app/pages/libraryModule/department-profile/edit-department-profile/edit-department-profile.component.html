@@ -1,0 +1,174 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Department Profile Edit
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="DepartmentName" class="label text-dark">               
+                  Department Name <span class="text-danger">*</span></label>
+                <input  required name="departmentName" #DepartmentName="ngModel"
+                [(ngModel)]="departmentProfileService.departmentProfile.departmentName"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="DepartmentName" placeholder="Department Name ">
+                <div class="text-left text-danger"
+                *ngIf="departmentProfileService.departmentProfile.departmentName==''&&DepartmentName.touched">
+                Department Name   is required
+              </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="division" class="label text-dark">
+                  Division <span class="text-danger">*</span> </label>
+                  <select  required name="division" #Division="ngModel"
+                  [(ngModel)]="departmentProfileService.departmentProfile.division"
+                  class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select division Name</option>
+                  <option  *ngFor="let btnAction of divisionList" 
+                  value="{{btnAction.id}}">{{btnAction.divisionName}}</option>    
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="departmentProfileService.departmentProfile.division==''&&Division.touched">
+             Division Name  is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ShortName" class="label text-dark">
+                  Short Name</label>
+                <input   name="shortName" #ShortName="ngModel"
+                [(ngModel)]="departmentProfileService.departmentProfile.shortName"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="ShortName" placeholder="Short Name">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CountryName" class="label text-dark">
+                  Country Name</label>
+                  <select   name="countryId" #CountryId="ngModel"
+                  [(ngModel)]="departmentProfileService.departmentProfile.countryId"
+                   class="form-control form-rounded form-control-sm" >
+                  <option [ngValue]=0>Select Country Name</option>
+                  <option *ngFor="let countrylist of countryList" [value]="countrylist.regionID">{{countrylist.region_Name}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ContactPerson" class="label text-dark">
+                  Contact Person </label>
+                <input  name="contactPerson" #ContactPerson="ngModel"
+                [(ngModel)]="departmentProfileService.departmentProfile.contactPerson"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="ContactPerson" placeholder="Contact Person">     
+              </div>
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ContactNumber" class="label text-dark">
+                  Contact Number </label>
+                <input   name="contactNumber" #ContactNumber="ngModel"
+                [(ngModel)]="departmentProfileService.departmentProfile.contactNumber"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="ContactNumber" placeholder="Contact Number">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Website" class="label text-dark">
+                  Website </label>
+                <input   name="website" #Website="ngModel"
+                [(ngModel)]="departmentProfileService.departmentProfile.website"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="Website" placeholder="Website">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Email" class="label text-dark">
+                  Email </label>
+                <input   name="email" #Email="ngModel"
+                [(ngModel)]="departmentProfileService.departmentProfile.email"
+                class="form-control form-rounded form-control-sm" type="text" 
+                id="Email" placeholder="Email">
+               
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">
+                  Status</label>
+                  <select   name="status" #Status="ngModel"
+                  [(ngModel)]="departmentProfileService.departmentProfile.status"
+                   id="Status" 
+                   class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Address" class="label text-dark">
+                  Address</label>
+                  <textarea  name="address" #Address="ngModel"
+                  [(ngModel)]="departmentProfileService.departmentProfile.address"
+                  class="form-control form-rounded form-control-sm" id="Address" rows="1"></textarea>
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Remark" class="label text-dark">
+                  Remark </label>
+                  <textarea  name="remark" #Remark="ngModel"
+                  [(ngModel)]="departmentProfileService.departmentProfile.remark"
+                   class="form-control form-rounded form-control-sm" id="Remark" rows="1"></textarea>
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          <button type="submit"  [disabled]="form.invalid" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+drop table public."ShortTrimsBooking";
+create table public."ShortTrimsBooking"(
+"Id" serial primary key,
+"BookingNo" character varying(100),
+"BookingMonth" character varying(100),
+"BookingYear" character varying(100),
+"JobNo" character varying(100),
+"CompanyNameId" integer,
+"BuyerNameId" integer,
+"BookingDate" character varying(100),
+"PayMode" character varying(100),
+"DeliveryDate" character varying(100),
+"CurrencyId" integer,
+"ExchangeRate"  double precision ,
+"SupplierNameId" integer,
+"Source" character varying(100),
+"SelectItem" character varying(100),
+"Attention" character varying(200),
+"ReadyToApproved" character varying(100),
+"MaterialSource" character varying(100),
+
+"EntryDate" character varying(100),
+"EntryBy" character varying(100),
+"Status" character varying(100)
+)

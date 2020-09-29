@@ -1,0 +1,55 @@
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <input name="jobNo" class="form-control" placeholder="Job No search" [(ngModel)]="jobNo" name="jobNo">
+    </div>
+  <div class="form-group col-md-6">
+    <button type="submit" class="btn btn-dark" (click)="searchFabricItems(jobNo)">Search</button>
+    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+  </div>
+  </div>
+
+
+<div style="margin-left:1025px;margin-top:10px">
+  <th>
+    <a class="btn btn-sm btn-success text-white" (click)="AddOrEditOrderItem(null,null)"><i class="fa fa-plus"></i> Add Item</a>
+  </th>
+</div>
+<div style="margin-top:20px">
+  <table class="table table-borderless">
+    <thead class="thead-light">
+    <th>Job No</th>
+    <th>Po No</th>
+    <th>Item</th>
+    <th>Body Part</th>
+    <th>Contruction</th>
+    <th>Composition</th>
+    <th>GSM</th>
+    <th>Fabric Nature</th>
+    <th>Fabric Source</th>
+    <th>UOM</th>
+    <th></th>
+    </thead>
+    <tbody *ngFor="let result of jobNoSearchResult" >
+      <tr >
+        <td>{{result.jobNo ||result.jobNo}}</td>
+        <td>{{result.poNo || result.poNo}}</td>
+        <td>{{result.item}}</td>
+        <td>{{result.bodyPart}}</td>
+        <td>{{result.contruction}}</td>
+        <td>{{result.composition}}</td>
+        <td>{{result.gsm}}</td>
+        <td>{{result.fabricNature}}</td>
+        <td>{{result.fabricSource}}</td>
+        <td>{{result.uom}}</td>
+        <td>
+          <button type="submit" class="btn btn-dark" (click)="saveParsialFabricBooking(result,data.bookingMasterId)">Add</button>
+        </td>
+        <!--<td>
+        <button type="button" (click)="deleteFabricBooking(parsialFabric.id)">Delete</button>
+      </td>-->
+      </tr>
+    </tbody>
+  </table>
+</div>
+

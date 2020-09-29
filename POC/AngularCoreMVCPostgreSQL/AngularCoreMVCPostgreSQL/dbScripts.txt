@@ -1,0 +1,48 @@
+﻿-- Table: public.tblemployee
+
+-- DROP TABLE public.tblemployee;
+
+CREATE TABLE public.tblemployee
+(
+    employeeid integer NOT NULL DEFAULT nextval('tblemployee_employeeid_seq'::regclass),
+    name character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    city character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    department character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    gender character varying(6) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT tblemployee_pkey PRIMARY KEY (employeeid)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.tblemployee
+    OWNER to postgres;
+
+GO
+
+CREATE TABLE public."StudentMasters"(  
+"StdID"  INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+"StdName" varchar(100) NOT NULL, 
+"Email" varchar(100) NOT NULL,
+"Phone" varchar(20) NOT NULL, 
+"Address" varchar(200) NOT NULL)
+
+GO
+
+   CREATE TABLE public.StudentDetails(  
+    StdDtlID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	StdID INT, 
+	Major varchar(100) NOT NULL, 
+	Year varchar(30) NOT NULL, 
+    Term varchar(30) NOT NULL, 
+	Grade varchar(10) NOT NULL) 
+
+GO
+
+CREATE TABLE public."ProductImage"(  
+"FileUploadId"  INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+"FileName" varchar(100) NOT NULL, 
+"FileSize" varchar(100) NOT NULL,
+"ImagePath" varchar(200) NOT NULL, 
+"ProductId" varchar(20) NOT NULL)

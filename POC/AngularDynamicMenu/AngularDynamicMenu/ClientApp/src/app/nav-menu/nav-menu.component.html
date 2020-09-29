@@ -1,0 +1,40 @@
+<!--<div id="navbar" *ngIf="showNavBar" class="navbar-collapse collapse navbar-collapse-custom">
+  <ul class="nav navbar-nav nav_menu full-width">
+    <li *ngFor="let feature of featureList" class="nav_menu" routerLinkActive="active">
+      <a class="nav-item nav-link" [routerLink]="[feature.routepath]" routerLinkActive="active">{{feature.description}}</a>
+    </li>
+  </ul>
+</div>-->
+
+<div class='main-nav'>
+  <div class='navbar navbar-inverse'>
+    <div class='navbar-header'>
+      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+      <a class='navbar-brand' [routerLink]='["/"]'>AngularDynamicMenu</a>
+    </div>
+    <div class='clearfix'></div>
+    <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
+      <ul class='nav navbar-nav'>
+        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <a [routerLink]='["/"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-home'></span> Home
+          </a>
+        </li>
+        <!--<li *ngFor="let feature of featureList" class="nav_menu" routerLinkActive="active">
+          <a class="glyphicon glyphicon-th-list" (click)='collapse()' [routerLink]="[feature.routepath]" routerLinkActive="active">{{feature.description}}</a>
+        </li>-->
+        <li *ngFor="let feature of featureList"  [routerLinkActive]='["link-active"]'>
+          <a [routerLink]="[feature.routepath]" (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> {{feature.description}}
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>

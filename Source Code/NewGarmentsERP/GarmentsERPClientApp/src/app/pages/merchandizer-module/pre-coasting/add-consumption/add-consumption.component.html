@@ -1,0 +1,196 @@
+<nb-card>
+    <nb-card-header>
+        Consumption Entry Form
+        <button class="float-right ml-5" mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+        <!-- <button class="btn btn-outline-success float-right" (click)="consumptionForm()">
+      <i class="fa fa-plus"></i>
+    </button> -->
+    </nb-card-header>
+    <nb-card-body>
+        <div class="col-md-12" style="overflow-x: scroll">
+            <div class="smart-table-container" style="width: 2000px">
+                <form (submit)="onSubmit(consumptionInformationForm)">
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th scope="col">Action</th>
+                                <th scope="col">PO NO<span class="text-danger">*</span></th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Gmts Sizes</th>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Item Sizes</th>
+                                <th scope="col">
+                                    Finish Cons (Kg)<span class="text-danger">*</span>
+                                </th>
+                                <th scope="col">
+                                    Process Loss %<span class="text-danger">*</span>
+                                </th>
+                                <th scope="col">
+                                    Grey Cons (Kg)<span class="text-danger">*</span>
+                                </th>
+                                <th scope="col">Rate</th>
+                                <th scope="col">Amount<span class="text-danger">*</span></th>
+                                <th scope="col">Pcs</th>
+                                <th scope="col">Total Qty<span class="text-danger">*</span></th>
+                                <th scope="col">Total Amount</th>
+                                <th scope="col">Remark</th>
+                            </tr>
+                        </thead>
+
+                        <tbody [formGroup]="fg" *ngFor="
+                let fg of consumptionInformationForm.controls;
+                let i = index
+              ">
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-light ml-1" (click)="onDelete(consumptionInformationForm, i)">
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                  </button>
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="PO NO" formControlName="poNoId" required />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" placeholder="Color" formControlName="color" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Gmts Sizes" formControlName="gmtsSizes" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Dia" formControlName="dia" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Item Sizes" formControlName="itemSizes" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Finish Cons%" formControlName="finishCons" (change)="
+                      averageGrayCalculation(
+                        consumptionInformationForm.value,
+                        false
+                      )
+                    " required />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Process Loss" formControlName="processLoss" (change)="
+                      averageGrayCalculation(
+                        consumptionInformationForm.value,
+                        false
+                      )
+                    " required />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Grey Cons " formControlName="greyCons" required [ngClass]="this.setFabricItem == 3 ? 'readonly' : ''" />
+                                </td>
+
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Rate " formControlName="rate" (change)="
+                      averageGrayCalculation(
+                        consumptionInformationForm.value,
+                        false
+                      )
+                    " />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Amount " formControlName="amount" required />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Pcs" formControlName="pcs" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Total Qty" formControlName="totalQty" readonly (change)="
+                      averageGrayCalculation(
+                        consumptionInformationForm.value,
+                        false
+                      )
+                    " required />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="number" placeholder="Total Amount" formControlName="totalAmount" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" placeholder="Remarks" formControlName="remarks" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="hidden" placeholder="id" formControlName="id" />
+                                    <input class="form-control form-rounded form-control-sm" type="hidden" formControlName="precostingId" />
+                                </td>
+                            </tr>
+                            <input class="form-control form-rounded form-control-sm" type="hidden" placeholder="Remarks" formControlName="remarks" />
+                            <button *ngIf="i == count - 1" type="submit" [disabled]="consumptionInformationForm.invalid" nbButton>
+                Submit
+              </button>
+                        </tbody>
+
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-right">Sum</td>
+                                <td>
+                                    <input [(ngModel)]="totalFinishCons" name="totalFinishCons" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="totalProcessLoss" name="totalProcessLoss" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="totalGreyCons" name="totalGreyCons" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="totalRate" name="totalRate" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="totalAmount" name="totalAmount" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="totalPcs" name="totalPcs" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="totalTotalQty" name="totalTotalQty" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="totalTotalAmount" name="totalTotalAmount" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-right">AVG</td>
+                                <td>
+                                    <input [(ngModel)]="averageFinishCons" name="averageFinishCons" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="averageProcessLoss" name="averageProcessLoss" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="averageGreyCons" name="averageGreyCons" class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-rounded form-control-sm" type="text" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

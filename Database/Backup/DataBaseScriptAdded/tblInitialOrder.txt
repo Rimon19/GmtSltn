@@ -1,0 +1,53 @@
+-- Table: public."tblInitialOrder"
+
+-- DROP TABLE public."tblInitialOrder";
+CREATE TABLE public."tblInitialOrder"
+(
+    "OrderAutoID" integer NOT NULL DEFAULT nextval('"tblInitialOrder_OrderAutoID_seq"'::regclass) ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    "JobNo" character varying(60) COLLATE pg_catalog."default",
+    "CompanyID" integer,
+    "LocationID" integer,
+    "BuyerID" integer,
+    "Style_Ref" character varying(80) COLLATE pg_catalog."default",
+    "Style_Description" character varying(200) COLLATE pg_catalog."default",
+    "Prod_DeptID" integer,
+    "Sub_DeptID" integer,
+    "CurrencyID" integer,
+    "RegionID" integer,
+    "Product_CatID" integer,
+    "Team_Leader_ID" integer,
+    "Dealing_Merchant_ID" integer,
+    "BH_Merchant" character varying(80) COLLATE pg_catalog."default",
+    "Remarks" character varying(80) COLLATE pg_catalog."default",
+    "Shipment_Mode_ID" integer,
+    "Order_Uom_ID" integer,
+    "SMV" double precision,
+    "Packing_ID" integer,
+    "Season_ID" integer,
+    "Agent_ID" integer,
+    "UserID" integer,
+    "Repeat_No_Job" character varying(80) COLLATE pg_catalog."default",
+    "Order_Number" character varying(100) COLLATE pg_catalog."default",
+    "OrderImagePath" character varying(255) COLLATE pg_catalog."default",
+    factory_merchant integer,
+    "Status" character varying(100) COLLATE pg_catalog."default",
+    "EntryDate" character varying(100) COLLATE pg_catalog."default",
+    "EntryBy" character varying(100) COLLATE pg_catalog."default",
+    "MerchandApprovalDate" character varying(100) COLLATE pg_catalog."default",
+    "MerchandApproval" boolean,
+    "ApprovedByMerchandUserId" character varying(100) COLLATE pg_catalog."default",
+    "AgmApprovalDate" character varying(100) COLLATE pg_catalog."default",
+    "AgmApproval" boolean,
+    "ApprovedByAgmUserId" character varying(100) COLLATE pg_catalog."default",
+    "GmApprovalDate" character varying(100) COLLATE pg_catalog."default",
+    "GmApproval" boolean,
+    "ApprovedByGmUserId" character varying(100) COLLATE pg_catalog."default",
+    "MdApprovalDate" character varying(100) COLLATE pg_catalog."default",
+    "MdApproval" boolean,
+    "ApprovedByMdUserId" character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT "tblInitialOrder_pkey" PRIMARY KEY ("OrderAutoID")
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."tblInitialOrder"
+    OWNER to postgres;

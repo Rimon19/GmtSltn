@@ -1,0 +1,4 @@
+﻿
+1. I have make the ordernumber as jobnumber
+here order number is autoincremnt.now it wil be vice-varsa. we have to assume now the job number
+is auoincrement and insert the ordernumber manually and it must be unique

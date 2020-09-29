@@ -1,0 +1,55 @@
+<mat-form-field>
+
+    <input  matInput (keyup)="applyFilter($event.target.value)"
+    placeholder="Filter">
+    
+  </mat-form-field>
+  <div class="container">
+    <button class="mt-2" mat-raised-button (click)="onAdd()"
+    color="primary" >Add Department</button>
+  </div>
+  <div class="container">
+      <div class="mat-elevation-z8">
+      
+        <mat-table [dataSource] = "listData" matSort>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+      
+      <ng-container matColumnDef="Options">
+        <mat-header-cell *matHeaderCellDef class="bg-info text-white">Options</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)">
+            <mat-icon>launch</mat-icon>
+          </button>
+          <button mat-icon-button color="warn"(click)="onDelete(row.employeeID)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+        </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="employeeID" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="bg-info text-white">EmployeeID</mat-header-cell>
+        <mat-header-cell *matCellDef="let element" class="text-dark">{{element.employeeID}}</mat-header-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="employeeName" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="bg-info text-white">EmployeeName</mat-header-cell>
+          <mat-header-cell *matCellDef="let element" class="text-dark">{{element.employeeName}}</mat-header-cell>
+        </ng-container>
+        <ng-container matColumnDef="department" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="bg-info text-white">Department</mat-header-cell>
+            <mat-header-cell *matCellDef="let element" class="text-dark">{{element.department}}</mat-header-cell>
+          </ng-container>
+          <ng-container matColumnDef="mailID" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="bg-info text-white">MailID</mat-header-cell>
+            <mat-header-cell *matCellDef="let element" class="text-dark">{{element.mailID}}</mat-header-cell>
+          </ng-container>
+          <ng-container matColumnDef="doj" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="bg-info text-white">Doj</mat-header-cell>
+            <mat-header-cell *matCellDef="let element" class="text-dark">{{element.doj}}</mat-header-cell>
+          </ng-container>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons class="text-dark"></mat-paginator>
+      </div>
+      </div>
+     

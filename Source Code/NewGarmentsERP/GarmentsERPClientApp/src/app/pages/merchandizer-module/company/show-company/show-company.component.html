@@ -1,0 +1,20 @@
+<!-- <button class="mt-2" nbButton type="button" class="btn btn-info" 
+(click)="open()" >Add Company</button> -->
+<nb-card>
+  <nb-card-header>
+    Company Information
+  </nb-card-header>
+ 
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" 
+    (createConfirm)="addRecord($event)"
+    (editConfirm)="updateRecord($event)"
+    (deleteConfirm)="deleteRecord($event)" >
+    </ng2-smart-table>
+   
+    <nb-card-footer>
+    
+     
+    </nb-card-footer>
+  </nb-card-body>
+</nb-card>

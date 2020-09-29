@@ -1,0 +1,27 @@
+ <div>
+   <div class="row">
+  <div class="col-md-6">
+    Report Namme
+    <hr/>
+      
+     <p  (click)="toggleShow()">Buyer Profile</p>
+  </div>
+  <div class="col-md-6">
+    Parametar 
+    <hr/>
+    <div *ngIf="isShown">
+    <p>Enter Buyer ID</p>
+    <input class="form-control" [(ngModel)]="BuyerID" ng-show="Show">
+  </div>
+  </div>
+</div>
+<input type="button" (click)="exportToExcel()" class="btn btn-success" value="Export To Excel" />
+   <input class="btn btn-primary" type="button" (click)="Clicked()" value="Show Report" />
+  <div *ngIf="show">
+   
+    <iframe id="report" height="1000" width="1000" [src]="url | safeUrl"> </iframe>
+  </div> 
+
+  <!-- <input type="button" (click)="Clicked()" value="Show Online Designer" />
+  <div *ngIf="flag" [innerHTML]="html | safeHtml"></div> -->
+</div> 

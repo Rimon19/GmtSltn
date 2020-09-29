@@ -1,0 +1,22 @@
+CREATE TABLE public."ItemAccountCreation"
+(
+    "Id"  serial primary key,
+    "CompanyId" integer,
+    "ItemCategoryId" integer,
+    "ItemGroupId" integer,
+    "SubGroupCode" character varying(100),
+    "SubGroupName" character varying(100),
+    "ItemCode" character varying(100),
+    "ItemDescription" character varying(150),
+    "ItemSize" character varying(50),
+    "ReOrderLabel" character varying(100),
+    "MinLabel" character varying(100),
+    "MaxLabel" character varying(100),
+    "OrderUom" character varying(100),
+    "ConsUom" character varying(100),
+    "ItemAccount" character varying(100),
+    "Status" character varying(100),
+    "Brand" character varying(100),
+    "OriginOrCountryId" integer,
+    "Model" character varying(100)
+)

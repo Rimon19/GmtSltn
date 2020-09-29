@@ -1,0 +1,187 @@
+<h1>Students Details :</h1>
+<p *ngIf="!studentList">
+  <em>Loading Student Details please Wait ! ...</em>
+</p>
+<p>
+  <button type="button" class="btn btn-info" (click)="openModalDialog()">Add new</button>
+</p>
+<!--<pre>{{studentdetails|json}}</pre>-->
+<table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2" *ngIf="studentList">
+  <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border: solid1px#659EC7;">
+    <td width="80" align="center"></td>
+    <td width="80" align="center">Student ID</td>
+    <td width="150" align="center">Student Name</td>
+    <td width="150" align="center">Email</td>
+    <td width="80" align="center">Phone</td>
+    <td width="150" align="center">Address</td>
+    <td width="100" align="center">Actions</td>
+  </tr>
+  <tbody *ngFor="let StudentMasters of studentList">
+    <tr>
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><button type="button" class="btn btn-link btn-sm" (click)=getStudentsDetails(StudentMasters.stdId)> Detail </button></td>
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{StudentMasters.stdId}}</span></td>
+      <td style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{StudentMasters.stdName}}</span></td>
+      <td style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{StudentMasters.email}}</span></td>
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{StudentMasters.phone}}</span></td>
+      <td style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"> <span style="color:#9F000F">{{StudentMasters.address}}</span></td>
+
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;">
+        <button type="button" class="btn btn-link btn-sm" (click)="openModalDialog(StudentMasters.stdId)">Edit</button>
+        <button type="button" class="btn btn-link btn-sm" (click)="delete(StudentMasters.stdId)">Delete</button>
+      </td>
+
+    </tr>
+    <!--<tr *ngIf="activeRow==StudentMasters.stdId">
+      <td colspan="6" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"></td>
+    </tr>-->
+  </tbody>
+</table>
+
+<p>
+  <button type="button" class="btn btn-info" (click)="openDetailsModalDialog()">Add new</button>
+</p>
+
+<table class='table' style="background-color:#ECF3F4; border:2px#6D7B8D; padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2" *ngIf="studentdetailsList">
+  <tr style="height: 30px; background-color:#659EC7 ; color:#FFFFFF ;border: solid1px#659EC7;">
+    <td width="100" align="center">
+      <Strong>Student Detail --></Strong>
+    </td>
+    <td width="150" align="center"> Major</td>
+    <td width="100" align="center"> Year</td>
+    <td width="80" align="center"> Term</td>
+    <td width="80" align="center"> Grade</td>
+    <td width="100" align="center"> Action</td>
+  </tr>
+  <tbody *ngFor="let stddetails of studentdetailsList">
+    <tr>
+      <td align="center"></td>
+      <td align="center">{{stddetails.major}}</td>
+      <td align="center">{{stddetails.year}}</td>
+      <td align="center">{{stddetails.term}}</td>
+      <td align="center">{{stddetails.grade}}</td>
+
+      <td>
+        <!--<a [routerLink]="['/employee/edit/', emp.employeeid]">Edit</a> |-->
+        <button type="button" class="btn btn-link" (click)="openDetailsModalDialog(stddetails.stddtlid)">Edit</button>
+        <button type="button" class="btn btn-link" (click)="deleteDetails(stddetails.stddtlid)">Delete</button>
+        <!--<a [routerLink]="" (click)="delete(emp.employeeid)">Delete</a>-->
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal" id="modalMaster" tabindex="1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true"></span></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="studentForm" (ngSubmit)="saveStudentMaster()" #formDir="ngForm" novalidate>
+          <div class="form-group row">
+            <label class=" control-label col-md-12" for="Name">Name</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="stdName">
+            </div>
+            <span class="text-danger" *ngIf="studentForm.hasError('required', 'stdName') && formDir.submitted">
+              Name is required.
+            </span>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-md-12" for="Email">Email</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="email">
+            </div>
+            <span class="text-danger" *ngIf="studentForm.hasError('required', 'email') && formDir.submitted">
+              email is required
+            </span>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-md-12" for="Phone">Phone</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="phone">
+            </div>
+            <span class="text-danger" *ngIf="studentForm.hasError('required', 'phone') && formDir.submitted">
+              Phone is required
+            </span>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-md-12" for="Address">Address</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="address" data-val="true">
+            </div>
+            <span class="text-danger" *ngIf="studentForm.hasError('required', 'address') && formDir.submitted">
+              Address is required
+            </span>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Save</button>
+            <button class="btn" (click)="closeModalDialog()">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalDetails" tabindex="1" role="dialog" [ngStyle]="{'display':displayDetails}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true"></span></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="studentDetailsForm" (ngSubmit)="saveStudentDetails()" #formDir="ngForm" novalidate>
+          <div class="form-group row">
+            <label class=" control-label col-md-12" for="Major">Major</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="major">
+            </div>
+            <span class="text-danger" *ngIf="studentDetailsForm.hasError('required', 'major') && formDir.submitted">
+              Major is required.
+            </span>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-md-12" for="Year">Year</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="year">
+            </div>
+            <span class="text-danger" *ngIf="studentDetailsForm.hasError('required', 'year') && formDir.submitted">
+              Year is required
+            </span>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-md-12" for="Term">Term</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="term">
+            </div>
+            <span class="text-danger" *ngIf="studentDetailsForm.hasError('required', 'term') && formDir.submitted">
+              Term is required
+            </span>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-md-12" for="Grade">Grade</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="grade" data-val="true">
+            </div>
+            <span class="text-danger" *ngIf="studentDetailsForm.hasError('required', 'grade') && formDir.submitted">
+              Grade is required
+            </span>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Save</button>
+            <button class="btn" (click)="closeDetailsModalDialog()">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeDetailsModalDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

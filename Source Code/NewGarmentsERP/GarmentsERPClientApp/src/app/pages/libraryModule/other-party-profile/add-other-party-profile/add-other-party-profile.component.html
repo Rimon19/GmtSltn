@@ -1,0 +1,192 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()" class="btn btn-outline-success">
+  <i class="fas fa-arrow-left"></i>
+</button> Other Party Info
+    </nb-card-header>
+      
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="OtherPartyName" class="label text-dark">
+                  Other Party Name <span class="text-danger">*</span></label>
+                <input  required name="otherPartyName" #OtherPartyName="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.otherPartyName"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="OtherPartyName" placeholder="Other Party Name">
+                <div class="text-left text-danger"
+                *ngIf="otherPartyProfileService.otherPartyProfile.otherPartyName==''&&OtherPartyName.touched">
+                Other Party Name is required
+              </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ShortName" class="label text-dark">
+                  Short Name<span class="text-danger">*</span> </label>
+                <input required name="shortName" #ShortName="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.shortName"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="ShortName" placeholder="Short Name">
+                <div class="text-left text-danger"
+                *ngIf="otherPartyProfileService.otherPartyProfile.shortName==''&&ShortName.touched">
+                Short Name is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ContactPerson" class="label text-dark">
+                  Contact Person<span class="text-danger">*</span> </label>
+                <input  required name="contactPerson" #ContactPerson="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.contactPerson"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="ContactPerson" placeholder="Contact Person">
+                <div class="text-left text-danger"
+                *ngIf="otherPartyProfileService.otherPartyProfile.contactPerson==''&&ContactPerson.touched">
+                Contact Person  is required
+              </div>
+              </div>
+              
+            </div> 
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Designation" class="label text-dark">
+                  Designation<span class="text-danger">*</span> </label>
+                <input required name="designation" #Designation="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.designation"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="Designation" placeholder="Designation">
+                <div class="text-left text-danger"
+                *ngIf="otherPartyProfileService.otherPartyProfile.designation==''&&Designation.touched">
+                Designation  is required
+              </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ContactNo" class="label text-dark">
+                  Contact No</label>
+                <input  name="contactNo" #ContactNo="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.contactNo"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="ContactNo" placeholder="Contact No">
+               
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Email" class="label text-dark">
+                  Email </label>
+                <input  name="email" #Email="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.email"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="Email" placeholder="Email">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="URLName" class="label text-dark">
+                  http://www. </label>
+                <input  name="urlName" #UrlName="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.urlName"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="URLName" placeholder="http://www.">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Address" class="label text-dark">
+                  Address </label>
+                <input  name="address" #Address="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.address"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="Address" placeholder="Address">
+               
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CountryName" class="label text-dark">
+                  Country Name</label>
+                  <select  name="countryNameId" #CountryNameId="ngModel"
+                  [(ngModel)]="otherPartyProfileService.otherPartyProfile.countryNameId"
+                  class="form-control form-rounded form-control-sm  " >
+                  <option [ngValue]=0>Select Country Name</option>
+                  <option *ngFor="let countrylist of countryList" [value]="countrylist.regionID">{{countrylist.region_Name}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Remark" class="label text-dark">
+                  Remark</label>
+                <input  name="remark" #Remark="ngModel"
+                [(ngModel)]="otherPartyProfileService.otherPartyProfile.remark"
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="Remark" placeholder="Remark">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">
+                  Status </label>
+                  <select  name="status" #Status="ngModel"
+                  [(ngModel)]="otherPartyProfileService.otherPartyProfile.status"
+                   id="Status" 
+                  class="form-control form-rounded form-control-sm  " >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                  <label class="label text-dark">Image</label>
+                  <input
+                  name="image"
+                  (dblclick)="onAddImage()"
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="image"
+                  placeholder="Double click"
+                  
+                />
+              </div>
+          </div>
+          </div>
+          <button type="submit" [disabled]="form.invalid"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

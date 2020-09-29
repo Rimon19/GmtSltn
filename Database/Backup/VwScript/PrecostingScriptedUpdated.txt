@@ -1,0 +1,33 @@
+ALTER TABLE public."PreCosting" ADD COLUMN "eR" numeric(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "CutSMV" numeric(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "SewSMV" numeric(255);
+
+
+
+
+
+ALTER TABLE public."PreCosting" ADD COLUMN "QuotationId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "PoId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "BuyerId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "ApprovedId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "currencyId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "jobQty" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "companyId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "orderUOMId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "RegionId" integer;
+ALTER TABLE public."PreCosting" ADD COLUMN "BudgetMinuite" integer;
+
+
+
+ALTER TABLE public."PreCosting" ADD COLUMN "StyleRef" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "StyleDesc" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "Remark" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "agent" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "machineLine" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "prodLineHr" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "ReadyToApproved" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "imagesPath" varchar(300);
+ALTER TABLE public."PreCosting" ADD COLUMN "Fileno" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "internalRef" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "CopyFrom" varchar(255);
+ALTER TABLE public."PreCosting" ADD COLUMN "Unapproverequest" varchar(255);

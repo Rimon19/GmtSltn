@@ -1,0 +1,335 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Service Booking</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="WoNo" class="label text-dark">
+                 WO No</label
+               >
+               <input
+                 name="woNo"    
+                 [(ngModel)]="
+                 serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.woNo
+                 "
+                 class="form-control form-rounded form-control-sm"
+                 type="text"
+                 id="WoNo"
+                 placeholder=" WO No"
+               />
+              </div>
+              </div>
+                
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="CompanyNameId" class="label text-dark">
+                    Company Name
+                    <span class="text-danger">*</span> </label>
+                    <select
+                      name="companyNameId"
+                      required
+                      #CompanyNameId="ngModel"
+                      [(ngModel)]="
+                      serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.companyNameId
+                      "
+                      id="CompanyNameId"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Company Name</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.companyList"
+                      value="{{item.compID}}"
+                      >{{ item.company_Name}}</option
+                    >
+                    </select>
+                    <div
+                      class="text-left text-danger text-responsive"
+                      *ngIf="
+                      serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.companyNameId== '' && CompanyNameId.touched
+                      "
+                    >
+                    Company Name is required
+                    </div>
+                  </div>
+                </div>
+                  <!-- <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="FabBookingNoId" class="label text-dark">
+                    Fab Booking No
+                    </label>
+                    <select
+                      name="fabBookingNoId"
+                    
+                      #FabBookingNoId="ngModel"
+                      [(ngModel)]="
+                      serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.fabBookingNoId
+                      "
+                      id="FabBookingNoId"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Fab Booking No</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.testList"
+                      value="{{item.value}}"
+                      >{{ item.value}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div> -->
+                  
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="BuyerNameId" class="label text-dark">
+                    Buyer Name
+                    </label>
+                    <select
+                      name="buyerNameId"
+                    
+                      #BuyerNameId="ngModel"
+                      [(ngModel)]="
+                      serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.buyerNameId
+                      "
+                      id="BuyerNameId"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Buyer Name</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.buyerList"
+                      value="{{item.id}}"
+                      >{{ item.contactName}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div>
+                  
+                   <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="BookingDate" class="label text-dark">
+                      Booking Date<span class="text-danger">*</span>
+                    </label>
+                    <input readonly
+                      name="bookingDate"
+                      required
+                      #bookingDate="ngModel"
+                      [(ngModel)]="
+                        serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.bookingDate
+                      "          
+                      type="text"
+                      class="form-control form-rounded form-control-sm"
+                      id="BookingDate"
+                      [nbDatepicker]="BookingDate"
+                      placeholder="Booking Date"
+                    />
+                    <div
+                      class="text-left text-danger text-responsive"
+                      *ngIf="
+                      serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.bookingDate ==
+                          '' &&bookingDate.touched
+                      "
+                    >
+                    Booking Date is required
+                    </div>
+                    <nb-datepicker #BookingDate></nb-datepicker>
+                  </div>
+                </div>
+          </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="CurrencyId" class="label text-dark">
+        Currency
+        </label>
+        <select
+          name="currencyId"
+        
+          #CurrencyId="ngModel"
+          [(ngModel)]="
+          serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.currencyId
+          "
+          id="CurrencyId"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Currency</option>
+        <option
+          *ngFor="let item of dropdownValueService.currencyList"
+          value="{{item.id}}"
+          >{{ item.discountMethodName}}</option
+        >
+        </select>
+        
+      </div>
+    </div>
+       <div class="col-sm-3">
+  <div class="form-group">
+   <label for="ExchangeRate" class="label text-dark">
+     Exchange Rate</label
+   >
+   <input
+     name="exchangeRate"    
+     [(ngModel)]="
+     serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.exchangeRate
+     "
+     class="form-control form-rounded form-control-sm"
+     type="number"
+     id="ExchangeRate"
+     placeholder="Exchange Rate"
+   />
+  </div>
+  </div>
+    
+      <div class="col-sm-3">
+      <div class="form-group">
+        <label for="PayMode" class="label text-dark">
+        Pay Mode
+        <span class="text-danger">*</span> </label>
+        <select
+          name="payMode"
+          required
+          #PayMode="ngModel"
+          [(ngModel)]="
+          serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.payMode
+          "
+          id="PayMode"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Pay Mode</option>
+        <option
+          *ngFor="let item of dropdownValueService.payModeList"
+          value="{{item.value}}"
+          >{{ item.value}}</option
+        >
+        </select>
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.payMode== '' && PayMode.touched
+          "
+        >
+        Pay Mode is required
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-3">
+      <div class="form-group">
+        <label for="Source" class="label text-dark">
+        Source
+        </label>
+        <select
+          name="source"
+        
+          #Source="ngModel"
+          [(ngModel)]="
+          serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.source
+          "
+          id="Source"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Source</option>
+        <option
+          *ngFor="let item of dropdownValueService.sourceList"
+          value="{{item.value}}"
+          >{{ item.value}}</option
+        >
+        </select>
+        
+      </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="AopSource" class="label text-dark">
+      Aop Source
+      </label>
+      <select
+        name="aopSource"
+      
+        #AopSource="ngModel"
+        [(ngModel)]="
+        serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.aopSource
+        "
+        id="AopSource"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Aop Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.aopSourceList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="SupplierNameId" class="label text-dark">
+      Supplier Name
+      </label>
+      <select
+        name="supplierNameId"
+      
+        #SupplierNameId="ngModel"
+        [(ngModel)]="
+        serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.supplierNameId
+        "
+        id="SupplierNameId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Supplier Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.subpplierList"
+        value="{{item.id}}"
+        >{{ item.supplierName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="Attention" class="label text-dark">
+   Attention</label
+ >
+ <input
+   name="attention"    
+   [(ngModel)]="
+   serviceBookingForAOPWithoutOrderService.serviceBookingForAOPWithoutOrder.attention
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Attention"
+   placeholder=" Attention"
+ />
+</div>
+</div>
+</div>
+    
+ 
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

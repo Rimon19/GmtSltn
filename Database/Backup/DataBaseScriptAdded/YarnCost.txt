@@ -1,0 +1,13 @@
+create table public."YarnCost"(
+"Id" serial primary key,
+"CountId" character varying(100),
+"precostingId" integer,
+"Comp1Id" integer,
+"percentage" numeric,
+"Color" character varying(100),
+"TypeId" integer,
+"ConsQnty" numeric,
+"SupplierId" integer,
+"Rate" numeric,
+"Amount" numeric
+)

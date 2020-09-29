@@ -1,0 +1,609 @@
+<div class="row">
+  <div class="col-lg-12">
+      <nb-card>
+          <nb-card-header>
+              <button (click)="backTo()" class="btn btn-outline-success">
+        <i class="fas fa-arrow-left"></i>
+      </button> Edit Buyer Profile 
+          </nb-card-header>
+          <nb-card-body>
+              <form #form="ngForm" (submit)="onSubmit(form)">
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Contact Name<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                #contactName="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.contactName"
+                class="form-control form-rounded form-control-sm"
+                name="contactName"
+                type="text"
+                placeholder="Contact Name"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.contactName == '' &&
+                  contactName.touched
+                "
+              >
+                Contact Name is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark">Short Name</label>
+                              <input #shortName="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.shortName" class="form-control form-rounded form-control-sm" name="shortName" type="text" placeholder="Short Name" />
+                              <!-- <div class="text-left text-danger"
+            *ngIf="buyerProfileService.buyerProfile.shortName==''&&shortName.touched">
+            Country Depo Name is required
+          </div> -->
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Contact Person<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                #contactPerson="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.contactPerson"
+                class="form-control form-rounded form-control-sm"
+                name="contactPerson"
+                type="text"
+                placeholder="Contact Person"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.contactPerson == '' &&
+                  contactPerson.touched
+                "
+              >
+                Contact Person is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark"
+                >Designation<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                #designation="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.designation"
+                class="form-control form-rounded form-control-sm"
+                name="designation"
+                type="text"
+                placeholder="Designation"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.designation == '' &&
+                  designation.touched
+                "
+              >
+                Designation is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark"
+                >Exporters Ref<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                #exportersRef="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.exportersRef"
+                class="form-control form-rounded form-control-sm"
+                name="exportersRef"
+                type="text"
+                placeholder="Exporters Ref"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.exportersRef == '' &&
+                  exportersRef.touched
+                "
+              >
+                Exporters Ref is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark"
+                >Email<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                #email="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.email"
+                class="form-control form-rounded form-control-sm"
+                name="email"
+                type="text"
+                placeholder="Email"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.email == '' &&
+                  email.touched
+                "
+              >
+                Email is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark">http://www.</label>
+                              <input #httpWww="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.httpWww" class="form-control form-rounded form-control-sm" name="httpWww" type="text" placeholder="http://www." />
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Address 1<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                #addressOne="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.addressOne"
+                class="form-control form-rounded form-control-sm"
+                name="addressOne"
+                type="text"
+                placeholder="Address 1"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.addressOne == '' &&
+                  addressOne.touched
+                "
+              >
+                Address 1 is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark">address 2</label>
+                              <input #addressTwo="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.addressTwo" class="form-control form-rounded form-control-sm" name="addressTwo" type="text" placeholder="address 2" />
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">address 3</label>
+                              <input #addressThree="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.addressThree" class="form-control form-rounded form-control-sm" name="addressThree" type="text" placeholder="address 3" />
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">address 4</label>
+                              <input #addressFour="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.addressFour" class="form-control form-rounded form-control-sm" name="addressFour" type="text" placeholder="address 4" />
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label for="countryId" class="label text-dark">Country<span class="text-danger">*</span></label
+              >
+              <select
+                required
+                #countryId="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.countryId"
+                class="form-control form-rounded form-control-sm"
+                name="countryId"
+              >
+                <option value="">Select Country</option> 
+                <option
+                  *ngFor="let countrylist of countryList"
+                  [value]="countrylist.regionID"
+                >
+                  {{ countrylist.region_Name }}
+                </option>
+              </select>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.countryId == 0 &&
+                  countryId.touched
+                "
+              >
+                Country is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="partyTypeselectedItems" class="label text-dark"
+                >Party Type</label
+              >
+              <ng-multiselect-dropdown
+                name="partyTypeselectedItems"
+                [placeholder]="'Party Type'"
+                [data]="partyTypedropdownList"
+                [(ngModel)]="partyTypeselectedItems"
+                [settings]="partyTypedropdownSettings"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="tagePage" class="label text-dark"
+                >Tag Company</label
+              >
+              <ng-multiselect-dropdown
+                name="tagCompanyselectedItems"
+                [placeholder]="'Tag Company'"
+                [data]="tagCompanydropdownList"
+                [(ngModel)]="tagCompanyselectedItems"
+                [settings]="tagCompanydropdownSettings"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="contactName" class="label text-dark"
+                >Link to Supplier</label
+              >
+              <select
+                #linkToSupplier="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.linkToSupplier"
+                class="form-control form-rounded form-control-sm"
+                name="linkToSupplier"
+              >
+                <option value="">Select Supplier</option>
+                <option *ngFor="let supplier of dropdownValueService.subpplierList" [value]="supplier.id">{{supplier.supplierName}}</option> 
+              </select>
+              <!-- <div class="text-left text-danger"
+            *ngIf="buyerProfileService.buyerProfile.contactName==0&&contactName.touched">
+            Ultimate  Country is required
+          </div> -->
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark"
+                >Credit Limit (Days)<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                #creditLimitDays="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.creditLimitDays"
+                class="form-control form-rounded form-control-sm"
+                name="creditLimitDays"
+                type="text"
+                placeholder="Credit Limit (Days)"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.creditLimitDays == 0 &&
+                  creditLimitDays.touched
+                "
+              >
+                Credit Limit (Days) is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark"
+                >Credit Limit (Amount)<span class="text-danger"
+                  >*</span
+                ></label
+              >
+              <input
+                required
+                #crditLimitAmount="ngModel"
+                [(ngModel)]="
+                  buyerProfileService.buyerProfile.crditLimitAmount
+                "
+                class="form-control form-rounded form-control-sm"
+                name="crditLimitAmount"
+                type="number"
+                placeholder="Credit Limit (Amount)"
+              />
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.crditLimitAmount == '' &&
+                  crditLimitAmount.touched
+                "
+              >
+                Credit Limit is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="discountMethod" class="label text-dark">
+                Discount Method<span class="text-danger">*</span></label
+              >
+              <select
+                required
+                #discountMethod="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.discountMethod"
+                class="form-control form-rounded form-control-sm"
+                name="discountMethod"
+              >
+                <option value="">Select Discount Method</option>
+                <option *ngFor="let dm of discountMethodList" [value]="dm.id">
+                  {{ dm.discountMethodName }}
+                </option>
+              </select>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.discountMethod == '' &&
+                  discountMethod.touched
+                "
+              >
+                Discount Method is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="secuirityDeducted" class="label text-dark"
+                >Security Deducted<span class="text-danger">*</span></label
+              >
+              <select
+                required
+                #secuirityDeducted="ngModel"
+                [(ngModel)]="
+                  buyerProfileService.buyerProfile.secuirityDeducted
+                "
+                class="form-control form-rounded form-control-sm"
+                name="secuirityDeducted"
+              >
+                <option value="">Select Security Deducted</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  buyerProfileService.buyerProfile.secuirityDeducted == '' &&
+                  secuirityDeducted.touched
+                "
+              >
+                Security Deducted is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="vatToBeDeducted" class="label text-dark"
+                >VAT to be Deducted</label
+              >
+              <select
+                #vatToBeDeducted="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.vatToBeDeducted"
+                class="form-control form-rounded form-control-sm"
+                name="vatToBeDeducted"
+              >
+                <option value="">Select VAT to be Deducted</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="aitToBeDeducted" class="label text-dark"
+                >AIT to be Deducted</label
+              >
+              <select
+                #aitToBeDeducted="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.aitToBeDeducted"
+                class="form-control form-rounded form-control-sm"
+                name="aitToBeDeducted"
+              >
+                <option value="">Select AIT to be Deducted</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark">Remark</label>
+                              <input #remark="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.remark" class="form-control form-rounded form-control-sm" name="remark" type="text" placeholder="Remark" />
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label for="marketingTeamId" class="label text-dark">Marketing Team</label
+              >
+              <select
+                #marketingTeamId="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.marketingTeamId"
+                class="form-control form-rounded form-control-sm"
+                name="marketingTeamId"
+              >
+                <option [ngValue]="0">Select Marketing Team</option>
+                 <option *ngFor="let teamList of dropdownValueService.marketingTeamInfoList" [value]="teamList.id">{{teamList.teamName}}</option> 
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark">Sewing Effi Mkt. %</label>
+                              <input #sewingEffiMkt="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.sewingEffiMkt" class="form-control form-rounded form-control-sm" name="sewingEffiMkt" type="text" placeholder="Sewing Effi Mkt. %" />
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Sewing Effi Planing %</label>
+                              <input #sewingEffiPlaning="ngModel" [(ngModel)]="
+                  buyerProfileService.buyerProfile.sewingEffiPlaning
+                " class="form-control form-rounded form-control-sm" name="sewingEffiPlaning" type="text" placeholder="Sewing Effi Planing %" />
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Deffd. LC Cost%</label>
+                              <input #deffdLcCost="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.deffdLcCost" class="form-control form-rounded form-control-sm" name="deffdLcCost" type="text" placeholder="Deffd. LC Cost%	" />
+                              <!-- <div class="text-left text-danger"
+            *ngIf="buyerProfileService.buyerProfile.contactName==''&&contactName.touched">
+            Country Depo Name is required
+          </div> -->
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label for="cutOffUsed" class="label text-dark">Cut-Off Used</label
+              >
+              <select
+                #cutOffUsed="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.cutOffUsed"
+                class="form-control form-rounded form-control-sm"
+                name="cutOffUsed"
+              >
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="controlDelivery" class="label text-dark"
+                >Control Delivery</label
+              >
+              <select
+                #controlDelivery="ngModel"
+                [(ngModel)]="buyerProfileService.buyerProfile.controlDelivery"
+                class="form-control form-rounded form-control-sm"
+                name="controlDelivery"
+              >
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label class="label text-dark">Delivery Buffer Days</label>
+                              <input #deliveryBufferDays="ngModel" [(ngModel)]="
+                  buyerProfileService.buyerProfile.deliveryBufferDays
+                " class="form-control form-rounded form-control-sm" name="deliveryBufferDays" type="text" placeholder="Delivery Buffer Days" />
+                              <!-- <div class="text-left text-danger"
+            *ngIf="buyerProfileService.buyerProfile.contactName==''&&contactName.touched">
+            Country Depo Name is required
+          </div> -->
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Min Quoted Profit %</label>
+                              <input #minQuotedProfit="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.minQuotedProfit" class="form-control form-rounded form-control-sm" name="minQuotedProfit" type="text" placeholder="Min Quoted Profit %" />
+                              <!-- <div class="text-left text-danger"
+            *ngIf="buyerProfileService.buyerProfile.contactName==''&&contactName.touched">
+            Country Depo Name is required
+          </div> -->
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Min Budgeted Profit %</label>
+                              <input #minBudgetedProfit="ngModel" [(ngModel)]="
+                  buyerProfileService.buyerProfile.minBudgetedProfit
+                " class="form-control form-rounded form-control-sm" name="minBudgetedProfit" type="text" placeholder="Min Budgeted Profit %" />
+                              <!-- <div class="text-left text-danger"
+            *ngIf="buyerProfileService.buyerProfile.contactName==''&&contactName.touched">
+            Country Depo Name is required
+          </div> -->
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label for="status" class="label text-dark">Status</label>
+                              <select id="status" #status="ngModel" [(ngModel)]="buyerProfileService.buyerProfile.status" name="status" class="form-control form-rounded form-control-sm">
+                <option value="">Select Status</option>
+                <option value="Active">Active</option>
+                <option value=" In Active">In Active</option>
+              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label for="commercialInvoice" class="label text-dark">Commercial Invoice</label
+              >
+              <select
+                #commercialInvoice="ngModel"
+                [(ngModel)]="
+                  buyerProfileService.buyerProfile.commercialInvoice
+                "
+                class="form-control form-rounded form-control-sm"
+                name="commercialInvoice"
+              >
+                <option value="">Select Commercial Invoice</option>
+                <option
+                  *ngFor="let cmmrclIvc of commercialInvoiceList"
+                  [value]="cmmrclIvc.commercialInvoiceName"
+                >
+                  {{ cmmrclIvc.commercialInvoiceName }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="tagePage" class="label text-dark">Tag Sample</label>
+                              <ng-multiselect-dropdown name="tagSampleselectedItems" [placeholder]="'Tag Company'" [data]="tagSampledropdownList" [(ngModel)]="tagSampleselectedItems" [settings]="tagSampledropdownSettings">
+                              </ng-multiselect-dropdown>
+                          </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label class="label text-dark">Image</label>
+                              <input
+                              name="image"
+                              (dblclick)="onAddImage()"
+                              class="form-control form-rounded form-control-sm"
+                              type="text"
+                              id="image"
+                              placeholder="Double click"
+                              
+                            />
+                          </div>
+                      </div>
+                  </div>
+
+                  <button type="submit" nbButton [disabled]="form.invalid">
+          Submit
+        </button>
+              </form>
+          </nb-card-body>
+      </nb-card>
+  </div>
+</div>

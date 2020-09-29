@@ -1,0 +1,121 @@
+CREATE TABLE public."UOM"
+(
+    "Id"  serial primary key,
+    "UomName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."DiscountMethod"
+(
+    "Id"  serial primary key,
+    "DiscountMethodName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."BodyPartType"
+(
+    "Id"  serial primary key,
+    "BodyPartTypeName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."CommercialInvoice"
+(
+    "Id"  serial primary key,
+    "CommercialInvoiceName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."FabricNature"
+(
+    "Id"  serial primary key,
+    "FabricNatureName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."ColorRange"
+(
+    "Id"  serial primary key,
+    "ColorRangeName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."SampleType"
+(
+    "Id"  serial primary key,
+    "SampleTypeName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."ProductCategory"
+(
+    "Id"  serial primary key,
+    "ProductCategoryName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."ProductType"
+(
+    "Id"  serial primary key,
+    "ProductTypeName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."Years"
+(
+    "Id"  serial primary key,
+    "Year" integer,
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."Months"
+(
+    "Id"  serial primary key,
+    "MonthName" character varying(100),
+	"MonthNumber" integer,
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."Resources"
+(
+    "Id"  serial primary key,
+    "ResourceName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."ProductionProcess"
+(
+    "Id"  serial primary key,
+    "ProductionProcessName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+
+CREATE TABLE public."JournalType"
+(
+    "Id"  serial primary key,
+    "JournalTypeName" character varying(100),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."Type"
+(
+    "Id"  serial primary key,
+    "TypeName" character varying(100),
+    "status" character varying(100)
+    
+)

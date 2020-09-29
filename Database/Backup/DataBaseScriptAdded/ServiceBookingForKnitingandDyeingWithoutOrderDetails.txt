@@ -1,0 +1,26 @@
+create table public."ServiceBookingForKnitingandDyeingWithoutOrderDetails"(
+"Id" serial primary key,
+"ServiceBookingMasterId" integer,
+  "FabricSource" character varying(100),
+"FabricDescription" integer,
+"GSM" character varying(100),
+"Dia" character varying(100),
+"UOM" integer,
+"ArtworkNo" character varying(100),
+"GmtsColor" character varying(100),
+"WOQty" double precision ,
+"Rate" double precision ,
+"Amount" double precision ,
+"DeliveryStartDate" character varying(100),
+"DeliveryEndDate" character varying(100),
+"Remarks" character varying(100),
+"Process" integer,
+
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

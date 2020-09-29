@@ -1,0 +1,12 @@
+CREATE TABLE public."FabricDesPreCost"
+(
+    "Id" serial primary key,
+    "FabNature" character varying(100),
+    "Construction" character varying(100),
+    "GsmWeight" double precision,
+    "ColorRange" character varying(100),
+    "StichLength" double precision,
+    "ProcessLoss" double precision,
+    "Composition" character varying(200)
+   
+)

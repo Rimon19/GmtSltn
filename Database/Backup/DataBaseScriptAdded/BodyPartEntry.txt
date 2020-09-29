@@ -1,0 +1,10 @@
+CREATE TABLE public."BodyPartEntry"
+(
+    "Id"  serial primary key,
+    "BodyPartFullName" character varying(100),
+    "BodyPartShortName" character varying(100),
+    "EntryPages" character varying(500),
+    "BodyPartType" character varying(100),
+    "status" character varying(100)
+    
+)

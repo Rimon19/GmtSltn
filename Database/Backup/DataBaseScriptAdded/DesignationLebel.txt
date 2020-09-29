@@ -1,0 +1,5 @@
+ create table public."DesignationLebel"(
+ "Id" serial primary key,
+ "DesignationLebelName" character varying(100)
+
+)

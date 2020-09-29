@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name"> ভয়েস এআর </string>
+
+
+
+    <string name="languagemovement_why"> বাংলাকে রাষ্ট্রভাষা হিসেবে প্রতিষ্ঠিত করার জন্য ভাষা আন্দোলন হয়েছিল। আমাদের মহান মুক্তিযুদ্ধে ভাষা আন্দোলনের চেতনা এক গুরুত্বপূর্ণ ভুমিকা রাখে।</string>
+
+    <string name="designer">শহীদ মিনারের ডিজাইনার কে?</string>
+    <string name="designer_ans">স্থপতি হামিদুর রহমান শহীদ মিনারের ডিজাইনার। প্রথম শহীদ মিনারটি ২৩ শে ফেব্রুয়ারি ১৯৫২ সালে নির্মিত হয়েছিল।</string>
+
+    <string name="languagemovement_song">ভাষা আন্দোলনের উপর কোন গান রচিত হয়েছিল?</string>
+    <string name="languagemovement_song_ans">ভাষা আন্দোলনের উপর  ”আমার ভাইয়ের রক্তে রাঙ্গানো একুশে ফেব্রুয়ারী, আমি কি ভুলিতে পারি” গানটি রচিত হয়েছিল।  আব্দুল লতিফ এতে সুরারোপ করেন।</string>
+
+    <string name="languagemovement_leaders">ভাষা আন্দোলনের নেতৃত্ব কারা দিয়েছিল?</string>
+    <string name="languagemovement_leaders_ans">ভাষা আন্দোলনের নেতৃত্ব দিয়েছিলেন ঢাকা বিশ্ববিদ্যালয়ের বহু সংখ্যক ছাত্র ও প্রগতিশীল কিছু সম্মানিত রাজনৈতিক কর্মী।</string>
+
+    <string name="international_monther_language_day">আন্তর্জাতিক মাতৃভাষা দিবস কবে?</string>
+    <string name="international_monther_language_day_ans">আন্তর্জাতিক মাতৃভাষা দিবস হলো ২১ শে ফেব্রুয়ারী। ১৭ ই নভেম্বর, ১৯৯৯ সালে ইউনেস্কো বাঙালির অভূতপূর্ব আত্মত্যাগের স্বীকৃতি দেয়ার জন্য এই মর্যাদা দেয়।</string>
+
+    <string name="international_monther_language_day_why">আন্তর্জাতিক মাতৃভাষা দিবস কেন ঘোষণা করা হয়েছে?</string>
+    <string name="international_monther_language_day_why_ans">আন্তর্জাতিক মাতৃভাষা দিবস  হলো ২১ শে ফেব্রুয়ারী। ১৭ ই নভেম্বর, ১৯৯৯ সালে ইউনেস্কো বাঙালির অভূতপূর্ব আত্মত্যাগের স্বীকৃতি দেয়ার জন্য এই মর্যাদা দেয়।</string>
+
+    <string name="martyrs">ভাষা আন্দোলনে কে কে শহীদ হয়েছিলেন?</string>
+    <string name="martyrs_ans">সালাম, বরকত, রফিক, জব্বার সহ আরো  অনেকে  শহীদ হয়েছিলেন।</string>
+
+    <string name="contribution">স্বাধীনতা যুদ্ধে ভাষা আন্দোলনের ভুমিকা কি?</string>
+    <string name="contribution_ans">ভাষা আন্দোলনের দাবি আদায়ের  সফলতা স্বাধীনতা যুদ্ধের প্রেরণা হিসেবে কাজ করেছিল। </string>
+
+    <string name="controbution_of_muzib">বঙ্গবন্ধুর ভুমিকা কি ছিল ভাষা আন্দোলনে?</string>
+    <string name="controbution_of_muzib_ans">ভাষা আন্দোলনে বঙ্গবন্ধুর ভুমিকা ছিল অত্যন্ত গুরুত্বপূর্ণ। উনি ছিলেন ভাষা আন্দোলনের অন্যতম সংঘটক এবং স্বপ্নদ্রষ্টা।</string>
+
+    <string name="shohidminar_construction_date">শহীদ মিনার কবে গঠন করা হয়েছিল?</string>
+    <string name="shohidminar_construction_date_ans">শহীদ মিনার প্রথম নির্মিত হয় ১৯৫২ সালের ২৩ শে ফেব্রুয়ারি। এটি ঢাকা মেডিকেল কলেজ সংলগ্ন প্রাঙ্গনে।</string>
+
+    <string name="shoidminar_architect">শহীদ মিনারের নকশাকারী কে?</string>
+    <string name="shoidminar_architect_ans">শহীদ মিনারের নকশাকারী হামিদুর রহমান। প্রথম শহীদ মিনারটি ২৩ শে ফেব্রুয়ারি ১৯৫২ সালে নির্মিত হয়েছিল।</string>
+
+    <string name="podok">ভাষা আন্দোলনের স্মরণে কোন পদক দেওয়া হয়?</string>
+    <string name="podok_ans"> ভাষা আন্দোলনের স্মরণে একুশে পদক দেওয়া হয়। প্রতি বছর বিভিন্ন খাতে অবদান রাখা বিশিষ্ট ব্যক্তিদের হাতে প্রধানমন্ত্রী এই পদক তুলে দেন।</string>
+
+    <string name="contribution_of_student">ভাষা আন্দোলনে ছাত্রদের ভুমিকা কি ছিল?</string>
+    <string name="contribution_of_student_ans">ভাষা আন্দোলনে ছাত্ররা অগ্রণী ভুমিকা রাখেন, তাদের বলিষ্ঠ নেতৃত্বের কারনে মাতৃভাষার দাবিতে দুর্বার আন্দোলন গড়ে উঠেছিল। </string>
+
+    <string name="bornomala">বাংলা ভাষায় কতোগুলি বর্ণ আছে?</string>
+    <string name="bornomala_ans">"বাংলা ভাষায় ৫০ টি বর্ণমালা আছে। এদের মধ্যে ১১ টি স্বরবর্ণ এবং ৩৯ টি ব্যঞ্জন বর্ণ।"</string>
+
+
+    <string name="inauguration">শহীদ মিনার উদ্বোধন করেন কে?</string>
+    <string name="inauguration_ans">শহীদ মিনারের উদ্বোধন করেন আবুল বারকাতের মা শেখ হাসিনা বেগম।</string>
+
+    <string name="unesco">ইউনেস্কো কখন ২১ শে ফেব্রুয়ারি আন্তর্জাতিক মাতৃভাষা দিবস ঘোষণা করে?</string>
+    <string name="unesco_ans"> ইউনেস্কো ১৭ ই নভেম্বর, ১৯৯৯ সালে ২১ শে ফেব্রুয়ারিকে আন্তর্জাতিক মাতৃভাষা দিবস ঘোষণা করেছিল।</string>
+
+    <string name="pakisthan_pm">ভাষা আন্দোলনের সময় পাকিস্তানের প্রধানমন্ত্রী কে ছিলেন?</string>
+    <string name="pakisthan_pm_ans">ভাষা আন্দোলনের সময় পাকিস্তানের প্রধানমন্ত্রী ছিলেন খাজা নাজিমুদ্দিন।</string>
+
+    <string name="pakisthan_state_minister">ভাষা আন্দোলনের সময় পূর্ব পাকিস্তানের মুখ্যমন্ত্রী কে ছিলেন?</string>
+    <string name="pakisthan_state_minister_ans">ভাষা আন্দোলনের সময় পূর্ব পাকিস্তানের মূখ্যমন্ত্রী ছিলেন নুরুল আমিন।</string>
+
+    <string name="living_legend">ভাষা আন্দোলনে অংশগ্রহনকারী কেউ কি বেঁচে আছেন?</string>
+    <string name="living_legend_ans">ভাষা আন্দোলনে অংশগ্রহণকারী আর কেউ বেঁচে নেই, ২০১৪ সালের ৮ ই অক্টোবর সর্বশেষ ব্যাক্তি হিসেবে আব্দুল মতিন মৃত্যুবরন করেন।</string>
+
+    <string name="police_activities">ভাষা আন্দোলনের সময় পুলিশ কি করেছিল?</string>
+    <string name="police_activities_ans">পুলিশ আন্দোলনকারীদের প্রথমে বাধা প্রদান করে, পরে গুলি বর্ষণ শুরু করে।</string>
+
+    <string name="why_police_attack">কেনো ভাষা আন্দোলনের সময় গুলি চালানো হয়েছিল?</string>
+    <string name="why_police_attack_ans">আন্দোলনকারীদের ছত্র ভঙ্গ করতে এবং সর্বপরি মিছিল দমন করতে গুলি চালানো হয়েছিল।</string>
+
+    <string name="urdu">প্রথম কে বলেছিলেন উর্দু হবে পাকিস্তানের রাষ্ট্রভাষা?</string>
+    <string name="urdu_ans">মোহাম্মদ আলী জিন্নাহ প্রথম বলেছিলেন উর্দু হবে পাকিস্তানের রাষ্ট্রভাষা।</string>
+
+
+    <string name="language_institute">আন্তর্জাতিক মাতৃভাষা দিবস কে কেন্দ্র করে কি বাংলাদেশে কোন শিক্ষা প্রতিষ্ঠান তৈরি হয়েছে?</string>
+    <string name="language_institute_ans">আন্তর্জাতিক মাতৃভাষা দিবস কে কেন্দ্র করে বাংলাদেশে আন্তর্জাতিক ভাষা গবেষণা ইনিস্টিটিউট তৈরি হয়েছে।</string>
+
+
+    <string name="international_proposition">আন্তর্জাতিক মাতৃভাষা দিবসের প্রস্তাব কে করেছে?</string>
+    <string name="international_proposition_ans">আন্তর্জাতিক মাতৃভাষা দিবসের প্রস্তাব ১৯৯৯ সালে বাংলাদেশ সরকারের তৎকালীন প্রধানমন্ত্রী শেখ হাসিনা দিয়েছিলেন।</string>
+
+    <!--    <string name="ekushe">একুশে ফেব্রুয়ারি গানটি একটু প্লে করবেন?</string>
+        <string name="ekushe_ans"></string>-->
+
+    <string name="ekushe_song">একুশে ফেব্রুয়ারি গানটির সুরকার কে?</string>
+    <string name="ekushe_song_ans">ভাষা আন্দোলনের উপর  ”আমার ভাইয়ের রক্তে রাঙ্গানো একুশে ফেব্রুয়ারী ,আমি কি ভুলিতে পারি” গানটি রচিত হয়েছিল। আব্দুল লতিফ এতে সুরারোপ করেন।</string>
+
+
+    <string name="porisodh">"রাষ্ট্রভাষার সংগ্রাম পরিষদ" কখন গঠিত হয়েছিল?</string>
+    <string name="porisodh_ans">"রাষ্ট্রভাষার সংগ্রাম পরিষদ" সংগঠনটি ১৯৪৭ সালের ডিসেম্বরের শেষের দিকে গঠিত হয়েছিল।</string>
+
+    <string name="commite">কেন পূর্ববাংলা ভাষা কমিটি গঠিত হয়েছিল?</string>
+    <string name="commite_ans">ভাষা সমস্যার একটি রিপোর্ট প্রস্তুত করতে পূর্ববাংলা ভাষা কমিটি গঠিত হয়েছিল। </string>
+    <string name="composer_ans">ভাষা আন্দোলনের উপর  ”আমার ভাইয়ের রক্তে রাঙ্গানো একুশে ফেব্রুয়ারী, আমি কি ভুলিতে পারি” গানটি রচিত হয়েছিল। এই গানের রচয়িতা হলেন আব্দুল গফফার। </string>
+
+
+
+</resources>

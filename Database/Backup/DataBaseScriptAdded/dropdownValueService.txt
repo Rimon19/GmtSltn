@@ -1,0 +1,155 @@
+ Property                       listname                  MathodName--------         id field                   value field
+
+1)userInfoId             -     userList                   getUsers                   userID                      fullName
+
+2)statusId                     statusList                 getStatus                  id                          value
+
+3)bodyPartEntrieId             bodyPartList               getBodyPart                id                          bodyPartFullName
+
+4)bodyPartTypeId               bodyPartTypeList           getBodyPartType            id                          bodyPartTypeName
+
+5)companyId                    companyList                getCompany                 compID                      company_Name
+
+6)locationId                   locationList               getLocation                locationId                  location_Name
+
+7)floorId                      floorsList                 getFloors                  id                          floorName
+
+8)buyerProfileId               buyerList                  getBuyers                  id                          contactName
+
+9)supplierProfileId            subpplierList              getSuppliers               id                          supplierName
+
+10)agentInfoe                  agentList                  getAgents                  agentID                     agent_Name
+
+11)teamleaderId                teamleaderList             getTeamleaders             id                          userId
+
+12)dealingMerchantId           dealiningMarchandList      getDealingMerchant         id                          userId
+
+13)factoryMerchantId           factoryMarchandList        getFactoryMerchant         id                          userId
+
+14)uomId                       uomList                    getUom                     id                          uomName
+
+15)currencyId                  currencyList               getCurrency                id                          discountMethodName
+
+16)productDept                 productDeptList            getProductDept             value                       value
+
+17)garmentsItemId              garmentsItemList           getGarmentsItem            id                          itemName
+
+17(A))garmentsItemId           garmentsItemList           getGarmentItemsByOrderNo   id                          itemName
+
+18)productCategoryId           productCategoryList        getProductCategory         id                          productCategoryName
+
+19)sampleDevelopmentSeason    sampleDevelopmentSeasonList-getSampleDevelopmentSeason-value                       value
+
+20)countryInfoId              regionList                  getRegion                  regionID                    region_Name
+
+21)yearId                     yearList                    getYear                    id                          year
+
+22)monthId                    monthList                   getMonth                   id                          monthName
+
+23)payMode                    payModeList                 getPayMode                 value                       value
+
+24)materialSource             materialSourceList          getMaterialSource          value                       value
+
+25)source                     sourceList                  getSource                  value                       value
+
+26)level                      levelList                   getLevel                   value                       value
+
+27)aopSource                  aopSourceList               getAopSource               value                       value 
+
+28)sampleTypeId               sampleTypeList              getsampleType              id                          sampleTypeName
+
+29)fabricSource               fabricSourceList            getfabricSourceList        value                       value
+
+30)approvalStatus             approvalStatusList          getapprovalStatus          value                       value
+
+31)delayFor                   delayForList                getDelayFor                value                       value 
+
+32)buyerWiseSeasonId          buyerWiseSeasonList         getBuyerWiseSeason         id                          seasonName
+
+33)itemCategoryId             itemCategoryList            getItemCategory            id                          itemCategoryName
+
+34)colorTypeId                colorTypeList               getColorType               id                          colorTypeName
+
+35)fabricDescriptionId        fabricDescriptionList       getFabricDescription       id                          fabNature
+
+36)fabricNatureId             fabricNatureList            getFabricNature            id                          fabricNatureName
+
+37)yarnCountId                yarnCountList               getYarnCount               id                          name
+
+38)colorId                    colorList                   getColor                   id                          colorName
+
+39)colorRangeId               colorRangeList              getColorRange              id                          colorRangeName
+
+40)yesNo                      yesNoList                   getYesNo                   value                       value 
+
+41)sampleName                 sampleNameList              getSampleName              value                       value
+
+42)shortFabricBookingType     shortFabricBookingTypeList  getShortFabricBookingType   value                      value
+
+43) garmentsColor             garmentsColorList           getGarmentsColor            color                       color
+
+44)garmentsSize               garmentsSizList             getGarmentsSize             size                         size
+
+    
+//45)Season                     buyerWiseSeasonList         getBuyerWiseSeason          id                  seasonName
+
+45.a)department                 departmentsList             getDepartments              id                            departmentName
+
+46)shortFabricBookingType     shortFabricBookingTypeList  getShortFabricBookingType   value                      value
+
+
+47)productionProcessId        productionProcessList       getProductionProcess       id                          productionProcessName
+
+48)sensitivity                sensitivityList             getSensitivity             value                       value
+
+49)processId                  processList                 getAllProductionProcess    id                          productionProcessName
+
+50)erpModuleId                erpModuleList               getERPModules              id                          ModuleName
+
+51)usersByEmailId             userList                    getUsersByEmail            userID                      fullName
+
+52)mailType                   mailTypeList                getMailType                value                       value
+
+53)tnaEntryName               tnaShortNameList            getTNAShortName            id                          taskShortName
+
+54)embellishmentName          embellishmentNameList       getEmbellishmentName       value                       value
+
+55)embellishmentTypeId        embellishmentTypeList       getEmbellishmentType       id                          typeName
+ 
+
+56) trimsGroupId             trimsgroupList               getTrimsGroup              id                          trimsGroupName
+
+57)accountSource              accountSourceList           getAccountSource           value                       value
+
+           
+    
+58)Season                     buyerWiseSeasonList         getBuyerWiseSeason         season_ID                   seasonName
+
+59) trimsGroupId               trimsgroupList               getTrimsGroup              id                          trimsGroupName
+
+60)accountSource              accountSourceList           getAccountSource           value                       value
+
+61) orderId                    initialOrderList           getInitialOrder            orderAutoID                 jobNo
+
+62)calculationBasis            calculationBasisList       getCalculationBasis        value                       value
+
+63)bookingType                 bookingTypeList            getBookingType             value                       value
+
+64)PoId                        PodetailsList              getPoDetailsInfros         poDetID                      pO_No
+
+65)PoId                        PodetailsList             getPoDetailsInfrosByJobNo      poDetID                   pO_No    //po by job no.
+                  
+66)Department Code              departmentCodeList         getDepartmentCode              value                 value
+
+67)Resource                     resourcesList              getAllResources                 id                    resourceName 
+
+68)SMV Basic                    sMVBasicList              getSMVBasic                      value                   value
+
+69) fabricCost                  fabricCostList            getFabricCost                    id                     ...
+
+69)marketingTeamInfo            marketingTeamInfoList      getMarketingInfo                id                    teamName
+
+
+
+
+

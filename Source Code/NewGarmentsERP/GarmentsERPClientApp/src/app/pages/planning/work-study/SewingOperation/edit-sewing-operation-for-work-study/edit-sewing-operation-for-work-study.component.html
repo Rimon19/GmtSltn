@@ -1,0 +1,331 @@
+<div class="row">
+    <div class="col-lg-12">
+        <nb-card>
+            <nb-card-header>
+                <button (click)="backTo()" class="btn btn-outline-success">
+        <i class="fas fa-arrow-left"></i>
+      </button> SewingOperation
+            </nb-card-header>
+            <nb-card-body>
+                <form #form="ngForm" (submit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="ProductDept" class="label text-dark">
+                Product Dept
+              </label>
+                                <select name="productDept" #ProductDept="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.productDept
+                " id="ProductDept" class="form-control form-rounded form-control-sm">
+                <option value="">Select Product Dept</option>
+                <option
+                  *ngFor="let item of dropdownValueService.productDeptList"
+                  value="{{ item.value }}"
+                  >{{ item.value }}</option
+                >
+              </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="GarmentsItemId" class="label text-dark">
+                Garments Item
+                <span class="text-danger">*</span>
+              </label>
+                                <select name="garmentsItemId" required #GarmentsItemId="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.garmentsItemId
+                " id="GarmentsItemId" class="form-control form-rounded form-control-sm">
+                <option value="">Select Garments Item</option>
+                <option
+                  *ngFor="let item of dropdownValueService.garmentsItemList"
+                  value="{{ item.id }}"
+                  >{{ item.itemName }}</option
+                >
+              </select>
+                                <div class="text-left text-danger text-responsive" *ngIf="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.garmentsItemId == '' &&
+                  GarmentsItemId.touched
+                ">
+                                    Garments Item is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="BodyPartId" class="label text-dark">
+                Body Part
+                <span class="text-danger">*</span>
+              </label>
+                                <select name="bodyPartId" required #BodyPartId="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.bodyPartId
+                " id="BodyPartId" class="form-control form-rounded form-control-sm">
+                <option value="">Select Body Part</option>
+                <option
+                  *ngFor="let item of dropdownValueService.bodyPartList"
+                  value="{{ item.id }}"
+                  >{{ item.bodyPartFullName }}</option
+                >
+              </select>
+                                <div class="text-left text-danger text-responsive" *ngIf="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.bodyPartId == '' &&
+                  BodyPartId.touched
+                ">
+                                    Body Part is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="Code" class="label text-dark"> Code</label>
+                                <input name="code" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.code
+                " class="form-control form-rounded form-control-sm" type="text" id="Code" placeholder=" Code" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="OperationName" class="label text-dark">
+                Operation Name<span class="text-danger">*</span></label
+              >
+              <input
+                required
+                name="operationName"
+                #OperationName="ngModel"
+                [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.operationName
+                "
+                type="text"
+                class="form-control form-rounded form-control-sm"
+                id="OperationName"
+                placeholder="Operation Name"
+              />
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.operationName == '' &&
+                  OperationName.touched
+                "
+              >
+                Operation Name is required
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="Rate" class="label text-dark"> Rate</label>
+                                <input name="rate" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.rate
+                " class="form-control form-rounded form-control-sm" type="number" id="Rate" placeholder=" Rate" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="FabricTypeId" class="label text-dark">
+                Fabric Type
+              </label>
+                                <select name="fabricTypeId" #FabricTypeId="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.fabricTypeId
+                " id="FabricTypeId" class="form-control form-rounded form-control-sm">
+                <option value="">Select Fabric Type</option>
+                <option
+                  *ngFor="
+                    let item of dropdownValueService.fabricDescriptionList
+                  "
+                  value="{{ item.id }}"
+                  >F.N-{{item.fabNature}},Const:{{item.construction}},comp-{{item.composition}}</option
+                >
+              </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="SmvBasis" class="label text-dark">
+                SMV Basis
+                <span class="text-danger">*</span>
+              </label>
+                                <select name="smvBasis" required #SmvBasis="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.smvBasis
+                " id="SmvBasis" class="form-control form-rounded form-control-sm">
+                <option value="">Select SMV Basis</option>
+                <option
+                  *ngFor="let item of dropdownValueService.sMVBasicList"
+                  value="{{ item.value }}"
+                  >{{ item.value }}</option
+                >
+              </select>
+                                <div class="text-left text-danger text-responsive" *ngIf="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.smvBasis == '' &&
+                  SmvBasis.touched
+                ">
+                                    SMV Basis is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="SeamLength" class="label text-dark">
+                Seam Length</label
+              >
+              <input
+                name="seamLength"
+                [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.seamLength
+                "
+                class="form-control form-rounded form-control-sm"
+                type="number"
+                id="SeamLength"
+                placeholder=" Seam Length"
+              />
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="MachineSMV" class="label text-dark">
+                Machine SMV</label
+              >
+              <input
+                name="machineSMV"
+                [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.machineSMV
+                "
+                class="form-control form-rounded form-control-sm"
+                type="number"
+                id="MachineSMV"
+                placeholder=" Machine SMV"
+              />
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="ManualSMV" class="label text-dark">
+                Manual SMV</label
+              >
+              <input
+                name="manualSMV"
+                [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.manualSMV
+                "
+                class="form-control form-rounded form-control-sm"
+                type="number"
+                id="ManualSMV"
+                placeholder=" Manual SMV"
+              />
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="DepartmentCode" class="label text-dark">
+                Department Code
+              </label>
+                                <select name="departmentCode" #DepartmentCode="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.departmentCode
+                " id="DepartmentCode" class="form-control form-rounded form-control-sm">
+                <option value="">Select Department Code</option>
+                <option
+                  *ngFor="let item of dropdownValueService.departmentCodeList"
+                  value="{{ item.value }}"
+                  >{{ item.value }}</option
+                >
+              </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="UomId" class="label text-dark">
+                UOM
+              </label>
+                                <select name="uomId" #UomId="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.uomId
+                " id="UomId" class="form-control form-rounded form-control-sm">
+                <option value="">Select UOM</option>
+                <option
+                  *ngFor="let item of dropdownValueService.uomList"
+                  value="{{ item.id }}"
+                  >{{ item.uomName }}</option
+                >
+              </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="Action" class="label text-dark">
+                Action
+              </label>
+                                <select name="action" #Action="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.action
+                " id="Action" class="form-control form-rounded form-control-sm">
+                <option value="">Select Action</option>
+                <option
+                  *ngFor="let item of dropdownValueService.statusList"
+                  value="{{ item.id }}"
+                  >{{ item.value }}</option
+                >
+              </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="ResourceId" class="label text-dark">
+                Resource
+                <span class="text-danger">*</span>
+              </label>
+                                <select name="resourceId" required #ResourceId="ngModel" [(ngModel)]="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.resourceId
+                " id="ResourceId" class="form-control form-rounded form-control-sm">
+                <option value="">Select Resource</option>
+                <option
+                  *ngFor="let item of dropdownValueService.resourcesList"
+                  value="{{ item.id }}"
+                  >{{item.resourceName}}</option
+                >
+              </select>
+                                <div class="text-left text-danger text-responsive" *ngIf="
+                  sewingOperationForWorkStudyService
+                    .sewingOperationForWorkStudy.resourceId == '' &&
+                  ResourceId.touched
+                ">
+                                    Resource is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" nbButton [disabled]="form.invalid">
+          Submit
+        </button>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

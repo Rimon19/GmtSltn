@@ -1,0 +1,6 @@
+CREATE TABLE public."TNATaskNameEntry"
+(
+    "Id" serial primary key,
+    "TNATaskName" character varying(100),
+    "Status" character varying(100)
+)

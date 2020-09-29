@@ -1,0 +1,303 @@
+<nb-card>
+  <nb-card-header>
+   Consumption Entry Form
+    <button class="float-right ml-5"  mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button
+      class="btn btn-outline-success float-right" (click)="consumptionForm()"
+      
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:1800px;">
+      <form  (submit)="onSubmit(consumptionInformationForm)" >
+        <table class="">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col"></th>
+              <th scope="col">PO NO</th>
+              <th scope="col">Gmts. Item</th>
+              <th scope="col">Country</th>
+              <th scope="col">Gmts Color</th>
+              <th scope="col">Gmts sizes</th>
+              <th scope="col">Item Sizes </th>
+              <th scope="col">Cons </th>
+              <th scope="col">Ex. % </th>
+              <th scope="col">Tot. Cons</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Total Qty</th>
+              <th scope="col">Total Amount</th>
+              <th scope="col">Placement</th>
+              <th scope="col">Pcs</th>
+            </tr>
+          </thead>
+            
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of consumptionInformationForm.controls;let i=index" >
+                <tr>
+                  
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1" (click)="onDelete(consumptionInformationForm,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+                  <td>
+                    
+                  </td>
+                    <td>
+                      <input
+                       class="form-control form-rounded form-control-sm "
+                        type="text"
+                       
+                        placeholder="PO NO"
+                        formControlName="poNoId"
+                      />
+                      
+                    </td>
+                    <td >
+                      <input
+                       class="form-control form-rounded form-control-sm "
+                        placeholder="Gmts Item"
+                        formControlName="gmtsItem"
+                      />
+                     
+                    </td>
+    
+                    <td>
+                      <input
+                       class="form-control form-rounded form-control-sm "
+                        type="text"
+                        placeholder="Country"
+                        formControlName="country"
+                      />
+                      
+                    </td>
+  
+                    <td>
+                      
+                      <input
+                       class="form-control form-rounded form-control-sm "
+                        type="text"
+                        placeholder="Gmts Color"
+                        formControlName="gmtsColor"
+                      />
+                    </td>
+    
+                    <td>
+                      
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Gmts sizes"
+                      formControlName="gmtssizes"
+                    />
+                    </td>
+    
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Item Sizes"
+                      formControlName="itemSizes"
+                    />
+                      
+                    </td>
+    
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Cons"
+                      formControlName="cons"
+                    />
+                     
+                    </td>
+    
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Ex %"
+                      formControlName="ex"
+                    />
+                    
+                    </td>
+    
+                    <td>
+                     
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                     
+                      placeholder="Tot Cons "
+                      formControlName="totCons"
+                    />
+                    </td>
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                     
+                      placeholder="Rate "
+                      formControlName="rate"
+                    />
+                    </td>
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                     
+                      placeholder="Amount"
+                      formControlName="amount"
+                    />
+                    </td>
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                     
+                      placeholder="Total Qty"
+                      formControlName="totalQty"
+                    />
+                    </td>
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Total Amount"
+                      formControlName="totalAmount"
+                    />
+                    </td>
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Placement"
+                      formControlName="placement"
+                    />
+                    </td>
+                    <td>
+                      <input
+                     class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Pcs"
+                      formControlName="pcs"
+                    />
+                    </td>
+                </tr>
+                <button *ngIf="i==count-1"
+                type="submit" [disabled]="fg.invalid" 
+                  nbButton >Submit</button>
+              </tbody>
+            
+           
+           <tbody>
+             <tr>
+               <td colspan="8" class="text-right">Sum</td>
+               <td> <input
+               class="form-control form-rounded form-control-sm "
+                type="text"
+              /></td>
+               <td> <input
+               class="form-control form-rounded form-control-sm "
+                type="text" 
+              /></td>
+               <td> <input
+               class="form-control form-rounded form-control-sm "
+                type="text"               
+              /></td>
+               <td> <input
+               class="form-control form-rounded form-control-sm "
+                type="text"              
+              /></td>
+              <td>
+                <input
+               class="form-control form-rounded form-control-sm "
+                type="text"/>
+              </td>
+              <td>
+                <input
+               class="form-control form-rounded form-control-sm "
+                type="text"/>
+              </td>
+              <td>
+                <input
+               class="form-control form-rounded form-control-sm "
+                type="text"/>
+              </td>
+              <td>
+                <input hidden
+               class="form-control form-rounded form-control-sm "
+                type="text"/>
+              </td>
+              <td>
+                <input
+               class="form-control form-rounded form-control-sm "
+                type="text"/>
+              </td>
+             </tr>
+           </tbody>
+           <tbody>
+            <tr>
+              <td colspan="8" class="text-right">AVG</td>
+              <td> <input
+              class="form-control form-rounded form-control-sm "
+               type="text"
+             /></td>
+              <td> <input
+              class="form-control form-rounded form-control-sm "
+               type="text" 
+             /></td>
+              <td> <input
+              class="form-control form-rounded form-control-sm "
+               type="text"               
+             /></td>
+              <td> <input
+              class="form-control form-rounded form-control-sm "
+               type="text"              
+             /></td>
+             <td>
+               <input
+              class="form-control form-rounded form-control-sm "
+               type="text"/>
+             </td>
+             <td>
+               <input
+              class="form-control form-rounded form-control-sm "
+               type="text"/>
+             </td>
+             <td>
+               <input
+              class="form-control form-rounded form-control-sm "
+               type="text"/>
+             </td>
+             <td>
+               <input hidden
+              class="form-control form-rounded form-control-sm "
+               type="text"/>
+             </td>
+             <td>
+              <input
+             class="form-control form-rounded form-control-sm "
+              type="text"/>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+       
+      </form>
+      </div>
+    </div>
+    
+ 
+  </nb-card-body>
+</nb-card>

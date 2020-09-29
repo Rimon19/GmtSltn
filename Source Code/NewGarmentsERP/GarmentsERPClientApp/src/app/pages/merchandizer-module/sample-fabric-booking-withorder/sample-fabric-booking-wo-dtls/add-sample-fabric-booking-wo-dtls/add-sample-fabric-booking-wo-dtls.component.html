@@ -1,0 +1,406 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Sample Fabric Booking Details Entry</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="FabricDescriptionId" class="label text-dark">
+              Fabric Description
+              <span class="text-danger">*</span> </label>
+              <select
+                name="fabricDescriptionId"
+                required
+                #FabricDescriptionId="ngModel"
+                [(ngModel)]="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.fabricDescriptionId
+                "
+                id="FabricDescriptionId"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Fabric Description</option>
+              <option
+                *ngFor="let f of dropdownValueService.fabricDescriptionList"
+                value="{{f.id}}"
+                >F.N-{{f.fabNature}},Const:{{f.construction}},comp-{{f.composition}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.fabricDescriptionId== '' && FabricDescriptionId.touched
+                "
+              >
+              Fabric Description is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="GarmentsColor" class="label text-dark">
+              Garments Color
+              <span class="text-danger">*</span> </label>
+              <select
+                name="garmentsColor"
+                required
+                #GarmentsColor="ngModel"
+                [(ngModel)]="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.garmentsColor
+                "
+                id="GarmentsColor"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Garments Color</option>
+              <option
+                *ngFor="let item of dropdownValueService.garmentsColorList"
+                value="{{item.color}}"
+                >{{ item.color}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.garmentsColor== '' && GarmentsColor.touched
+                "
+              >
+              Garments Color is required
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="FabricColor" class="label text-dark">
+              Fabric Color
+              </label>
+              <select
+                name="fabricColor"
+              
+                #FabricColor="ngModel"
+                [(ngModel)]="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.fabricColor
+                "
+                id="FabricColor"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Fabric Color</option>
+              <option
+                *ngFor="let item of dropdownValueService.garmentsColorList"
+                value="{{item.color}}"
+                >{{ item.color}}</option
+              >
+              </select>
+              
+            </div>
+          </div>
+            
+            <div class="col-sm-3">
+            <div class="form-group">
+              <label for="Garmentssize" class="label text-dark">
+              Garments size
+              <span class="text-danger">*</span> </label>
+              <select
+                name="garmentssize"
+                required
+                #Garmentssize="ngModel"
+                [(ngModel)]="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.garmentssize
+                "
+                id="Garmentssize"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Garments size</option>
+              <option
+                *ngFor="let item of dropdownValueService.garmentsSizList"
+                value="{{item.size}}"
+                >{{ item.size}}</option
+              >
+              </select>
+              <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.garmentssize== '' && Garmentssize.touched
+                "
+              >
+              Garments size is required
+              </div>
+            </div>
+          </div>
+        </div> 
+   <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="DiaOrWidth" class="label text-dark">
+        Dia/Width<span class="text-danger">*</span></label
+        >
+        <input
+          required
+          name="diaOrWidth"
+          #DiaOrWidth="ngModel"
+          [(ngModel)]="
+          sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.diaOrWidth
+          "
+          type="text"
+          class="form-control form-rounded form-control-sm"
+          id="DiaOrWidth"
+          placeholder="Dia/Width"
+        />
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.diaOrWidth ==
+              '' && DiaOrWidth.touched
+          "
+        >
+        Dia/Width is required
+        </div>
+      </div>
+    </div> 
+    <div class="col-sm-3">
+  <div class="form-group">
+    <label for="FinishFabric" class="label text-dark">
+      Finish Fabric</label
+    >
+    <input
+      name="finishFabric"    
+      (change)="calculateTotalAmount()"
+      [(ngModel)]="
+      sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.finishFabric
+      "
+      class="form-control form-rounded form-control-sm"
+      type="number"
+      id="FinishFabric"
+      placeholder=" Finish Fabric"
+    />
+  </div>
+ </div>
+      <div class="col-sm-3">
+  <div class="form-group">
+    <label for="Processloss" class="label text-dark">
+      Process Loss</label
+    >
+    <input
+      name="processloss"    
+      [(ngModel)]="
+      sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.processloss
+      "
+      class="form-control form-rounded form-control-sm"
+      type="number"
+      id="Processloss"
+      placeholder=" Process Loss"
+    />
+  </div>
+ </div>
+      <div class="col-sm-3">
+  <div class="form-group">
+    <label for="GrayFabric" class="label text-dark">
+      Gray Fabric</label
+    >
+    <input
+      name="grayFabric"    
+      [(ngModel)]="
+      sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.grayFabric
+      "
+      class="form-control form-rounded form-control-sm"
+      type="number"
+      id="GrayFabric"
+      placeholder=" Gray Fabric"
+    />
+  </div>
+ </div>
+   </div>
+
+   <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="Rate" class="label text-dark">
+          Rate</label
+        >
+        <input
+          name="rate"    
+          (change)="calculateTotalAmount()"
+          [(ngModel)]="
+          sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.rate
+          "
+          class="form-control form-rounded form-control-sm"
+          type="number"
+          id="Rate"
+          placeholder=" Rate"
+        />
+      </div>
+     </div>
+          <div class="col-sm-3">
+      <div class="form-group">
+        <label for="Amount" class="label text-dark">
+          Amount</label
+        >
+        <input
+        readonly
+          name="amount"    
+          [(ngModel)]="
+          sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.amount
+          "
+          class="form-control form-rounded form-control-sm"
+          type="number"
+          id="Amount"
+          placeholder=" Amount"
+        />
+      </div>
+     </div>
+          <div class="col-sm-3">
+      <div class="form-group">
+        <label for="RmgQty" class="label text-dark">
+          RMG Qty</label
+        >
+        <input
+          name="rmgQty"    
+          [(ngModel)]="
+          sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.rmgQty
+          "
+          class="form-control form-rounded form-control-sm"
+          type="number"
+          id="RmgQty"
+          placeholder=" RMG Qty"
+        />
+      </div>
+     </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="Itemsize" class="label text-dark">
+              Item Size
+              </label>
+              <select
+                name="itemsize"
+              
+                #Itemsize="ngModel"
+                [(ngModel)]="
+                sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.itemsize
+                "
+                id="Itemsize"
+                class="form-control form-rounded form-control-sm"
+              >
+              <option value="">Select Item Size</option>
+              <option
+                *ngFor="let item of dropdownValueService.garmentsSizList"
+                value="{{item.size}}"
+                >{{ item.size}}</option
+              >
+              </select>
+              
+            </div>
+          </div>
+   </div>
+    
+     <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="Departments" class="label text-dark">
+          Responsible Dept
+          <span class="text-danger">*</span> </label>
+          <select
+            name="departments"
+            required
+            #Departments="ngModel"
+            [(ngModel)]="
+            sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.departments
+            "
+            id="Departments"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Responsible Dept</option>
+          <option
+            *ngFor="let item of dropdownValueService.departmentsList"
+            value="{{item.departmentName}}"
+            >{{ item.departmentName}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.departments== '' && Departments.touched
+            "
+          >
+          Responsible Dept is required
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+       <div class="form-group">
+         <label for="Responsibleperson" class="label text-dark">
+         Responsible Persion<span class="text-danger">*</span></label
+         >
+         <input
+           required
+           name="responsibleperson"
+           #Responsibleperson="ngModel"
+           [(ngModel)]="
+           sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.responsibleperson
+           "
+           type="text"
+           class="form-control form-rounded form-control-sm"
+           id="Responsibleperson"
+           placeholder="Responsible Persion"
+         />
+         <div
+           class="text-left text-danger text-responsive"
+           *ngIf="
+           sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.responsibleperson ==
+               '' && Responsibleperson.touched
+           "
+         >
+         Responsible Persion is required
+         </div>
+       </div>
+     </div>
+     <div class="col-sm-3">
+       <div class="form-group">
+         <label for="Reason" class="label text-dark">
+         Reason<span class="text-danger">*</span></label
+         >
+         <input
+           required
+           name="reason"
+           #Reason="ngModel"
+           [(ngModel)]="
+           sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.reason
+           "
+           type="text"
+           class="form-control form-rounded form-control-sm"
+           id="Reason"
+           placeholder="Reason"
+         />
+         <div
+           class="text-left text-danger text-responsive"
+           *ngIf="
+           sampleFabricBookingWoDtlsService.sampleFabricBookingWithOrderDetails.reason ==
+               '' && Reason.touched
+           "
+         >
+         Reason is required
+         </div>
+       </div>
+     </div>
+     </div>
+            
+           
+        
+       
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

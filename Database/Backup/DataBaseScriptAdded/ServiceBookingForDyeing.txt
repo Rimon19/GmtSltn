@@ -1,0 +1,26 @@
+create table public."ServiceBookingForDyeing"(
+"Id" serial primary key,
+  "BookingNo" character varying(100),
+"BookingMonth" character varying(100),
+"BookingYear" character varying(100),
+"SelectedOrderNo" character varying(100),
+"JobNoId" character varying(100),
+"CompanyNameId" integer,
+"BuyerNameId" integer,
+"CurrencyId" integer,
+"ExchangeRate" double precision ,
+"BookingDate" character varying(100),
+"DeliveryDate" character varying(100),
+"PayMode" character varying(100),
+"Source" character varying(100),
+"SupplierNameId" integer,
+"Attention" character varying(100),
+"WithMaterial" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

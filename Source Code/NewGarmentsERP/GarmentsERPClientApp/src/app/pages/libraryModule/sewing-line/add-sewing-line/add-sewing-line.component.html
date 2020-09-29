@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+  
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Sewing Line Entry
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="company" class="label text-dark">
+                  Company <span class="text-danger">*</span></label>
+                  <select  required name="companyId" #Company="ngModel"
+                  [(ngModel)]="sewingLineService.sewingLine.companyId"
+                   id="company" 
+                 class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select Company Name</option>
+                  <option  *ngFor="let companylist of dropdownValueService.companyList" 
+                  value="{{companylist.compID}}">{{companylist.company_Name}}</option>
+          
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="sewingLineService.sewingLine.companyId==''&&Company.touched">
+             Company  is required
+           </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="location" class="label text-dark">
+                  Location<span class="text-danger">*</span></label>
+                  <select required name="locationId" #Location="ngModel"
+                  [(ngModel)]="sewingLineService.sewingLine.locationId"
+                   id="location"  
+                 class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select location Name</option>
+                  <option  *ngFor="let locationlist of dropdownValueService.locationList" 
+                  value="{{locationlist.locationId}}">{{locationlist.location_Name}}</option>
+                
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="sewingLineService.sewingLine.locationId==''&&Location.touched">
+             Location  is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="floor" class="label text-dark">
+                  Floor<span class="text-danger">*</span></label>
+                  <select  required name="floorId" #Floor="ngModel"
+                  [(ngModel)]="sewingLineService.sewingLine.floorId"
+                   id="floor" 
+                 class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select Floor Name</option>
+                  <option  *ngFor="let floorlist of dropdownValueService.floorsList" 
+                  value="{{floorlist.id}}">{{floorlist.floorName}}</option>
+   
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="sewingLineService.sewingLine.floorId==''&&Floor.touched">
+             Floor  is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="sewingLineSequence" class="label text-dark">
+                  Sewing Line Sequence<span class="text-danger">*</span></label>
+                  <input required name="sewingLineSequence" #SewingLineSequence="ngModel"
+                  [(ngModel)]="sewingLineService.sewingLine.sewingLineSequence"
+                  class="form-control form-rounded form-control-sm" type="number" 
+                  id="sewingLineSequence" placeholder="Sewing Line Sequence">
+                  <div class="text-left text-danger"
+                  *ngIf="sewingLineService.sewingLine.sewingLineSequence==0&&SewingLineSequence.touched">
+                  Sewing Line Sequence  is required
+                </div>
+              </div>
+         
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="lineName" class="label text-dark">
+                  Line Name<span class="text-danger">*</span></label>
+                <input required name="lineName" #LineName="ngModel"
+                [(ngModel)]="sewingLineService.sewingLine.lineName"
+                 id="lineName" 
+                 class="form-control form-rounded form-control-sm" type="text" 
+                id="lineName" placeholder="Line Name">
+                <div class="text-left text-danger"
+              *ngIf="sewingLineService.sewingLine.lineName==''&&LineName.touched">
+              Line Name  is required
+            </div>
+              </div>
+             
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="sewingGroup" class="label text-dark">
+                  Sewing Group<span class="text-danger">*</span> </label>
+                <input  required name="sewingGroup" #SewingGroup="ngModel"
+                [(ngModel)]="sewingLineService.sewingLine.sewingGroup"
+                 id="company" 
+                 class="form-control form-rounded form-control-sm" type="text" 
+                id="sewingGroup" placeholder="Sewing Group">
+                <div class="text-left text-danger"
+                *ngIf="sewingLineService.sewingLine.sewingGroup==''&&SewingGroup.touched">
+                Sewing Group  is required
+              </div>
+              </div>
+            
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">
+                  Status </label>
+                  <select  name="status" #status="ngModel"
+                  [(ngModel)]="sewingLineService.sewingLine.status"
+                   id="status"  
+                 class="form-control form-rounded form-control-sm" >
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let statuslist of dropdownValueService.statusList" 
+                  value="{{statuslist.value}}">{{statuslist.value}}</option>
+                 
+             </select>
+               
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <button type="submit" [disabled]="form.invalid||sewingLineService.sewingLine.sewingLineSequence==0"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

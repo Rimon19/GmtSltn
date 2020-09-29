@@ -1,0 +1,25 @@
+drop table public."MultipleJobWiseShortTrimsBookingV2";
+create table public."MultipleJobWiseShortTrimsBookingV2"(
+"Id" serial primary key,
+  "BookingNo" character varying(100),
+"ShipmentMonth" character varying(100),
+"ShipmentYear" character varying(100),
+"CompanyNameId" integer,
+"BuyerNameId" integer,
+"BookingDate" character varying(100),
+"DeliveryDate" character varying(100),
+"PayMode" character varying(100),
+"CurrencyId" integer,
+"SupplierNameId" integer,
+"Source" character varying(100),
+"Attention" character varying(100),
+"ReadyToApproved" character varying(100),
+"Level" character varying(100),
+"Remarks" character varying(100),
+  "IsApproved" boolean,
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

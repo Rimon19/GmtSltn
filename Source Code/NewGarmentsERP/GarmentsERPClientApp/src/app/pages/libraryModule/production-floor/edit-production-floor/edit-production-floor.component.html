@@ -1,0 +1,143 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Production Floor Edit
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="company" class="label text-dark">
+                  Company <span class="text-danger">*</span></label>
+                  <select required name="company" #Company="ngModel"
+                  [(ngModel)]="productionFloorService.productionFloor.company"
+                   id="company" 
+                  class="form-control form-rounded form-control-sm  ">
+                  <option value=''>Select Company Name</option>
+                  <option  *ngFor="let btnAction of dropdownValueService.companyList" 
+                  value="{{btnAction.compID}}">{{btnAction.company_Name}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="productionFloorService.productionFloor.company==''&&Company.touched">
+             Company  is required
+           </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="location" class="label text-dark">
+                  Location<span class="text-danger">*</span></label>
+                  <select required name="location" #Location="ngModel"
+                  [(ngModel)]="productionFloorService.productionFloor.location"
+                   id="location"  
+                  class="form-control form-rounded form-control-sm  ">
+                  <option value=''>Select location Name</option>
+                  <option  *ngFor="let btnAction of dropdownValueService.locationList" 
+                  value="{{btnAction.locationId}}">{{btnAction.location_Name}}</option>
+                  
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="productionFloorService.productionFloor.location==''&&Location.touched">
+             Location  is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="floor" class="label text-dark">
+                  Floor<span class="text-danger">*</span></label>
+                  <select required name="floor" #Floor="ngModel"
+                  [(ngModel)]="productionFloorService.productionFloor.floor"
+                   id="floor" 
+                  class="form-control form-rounded form-control-sm  ">
+                  <option value=''>Select Floor Name</option>
+                  <option  *ngFor="let btnAction of dropdownValueService.floorsList" 
+                  value="{{btnAction.id}}">{{btnAction.floorName}}</option>
+   
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="productionFloorService.productionFloor.floor==''&&Floor.touched">
+             Floor  is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="floorSequence" class="label text-dark">
+                  Floor Sequence<span class="text-danger">*</span></label>
+               
+              <input required name="floorSequence" #FloorSequence="ngModel"
+              [(ngModel)]="productionFloorService.productionFloor.floorSequence"
+               class="form-control form-rounded form-control-sm  " type="number" 
+              id="floorSequence" placeholder="Floor Sequence ">
+
+              <div class="text-left text-danger"
+             *ngIf="productionFloorService.productionFloor.floorSequence==0&&FloorSequence.touched">
+             Floor Sequence  is required
+           </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="productionProcessId" class="label text-dark">
+                  Production Process<span class="text-danger">*</span> </label>
+                  <select required name="productionProcessId" id="productionProcessId"
+                   #ProductionProcessId="ngModel"
+                  [(ngModel)]="productionFloorService.productionFloor.productionProcessId" 
+                   class="form-control form-rounded form-control-sm  ">
+                  <option [ngValue]=0>Select Production Process</option>
+                  <option *ngFor="let productionProcesslist of productionProcess" [value]="productionProcesslist.id">{{productionProcesslist.productionProcessName}}</option>
+                  
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="productionFloorService.productionFloor.productionProcessId==0&&ProductionProcessId.touched">
+              Production Process  is required
+            </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">
+                  Status </label>
+                  <select   name="status" #Status="ngModel" id="status"
+                  [(ngModel)]="productionFloorService.productionFloor.status"
+                  class="form-control form-rounded form-control-sm  ">
+                  <option value=''>Select Status</option>
+                  <option  *ngFor="let btnAction of Active_Inactive" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+              
+               
+              </div>
+              
+            </div>
+           
+          </div>
+        
+          <button type="submit" [disabled]="form.invalid 
+          ||productionFloorService.productionFloor.productionProcessId==0
+          ||productionFloorService.productionFloor.floorSequence==0"   nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

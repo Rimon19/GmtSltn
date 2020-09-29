@@ -1,0 +1,108 @@
+<nb-card>
+    <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+            <h5>
+                <button (click)="backTo()" class="btn btn-outline-success mr-2 ">
+       <i class="fas fa-arrow-left "></i>
+      </button>PO Informations
+            </h5>
+            <mat-form-field>
+                <input matInput #filter (keyup)="applyFilterForPoDetails($event.target.value)" placeholder="Search Here.." />
+                <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value = ''; applyFilter('')">
+          <mat-icon>close</mat-icon>
+        </button>
+            </mat-form-field>
+        </div>
+
+        <mat-table [dataSource]="dataSourcePoDetails" #PoDetails="matSort" mat-table matSort>
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>
+                    Actions
+                    <button class="btn btn-outline-success m-2" (click)="AddPO()">
+            <i class="fa fa-plus"></i> 
+          </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element; let i = index">
+                    <section>
+                        <div class="example-button-row">
+
+                    <button *ngIf="element.poDetID!= 0" mat-icon-button (click)="editPODetails(element.poDetID)">
+            <mat-icon>launch</mat-icon>
+          </button>
+                    <button *ngIf="element.poDetID != 0" mat-button (click)="deletePODetails(element)">
+            <i class="far fa-trash-alt fa-lg text-danger"></i>
+          </button>
+                    <button 
+                    *ngIf="element.poDetID!=0" 
+                   
+                    (click)="redirectToCountryByPoId(element,element.poDetID)" 
+                    class=" btn-outline-success">
+            NEXT
+          </button>
+          </div>
+                    </section>
+                </mat-cell>
+           
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="itemDetails">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          <button
+            *ngIf="element.poDetID!= 0"
+            mat-button
+            (click)="onAdd(element)"
+          >
+            PO Quantity Details
+          </button>
+        </mat-cell>
+      </ng-container> -->
+
+            <ng-container matColumnDef="pOOrderStatusID">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Order Status</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.pOOrderStatusID }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="pO_No">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>PO No</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.pO_No }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="pO_Received_Date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>PO Received Date</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.pO_Received_Date }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="pub_Shipment_Date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Pub Shipment Date
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.pub_Shipment_Date }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="org_Shipment_Date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Org. Shipment Date
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.org_Shipment_Date }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="fac_Receive_Date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Fac Receive Date
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.fac_Receive_Date }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="pO_Quantity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>PO Quantity
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.pO_Quantity }}
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumnsPoDetails"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumnsPoDetails"></mat-row>
+        </mat-table>
+    </div>
+
+
+    <mat-paginator #PoDetailspaginator="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

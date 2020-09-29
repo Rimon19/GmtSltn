@@ -1,0 +1,8 @@
+create table public."SampleProductionTeam"(
+"Id" serial primary key,
+"TeamName" character varying(100),
+"Location" integer,
+"NumberofMembers" integer,
+"TeamEfficiency" integer,
+"Status" character varying(100)
+)

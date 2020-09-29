@@ -1,0 +1,16 @@
+CREATE TABLE public."TermsNCondition"
+(
+    "Id"  serial primary key,
+    "TermsnCondition" character varying(150),
+    "MoreTermsNCondition" character varying(150),
+    "status" character varying(100)
+    
+)
+
+CREATE TABLE public."TermsNConditionSubTable"
+(
+    "Id"  serial primary key,
+    "TermsNConditionId" integer,
+    "PageId" integer,
+    "PageNames" character varying(150)
+)

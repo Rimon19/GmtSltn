@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+
+  <!--<div class="form-group">
+    <label for="file">Choose File</label>
+    <input type="file"
+           id="file"
+           (change)="handleFileInput($event.target.files)">
+  </div>-->
+
+</head>
+<body>
+  <h1>File Upload Using Angular 5 and ASP.NET Core 2.1</h1>
+  <input #file type="file" multiple (change)="upload(file.files,$event)" />
+  <br />
+  <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
+    {{progress}}%
+  </span>
+
+  <span style="font-weight:bold;color:green;" *ngIf="message">
+    {{message}}
+  </span>
+
+  <!--<input type='file' (change)="readUrl($event)">-->
+  <img [src]="url">
+
+</body>
+</html>

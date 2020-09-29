@@ -1,0 +1,107 @@
+
+<hr>
+<!--First Row for order Entry-->
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Job No</label>
+      <input name="JobNo" [(ngModel)]="parsialFabricBookingItems.jobNo" class="form-control">
+    </div>
+    <div class="form-group col-md-2" poNumber>
+      <label>Po No</label>
+      <input name="PoNo" [(ngModel)]="parsialFabricBookingItems.poNumber" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Body Part</label>
+      <input name="BodyPart" [(ngModel)]="parsialFabricBookingItems.bodyPart" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Color Type</label>
+      <input name="ColorType" [(ngModel)]="parsialFabricBookingItems.colorType" class="form-control">
+    </div>
+
+    <div class="form-group col-md-2">
+      <label>Dia With Type</label>
+      <input name="DiaWithType" [(ngModel)]="parsialFabricBookingItems.diaWidthType" class="form-control">
+    </div>
+
+    <div class="form-group col-md-2">
+      <label>Constraction</label>
+      <input name="Constraction" [(ngModel)]="parsialFabricBookingItems.construction" class="form-control">
+    </div>
+  </div>
+  <!--First Row End>
+
+
+
+
+  <!--Second Row for order Entry-->
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Composition</label>
+      <input name="Composition" [(ngModel)]="parsialFabricBookingItems.composition" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>GSM</label>
+      <input name="GSM" [(ngModel)]="parsialFabricBookingItems.gsm" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Gmts Color</label>
+      <input name="GmtsColor" [(ngModel)]="parsialFabricBookingItems.gmtsColor" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Item Color</label>
+      <input name="ItemColor" [(ngModel)]="parsialFabricBookingItems.itemColor" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Dia</label>
+      <input name="Dia" [(ngModel)]="parsialFabricBookingItems.dia" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Wo Qty</label>
+      <input name="WoQty" [(ngModel)]="parsialFabricBookingItems.woQnty" class="form-control">
+    </div>
+  </div>
+  <!--Second Row End-->
+  <!--Third Row for order Entry-->
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Adj Qty</label>
+      <input name="AdjQty" [(ngModel)]="parsialFabricBookingItems.adjQnty" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Ac Wo Qty</label>
+      <input name="AcWoQty" [(ngModel)]="parsialFabricBookingItems.acWoQnty" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Fabric Source</label>
+      <input name="FabricSource" [(ngModel)]="parsialFabricBookingItems.fabricSource" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Fabric Nature</label>
+      <input name="FabricNature" [(ngModel)]="parsialFabricBookingItems.fabricNature" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Rate</label>
+      <input name="Rate" [(ngModel)]="parsialFabricBookingItems.rate" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+      <label>Amount</label>
+      <input name="Amount" [(ngModel)]="parsialFabricBookingItems.amount" class="form-control">
+      <input type="hidden" name="id" [(ngModel)]="parsialFabricBookingItems.id" class="form-control">
+    </div>
+  </div>
+  <!--Third Row End-->
+  <!--Fourth Row for order Entry-->
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label>Item</label>
+      <input name="Item" [(ngModel)]="parsialFabricBookingItems.item" class="form-control">
+    </div>
+  </div>
+  <!--Fourth Row End-->
+  <div class="form-group">
+    <button type="submit" class="btn btn-dark" (click)="updateParsialFabricBooking(parsialFabricBookingItems)"><i class="fa fa-database"></i> Update</button>
+    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+  </div>
+</form>

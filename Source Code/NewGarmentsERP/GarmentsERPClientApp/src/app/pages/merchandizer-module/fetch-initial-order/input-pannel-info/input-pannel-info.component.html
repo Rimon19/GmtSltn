@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      
+      <nb-card-header>Input Pannel Entry
+        
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)" >
+        <div class="row">
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label  class="label">Item Details</label>
+                  
+                  <h6 class="form-control text-center"  nbButton>Item Details</h6>
+                </div>
+               
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="countryId" class="label">Country</label>
+                  <select required #countryId="ngModel" [(ngModel)]="InputPannelInfo.countryId"
+                  id="countryId" name="countryId" class="form-control">
+                  <option value=''>Select Country</option>
+                  <option  *ngFor="let countrylist of countryList"
+                  value="{{countrylist.regionID}}">{{countrylist.region_Name}}</option>             
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="countryType" class="label">Country Type	</label>
+                  <input [(ngModel)]="InputPannelInfo.countryType"
+                  name="countryType" type="text" class="form-control" 
+                  id="countryType" placeholder="Country Type">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="cuttOffDate" class="label">Cutt Off Date</label>
+                  <input [(ngModel)]="InputPannelInfo.cuttOffDate"
+                    name="cuttOffDate" type="text" class="form-control"
+                    id="cuttOffDate" placeholder="Cutt Off Date" [nbDatepicker]="cuttOffDate">
+                    <nb-datepicker #cuttOffDate></nb-datepicker>
+                   
+                </div>
+              </div> 
+        </div>
+        <div class="row">
+                    
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="cuttOff" class="label">Cut Off</label>
+                  <input [(ngModel)]="InputPannelInfo.cuttOff"
+                  name="cuttOff" type="text" class="form-control" 
+                  id="cuttOff" placeholder="Cut Off">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                <label for="countryShipmentDate" class="label">Country Shipment Date</label>
+                 
+                <input [(ngModel)]="InputPannelInfo.countryShipmentDate"
+                  name="countryShipmentDate" type="text" class="form-control" 
+                  id="countryShipmentDate" placeholder="Country Shipment Date"  [nbDatepicker]="countryShipmentDate">
+                  <nb-datepicker #countryShipmentDate></nb-datepicker>
+             
+            </div>
+            <!-- <div class="text-left text-danger"
+                *ngIf="InputPannelInfo.complexity==0&&complexity.touched">
+                Complexity  is required
+              </div> -->
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="remarks" class="label">Remarks</label>
+                  <input [(ngModel)]="InputPannelInfo.remarks"
+                  name="remarks" type="text" class="form-control" 
+                  id="remarks" placeholder="Remarks">
+                </div>
+                <!-- <div class="text-left text-danger"
+                *ngIf="InputPannelInfo.print==''&&Print.touched">
+                Print  is required
+              </div> -->
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="inputPannelId" class="label">Input Pannel Id</label>
+                  <input [(ngModel)]="InputPannelInfo.inputPannelId"
+                  name="inputPannelId" type="text" class="form-control" 
+                  id="inputPannelId" placeholder="inputPannelId">
+                </div>
+                <!-- <div class="text-left text-danger"
+                    *ngIf="InputPannelInfo.embroYesNo==''&&embroYesNo.touched">
+                    Embro  is required
+              </div> -->
+              </div>  
+        </div>
+        <div class="row">
+          
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="packingId" class="label">Packing </label>
+              <select required #packingId="ngModel" [(ngModel)]="InputPannelInfo.packingId"
+              id="packingId" name="packingId" class="form-control">
+              <option value=''>Select Packing</option>
+              <option *ngFor="let packingInfoeslist of packingInfoesItems" 
+              value="{{packingInfoeslist.packingId}}">{{packingInfoeslist.packingName}}</option>             
+              </select>
+               
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="washYesNo" class="label">Quantity</label>
+              <input [(ngModel)]="InputPannelInfo.inputPannelId"
+              name="inputPannelId" type="text" class="form-control" 
+              id="inputPannelId" placeholder="inputPannelId">
+            </div>
+          
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="poDetailsId" class="label">PoNo</label>
+              <select required #poDetailsId="ngModel" [(ngModel)]="InputPannelInfo.poDetailsId"
+              id="poDetailsId" name="poDetailsId" class="form-control">
+              <option value=''>Select PoNo</option>
+              <option *ngFor="let PoNumberList of PoNumberItems"
+              value="{{PoNumberList.poDetId}}">{{PoNumberList.poNo}}</option>             
+              </select>
+            </div>
+          </div>
+          
+        </div>
+      
+        <button type="submit" [disabled]="form.invalid" nbButton>Submit</button>
+        </form>
+            
+
+      
+     
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  
+</div>

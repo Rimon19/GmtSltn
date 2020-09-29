@@ -1,0 +1,10 @@
+create table public."SizeDits"(
+"Id" serial primary key,
+  "Size" character varying(100),
+"GmtsPcs" integer,
+"BhQty" integer,
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "Status" character varying(100)
+  )

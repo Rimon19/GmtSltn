@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backToYarnCount()" class="btn btn-outline-success">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        Yarn Count Entry
+      </nb-card-header>
+      <nb-card-body>
+        <form>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="YarnName" class="label text-dark"
+                  >Yarn Count Name<span class="text-danger">*</span></label
+                >
+                <input required
+                  name="YarnName"
+                  #YarnName="ngModel"
+                
+                  class="form-control form-rounded form-control-sm"
+                  [(ngModel)]="yarnCountsService.yarnCounts.name"
+                  type="text"
+                  id="YarnName"
+                  placeholder="Yarn Count Name"
+                />
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    yarnCountsService.yarnCounts.name == '' && YarnName.touched
+                  "
+                >
+                  Yarn Count is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">Status<span class="text-danger">*</span></label>
+                <select
+                  id="status"
+                  required
+                  #status="ngModel"
+                  [(ngModel)]="yarnCountsService.yarnCounts.status"
+                  class="form-control form-rounded form-control-sm"
+                  name="status"
+                >
+                  <option value="">Select Status </option>
+                  <option value="Active">Active </option>
+                  <option value=" In Active"> In Active </option>
+                </select>
+                <div
+                  class="text-left text-danger"
+                  *ngIf="
+                    yarnCountsService.yarnCounts.status == '' && status.touched
+                  "
+                >
+                  Status is required
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="sequence" class="label text-dark"
+                  >Sequence No.<span class="text-danger">*</span></label
+                >
+                <input knifeOnlyNumbers
+                  name="sequence"
+                  required
+                  type="number"
+                  class="form-control form-rounded form-control-sm"
+                  #sequence="ngModel"
+                  [(ngModel)]="yarnCountsService.yarnCounts.sequence"
+                  id="status"
+                  placeholder="Sequence No."
+                />
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  yarnCountsService.yarnCounts.sequence == 0 && sequence.touched
+                "
+              >
+                Sequence is required
+              </div>
+              </div>
+             
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <button
+                  class="mr-1"
+                  [disabled]="
+                    yarnCountsService.yarnCounts.sequence==0 ||
+                    yarnCountsService.yarnCounts.status=='' ||
+                    yarnCountsService.yarnCounts.name==''
+                  "
+                  nbButton
+                  (click)="save(yarnCountsService.yarnCounts)"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group"></div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group"></div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group"></div>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

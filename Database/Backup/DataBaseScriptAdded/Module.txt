@@ -1,0 +1,4 @@
+create table public."Module"(
+"Id" serial primary key,
+"ModuleName" character varying(100)
+)

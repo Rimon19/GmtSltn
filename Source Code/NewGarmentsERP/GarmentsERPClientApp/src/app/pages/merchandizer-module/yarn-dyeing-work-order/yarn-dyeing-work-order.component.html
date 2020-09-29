@@ -1,0 +1,393 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Yarn Dyeing Wo</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+      <div class="row">  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="YarnDyeingFactory" class="label text-dark">
+      Yarn Dyeing Factory
+      <span class="text-danger">*</span> </label>
+      <select
+        name="yarnDyeingFactory"
+        required
+        #YarnDyeingFactory="ngModel"
+        [(ngModel)]="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.yarnDyeingFactory
+        "
+        id="YarnDyeingFactory"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Yarn Dyeing Factory</option>
+      <option
+        *ngFor="let item of dropdownValueService.subpplierList"
+        value="{{item.id}}"
+        >{{ item.supplierName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.yarnDyeingFactory== '' && YarnDyeingFactory.touched
+        "
+      >
+      Yarn Dyeing Factory is required
+      </div>
+    </div>
+  </div>
+     <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingDate" class="label text-dark">
+        Booking Date<span class="text-danger">*</span>
+      </label>
+      <input readonly
+        name="bookingDate"
+        required
+        #bookingDate="ngModel"
+        [(ngModel)]="
+          yarnDyeingWorkOrderService.yarnDyeingWorkOrder.bookingDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="BookingDate"
+        [nbDatepicker]="BookingDate"
+        placeholder="Booking Date"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.bookingDate ==
+            '' &&bookingDate.touched
+        "
+      >
+      Booking Date is required
+      </div>
+      <nb-datepicker #BookingDate></nb-datepicker>
+    </div>
+  </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="Attention" class="label text-dark">
+   Attention</label
+ >
+ <input
+   name="attention"    
+   [(ngModel)]="
+   yarnDyeingWorkOrderService.yarnDyeingWorkOrder.attention
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Attention"
+   placeholder=" Attention"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="YarnDyeingWoNo" class="label text-dark">
+   Yarn Dyeing Wo No</label
+ >
+ <input
+   name="yarnDyeingWoNo"    
+   [(ngModel)]="
+   yarnDyeingWorkOrderService.yarnDyeingWorkOrder.yarnDyeingWoNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="YarnDyeingWoNo"
+   placeholder=" Yarn Dyeing Wo No"
+ />
+</div>
+</div>
+</div> 
+<div class="row">
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Currency" class="label text-dark">
+      Currency
+      </label>
+      <select
+        name="currency"
+      
+        #Currency="ngModel"
+        [(ngModel)]="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.currency
+        "
+        id="Currency"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option [ngValue]='0'>Select Currency</option>
+      <option
+        *ngFor="let item of dropdownValueService.currencyList"
+        value="{{item.id}}"
+        >{{ item.discountMethodName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="ExchangeRate" class="label text-dark">
+   Exchange Rate</label
+ >
+ <input
+   name="exchangeRate"    
+   [(ngModel)]="
+   yarnDyeingWorkOrderService.yarnDyeingWorkOrder.exchangeRate
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="ExchangeRate"
+   placeholder=" Exchange Rate"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PayMode" class="label text-dark">
+      Pay Mode
+      <span class="text-danger">*</span> </label>
+      <select
+        name="payMode"
+        required
+        #PayMode="ngModel"
+        [(ngModel)]="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.payMode
+        "
+        id="PayMode"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Pay Mode</option>
+      <option
+        *ngFor="let item of dropdownValueService.payModeList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.payMode== '' && PayMode.touched
+        "
+      >
+      Pay Mode is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Source" class="label text-dark">
+      Source
+      <span class="text-danger">*</span> </label>
+      <select
+        name="source"
+        required
+        #Source="ngModel"
+        [(ngModel)]="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.source
+        "
+        id="Source"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.sourceList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.source== '' && Source.touched
+        "
+      >
+      Source is required
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="GorYIssueStart" class="label text-dark">
+        G/Y Issue Start
+      </label>
+      <input readonly
+        name="gorYIssueStart"
+        
+        #gorYIssueStart="ngModel"
+        [(ngModel)]="
+          yarnDyeingWorkOrderService.yarnDyeingWorkOrder.gorYIssueStart
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="GorYIssueStart"
+        [nbDatepicker]="GorYIssueStart"
+        placeholder="G/Y Issue Start"
+      />
+      
+      <nb-datepicker #GorYIssueStart></nb-datepicker>
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="GorYIssueEnd" class="label text-dark">
+        G/Y Issue End
+      </label>
+      <input readonly
+        name="gorYIssueEnd"
+        
+        #gorYIssueEnd="ngModel"
+        [(ngModel)]="
+          yarnDyeingWorkOrderService.yarnDyeingWorkOrder.gorYIssueEnd
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="GorYIssueEnd"
+        [nbDatepicker]="GorYIssueEnd"
+        placeholder="G/Y Issue End"
+      />
+      
+      <nb-datepicker #GorYIssueEnd></nb-datepicker>
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DorYDeliveryStart" class="label text-dark">
+        D/Y Delivery Start
+      </label>
+      <input readonly
+        name="dorYDeliveryStart"
+        
+        #dorYDeliveryStart="ngModel"
+        [(ngModel)]="
+          yarnDyeingWorkOrderService.yarnDyeingWorkOrder.dorYDeliveryStart
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DorYDeliveryStart"
+        [nbDatepicker]="DorYDeliveryStart"
+        placeholder="D/Y Delivery Start"
+      />
+      
+      <nb-datepicker #DorYDeliveryStart></nb-datepicker>
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DorYDeliveryEnd" class="label text-dark">
+        D/Y Delivery End
+      </label>
+      <input readonly
+        name="dorYDeliveryEnd"
+        
+        #dorYDeliveryEnd="ngModel"
+        [(ngModel)]="
+          yarnDyeingWorkOrderService.yarnDyeingWorkOrder.dorYDeliveryEnd
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DorYDeliveryEnd"
+        [nbDatepicker]="DorYDeliveryEnd"
+        placeholder="D/Y Delivery End"
+      />
+      
+      <nb-datepicker #DorYDeliveryEnd></nb-datepicker>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ItemCategory" class="label text-dark">
+      Item Category
+      </label>
+      <select
+        name="itemCategory"
+      
+        #ItemCategory="ngModel"
+        [(ngModel)]="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.itemCategory
+        "
+        id="ItemCategory"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option [ngValue]='0'>Select Item Category</option>
+      <option
+        *ngFor="let item of dropdownValueService.itemCategoryList"
+        value="{{item.id}}"
+        >{{ item.itemCategoryName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="IsShort" class="label text-dark">
+      Is Short
+      </label>
+      <select
+        name="isShort"
+      
+        #IsShort="ngModel"
+        [(ngModel)]="
+        yarnDyeingWorkOrderService.yarnDyeingWorkOrder.isShort
+        "
+        id="IsShort"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Is Short</option>
+      <option
+        *ngFor="let item of dropdownValueService.yesNoList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <!-- <div class="col-sm-3">
+<div class="form-group">
+ <label for="IsApproved" class="label text-dark">
+   IsApproved</label
+ >
+ <input
+   name="isApproved"    
+   [(ngModel)]="
+   yarnDyeingWorkOrderService.yarnDyeingWorkOrder.isApproved
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="IsApproved"
+   placeholder=" IsApproved"
+ />
+</div>
+</div> -->
+
+</div>
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

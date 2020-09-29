@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>F:\PublishFile</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Model/AvgGreyConsFabricCost.cs">
+      <publishTime>01/02/2020 12:57:51</publishTime>
+    </File>
+    <File Include="Model/BodyPartEntry.cs">
+      <publishTime>04/11/2020 12:15:52</publishTime>
+    </File>
+    <File Include="Model/BodyPartofPreCosting.cs">
+      <publishTime>01/02/2020 12:57:51</publishTime>
+    </File>
+    <File Include="Model/BodyPartType.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/ColorRange.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/CommercialCost.cs">
+      <publishTime>01/02/2020 12:57:51</publishTime>
+    </File>
+    <File Include="Model/CommercialInvoice.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/CommissionCostPreCosting.cs">
+      <publishTime>01/02/2020 12:57:51</publishTime>
+    </File>
+    <File Include="Model/Composition.cs">
+      <publishTime>04/04/2020 19:53:02</publishTime>
+    </File>
+    <File Include="Model/ConsDznGmtsEmbellishmentCost.cs">
+      <publishTime>01/02/2020 12:57:51</publishTime>
+    </File>
+    <File Include="Model/ConsDznGmtsWashCost.cs">
+      <publishTime>01/02/2020 12:57:51</publishTime>
+    </File>
+    <File Include="Model/ConsUnitGmtsTrimCost.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/ConversionCostPreCosting.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/ConversionCostProcess.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/CostComponenetsMasterDetails.cs">
+      <publishTime>03/15/2020 16:57:29</publishTime>
+    </File>
+    <File Include="Model/CostComponetsMaster.cs">
+      <publishTime>03/14/2020 11:41:13</publishTime>
+    </File>
+    <File Include="Model/countryLocationMapping.cs">
+      <publishTime>04/05/2020 19:13:08</publishTime>
+    </File>
+    <File Include="Model/DBConnection.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/DepartmentProfile.cs">
+      <publishTime>04/09/2020 22:25:08</publishTime>
+    </File>
+    <File Include="Model/DepoLocationMapping.cs">
+      <publishTime>04/11/2020 12:15:52</publishTime>
+    </File>
+    <File Include="Model/DiscountMethod.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/DivisionProfile.cs">
+      <publishTime>04/09/2020 22:25:08</publishTime>
+    </File>
+    <File Include="Model/EmbellishmentCostPreCosting.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/FabricCost.cs">
+      <publishTime>01/16/2020 16:08:42</publishTime>
+    </File>
+    <File Include="Model/FabricDesPreCost.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/FabricNature.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/GarmentERPContext.cs">
+      <publishTime>04/13/2020 10:10:36</publishTime>
+    </File>
+    <File Include="Model/GroupProfile.cs">
+      <publishTime>04/08/2020 22:31:52</publishTime>
+    </File>
+    <File Include="Model/InputPannelPodetails.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/ItemCategory.cs">
+      <publishTime>04/07/2020 09:28:20</publishTime>
+    </File>
+    <File Include="Model/ItemDetailsOrderEntry.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/ItemGroup.cs">
+      <publishTime>04/13/2020 10:03:39</publishTime>
+    </File>
+    <File Include="Model/JournalType.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/Months.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/OrderImageUploadTable.cs">
+      <publishTime>03/10/2020 10:42:59</publishTime>
+    </File>
+    <File Include="Model/OrderImageUploadTbl.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/OrderItem.cs">
+      <publishTime>01/02/2020 12:57:52</publishTime>
+    </File>
+    <File Include="Model/OtherCostPreCosting.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/OtherPartyProfile.cs">
+      <publishTime>04/07/2020 22:05:48</publishTime>
+    </File>
+    <File Include="Model/PageInfo.cs">
+      <publishTime>04/06/2020 12:47:07</publishTime>
+    </File>
+    <File Include="Model/ParsialFabricBookingItems.cs">
+      <publishTime>01/25/2020 18:09:46</publishTime>
+    </File>
+    <File Include="Model/ParsialFabricBookingMaster.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/PartyType.cs">
+      <publishTime>04/07/2020 09:28:20</publishTime>
+    </File>
+    <File Include="Model/PreCosting.cs">
+      <publishTime>03/16/2020 17:58:21</publishTime>
+    </File>
+    <File Include="Model/ProductCategory.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/ProductionProcess.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/ProductType.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/ProfitCenter.cs">
+      <publishTime>04/12/2020 09:40:53</publishTime>
+    </File>
+    <File Include="Model/Resources.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/SampleType.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/SectionProfile.cs">
+      <publishTime>04/12/2020 09:40:54</publishTime>
+    </File>
+    <File Include="Model/SizeEntry.cs">
+      <publishTime>04/04/2020 11:28:56</publishTime>
+    </File>
+    <File Include="Model/SizePannelPodetails.cs">
+      <publishTime>03/07/2020 17:57:47</publishTime>
+    </File>
+    <File Include="Model/Suplier.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/Suplyitem.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/TblAgentInfo.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/TblBuyerInfo.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/TblCompanyInfo.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/TblCurrencyInfo.cs">
+      <publishTime>01/02/2020 12:57:53</publishTime>
+    </File>
+    <File Include="Model/TblDealingMrcndiserInfo.cs">
+      <publishTime>01/11/2020 11:55:36</publishTime>
+    </File>
+    <File Include="Model/TblDepartInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblInitialOrder.cs">
+      <publishTime>03/09/2020 16:21:28</publishTime>
+    </File>
+    <File Include="Model/TblLocationInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblOrderUomInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblPackingInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblPodetailsInfro.cs">
+      <publishTime>03/07/2020 12:30:47</publishTime>
+    </File>
+    <File Include="Model/TblPoOrderStatusInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblPoStatus.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblProductCategoryInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblProductionDeptInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblRegionInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblSeasonInfo.cs">
+      <publishTime>01/02/2020 12:57:54</publishTime>
+    </File>
+    <File Include="Model/TblShipmentModeInfo.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/TblSubDeptInfo.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/TblTeamlederInfoes.cs">
+      <publishTime>01/11/2020 15:23:54</publishTime>
+    </File>
+    <File Include="Model/TblUserInfo.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/TblUserTypeInfo.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/TermsNCondition.cs">
+      <publishTime>04/09/2020 15:05:09</publishTime>
+    </File>
+    <File Include="Model/TermsNConditionSubTable.cs">
+      <publishTime>04/09/2020 15:05:09</publishTime>
+    </File>
+    <File Include="Model/TNATaskEntry.cs">
+      <publishTime>04/07/2020 09:28:20</publishTime>
+    </File>
+    <File Include="Model/TNATaskNameEntry.cs">
+      <publishTime>04/07/2020 09:28:20</publishTime>
+    </File>
+    <File Include="Model/TrimCostPreCosting.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/TrimsGroup.cs">
+      <publishTime>04/05/2020 10:31:01</publishTime>
+    </File>
+    <File Include="Model/Type.cs">
+      <publishTime>04/08/2020 22:25:27</publishTime>
+    </File>
+    <File Include="Model/UOM.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+    <File Include="Model/Upload.cs">
+      <publishTime>04/12/2020 09:40:52</publishTime>
+    </File>
+    <File Include="Model/vw_fabriccost.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/WashCostPreCosting.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/yarnBrandInfo.cs">
+      <publishTime>04/04/2020 11:53:42</publishTime>
+    </File>
+    <File Include="Model/YarnComp1.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/YarnCostPreCosting.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/YarnCount.cs">
+      <publishTime>04/02/2020 12:11:32</publishTime>
+    </File>
+    <File Include="Model/YarnType.cs">
+      <publishTime>01/02/2020 12:57:55</publishTime>
+    </File>
+    <File Include="Model/Years.cs">
+      <publishTime>04/07/2020 21:09:06</publishTime>
+    </File>
+  </ItemGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Host=localhost%3bDatabase=GarmentERP%3bUsername=postgres%3bPassword=4800</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="ReportConnection">
+      <Value>Server=localhost%3bPort=5432%3bDatabase=GarmentERP%3bUser Id=postgres%3bPassword=123456%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,409 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Add Service Booking For Knitting</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+
+          <div class="row">
+          <!-- <div class="col-sm-3">
+<div class="form-group">
+ <label for="BookingNo" class="label text-dark">
+   Booking No</label
+ >
+ <input
+   name="bookingNo"    
+   [(ngModel)]="
+   serviceBookingForKnittingService.serviceBookingForKnitting.bookingNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="BookingNo"
+   placeholder=" Booking No"
+ />
+</div>
+</div> -->
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingMonth" class="label text-dark">
+      Booking Month
+      <span class="text-danger">*</span> </label>
+      <select
+        name="bookingMonth"
+        required
+        #BookingMonth="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.bookingMonth
+        "
+        id="BookingMonth"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Booking Month</option>
+      <option
+        *ngFor="let item of dropdownValueService.monthList"
+        value="{{item.id}}"
+        >{{ item.monthName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        serviceBookingForKnittingService.serviceBookingForKnitting.bookingMonth== '' && BookingMonth.touched
+        "
+      >
+      Booking Month is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingYear" class="label text-dark">
+      Booking Year
+      <span class="text-danger">*</span> </label>
+      <select
+        name="bookingYear"
+        required
+        #BookingYear="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.bookingYear
+        "
+        id="BookingYear"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Booking Year</option>
+      <option
+        *ngFor="let item of dropdownValueService.yearList"
+        value="{{item.id}}"
+        >{{ item.year}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        serviceBookingForKnittingService.serviceBookingForKnitting.bookingYear== '' && BookingYear.touched
+        "
+      >
+      Booking Year is required
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+   <div class="form-group">
+     <label for="OrderNo" class="label text-dark">
+     Order No<span class="text-danger">*</span></label
+     >
+     <input  (dblclick)="onLoadOrderOrJobSelectionFormComponent()"
+      readonly
+       required
+       name="orderNo"
+       #OrderNo="ngModel"
+       [(ngModel)]="
+       serviceBookingForKnittingService.serviceBookingForKnitting.orderNo
+       "
+       type="text"
+       class="form-control form-rounded form-control-sm"
+       id="OrderNo"
+       placeholder="Order No"
+     />
+     <div
+       class="text-left text-danger text-responsive"
+       *ngIf="
+       serviceBookingForKnittingService.serviceBookingForKnitting.orderNo ==
+           '' && OrderNo.touched
+       "
+     >
+     Order No is required
+     </div>
+   </div>
+ </div>
+ <div class="col-sm-3">
+  <div class="form-group">
+   <label for="JobNo" class="label text-dark">
+     Job No</label
+   >
+   <input
+     readonly
+     name="jobNo"    
+     [(ngModel)]="
+     serviceBookingForKnittingService.serviceBookingForKnitting.jobNo
+     "
+     class="form-control form-rounded form-control-sm"
+     type="text"
+     id="JobNo"
+     placeholder=" Job No"
+   />
+  </div>
+  </div>
+</div>
+<div class="row">
+
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BuyerProfileId" class="label text-dark">
+      Buyer Name
+      </label>
+      <select
+        name="buyerProfileId"
+      
+        #BuyerProfileId="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.buyerProfileId
+        "
+        id="BuyerProfileId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Buyer Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.buyerList"
+        value="{{item.id}}"
+        >{{ item.contactName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="CurrencyId" class="label text-dark">
+      Currency
+      </label>
+      <select
+        name="currencyId"
+      
+        #CurrencyId="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.currencyId
+        "
+        id="CurrencyId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Currency</option>
+      <option
+        *ngFor="let item of dropdownValueService.currencyList"
+        value="{{item.id}}"
+        >{{ item.discountMethodName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="ExchangeRate" class="label text-dark">
+   Exchange Rate</label
+ >
+ <input
+   name="exchangeRate"    
+   [(ngModel)]="
+   serviceBookingForKnittingService.serviceBookingForKnitting.exchangeRate
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ExchangeRate"
+   placeholder=" Exchange Rate"
+ />
+</div>
+</div>
+<div class="col-sm-3">
+  <div class="form-group">
+    <label for="BookingDate" class="label text-dark">
+      Booking Date
+    </label>
+    <input readonly
+      name="bookingDate"
+      
+      #bookingDate="ngModel"
+      [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.bookingDate
+      "          
+      type="text"
+      class="form-control form-rounded form-control-sm"
+      id="BookingDate"
+      [nbDatepicker]="BookingDate"
+      placeholder="Booking Date"
+    />
+    
+    <nb-datepicker #BookingDate></nb-datepicker>
+  </div>
+</div>
+
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DeliveryDate" class="label text-dark">
+        Delivery Date
+      </label>
+      <input readonly
+        name="deliveryDate"
+        
+        #deliveryDate="ngModel"
+        [(ngModel)]="
+          serviceBookingForKnittingService.serviceBookingForKnitting.deliveryDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DeliveryDate"
+        [nbDatepicker]="DeliveryDate"
+        placeholder="Delivery Date"
+      />
+      
+      <nb-datepicker #DeliveryDate></nb-datepicker>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PayMode" class="label text-dark">
+      Pay Mode
+      <span class="text-danger">*</span> </label>
+      <select
+        name="payMode"
+        required
+        #PayMode="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.payMode
+        "
+        id="PayMode"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Pay Mode</option>
+      <option
+        *ngFor="let item of dropdownValueService.payModeList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        serviceBookingForKnittingService.serviceBookingForKnitting.payMode== '' && PayMode.touched
+        "
+      >
+      Pay Mode is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Source" class="label text-dark">
+      Source
+      </label>
+      <select
+        name="source"
+      
+        #Source="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.source
+        "
+        id="Source"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.sourceList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="SupplierProfileId" class="label text-dark">
+      Supplier Name
+      </label>
+      <select
+        name="supplierProfileId"
+      
+        #SupplierProfileId="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.supplierProfileId
+        "
+        id="SupplierProfileId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Supplier Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.subpplierList"
+        value="{{item.id}}"
+        >{{ item.supplierName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+    
+   
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="Attention" class="label text-dark">
+   Attention</label
+ >
+ <input
+   name="attention"    
+   [(ngModel)]="
+   serviceBookingForKnittingService.serviceBookingForKnitting.attention
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Attention"
+   placeholder=" Attention"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ReadyToApproved" class="label text-dark">
+      Ready To Approved
+      </label>
+      <select
+        name="readyToApproved"
+      
+        #ReadyToApproved="ngModel"
+        [(ngModel)]="
+        serviceBookingForKnittingService.serviceBookingForKnitting.readyToApproved
+        "
+        id="ReadyToApproved"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Ready To Approved</option>
+      <option
+        *ngFor="let item of dropdownValueService.yesNoList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+
+</div>
+    
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

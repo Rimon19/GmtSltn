@@ -1,0 +1,188 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+        Trims Costing Template Entry
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="buyerselectedItems" class="label text-dark">Buyer <span class="text-danger">*</span></label>
+              <ng-multiselect-dropdown
+            
+                  name="buyerselectedItems"
+                  [placeholder]="'Buyer'"
+                  [data]="buyerdropdownList"
+                  [(ngModel)]="buyerselectedItems"
+                  [settings]="buyerdropdownSettings"  
+                          
+                  >
+                  </ng-multiselect-dropdown>
+                  <div class="text-left text-danger"
+                  *ngIf="buyerselectedItems.length==0">
+                  Buyer is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">User Code<span class="text-danger">*</span></label>
+                <input  required #userCode="ngModel"
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.userCode" class="form-control form-rounded form-control-sm  "
+                   name="userCode"   type="text" 
+                    placeholder="User Code">
+                    <div class="text-left text-danger"
+              *ngIf="trimsCostingTemplateService.trimsCostingTemplate.userCode==''&&userCode.touched">
+              User Code is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="trimsGroupId" class="label text-dark">Trims Group<span class="text-danger">*</span></label>
+                <select required #trimsGroupId="ngModel"  
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.trimsGroupId" class="form-control form-rounded form-control-sm  "name="trimsGroupId" >
+                  <option value=''>Select  </option>
+                  <option *ngFor="let tg of trimsGroupList" [value]="tg.id">{{tg.trimsGroupName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="trimsCostingTemplateService.trimsCostingTemplate.trimsGroupId==0&&trimsGroupId.touched">
+              Trims Group is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Item Desc</label>
+                <input   #itemDesc="ngModel"
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.itemDesc" class="form-control form-rounded form-control-sm  "
+                   name="itemDesc"   type="text" 
+                    placeholder="Item Desc">    
+              </div>
+              
+            </div>
+            
+         
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="consUom" class="label text-dark">Cons Uom</label>
+                <select id="consUom"   #consUom="ngModel" class="form-control form-rounded form-control-sm  "
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.consUom"
+                  name="consUom">
+               <option value=''>Select Status </option>
+               <option *ngFor="let cu of consUomList" [value]="cu.uomName">{{cu.uomName}}</option> 
+           </select>
+         
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">brand/Sup Ref</label>
+                <input   #brandOrSupRef="ngModel"
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.brandOrSupRef" class="form-control form-rounded form-control-sm  "
+                   name="brandOrSupRef"   type="text" 
+                    placeholder="brand/Sup Ref">
+                   
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Cons/DznGmts</label>
+                <input   #consOrDznGmts="ngModel" (change)="onChangeconsOrDznGmts(trimsCostingTemplateService.trimsCostingTemplate.consOrDznGmts)"
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.consOrDznGmts" class="form-control form-rounded form-control-sm  "
+                   name="consOrDznGmts"   type="text" 
+                    placeholder="Cons/DznGmts">    
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Purchase Rate</label>
+                <input   #purchaseRate="ngModel" (change)="onChangeParchaseRate(trimsCostingTemplateService.trimsCostingTemplate.purchaseRate)"
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.purchaseRate" class="form-control form-rounded form-control-sm  "
+                   name="purchaseRate"   type="text" 
+                    placeholder="Purchase Rate">    
+              </div>
+              
+            </div>
+            
+         
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Amount</label>
+                <input   #amount="ngModel"
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.amount" class="form-control form-rounded form-control-sm  "
+                   name="amount"   type="text" 
+                    placeholder="Amount">    
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="approvalRequired" class="label text-dark">Approval Required</label>
+                <select id="approvalRequired"   #approvalRequired="ngModel" class="form-control form-rounded form-control-sm  "
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.approvalRequired"
+                  name="approvalRequired">
+               <option value=''>Select </option>
+               <option value="Yes">Yes </option>
+               <option value="No"> No </option>    
+           </select>
+         
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="supplierId" class="label text-dark">Supplier<span class="text-danger">*</span></label>
+                <select required #supplierId="ngModel"  
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.supplierId" class="form-control form-rounded form-control-sm  "name="supplierId" >
+                  <option value="">Select  </option>
+                  <option *ngFor="let s of supplierList" [value]="s.id">{{s.supplierName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="trimsCostingTemplateService.trimsCostingTemplate.supplierId==0&&supplierId.touched">
+              Supplier is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">Status</label>
+                <select id="status"   #status="ngModel" class="form-control form-rounded form-control-sm  "
+                [(ngModel)]="trimsCostingTemplateService.trimsCostingTemplate.status"
+                  name="status">
+               <option value=''>Select Status </option>
+               <option value="Active">Active </option>
+               <option value=" In Active"> In Active </option>    
+           </select>
+         
+              </div>
+            </div>
+            
+         
+            
+          </div>
+          <button type="submit" nbButton  [disabled]="buyerselectedItems.length==0||form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

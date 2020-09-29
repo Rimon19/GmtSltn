@@ -1,0 +1,83 @@
+
+<nb-card>
+  <!-- <div class="col-md-12" style = "overflow-x: scroll;">
+    <div class="smart-table-container" style = "width:2000px;"> -->
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+            <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" matSort >
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Actions  
+              <button class="btn btn-outline-success" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" > 
+              <button *ngIf="element.id==0"  class="btn btn-outline-success" (click)="save(element)">save</button>
+            
+              <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+              <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              <button *ngIf="element.teamleaderId!=0" mat-button (click)="delete(element)" >Details</button>
+              <button *ngIf="element.teamleaderId!=0" mat-button (click)="delete(element)" > Item Details</button>
+            </mat-cell>
+          
+          </ng-container>
+
+
+            <!-- Fav Column -->
+            <ng-container matColumnDef="userId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header > User Name </mat-header-cell>
+              <mat-cell *matCellDef="let element" >
+                <mat-form-field floatLabel="never">
+                  <mat-select   [(value)]="element.userId" placeholder="User Name">
+                    <mat-option value="">Select</mat-option>  
+                    <mat-option *ngFor="let user of userInfo" [(value)]="user.userId">{{user.fullName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </mat-cell>
+            </ng-container>
+           
+          <!-- Fav Column -->
+          <ng-container matColumnDef="teamleaderId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Team Leader Name </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-form-field  floatLabel="never">
+                <mat-select    [(value)]="element.teamleaderId" placeholder="team Leader Name" >
+               <mat-option value="">Select</mat-option>               
+                <mat-option *ngFor="let teamleader of teamLeaderInfo" [value]="teamleader.teamleaderId">{{teamleader.teamLeaderName}}</mat-option>                              
+                </mat-select>
+                
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+
+         
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+  
+     
+ <!-- Name Column -->
+ <!-- <ng-container matColumnDef="name">
+  <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+  <mat-cell *matCellDef="let element">
+    <mat-form-field floatLabel="never">
+      <input matInput placeholder="Name" [value]="element.name" [(ngModel)]="element.name" required>
+    </mat-form-field>
+  
+ 
+  </mat-cell>
+ 
+</ng-container> -->
+</nb-card>

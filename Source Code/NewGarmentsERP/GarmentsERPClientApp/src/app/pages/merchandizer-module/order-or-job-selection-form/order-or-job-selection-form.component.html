@@ -1,0 +1,200 @@
+<!-- <nb-card>
+  
+
+  <div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <h5>   Order/Job Selection Form
+        <button
+          class="float-right ml-5"
+          mat-button
+          (click)="onClose()"
+        >
+          <mat-icon class="float-right mt-2">close</mat-icon>
+        </button></h5>
+        
+      </div>
+    
+      <div style="margin-left: 30px;width: 85%;">
+       <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+       <mat-label style="font-size:15px;font-weight: bold;">Search {{filter.name}}</mat-label>
+         <input  matInput  
+         name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+         (change)="filterChange(filter,$event)">
+         
+       </mat-form-field>
+      </div>
+
+        <mat-table
+          [dataSource]="dataSource"
+          matSort
+          mat-table
+        >
+        
+        <ng-container matColumnDef="button">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            ></mat-header-cell
+          >
+          <mat-cell *matCellDef="let element"><button (click)="onSelect(element)">Select</button></mat-cell>
+         </ng-container>
+          
+         <ng-container matColumnDef="jobNo">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >Job No</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.jobNo }}</mat-cell>
+</ng-container>
+
+
+
+<ng-container matColumnDef="buyerName">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >Buyer Name</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.buyerName }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="styleRefNo">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >Style Ref No</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.styleRefNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="jobQty">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >Job Qty</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.jobQty }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="poNumber">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >Po Number</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.poNumber }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="poQuantity">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >Po Quantity</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.poQuantity }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="shipmentDate">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >Shipment Date</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.shipmentDate }}</mat-cell>
+</ng-container>
+
+
+
+<ng-container matColumnDef="fileNo">
+ <mat-header-cell *matHeaderCellDef mat-sort-header
+   >File No</mat-header-cell
+ >
+ <mat-cell *matCellDef="let element">{{ element.fileNo }}</mat-cell>
+</ng-container>
+
+
+
+
+ 
+          <mat-header-row
+            *matHeaderRowDef="displayedColumns"
+          ></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+
+     </div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>  -->
+
+
+<nb-card>
+    <nb-card-header>Order/Job Selection Form
+        <button class="float-right ml-5" mat-button (click)="onClose()">
+    <mat-icon class="float-right mt-2">close</mat-icon>
+  </button>
+
+    </nb-card-header>
+    <nb-card-body>
+        <div style="margin-left: 30px;width: 85%;">
+            <mat-form-field>
+                <mat-label style="font-size:15px;font-weight: bold;">Search All Here ..</mat-label>
+                <input matInput #filter (change)="applyFilter($event.target.value)" />
+
+
+                <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value = ''; applyFilter('')">
+          <mat-icon>close</mat-icon>
+          
+        
+        </button>
+
+
+
+            </mat-form-field>
+            <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+        </div>
+        <div style="margin-left: 30px;width: 85%;">
+            <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+                <mat-label style="font-size:15px;font-weight: bold;">Search {{filter.name}}</mat-label>
+                <input matInput name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue" (change)="filterChange(filter,$event)">
+
+            </mat-form-field>
+        </div>
+
+        <mat-table [dataSource]="dataSource" matSort mat-table>
+
+            <ng-container matColumnDef="button">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let element"><button (click)="onSelect(element)">Select</button></mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="jobNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Job No</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.jobNo }}</mat-cell>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="buyerName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Buyer Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.buyerName }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="styleRefNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Style Ref No</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.styleRefNo }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="jobQty">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Job Qty</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.jobQty }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="poNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Po Number</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.poNumber }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="poQuantity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Po Quantity</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.poQuantity }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="shipmentDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Shipment Date</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.shipmentDate }}</mat-cell>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="fileNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>File No</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.fileNo }}</mat-cell>
+            </ng-container>
+
+
+
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+    </nb-card-body>
+
+
+
+</nb-card>

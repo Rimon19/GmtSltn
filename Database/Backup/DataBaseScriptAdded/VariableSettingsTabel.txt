@@ -1,0 +1,21 @@
+create table public."VariableSettingsTable"(
+"Id" serial primary key,
+"CompanyId" integer,
+"ModuleId" integer,
+"CountPageInputField" integer,
+"VariableListId" integer,
+"LabelOne" character varying(100),
+"ValueOne" character varying(300),
+"LabelTwo" character varying(100),
+"ValueTwo" character varying(300),
+"LabelThree" character varying(100),
+"ValueThree" character varying(100),
+"LabelFour" character varying(100),
+"ValueFour" character varying(100),
+"LabelFive" character varying(100),
+"ValueFive" character varying(100),
+"LabelSix" character varying(100),
+"ValueSix" character varying(100),
+"LabelSeven" character varying(100),
+"ValueSeven" character varying(100)
+)

@@ -1,0 +1,68 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+
+       
+          <div class="example-header">
+            <h5>Profit Center information </h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success ml-2" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" >       
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            
+            </ng-container>  
+          <ng-container matColumnDef="profitCenterName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Profit Center Name   </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.profitCenterName}}</mat-cell> 
+               
+          </ng-container>   
+          <ng-container matColumnDef="company">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Company Name </mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.company}}</mat-cell>  
+            
+          
+          </ng-container>  
+          <ng-container matColumnDef="contactNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Contact Number </mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.contactNumber}}</mat-cell>  
+            
+          
+          </ng-container>
+          <ng-container matColumnDef="contactPerson">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Contact Person  </mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.contactPerson}}</mat-cell>  
+            
+          
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Email</mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.email}}</mat-cell>    
+          </ng-container>
+        
+          
+          
+
+         
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+       
+  
+  
+    
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>  

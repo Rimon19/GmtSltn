@@ -1,0 +1,1617 @@
+<h4>Garments Order Entry </h4>
+<div style="overflow:auto; height:200px;border:5px solid #8DAFDA;padding:10px;margin-bottom:30px;">
+  <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:3px;border:1px solid #ddd;font-size:11px;" cellpadding="2" cellspacing="2" *ngIf="iniorderlist">
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+      <th><button type="button" class="btn btn-info btn-sm" (click)="openModalDialog()">Add New</button> </th>
+      <th>Job No</th>
+      <th>Order No</th>
+      <th>Company Name</th>
+      <th>Location</th>
+      <th>Buyer Name</th>
+      <th>Style No</th>
+      <th>Item</th>
+      <th>Country</th>
+      <th>Shipment</th>
+      <th>Image</th>
+      <th>Action</th>
+
+    </tr>
+
+    <tbody *ngFor="let odrmstrlst of iniorderlist" style="overflow:scroll">
+
+    <tr onClick="if (this.bgColor == 'yellow')
+                         {
+                        this.bgColor = ''
+                         }
+                  else
+                    {
+                     this.bgColor = 'yellow'
+                    }">
+           <td><button type="button" class="btn btn-info btn-sm"
+                  (click)=getOrderMasterDetails(odrmstrlst.orderAutoId)> Detail </button></td>
+        <td><span style="color:#9F000F">{{odrmstrlst.jobNo }}</span></td>
+        <td><span style="color:#9F000F">{{odrmstrlst.orderNumber}}</span></td>
+
+        <td>
+          <span style="color:#9F000F">
+            <div *ngFor='let c of complist'>
+              <div *ngIf='c.compId== odrmstrlst.companyId'> {{c.companyName}}</div>
+            </div>
+          </span>
+        </td>
+
+
+        <td style="width:50px;">
+          <span style="color:#9F000F">
+            <div *ngFor='let c of locationlist'>
+              <div *ngIf='c.locationId== odrmstrlst.locationId'> {{c.locationName}}</div>
+            </div>
+          </span>
+        </td>
+
+
+        <td>
+          <span style="color:#9F000F">
+            <div *ngFor='let c of buyerlist'>
+              <div *ngIf='c.buyerId== odrmstrlst.buyerId'> {{c.buyerName}}</div>
+            </div>
+          </span>
+        </td>
+
+
+        <td><span style="color:#9F000F">{{odrmstrlst.styleRef }}</span></td>
+        <td><span style="color:#9F000F">{{odrmstrlst.styleDescription }}</span></td>
+
+        <td>
+          <span style="color:#9F000F">
+            <div *ngFor='let c of Regionlist'>
+              <div *ngIf='c.regionId== odrmstrlst.regionId'> {{c.regionName}}</div>
+            </div>
+          </span>
+        </td>
+
+        <td>
+          <span style="color:#9F000F">
+            <div *ngFor='let c of ShipmentModelist'>
+              <div *ngIf='c.id== odrmstrlst.shipmentModeId'> {{c.shipmentMode}}</div>
+            </div>
+          </span>
+        </td>
+
+
+
+        <td>
+
+          <div *ngFor='let d of OrderImagelist'>
+            <div *ngIf='d.initialOrderId== odrmstrlst.orderAutoId'>
+
+              <!--<img [src]="d.imgPath" width="50" height="50">-->
+
+              <img [src]="d.imgPath" width="40" height="40">
+
+            </div>
+          </div>
+
+        </td>
+
+        <td>
+          <button type="button" (click)="openModalDialog(odrmstrlst.orderAutoId)">Edit</button>
+          <button type="button" (click)="delete(odrmstrlst.orderAutoId)">Delete</button>
+
+
+        </td>
+
+
+      </tr>
+      <!--<tr *ngIf="activeRow==odrmstrlst.orderAutoId">
+      <td colspan="6" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"></td>
+      </tr>-->
+
+    </tbody>
+  </table>
+</div>
+
+
+<div style="height:20px;">
+
+</div>
+
+<div style="overflow:auto;margin-bottom:40px;">
+
+  <table class='tabledetails' style="background-color:#ECF3F4; padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2" *ngIf="OrderMasterDetailsList">
+
+
+    <tr>
+
+      <td colspan="14"><h4 style="text-align:left">PO Details Entry</h4> </td>
+
+    </tr>
+
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+      <th> <button type="button" class="btn btn-info btn-sm" (click)="openDetailsModalDialog()">Add New</button></th>
+      <th>Job Number</th>
+      <th>Order Status</th>
+      <th> PO No</th>
+      <th> PO Received </th>
+      <th> Pub. Shipment  </th>
+      <th> Org. Shipment  </th>
+      <th> Fac. Receive </th>
+      <th> PO Quantity</th>
+      <th> Avg. Price</th>
+      <th> Amount</th>
+      <th> Plan Cut</th>
+      <th colspan="2">
+        Action
+      </th>
+    </tr>
+    <tbody *ngFor="let masterorderDetails of OrderMasterDetailsList">
+      <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}" style="padding-top:5px !important;padding-bottom:5px !important;">
+
+
+
+        <td><button type="button" class="btn btn-info btn-sm" (click)=GetInputPannelDetails(masterorderDetails.poDetId)> Detail </button></td>
+
+
+
+        <td>
+          <div *ngFor='let c of iniorderlist'>
+            <div *ngIf='c.orderAutoId== masterorderDetails.initialOrderId'> {{c.jobNo}}</div>
+          </div>
+        </td>
+
+        <td>
+          <div *ngFor='let c of PoOrderStatusList'>
+            <div *ngIf='c.id== masterorderDetails.poorderStatusId'> {{c.orderStatus}}</div>
+          </div>
+        </td>
+
+
+        <td>{{masterorderDetails.poNo}}</td>
+        <td>{{masterorderDetails.poReceivedDate | date : "dd/MM/y"}}</td>
+        <td>{{masterorderDetails.pubShipmentDate | date : "dd/MM/y"}}</td>
+        <td>{{masterorderDetails.orgShipmentDate |date : "dd/MM/y"}}</td>
+        <td>{{masterorderDetails.facReceiveDate | date : "dd/MM/y"}}</td>
+        <td>{{masterorderDetails.poQuantity}}</td>
+        <td>{{masterorderDetails.avgPrice}}</td>
+        <td>{{masterorderDetails.amount}}</td>
+        <td>{{masterorderDetails.planCut}}</td>
+        <td colspan="2">
+          <button type="button" (click)="openDetailsModalDialog(masterorderDetails.poDetId)">Edit</button>
+          <button type="button" (click)="deleteMasterDetails(masterorderDetails.poDetId)">Delete</button>
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Input pannel and sizewise Datashow-->
+
+<table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:3px;border:1px solid #ddd;font-size:11px;margin-bottom:40px;" cellpadding="2" cellspacing="2" *ngIf="InputPannelPodetailslist">
+  <tr>
+
+    <td colspan="10"><h4 style="text-align:left">Input Pannel </h4> </td>
+
+  </tr>
+  <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+    <th><button type="button" class="btn btn-info btn--sm" (click)="openModalDialogForInputPannel()">Add New</button> </th>
+    <th> Country </th>
+    <th> country type </th>
+    <th> Cutt off Date </th>
+    <th> Cutt off </th>
+    <th> Country Shipment Date </th>
+    <th> Remarks </th>
+    <th> Packing </th>
+    <th> Quantity </th>
+    <th>Action</th>
+
+  </tr>
+
+  <tbody *ngFor="let inputPannellst of InputPannelPodetailslist" style="overflow:scroll">
+
+    <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}">
+
+
+      <td><button type="button" class="btn btn-info btn-sm" (click)=getSizeWizePoDetails(inputPannellst.inputPannelId)> Detail </button></td>
+
+      <td>
+        <span style="color:#9F000F">
+          <div *ngFor='let c of Regionlist'>
+            <div *ngIf='c.regionId== inputPannellst.countryId'> {{c.regionName}}</div>
+          </div>
+        </span>
+      </td>
+
+      <td><span style="color:#9F000F">{{inputPannellst.countryType }}</span></td>
+      <td><span style="color:#9F000F">{{inputPannellst.cuttOffDate | date : "dd/MM/y" }}</span></td>
+      <td><span style="color:#9F000F">{{inputPannellst.cuttOff}}</span></td>
+      <td><span style="color:#9F000F">{{inputPannellst.countryShipmentDate | date : "dd/MM/y"}}</span></td>
+      <td><span style="color:#9F000F">{{inputPannellst.remarks }}</span></td>
+      <td><span style="color:#9F000F">{{inputPannellst.packingId}}</span></td>
+      <td><span style="color:#9F000F">{{inputPannellst.quantity }}</span></td>
+
+
+      <td>
+        <button type="button" (click)="openModalDialogForInputPannel(inputPannellst.inputPannelId)">Edit</button>
+        <button type="button" (click)="deleteinputpannel(odrmstrlst.inputPannelId)">Delete</button>
+
+
+      </td>
+
+
+    </tr>
+
+
+  </tbody>
+</table>
+
+
+
+<table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:3px;border:1px solid #ddd;font-size:11px;margin-bottom:40px;" cellpadding="2" cellspacing="2" *ngIf="InputPannelPodetailslist">
+
+  <tr>
+
+    <td colspan="14"><h4 style="text-align:left">Sizewise Breakdown</h4> </td>
+
+  </tr>
+
+  <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+    <th><button type="button" class="btn btn-info" (click)="openDetailsModalDialogForSizeWise()">Add New</button></th>
+    <th> Item </th>
+    <th> Article Number </th>
+    <th> Color  </th>
+    <th> Size </th>
+    <th> Quantity </th>
+    <th>
+      Action
+    </th>
+  </tr>
+
+  <tbody *ngFor="let sizewisepodetailslist of SizewisePODetailsList">
+
+    <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}">
+
+      <!--<td><button type="button" clas (click)=getOrderMasterDetails(odrmstrlst.orderAutoId)> Detail </button></td>-->
+
+
+      <td> </td>
+      <td>
+        <span style="color:#9F000F">
+          <div *ngFor='let c of OrderItemlist'>
+            <div *ngIf='c.itemId== sizewisepodetailslist.itemId'> {{c.name}}</div>
+          </div>
+        </span>
+      </td>
+      <td>{{sizewisepodetailslist.articleNumber}}</td>
+      <td>{{sizewisepodetailslist.color}}</td>
+      <td>{{sizewisepodetailslist.size}}</td>
+      <td>{{sizewisepodetailslist.quanity}}</td>
+
+
+
+      <td>
+        <button type="button" (click)="openDetailsModalDialogForSizeWise(sizewisepodetailslist.sizePannelId)">Edit</button>
+        <button type="button" (click)="deleteSizewisePO(sizewisepodetailslist.sizePannelId)">Delete</button>
+
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="modal" id="modalMaster" tabindex="1" role="dialog" [ngStyle]="{'display':display}">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<!--<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true"></span></button>
+</div>-->
+<div class="modal-body">
+<form [formGroup]="masterorderForm" (ngSubmit)="saveOrderMaster(file.files,$event)" #formDir="ngForm" novalidate>
+
+
+<!--demo tabl ecreation start-->
+
+
+<table class="table table-bordered" style="margin-top:10px;line-height:15px;border-color:red;border:1px solid red">
+
+
+<thead>
+<tr>
+  <th>Order No</th>
+  <th>Company Name</th>
+  <th>Location Name</th>
+  <th>Buyer Name</th>
+  <th>Style No.</th>
+
+  <th>Items</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+
+
+  <td>
+
+    <div>
+      <input class="form-control" type="text" formControlName="orderNumber">
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'orderNumber') && formDir.submitted">
+      *
+    </span>
+
+  </td>
+  <td>
+    <div>
+
+      <select formControlName="companyId" class="form-control" value="">
+        <option *ngFor="let item of complist" [value]="item.compId">
+          {{item.companyName}}
+        </option>
+      </select>
+
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'companyId') && formDir.submitted">
+      *
+    </span>
+
+  </td>
+
+  <td>
+
+    <div>
+
+      <select formControlName="locationId" class="form-control" value="">
+        <option *ngFor="let item of locationlist" [value]="item.locationId">
+          {{item.locationName}}
+        </option>
+      </select>
+
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'locationId') && formDir.submitted">
+      *
+    </span>
+
+  </td>
+
+  <td>
+
+    <div>
+
+      <select formControlName="buyerId" class="form-control" value="">
+        <option *ngFor="let item of buyerlist" [value]="item.buyerId">
+          {{item.buyerName}}
+        </option>
+      </select>
+
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'buyerId') && formDir.submitted">
+      *
+    </span>
+
+  </td>
+
+  <td>
+
+    <div>
+      <input class="form-control" type="text" formControlName="styleRef">
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'styleRef') && formDir.submitted">
+      *
+    </span>
+
+  </td>
+  <td>
+
+    <div>
+
+      <select formControlName="prodDeptId" class="form-control" value="">
+        <option *ngFor="let item of proddeptlist" [value]="item.id">
+          {{item.prodDeptName}}
+        </option>
+      </select>
+
+    </div>
+    <!--<span class="text-danger" *ngIf="masterorderForm.hasError('required', 'prodDeptId') && formDir.submitted">
+      prodDeptId is required
+    </span>-->
+
+  </td>
+
+
+</tr>
+
+<!--second row-->
+
+<tr>
+
+  <th>Prod. Dept.</th>
+  <th>Sub. Dept	</th>
+  <th>Currency</th>
+  <th>Country</th>
+  <th>Product Category</th>
+  <th>Menchandisert</th>
+</tr>
+<tr>
+
+
+  <td>
+
+    <div>
+      <input class="form-control" type="text" formControlName="styleDescription" data-val="true">
+    </div>
+    <!--<span class="text-danger" *ngIf="masterorderForm.hasError('required', 'styleDescription') && formDir.submitted">
+      styleDescription is required
+    </span>-->
+
+  </td>
+
+  <td>
+
+    <div>
+
+      <select formControlName="subDeptId" class="form-control" value="">
+        <option *ngFor="let item of SubDeptlist " [value]="item.subDeptId">
+          {{item.subDeptName}}
+        </option>
+      </select>
+
+    </div>
+
+    <!--<span class="text-danger" *ngIf="masterorderForm.hasError('required', 'subDeptId') && formDir.submitted">
+      subDeptId is required
+    </span>-->
+
+  </td>
+  <td>
+    <div>
+
+      <select formControlName="currencyId" class="form-control" value="">
+        <option *ngFor="let item of Currencylist  " [value]="item.currencyId">
+          {{item.currencyName}}
+        </option>
+      </select>
+
+    </div>
+
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'currencyId') && formDir.submitted">
+      *
+    </span>
+  </td>
+  <td>
+    <div>
+
+      <select formControlName="regionId" class="form-control" value="">
+        <option *ngFor="let item of Regionlist   " [value]="item.regionId">
+          {{item.regionName}}
+        </option>
+      </select>
+
+    </div>
+  </td>
+
+  <td>
+    <div>
+
+      <select formControlName="productCatId" class="form-control" value="">
+        <option *ngFor="let item of ProductionCattlist" [value]="item.prodCatId">
+          {{item.prodCategoryName}}
+        </option>
+      </select>
+
+    </div>
+
+    <!--<span class="text-danger" *ngIf="masterorderForm.hasError('required', 'productCatId') && formDir.submitted">
+      productCatId is required
+    </span>-->
+  </td>
+  <td>
+    <div>
+
+      <select formControlName="dealingMerchantId" class="form-control" value="">
+        <option *ngFor="let item of DealingMarcentdizerlist    " [value]="item.id">
+
+          <div *ngFor='let c of Userslist '>
+            <div *ngIf='c.userId== item.userId'> {{c.fullName}}</div>
+          </div>
+
+        </option>
+      </select>
+
+    </div>
+
+    <!--<span class="text-danger" *ngIf="masterorderForm.hasError('required', 'dealingMerchantId') && formDir.submitted">
+      productCatId is required
+    </span>-->
+  </td>
+
+</tr>
+
+<!--Third row-->
+
+<tr>
+
+  <th>Teamleader</th>
+  <th>BH Merchant</th>
+  <th>Remarks</th>
+
+  <th>Ship Mode</th>
+  <th>Order Uom</th>
+  <th>.</th>
+</tr>
+<tr>
+
+  <td>
+    <div>
+
+      <select formControlName="teamLeaderId" class="form-control" value="">
+        <option *ngFor="let item of Teamleaderlist     " [value]="item.teamleaderId">
+
+          <div *ngFor='let c of Userslist '>
+            <div *ngIf='c.userId== item.userId'> {{c.fullName}}</div>
+          </div>
+        </option>
+      </select>
+
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'teamLeaderId') && formDir.submitted">
+      *
+    </span>
+  </td>
+  <td>
+    <div>
+      <input class="form-control" type="text" formControlName="bhMerchant">
+    </div>
+
+  </td>
+  <td>
+    <div>
+      <input class="form-control" type="text" formControlName="remarks">
+    </div>
+
+  </td>
+
+  <td>
+    <div>
+
+      <select formControlName="shipmentModeId" class="form-control" value="">
+        <option *ngFor="let item of ShipmentModelist      " [value]="item.id">
+          {{item.shipmentMode}}
+        </option>
+      </select>
+
+    </div>
+
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'shipmentModeId') && formDir.submitted">
+      *
+    </span>
+  </td>
+  <td>
+    <div>
+
+      <select formControlName="orderUomId" class="form-control" value="">
+        <option *ngFor="let item of OrderUomlist       " [value]="item.uomid">
+          {{item.orderUomName}}
+        </option>
+      </select>
+
+      <!--doing item details -->
+      <!--<button class="btn" (click)="openModalItemDetails()">Item details</button>-->
+      <!--doing item details -->
+    </div>
+
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'orderUomId') && formDir.submitted">
+      *
+    </span>
+  </td>
+  <td>
+    <div>
+      <button class="btn" (click)="openModalItemDetails()">Item details</button>
+    </div>
+  </td>
+
+</tr>
+
+<!--Forth row-->
+
+<tr>
+
+  <th>SMV</th>
+  <th>Packing</th>
+  <th>Season</th>
+  <th>Agent</th>
+  <th>User</th>
+  <th colspan="2">Order Image</th>
+</tr>
+<tr>
+  <td>
+    <div>
+      <input class="form-control" [readonly]="!editable" type="text" formControlName="smv">
+    </div>
+
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'smv') && formDir.submitted">
+      *
+    </span>
+
+  </td>
+  <td>
+    <div>
+
+      <select formControlName="packingId" class="form-control" value="">
+        <option *ngFor="let item of Packinglist" [value]="item.packingId">
+          {{item.packingName}}
+        </option>
+      </select>
+
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'packingId') && formDir.submitted">
+      *
+    </span>
+  </td>
+  <td>
+    <div>
+      <select formControlName="seasonId" class="form-control" value="">
+        <option *ngFor="let item of Seasonlist" [value]="item.seasonId">
+          {{item.seasonName}}
+        </option>
+      </select>
+    </div>
+
+
+  </td>
+
+  <td>
+    <div>
+      <select formControlName="agentId" class="form-control" value="">
+        <option *ngFor="let item of Agentlist" [value]="item.agentId">
+          {{item.agentName}}
+        </option>
+      </select>
+    </div>
+
+    <!--<span class="text-danger" *ngIf="masterorderForm.hasError('required', 'agentId') && formDir.submitted">
+      agentId is required
+    </span>-->
+  </td>
+  <td>
+    <div>
+
+      <select formControlName="userId" class="form-control" value="">
+        <option *ngFor="let item of Userslist     " [value]="item.userId">
+          {{item.fullName}}
+        </option>
+      </select>
+
+
+    </div>
+    <span class="text-danger" *ngIf="masterorderForm.hasError('required', 'userId') && formDir.submitted">
+      *
+    </span>
+  </td>
+  <td style="border-right-color:none !important">
+
+    <input #file type="file" multiple formControlName="imagefile" class="form-control" />
+    <br />
+    <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
+      {{progress}}%
+    </span>
+  </td>
+</tr>
+
+
+
+<tr>
+  <td style="border-left-color:none !important">
+    <div *ngFor='let d of OrderImagelist'>
+      <div *ngIf='d.initialOrderId== orderAutoId'>
+
+        <img [src]="d.imgPath" width="50" height="50">
+
+      </div>
+    </div>
+  </td>
+  <td colspan="5"> <button type="submit" class="btn btn-default">Save</button> <button class="btn" (click)="closeModalDialog()">Cancel</button></td>
+</tr>
+
+</tbody>
+</table>
+
+
+
+</form>
+</div>
+
+<!--<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="closemodaldialog()">close</button>
+</div>-->
+</div>
+</div>
+</div>
+
+
+<div class="modal" id="modalDetails" tabindex="1" role="dialog" [ngStyle]="{'display':displayDetails}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <form [formGroup]="masterorderDetailsForm" (ngSubmit)="saveMasterOrderDetails()" #formDir="ngForm" novalidate>
+
+
+
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+
+
+            <tr>
+
+              <th>Order Status </th>
+              <th>PO No</th>
+              <th>PO Received Date </th>
+              <th>Pub. Shipment Date</th>
+              <th>Org. Shipment Date</th>
+            </tr>
+            <tr>
+              <td>
+
+                <div>
+
+                  <select formControlName="poorderStatusId" class="form-control" value="">
+                    <option *ngFor="let item of PoOrderStatusList  " [value]="item.id">
+                      {{item.orderStatus}}
+                    </option>
+                  </select>
+
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'poorderStatusId') && formDir.submitted">
+                  Major is required.
+                </span>
+
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="poNo">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'poNo') && formDir.submitted">
+                  Year is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="poReceivedDate">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'poReceivedDate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="date" formControlName="pubShipmentDate" data-val="true">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'pubShipmentDate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="date" formControlName="orgShipmentDate">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'orgShipmentDate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+            </tr>
+
+
+
+            <tr>
+              <th>Fac. Receive Date</th>
+              <th>PO Quantity</th>
+              <th>Avg. Price</th>
+              <!--<th>Amount</th>-->
+              <th colspan="2">Excess Cut %</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="date" formControlName="facReceiveDate">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'facReceiveDate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="poQuantity">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'poQuantity') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="avgPrice" data-val="true">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'avgPrice') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="amount">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'amount') && formDir.submitted">
+                  *
+                </span>
+              </td>-->
+              <td colspan="2">
+                <div>
+                  <input class="form-control" type="text" formControlName="excessCut">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'excessCut') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+
+              <th>Status</th>
+              <th>Projected Po</th>
+              <th>TNA From /Upto</th>
+              <th colspan="2">Internal Ref/Grouping</th>
+            </tr>
+
+
+            <tr>
+
+
+              <td>
+                <div>
+
+                  <select formControlName="poStatusId" class="form-control" value="">
+                    <option *ngFor="let item of postatuslist   " [value]="item.id">
+                      {{item.status}}
+                    </option>
+                  </select>
+
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'poStatusId') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="projectedPo">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'projectedPo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="date" formControlName="tnaFromOrUpto" data-val="true">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'tnaFromOrUpto') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td colspan="2">
+                <div>
+                  <input class="form-control" type="text" formControlName="internalRefOrGrouping">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'internalRefOrGrouping') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+              <th>Delay For</th>
+              <th>Packing</th>
+              <th>File No</th>
+              <th>SC/LC</th>
+              <th>Remarks</th>
+
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="delayFor">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'delayFor') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <select formControlName="packingId" class="form-control" value="">
+                    <option *ngFor="let item of Packinglist   " [value]="item.packingId">
+                      {{item.packingName}}
+                    </option>
+                  </select>
+
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'packingId') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fileNo" data-val="true">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'fileNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="scorLc" data-val="true">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'scorLc') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="remarks" data-val="true">
+                </div>
+                <span class="text-danger" *ngIf="masterorderDetailsForm.hasError('required', 'remarks') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <th colspan="5">
+                <button type="submit" class="btn btn-default">Save</button>
+
+              </th>
+            </tr>
+
+
+          </table>
+
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeDetailsModalDialog()">Close</button>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal" id="modalInputPannel" tabindex="1" role="dialog" [ngStyle]="{'display':displayinputpannel}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <form [formGroup]="inputpannelPoDetailsForm" (ngSubmit)="saveInputPannel()" #formDir="ngForm" novalidate>
+
+
+
+
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;border-color:red;border:1px solid red">
+
+
+            <thead>
+              <tr>
+                <th>Country</th>
+                <th>Country Type</th>
+                <th>Cut off Date</th>
+                <th>Cutt Off</th>
+                <th>country Shipment Date</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td>
+
+                  <div>
+
+                    <select formControlName="countryId" class="form-control" value="">
+                      <option *ngFor="let item of Regionlist" [value]="item.regionId">
+                        {{item.regionName}}
+                      </option>
+                    </select>
+                    <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'countryId') && formDir.submitted">
+                      *
+                    </span>
+                  </div>
+
+
+                </td>
+
+
+                <td>
+
+                  <div>
+                    <input class="form-control" type="text" formControlName="countryType" data-val="true">
+                  </div>
+                  <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'countryType') && formDir.submitted">
+                    *
+                  </span>
+                </td>
+
+
+                <td>
+
+                  <div>
+                    <input class="form-control" type="date" formControlName="cuttOffDate" data-val="true">
+                  </div>
+                  <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'cuttOffDate') && formDir.submitted">
+                    *
+                  </span>
+                </td>
+
+                <td>
+
+                  <div>
+                    <input class="form-control" type="text" formControlName="cuttOff" data-val="true">
+                  </div>
+                  <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'cuttOff') && formDir.submitted">
+                    *
+                  </span>
+                </td>
+
+                <td>
+
+                  <div>
+                    <input class="form-control" type="date" formControlName="countryShipmentDate" data-val="true">
+                  </div>
+                  <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'countryShipmentDate') && formDir.submitted">
+                    *
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+
+                <th>Remarks</th>
+                <th>Packing</th>
+                <th>Quantity	</th>
+
+              </tr>
+              <tr>
+
+                <td>
+
+                  <div>
+                    <input class="form-control" type="text" formControlName="remarks" data-val="true">
+                  </div>
+                  <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'remarks') && formDir.submitted">
+                    *
+                  </span>
+                </td>
+
+
+                <td>
+
+                  <div>
+
+                    <select formControlName="packingId" class="form-control" value="">
+                      <option *ngFor="let item of Packinglist        " [value]="item.packingId">
+                        {{item.packingName}}
+                      </option>
+                    </select>
+
+                  </div>
+                  <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'packingId') && formDir.submitted">
+                    *
+                  </span>
+
+                </td>
+
+
+
+                <td>
+
+                  <div>
+                    <input class="form-control" type="text" formControlName="quantity">
+                  </div>
+                  <span class="text-danger" *ngIf="inputpannelPoDetailsForm.hasError('required', 'quantity') && formDir.submitted">
+                    *
+                  </span>
+
+                </td>
+
+              </tr>
+
+              <tr>
+                <td colspan="2"> <button type="submit" class="btn btn-default">Save</button> </td>
+
+
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+        </form>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeModalDialogForInputPannel()">Close</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="modalsizewiseDetails" tabindex="1" role="dialog" [ngStyle]="{'display':displaysizewise}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <form [formGroup]="SizePannelPODetailsForm" (ngSubmit)="saveSizePannelPodetails()" #formDir="ngForm" novalidate>
+
+
+
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+
+
+            <tr>
+
+              <th> Item </th>
+              <th> Article Number </th>
+              <th> Color </th>
+
+            </tr>
+            <tr>
+
+
+              <td>
+                <div>
+
+                  <select formControlName="itemId" class="form-control" value="">
+                    <option *ngFor="let item of OrderItemlist    " [value]="item.itemId">
+                      {{item.name}}
+                    </option>
+                  </select>
+
+                </div>
+
+              </td>
+
+
+
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="itemId">
+                </div>
+                <span class="text-danger" *ngIf="SizePannelPODetailsForm.hasError('required', 'itemId') && formDir.submitted">
+                  Year is required
+                </span>
+              </td>-->
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="articleNumber">
+                </div>
+                <span class="text-danger" *ngIf="SizePannelPODetailsForm.hasError('required', 'articleNumber') && formDir.submitted">
+                  Year is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="color">
+                </div>
+                <span class="text-danger" *ngIf="SizePannelPODetailsForm.hasError('required', 'color') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+
+            </tr>
+
+
+
+            <tr>
+              <th> Size </th>
+              <th> Quantity</th>
+
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="size">
+                </div>
+                <span class="text-danger" *ngIf="SizePannelPODetailsForm.hasError('required', 'size') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="quanity">
+                </div>
+                <span class="text-danger" *ngIf="SizePannelPODetailsForm.hasError('required', 'quanity') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <button type="submit" class="btn btn-default">Save</button>
+
+              </td>
+
+            </tr>
+
+
+
+
+
+
+          </table>
+
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeDetailsModalDialogForsizewise()">Close</button>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<!--Here has  the Item Details Show  -->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog" [ngStyle]="{'display':displayItemDetails}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:3px;border:1px solid #ddd;font-size:11px;" cellpadding="2" cellspacing="2" *ngIf="iniorderlist">
+          <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+            <th><button type="button" class="btn btn-info btn--sm" (click)="openModalItemDetailsAdd()">Add New</button> </th>
+            <th>item</th>
+            <th>ratio</th>
+            <th>sewSmvPcs</th>
+            <th>cutSmvPcs</th>
+            <th>finSmvPcs</th>
+            <th>complexity</th>
+            <th>print</th>
+            <th>embroYesNo</th>
+            <th>embroNumber</th>
+            <!-- <th>washYesNo</th>
+            <th>washNumber</th>
+            <th>spWorksYesNo</th>
+            <th>spWorksNumber</th>
+            <th>gmtsDyeingYesNo</th>
+            <th>gmtsDyeingNumber</th>
+            <th>aopYesNo</th>
+            <th>aopNumber</th> -->
+            <th>Action</th>
+          </tr>
+          <!-- *ngFor="let odrmstrlst of iniorderlist"-->
+          <tbody *ngFor="let itemDetails of itemDetailsArray" style="overflow:scroll">
+            <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}">
+              <td><button type="button" class="btn btn-info btn-sm" (click)=getOrderMasterDetails(odrmstrlst.orderAutoId)> Detail </button></td>
+              <td><span style="color:#9F000F">{{itemDetails.item}}</span></td>
+              <td><span style="color:#9F000F">{{itemDetails.ratio}}</span></td>
+              <td><span style="color:#9F000F">{{itemDetails.sewSmvPcs}}</span></td>
+              <td style="width:50px;"><span style="color:#9F000F">{{itemDetails.cutSmvPcs}}</span></td>
+              <td><span style="color:#9F000F">{{itemDetails.finSmvPcs}}</span></td>
+              <td><span style="color:#9F000F">{{itemDetails.complexity}}</span></td>
+              <td><span style="color:#9F000F">{{itemDetails.print}}</span></td>
+              <td><span style="color:#9F000F">{{itemDetails.embroYesNo}}</span></td>
+              <td><span style="color:#9F000F">{{itemDetails.embroNumber}}</span></td>
+              <td>
+                <button type="button" (click)="openModalItemDetailsAdd(itemDetails.id)">Edit</button>
+                <button type="button" (click)="deleteItemDetails2(itemDetails.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody style="overflow:scroll">
+            <tr>
+              <td colspan="2">Total</td>
+              <td>{{totalRatio}}</td>
+              <td>{{totalSewSmvPcs}}</td>
+              <td>{{totalCutSmvPcs}}</td>
+              <td>{{totalFinSmvPcs}}</td>
+              <td colspan="5"></td>
+            </tr>
+          </tbody>
+        </table>
+        <!--<div class="modal-footer">
+          <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:1px;border:1px solid #ddd;font-size:11px;" cellpadding="2" cellspacing="2">
+            <tbody style="overflow:scroll">
+              <tr>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+                <td>sidfjs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>-->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeModalItemDetails()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Here has  the design for the Insert/Edit operation of Item Details -->
+
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog" [ngStyle]="{'display':displayItemDetailsAdd}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="ItemDetailsForm" (ngSubmit)="saveItemDetails()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>Item</th>
+              <th>Set Ratio</th>
+              <th>Sew SMV/ Pcs</th>
+              <th>Cut SMV/ Pcs</th>
+              <th>Fin SMV/ Pcs</th>
+            </tr>
+            <tr>
+
+
+              <!--<select formControlName="companyId" class="form-control" value="">
+                <option *ngFor="let item of complist" [value]="item.compId">
+                  {{item.companyName}}
+                </option>
+              </select>-->
+
+
+              <td>
+                <div>
+                  <select formControlName="item" *ngIf="item_btn" class="form-control" (change)="filterItems($event.target.value)">
+                    <option *ngFor="let btnAction of item_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+
+                  <!--<select formControlName="item" class="form-control" value="">
+                    <option *ngFor="let btnAction of item_btn" value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>-->
+                  <!--<input class="form-control" type="text" formControlName="particulars">-->
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'item') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="ratio">
+
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'ratio') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="sewSmvPcs">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'sewSmvPcs') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="cutSmvPcs">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'cutSmvPcs') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="finSmvPcs">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'finSmvPcs') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>Complexity</th>
+              <th>Print</th>
+              <th>Embro YesNo</th>
+              <th>Embro Number</th>
+              <th>Wash YesNo</th>
+            </tr>
+            <tr>
+
+              <!--<div>
+
+                <select formControlName="poorderStatusId" class="form-control" value="">
+                  <option *ngFor="let item of PoOrderStatusList  " [value]="item.id">
+                    {{item.orderStatus}}
+                  </option>
+                </select>
+
+              </div>-->
+
+
+
+              <td>
+                <div>
+                  <select formControlName="complexity" *ngIf="complexity_btn" class="form-control" (change)="filterComplexity_btn($event.target.value)">
+                    <option *ngFor="let btnAction of complexity_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="complexity">-->
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'complexity') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select formControlName="print" *ngIf="yes_no_btn" class="form-control" (change)="filterPrint_btn($event.target.value)">
+                    <option *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="print">-->
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'print') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select formControlName="embroYesNo" *ngIf="yes_no_btn" class="form-control" (change)="filterEmbro_btn($event.target.value)">
+                    <option *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="embroYesNo">-->
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'embroYesNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="embroNumber">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'embroNumber') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select formControlName="washYesNo" *ngIf="yes_no_btn" class="form-control" (change)="filterWash_btn($event.target.value)">
+                    <option *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="washYesNo">-->
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'washYesNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>washNumber</th>
+              <th>SP. Works YesNo</th>
+              <th>spWorksNumber</th>
+              <th>Gmts Dyeing YesNo</th>
+              <th>gmtsDyeingNumber</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="washNumber">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'washNumber') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <!--<input class="form-control" type="text" formControlName="spWorksYesNo">-->
+                  <select formControlName="spWorksYesNo" *ngIf="yes_no_btn" class="form-control" (change)="filterSPWorks_btn($event.target.value)">
+                    <option *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'spWorksYesNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="spWorksNumber">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'spWorksNumber') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <!--<input class="form-control" type="text" formControlName="gmtsDyeingYesNo">-->
+                  <select formControlName="gmtsDyeingYesNo" *ngIf="yes_no_btn" class="form-control" (change)="filterGmtsDyeing_btn($event.target.value)">
+                    <option *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'gmtsDyeingYesNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="gmtsDyeingNumber">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'gmtsDyeingNumber') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+
+
+            </tr>
+            <tr>
+              <th>AOP YesNo</th>
+              <th>aopNumber</th>
+            </tr>
+
+            <tr>
+              <td>
+                <div>
+                  <!--<input class="form-control" type="text" formControlName="aopYesNo">-->
+                  <select formControlName="aopYesNo" *ngIf="yes_no_btn" class="form-control" (change)="filterAop_btn($event.target.value)">
+                    <option *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'aopYesNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="aopNumber">
+                </div>
+                <span class="text-danger" *ngIf="ItemDetailsForm.hasError('required', 'aopNumber') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <!--<td colspan="3">
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>-->
+            </tr>
+          </table>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default">Add</button>
+            <button type="button" class="btn btn-default" (click)="closeModalItemDetailsAdd()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i>
+      </button>  Body Part Entry 
+    </nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="bodyPartFullName" class="label text-dark">Body Part FullName <span class="text-danger">*</span></label>
+                  <input name="bodyPartFullName"
+                  #bodyPartFullName="ngModel"
+                 [(ngModel)]="bodyPartEntryService.bodyPartEntry.bodyPartFullName" type="text"    class="form-control form-rounded form-control-sm" id="bodyPartFullName" placeholder="Body Part FullName">
+                 <div class="text-left text-danger"
+                *ngIf="bodyPartEntryService.bodyPartEntry.bodyPartFullName==''&&bodyPartFullName.touched">
+                Body Part FullName  is required
+                </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="bodyPartShortName" class="label text-dark">Body Part ShortName</label>
+                  <input name="bodyPartShortName"
+                  #bodyPartShortName="ngModel"
+                 [(ngModel)]="bodyPartEntryService.bodyPartEntry.bodyPartShortName" type="text"    class="form-control form-rounded form-control-sm" id="bodyPartShortName" placeholder="Body Part Short Name">
+                
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="bodyPartType" class="label text-dark">Body Part Type <span class="text-danger">*</span></label>
+                  <select id="bodyPartType"  required #bodyPartType="ngModel"
+                  [(ngModel)]="bodyPartEntryService.bodyPartEntry.bodyPartType"
+                      class="form-control form-rounded form-control-sm" name="bodyPartType">
+                   <option value=''>Select</option>
+                   <option *ngFor="let bpType of bodyPartTypeInfo" [value]="bpType.bodyPartTypeName">{{bpType.bodyPartTypeName}}</option>  
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="bodyPartEntryService.bodyPartEntry.bodyPartType==''&&bodyPartType.touched">
+             Body Part Type is required
+             </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="status" class="label text-dark">Status <span class="text-danger">*</span></label>
+                  <select id="status"  required #status="ngModel"
+                  [(ngModel)]="bodyPartEntryService.bodyPartEntry.status"
+                      class="form-control form-rounded form-control-sm" name="status">
+                 <option value=''>Select Status </option>
+                 <option value="Active">Active </option>
+                 <option value=" In Active"> In Active </option>    
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="bodyPartEntryService.bodyPartEntry.status==''&&status.touched">
+             Status is required
+             </div>
+                </div>
+              </div>
+          
+         
+             
+             
+            </div>
+           
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                 <label for="tagePage" class="label text-dark">Entry Page</label>
+                <ng-multiselect-dropdown
+                    name="selectedItems"
+                    [placeholder]="'Tag Page'"
+                    [data]="dropdownList"
+                    [(ngModel)]="selectedItems"
+                    [settings]="dropdownSettings"  
+                                   
+                    >
+                    </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <!-- <div class="col-sm-3 ">
+                <div class="form-group ">
+               
+                  <button  class="mr-1" [disabled]="bodyPartEntryService.bodyPartEntry.bodyPartFullName==''||bodyPartEntryService.bodyPartEntry.bodyPartType==''||bodyPartEntryService.bodyPartEntry.status==''" nbButton (click)="save(bodyPartEntryService.bodyPartEntry,selectedItems)">Submit</button>
+                
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                 
+                </div>
+              </div> -->
+
+
+       
+            </div> 
+          
+            <div class="form-group ">
+               
+              <button  class="mr-1" [disabled]="bodyPartEntryService.bodyPartEntry.bodyPartFullName==''||bodyPartEntryService.bodyPartEntry.bodyPartType==''||bodyPartEntryService.bodyPartEntry.status==''" nbButton (click)="save(bodyPartEntryService.bodyPartEntry,selectedItems)">Submit</button>
+            
+            </div>
+            
+          </form>
+        </nb-card-body>
+     
+    </nb-card>
+  </div>
+</div>

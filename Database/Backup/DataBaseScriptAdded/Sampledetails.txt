@@ -1,0 +1,27 @@
+CREATE TABLE public."Sampledetails"
+(
+    "Id" serial primary key,
+    "SampleFabricBookingid" integer,
+    "OrderId" integer,
+    "SampleRequisitionId" integer,
+    "GarmentItem" integer,
+    "SampleName" character varying(100) COLLATE pg_catalog."default",
+    "SMV" double precision,
+    "ArticleNo" character varying(100) COLLATE pg_catalog."default",
+    "Color" integer,
+    "SampleReqQty" double precision,
+    "SubmnQty" double precision,
+    "DelvStartDate" character varying(100) COLLATE pg_catalog."default",
+    "DelvEndDate" character varying(100) COLLATE pg_catalog."default",
+    "BuyerSubDate" character varying(100) COLLATE pg_catalog."default",
+    "ChargeUnit" double precision,
+    "CurrencyId" integer,
+    "Image" character varying(100) COLLATE pg_catalog."default",
+    "Comments" character varying(100) COLLATE pg_catalog."default",
+    "EntryDate" character varying(100) COLLATE pg_catalog."default",
+    "EntryBy" character varying(100) COLLATE pg_catalog."default",
+    "ApprovedDate" character varying(100) COLLATE pg_catalog."default",
+    "IsApproved" boolean,
+    "ApprovedBy" character varying(100) COLLATE pg_catalog."default",
+    "Status" character varying(100) COLLATE pg_catalog."default"
+)

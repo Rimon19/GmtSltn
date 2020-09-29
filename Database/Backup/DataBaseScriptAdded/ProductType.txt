@@ -1,0 +1,16 @@
+-- Table: public."ProductType"
+
+-- DROP TABLE public."ProductType";
+
+CREATE TABLE public."ProductType"
+(
+    "Id" integer NOT NULL DEFAULT nextval('"ProductType_Id_seq"'::regclass),
+    "ProductTypeName" character varying(100) COLLATE pg_catalog."default",
+    status character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT "ProductType_pkey" PRIMARY KEY ("Id")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."ProductType"
+    OWNER to postgres;

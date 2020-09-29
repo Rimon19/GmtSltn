@@ -1,0 +1,1312 @@
+
+<!-- Precosting  -->
+<nb-card>
+  <!-- <div class="col-md-12" style = "overflow-x: scroll;">
+    <div class="smart-table-container" style = "width:2000px;"> -->
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <h5>Precosting Informations</h5>
+          <mat-form-field>
+            <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+            <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" #sort="matSort"  mat-table
+        matSort >
+                  <!-- Action Column -->
+                  <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef> Actions  
+                      <button class="btn btn-outline-success" (click)="addnewPreCostingInputform()"> <i class="fa fa-plus"></i></button>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" ><section>
+                      <div class="example-button-row">
+                        <button *ngIf="element.precostingId!=0"  mat-icon-button (click)="redirectToEditPage(element)" > <mat-icon>launch</mat-icon></button>
+                        <button *ngIf="element.precostingId!=0" mat-icon-button (click)="onDeletePrecosting(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+                    <button 
+                    *ngIf="element.precostingId != 0"
+                    (click)="onChangeAddCost(element)"
+                    class="btn-outline-success"
+                  > 
+                  
+                  select
+                  </button>
+                      </div>
+                    </section> 
+                    </mat-cell>
+
+                   </ng-container>
+
+          <!-- precosting -->
+          <ng-container matColumnDef="orderId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Job No: </mat-header-cell>
+            <mat-cell *matCellDef="let element" >{{element.orderId}}</mat-cell>
+          </ng-container>
+
+         <!-- costing date -->
+         <ng-container matColumnDef="costingDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Costing Date</mat-header-cell>
+          <mat-cell *matCellDef="let element" >{{element.costingDate|date}}</mat-cell>
+          
+        </ng-container>
+
+    
+           <!-- incoterm -->
+            <ng-container matColumnDef="incoterm">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Incoterm</mat-header-cell>
+              <mat-cell *matCellDef="let element" >{{element.incoterm}}</mat-cell>
+            
+            </ng-container>
+
+
+                <!-- incoterm Place -->
+            <ng-container matColumnDef="incotermPlace">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Incoterm Place</mat-header-cell>
+              <mat-cell *matCellDef="let element" >{{element.incotermPlace}}</mat-cell>
+
+            </ng-container>
+
+              <!-- incoterm Place -->
+              <ng-container matColumnDef="sewEfficiency">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Sew Efficiency</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.sewEfficiency}}</mat-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="jobQty">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Job Quantity</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.jobQty}}</mat-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="sewSMV">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Sew SMV</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.sewSMV}}</mat-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="cutSMV">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Cut SMV</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.cutSMV}}</mat-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="remark">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Remark</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.remark}}</mat-cell>
+
+              </ng-container>
+  
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator  #MatPaginator="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+  
+
+</nb-card>
+
+
+<div class="row">
+  <div class="col-sm-5">
+    <nb-card >
+      <div class="row">
+        <div class="col-sm-8">
+          <div style="margin-left:14px;" class="form-group ">
+            <label for="poNoselectedItems" class="label text-dark"
+            >PO Number</label
+          >
+          <ng-multiselect-dropdown
+          
+            [disabled]="true"
+            name="poNoselectedItems"
+            [placeholder]="'PO Number'"
+            [data]="poNodropdownList"
+            [(ngModel)]="poNoselectedItems"
+            [settings]="poNodropdownSettings"
+          >
+          </ng-multiselect-dropdown>
+    
+            <!-- <label for="PO" class="label">PO Number</label>
+            
+              <select name="poId"    
+              [(ngModel)]="poId" 
+              (change)="onChangePoNo(poId)"
+              class="form-control form-rounded form-control-sm">
+                <option [ngValue]=0>Select PO No</option>
+                <option *ngFor="let poNumber of PobNumberItems" [value]="poNumber.poDetID">{{poNumber.pO_No}}</option>
+                
+            </select> -->
+          </div>
+        </div>
+      </div> 
+    
+      <div class="row" >
+        <div class="col-sm-3">
+          <div class="form-group" >
+            <div style="margin-left:14px;" class="form-group">
+              <strong>Cost Components</strong>         
+              </div>
+         
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <strong><label for="">Budgeted Cost</label></strong>
+         
+          </div>
+         
+        </div>
+       
+        <div class="col-sm-3">
+          <div class="form-group">
+           <strong><label for="">% To Q.price</label></strong>
+         
+          </div>
+        </div>
+      </div>
+      <form [formGroup]="fg"  *ngFor="let fg of costComponentForm.controls; let i=index;" >
+       
+        <div class="row"  >
+          <div class="col-sm-4">
+            <div style="margin-left:14px;" class="form-group" >
+              <input  name="costComponent"
+              type="text" class="form-control form-rounded form-control-sm" readonly  fullWidth id="costComponent" formControlName="costComponentName" >       
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+           
+              <input  name="fabNature"
+              type="text" class="form-control form-rounded form-control-sm"
+                fullWidth id="fabricNature"
+                 formControlName="budgetedCost"
+                 (dblclick)="addCostMultipleRow(i)" >
+           
+            </div>
+           
+          </div>
+         
+          <div class="col-sm-3">
+            <div class="form-group">
+              <input  name="QPrice"
+              type="text" class="form-control form-rounded form-control-sm"  fullWidth id="QPrice" formControlName="qPrice" >
+              
+              <input type="hidden" formControlName="id" >
+            </div>
+          </div>
+    
+          <!-- <div class="col-sm-3">
+            <div class="form-group">
+           
+             
+              <button *ngIf="i==0||i==1||i==2||i==3||i==4||i==18" class="primary" nbButton (click)="addCostMultipleRow(i)">add cost</button>
+            </div>
+          </div> -->
+        </div>
+    
+      
+      </form>
+      <div class="row"  >
+        <div class="col-sm-3">
+          <button  (click)="submitCostComponent(costComponentForm)" nbButton >Submit</button>
+         
+        
+            </div>
+            <div class="col-sm-3 ">
+              <button  (click)="deletCostComponent(costComponentForm)" nbButton >Delete</button>
+            </div>
+        </div>
+      
+      
+    </nb-card>
+    
+  </div>
+  <div class="col-sm-7 ">
+    <nb-card *ngIf="isShowFabricCost">
+      <nb-card-header>
+         Fabric Cost Information
+          <button class="btn btn-outline-success float-right" (click)="fabricCostService.fabricCostForm()">
+        <i class="fa fa-plus"></i>
+      </button>
+      </nb-card-header>
+      <nb-card-body>
+          <div class="col-md-12" style="overflow-x: scroll">
+              <div class="smart-table-container" style="width: 2500px">
+                  <form>
+                      <table class="">
+                          <thead>
+                              <tr>
+                                  <th scope="col">Action</th>
+                                  <th scope="col">Gmts Item</th>
+                                  <th scope="col">Body Part</th>
+                                  <th scope="col">Body Part Type</th>
+                                  <th scope="col">Fab Nature</th>
+                                  <th scope="col">Color Type</th>
+                                  <th scope="col">Fabric Description</th>
+                                  <th scope="col">Fabric Source</th>
+                                  <th scope="col">Nominated Supp</th>
+                                  <th scope="col">Width /Dia Type</th>
+                                  <th scope="col">GSM/ Weight</th>
+                                  <th scope="col">Color & Size Sensitive</th>
+                                  <th scope="col">Color</th>
+                                  <th scope="col">Consumption Basis</th>
+                                  <th scope="col">Uom</th>
+                                  <th scope="col">Avg. Grey Cons</th>
+                                  <!-- <th scope="col"></th> -->
+                                  <th scope="col">Rate</th>
+                                  <th scope="col">Amount</th>
+                                  <th scope="col">Total Qty</th>
+                                  <th scope="col">Total Amount</th>
+                              </tr>
+                          </thead>
+  
+                          <tbody [formGroup]="fg" *ngFor="
+                  let fg of fabricCostService.fabricCostInformationForm.controls;
+                  let i = index
+                ">
+                              <tr>
+                                  <td>
+                                      <button class="btn btn-light ml-1 form-control form-rounded form-control-sm" (click)="onDelete(fabricCostService.fabricCostInformationForm, i)">
+                      <i class="far fa-trash-alt fa-lg text-danger"></i>
+                    </button>
+                                  </td>
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="gmtsItemId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let g of dropdownValueService.garmentsItemList" [(value)]="g.id">
+                        {{ g.itemName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="bodyPartId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let b of dropdownValueService.bodyPartList" [(value)]="b.id">
+                        {{ b.bodyPartFullName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="bodyPartTypeId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let b of dropdownValueService.bodyPartTypeList" [(value)]="b.id">
+                        {{ b.bodyPartTypeName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="fabNatureId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let f of dropdownValueService.fabricNatureList" [(value)]="f.id">
+                        {{ f.fabricNatureName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="colorTypeId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let c of dropdownValueService.colorTypeList" [(value)]="c.id">
+                        {{ c.colorTypeName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" (dblclick)="fabricDescrptionModal(i)" placeholder="Fabric Des." formControlName="fabricDescription" />
+                                      <input type="hidden" formControlName="fabricDesPreCostId" />
+                                  </td>
+  
+                                  <td>
+                                      <select (change)="onChangeFabricSource(fg.value.fabricSourceId)" class="form-control form-rounded form-control-sm" formControlName="fabricSourceId">
+                      <option value="0">Select</option>
+                      <option value="1">Buyer Supplied</option>
+                      <option value="2">Production</option>
+                      <option value="3">Purchase</option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="nominatedSuppId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let s of dropdownValueService.subpplierList" [(value)]="s.id">
+                        {{ s.supplierName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="widthDiaType">
+                      <option value="">Select</option>
+                      <option value="Needle Open">Needle Open</option>
+                      <option value="Open Width">Open Width</option>
+                      <option value="Tubular">Tubular</option>
+                    </select>
+                                  </td>
+  
+                                  <!-- <td>
+                        <input
+                          class="form-control form-rounded form-control-sm "
+                          type="text"
+                          id="Amount"
+                          placeholder="Status"
+                          formControlName="WidthDiaType"
+                        />
+                      </td> -->
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Status" formControlName="gsmWeight" />
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="colorSizeSensitive">
+                      <option value="">Select</option>
+                      <option value="As per Gmts. Color">
+                        As per Gmts. Color
+                      </option>
+                      <option value="Size Sensitive">Size Sensitive</option>
+                      <option value="Contrast Color">Contrast Color</option>
+                      <option value="Color & Size Sensitive">
+                        Color & Size Sensitive
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="color">
+                      <option value="">Select</option>
+                      <option *ngFor="let c of dropdownValueService.colorList" [(value)]="c.id">
+                        {{ c.colorName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="consumptionBasis">
+                      <option value="">Select</option>
+                      <option value="Cad Basis">Cad Basis</option>
+                      <option value="Measurement Basis">Measurement Basis</option>
+                      <option value="Marker Basis">Marker Basis</option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="uom">
+                      <option value="">Select</option>
+                      <option value="Pcs">Pcs</option>
+                      <option value="Kg">Kg</option>
+                      <option value="Mtr">Mtr</option>
+                      <option value="Yds">Yds</option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Double Click" formControlName="avgGreyCons" (click)="onAdd(i)" readonly />
+                                  </td>
+                                  <!-- <td>
+                                      <button class="btn btn-info form-control form-rounded form-control text-responsive" (click)="onAdd(i)">
+                      Add Consumption
+                    </button>
+                                  </td> -->
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Rate" formControlName="rate" readonly />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Amount" formControlName="amount" readonly />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Total Qty" formControlName="totalQty" readonly />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Total Amount" formControlName="totalAmount" readonly />
+                                  </td>
+                              </tr>
+  
+                              <tr>
+  
+                                  <td>
+                                      <button *ngIf="i == fabricCostService.count - 1" type="submit" (click)="recordSumitFabricCost(fabricCostService.fabricCostInformationForm)" nbButton>
+                                  Submit
+                                </button>
+                                  </td>
+                                  <td>
+                                      <button *ngIf="i == fabricCostService.count - 1" type="text" (click)="stripeColorDetailsModal()" nbButton>
+                                  Stripe Color
+                                </button>
+                                  </td>
+  
+  
+                              </tr>
+                              <input type="hidden" formControlName="id" readonly />
+                          </tbody>
+                      </table>
+                  </form>
+              </div>
+          </div>
+      </nb-card-body>
+  </nb-card>
+  
+  <nb-card *ngIf="isShowYarncost">
+      <nb-card-header>
+         Yarn Cost Information
+          <!-- <button class="btn btn-outline-success float-right" (click)="yarnCostForm()">
+        <i class="fa fa-plus"></i>
+      </button> -->
+      </nb-card-header>
+      <nb-card-body>
+          <div class="col-md-12" style="overflow-x: scroll">
+              <div class="smart-table-container" style="width: 1000px">
+                  <form>
+                      <table class="">
+                          <thead>
+                              <tr>
+                                  <!-- <th scope="col">Action</th> -->
+                                  <th scope="col">Count</th>
+                                  <th scope="col">Comp 1</th>
+                                  <th scope="col">%</th>
+                                  <th scope="col">Color</th>
+                                  <th scope="col">Type</th>
+                                  <th scope="col">Cons Qnty</th>
+                                  <th scope="col">Supplier</th>
+                                  <th scope="col">Rate</th>
+                                  <th scope="col">Amount</th>
+                              </tr>
+                          </thead>
+  
+                          <tbody [formGroup]="fg" *ngFor="let fg of yarnCostService.yarnCostInformationForm.controls; let j = index">
+                              <tr>
+                                  <!-- <td>
+                                      <button class="btn btn-light ml-1 form-control form-rounded form-control-sm" (click)="onDeleteForyarnCost(yarnCostInformationForm, j)">
+                      <i class="far fa-trash-alt fa-lg text-danger"></i>
+                    </button>
+                                  </td> -->
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="countId">
+                      <option value=0>Select Count</option>
+                      <option
+                        *ngFor="let yarnCountslist of dropdownValueService.yarnCountList"
+                        [value]="yarnCountslist.id"
+                      >
+                        {{ yarnCountslist.name }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="comp1Id">
+                      <option value=0>Select Comp 1</option>
+                      <option
+                        *ngFor="let yarnComp1list of dropdownValueService.yarnComp1List"
+                        [value]="yarnComp1list.id"
+                      >
+                        {{ yarnComp1list.compositionName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="percentage" formControlName="percentage" />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Color" formControlName="color" />
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="typeId">
+                      <option [ngValue]="0">Select Type</option>
+                      <option
+                        *ngFor="let typelist of dropdownValueService.typeList"
+                        [value]="typelist.id"
+                      >
+                        {{ typelist.typeName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" placeholder="Cons Qnty." formControlName="consQnty" knifeOnlyNumbers (change)="totalCalculation(yarnCostService.yarnCostInformationForm)" />
+                                  </td>
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="supplierId">
+                      <option [ngValue]="0">Select Supliers</option>
+                      <option *ngFor="let s of dropdownValueService.subpplierList" [value]="s.id">
+                        {{ s.supplierName }}
+                      </option>
+                    </select>
+                                  </td>
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Rate" formControlName="rate" />
+                                  </td>
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers (change)="totalCalculation(yarnCostService.yarnCostInformationForm)" placeholder="Amount" formControlName="amount" />
+                                  </td>
+                              </tr>
+                              <input type="hidden" formControlName="id" />
+                              <button *ngIf="j == yarnCostService.count - 1" type="submit" nbButton (click)="recordSubmit()">
+                  Submit
+                </button>
+                          </tbody>
+                          <tbody>
+                              <tr>
+                                  <td colspan="6" class="text-right">Total</td>
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalConsQnty" [(ngModel)]="totalConsQnty" placeholder="Total Cons. Qnty." />
+                                  </td>
+                                  <td></td>
+                                  <td></td>
+                                  <td colspan="">
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAmount" [(ngModel)]="totalAmount" placeholder="Total Amount" />
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </form>
+              </div>
+          </div>
+      </nb-card-body>
+  </nb-card>
+  
+  <nb-card *ngIf="isShowConversionCost">
+      <nb-card-header>
+           Conversion Cost
+          <button class="btn btn-outline-success float-right" (click)="conversionCostForPreCostsService.conversionCostForm()">
+        <i class="fa fa-plus"></i>
+      </button>
+      </nb-card-header>
+      <nb-card-body>
+          <div class="col-md-12" style="overflow-x: scroll">
+              <div class="smart-table-container" style="width: 1000px">
+                  <form>
+                      <table class="">
+                          <thead>
+                              <tr>
+                                  <th scope="col">Action</th>
+                                  <th scope="col">Fabric Description</th>
+                                  <th scope="col">Process</th>
+                                  <th scope="col">Process Loss</th>
+                                  <th scope="col">Req. Qty</th>
+                                  <th scope="col">Avg.Req. Qty (Less Process Loss)</th>
+                                  <th scope="col">Charge/ Unit</th>
+                                  <th scope="col">Amount</th>
+                                  <th scope="col">Status</th>
+                              </tr>
+                          </thead>
+  
+                          <tbody [formGroup]="fg" *ngFor="
+                  let fg of conversionCostForPreCostsService.conversionCostInformationForm.controls;
+                  let k = index
+                ">
+                              <tr>
+                                  <td>
+                                      <button class="btn btn-light ml-1 form-control form-rounded form-control-sm" (click)="
+                        onDeleteForConversionCost(
+                          conversionCostForPreCostsService.conversionCostInformationForm,
+                          k
+                        )
+                      ">
+                      <i class="far fa-trash-alt fa-lg text-danger"></i>
+                    </button>
+                                  </td>
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="fabricDescriptionId">
+                      <option value="">Select Fabric Description</option>
+                      <option
+                        *ngFor="let f of dropdownValueService.fabricDescriptionList"
+                        [(value)]="f.id"
+                      >
+                        F.N-{{ f.fabNature }},Const:{{ f.construction }},comp-{{
+                          f.composition
+                        }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="processId">
+                      <option value="">Select Process</option>
+                      <option
+                        *ngFor="let p of dropdownValueService.processList"
+                        [(value)]="p.id"
+                      >
+                        {{ p.productionProcessName }}
+                      </option>
+                    </select>
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Process Loss" formControlName="processLoss" (change)="
+                                      totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)
+                      " />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Req. Qty." formControlName="reqQty" (change)="totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)" />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="AVG Req." formControlName="avgReqQty" (change)="totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)" />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Charge/Unit" formControlName="chargeUnit" (change)="
+                                      totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)
+                      " />
+                                  </td>
+  
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Amount" formControlName="amount" />
+                                  </td>
+                                  <td>
+                                      <select class="form-control form-rounded form-control-sm" formControlName="status">
+                      <option value="">Select Status</option>
+                      <option
+                        *ngFor="let btnAction of Active_Inactive"
+                        value="{{ btnAction.val }}"
+                      >
+                        {{ btnAction.btn }}
+                      </option>
+                    </select>
+                                  </td>
+                              </tr>
+                              <button *ngIf="k == conversionCostForPreCostsService.count - 1" (click)="
+                    recordSubmitConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)
+                  " type="submit" nbButton>
+                  Submit
+                </button>
+                          </tbody>
+  
+                          <tbody>
+                              <tr>
+                                  <td colspan="3" class="text-right">Sum</td>
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalProcessLoss" [(ngModel)]="totalProcessLoss" placeholder="Total Process Loss" />
+                                  </td>
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalReqQty" [(ngModel)]="totalReqQty" placeholder="Total Req. Qty." />
+                                  </td>
+                                  <td>
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAvgReqQty" [(ngModel)]="totalAvgReqQty" placeholder="Total Avg. Req Qty" />
+                                  </td>
+                                  <td colspan="">
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAvgChargeOrUnit" [(ngModel)]="totalAvgChargeOrUnit" placeholder="Total Avg Charge/Unit" />
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </form>
+              </div>
+          </div>
+      </nb-card-body>
+  </nb-card>
+
+  <nb-card *ngIf="isShowTrimCost">
+    <nb-card-header
+    > 
+  
+   Trim Cost Form
+   
+    <button
+      class="btn btn-outline-success float-right"
+      (click)="trimCostsService.trimsCostDetailsForm()"
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+   
+  </nb-card-header>
+    <nb-card-body>
+      <div class="col-md-12" style="overflow-x: scroll;">
+        <div class="smart-table-container" style="width:1800px;">
+        <form  >
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col"></th>
+                <th scope="col">Group</th>
+                <th scope="col">Country</th>
+                <th scope="col">Description</th>
+                <th scope="col">Brand/Sup Ref</th>
+                <th scope="col">Remarks</th>
+                <th scope="col">Nominated Supp</th>
+                <th scope="col">Cons UOM</th>
+                <th scope="col">Cons/Unit Gmts</th>
+                <th scope="col"></th>
+                <th scope="col">Rate</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Total Qty</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Apvl Req</th>
+                <th scope="col">Image</th>
+                
+               
+                
+                
+              </tr>
+            </thead>
+              
+                <tbody [formGroup]="fg"
+                *ngFor="let fg of trimCostsService.trimsCostInformationForm.controls;let i=index" >
+                  <tr>
+                    
+                    <td> 
+                        
+                      <button  class="btn btn-light ml-1" (click)="onDeleteTrimCost(trimCostsService.trimsCostInformationForm,i)"
+                      >
+                          <i class="far fa-trash-alt fa-lg text-danger"></i>
+                          
+                      </button> 
+                    </td>
+                      <td>
+                        
+                      </td>
+                      <td >
+                        <select 
+                        formControlName="groupId"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=0>Select Group</option>
+                        <option  *ngFor="let itemlist of dropdownValueService.itemGroupList" 
+                        value="{{itemlist.id}}">{{itemlist.itemGroupName}}</option>
+                       
+                   </select>
+                       
+                      </td>
+      
+                      <td>
+                        <select 
+                        formControlName="countryId"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=0>Select Group</option>
+                        <option  *ngFor="let r of dropdownValueService.regionList" 
+                        value="{{r.regionID}}">{{r.region_Name}}</option>
+                   </select>                    
+                      </td>
+    
+                      <td>
+                        
+                        <input
+                          class="form-control form-rounded form-control-sm "
+                          type="text"
+                          placeholder="Description"
+                          formControlName="description"
+                        />
+                      </td>
+      
+                      <td>
+                        
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                       
+                        placeholder="BrandSupRef "
+                        formControlName="brandSupRef"
+                       
+                      />
+                      </td>
+      
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                       
+                        placeholder="Remarks "
+                        formControlName="remarks"
+                       
+                      />
+                        
+                      </td>
+      
+                      <td>
+                        <select 
+                        formControlName="nominatedSuppId"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=0>Select Nominated Supp</option>
+                        <option  *ngFor="let supplierlist of dropdownValueService.subpplierList" 
+                        value="{{supplierlist.id}}">{{supplierlist.supplierName}}</option>
+                   </select> 
+                      </td>
+      
+                      <td>
+                        <select 
+                        formControlName="consUOMId"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=0>Select cons Uom</option>
+                        <option  *ngFor="let uomlist of dropdownValueService.uomList" 
+                        value="{{uomlist.id}}">{{uomlist.uomName}}</option>
+                   </select> 
+                        
+                      </td>
+      
+                      <td>
+                       
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"   
+                        knifeOnlyNumbers
+                        (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"                
+                        placeholder="Cons Unit Gmts "
+                        formControlName="consUnitGmts"
+                      />
+                      </td>
+                      <td><button  class="btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAdd(i)" >Add Consumption</button></td>
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"  
+                        knifeOnlyNumbers   
+                        (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"                              
+                        placeholder="Rate"
+                        formControlName="rate"
+                      />
+                      </td>
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        knifeOnlyNumbers
+                        placeholder="Amount"
+                        (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"  
+                        formControlName="amount"
+                      />
+                      </td>
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        placeholder="Total Qty."
+                        knifeOnlyNumbers
+                        formControlName="totalQty"
+                      />
+                      </td>
+                     
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        knifeOnlyNumbers
+                        (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"  
+                        placeholder="Total Amount"
+                        formControlName="totalAmount"
+                      />
+                      </td>
+                      <td>
+  
+                        <select 
+                        formControlName="apvlReq"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=''>Select Print<span class="text-danger">*</span> </option>
+                          <option  *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>   
+                   </select> 
+    
+                      </td>
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        placeholder="Image"
+                        formControlName="imagePath"
+                      />
+                      </td>
+                      
+                    
+                  </tr>
+                  <button *ngIf="i==trimCostsService.count-1"
+                  (click)="recordSubmittrimsCost(trimCostsService.trimsCostInformationForm)"
+                   type="submit" [disabled]="fg.invalid" 
+                     nbButton >Submit</button>
+
+                     
+                </tbody>
+              
+             
+             <tbody>
+               <tr>
+                 <td colspan="9" class="text-right">Sum</td>
+                 <td > <input
+                  class="form-control form-rounded form-control-sm "
+                  type="text"
+                  readonly
+                  name="ConsUnitGmts"
+                  [(ngModel)]="trimCostsService.ConsUnitGmts"
+                  placeholder="Cons/Unit Gmts"
+                 
+                /></td>
+                 <td> 
+  
+                  
+               </td>
+                 <td> <input
+                  class="form-control form-rounded form-control-sm "
+                  type="text"
+                  name="Rate"
+                  readonly
+                  [(ngModel)]="trimCostsService.Rate"
+                  placeholder="Rate"
+                  
+                /></td>
+                 <td> <input readonly
+                  class="form-control form-rounded form-control-sm "
+                  type="text"
+                  name="Amount"
+                  [(ngModel)]="trimCostsService.Amount"
+                  placeholder="Amount"
+                  
+                /></td>
+                <td> 
+  
+              </td>
+                <td> <input readonly
+                  class="form-control form-rounded form-control-sm "
+                  type="text"
+                  name="TotalAmount"
+                  [(ngModel)]="trimCostsService.TotalAmount"
+                  placeholder="Total Amount"
+                  placeholder="Total Amount"
+                  
+                /></td>
+               
+               </tr>
+             
+             </tbody>
+           
+          </table>
+         
+        </form>
+        </div>
+      </div>
+      
+   
+    </nb-card-body>
+  </nb-card>
+  <nb-card *ngIf="isShowEmbelishmentCost">
+    <nb-card-header
+    >
+    
+    Embellishment Cost
+   
+    <button
+      class="btn btn-outline-success float-right"
+      (click)="embelishmentCostService.emblCostDetailsForm()"
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+   
+  </nb-card-header>
+    <nb-card-body>
+      <div class="col-md-12" style="overflow-x: scroll;">
+        <div class="smart-table-container" style="width:1500px;">
+        <form  >
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Body Part</th>
+                <th scope="col">Country</th>
+                <th scope="col">Emb. Supplier</th>
+                <th scope="col">Cons/ 1 Dzn Gmts</th>
+                <th scope="col"></th>
+                <th scope="col">Rate </th>
+                <th scope="col">Amount </th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+              
+                <tbody [formGroup]="fg"
+                *ngFor="let fg of embelishmentCostService.emblCostInformationForm.controls;let i=index" >
+                  <tr>                
+                     <td>   
+                      <button  class="btn btn-light ml-1 " (click)="onDeleteEmbelishmentCost(embelishmentCostService.emblCostInformationForm,i)"
+                      >
+                          <i class="far fa-trash-alt fa-lg text-danger"></i>
+                          
+                      </button> 
+                     </td>
+                      <td>
+                        <select class="form-control form-rounded 
+                      form-control-sm " formControlName="embelName">
+                      <option value="">Select</option>
+                      <option value="Printing">Printing</option>
+                      <option value="Embroidery">Embroidery</option>
+                      <option value="Special Works">Special Works</option>
+                      <option value="Gmts Dyeing">Gmts Dyeing</option>
+                      <option value="Others">Others</option>
+                      
+                    
+                      </select>
+  
+                       
+                      </td>
+                      <td>                     
+  
+                        <select class="form-control form-rounded 
+                        form-control-sm " formControlName="embelTypeId">
+                        <option [ngValue]=0>Select</option>
+                        <option *ngFor="let e of dropdownValueService.embellishmentTypeList" [value]="e.id">{{e.typeName}}</option>
+                        </select>
+                      </td>    
+                      <td>                 
+                      <select class="form-control form-rounded 
+                      form-control-sm " formControlName="bodyPartId">
+                      <option [ngValue]=0>Select</option>
+                      <option *ngFor="let s of dropdownValueService.bodyPartList" [value]="s.id">{{s.bodyPartFullName}}</option>
+                      </select>
+                      </td>
+                      <td>
+                        <select class="form-control form-rounded 
+                        form-control-sm " formControlName="countryId">
+                        <option [ngValue]=0>Select</option>
+                        <option  *ngFor="let r of dropdownValueService.regionList" 
+                        value="{{r.regionID}}">{{r.region_Name}}</option>
+                        </select>
+                      </td>
+                      <td>
+                      <select class="form-control form-rounded 
+                      form-control-sm " formControlName="supplierId">
+                      <option [ngValue]=0>Select</option>
+                      <option  *ngFor="let s of dropdownValueService.subpplierList" 
+                      value="{{s.id}}">{{s.supplierName}}</option>
+                      </select>
+                      </td>
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        placeholder="Cons/1 Dzn Gmts"
+                        formControlName="cons"
+                        readonly
+                      />
+                      </td>
+                      <td><button  class=" btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAdd(i)" >Add Consump.</button></td>
+                      <td>
+                        <input
+                        
+                        class="form-control form-rounded form-control-sm " 
+                        type="text"
+                        placeholder="Rate"
+                        formControlName="rate"
+                        readonly
+                      />
+                      </td>
+                     
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                       readonly
+                        placeholder="Amount"
+                        formControlName="amount"
+                      />
+                      </td>
+                      <td>
+                     
+                      <select class="form-control form-rounded 
+                      form-control-sm " formControlName="status">
+                      <option value="">Select</option>
+                      <option value="Active">Active</option>
+                      <option value="In Active">In Active</option>
+                    
+                      </select>
+  
+                      <input
+                      type="hidden"
+                      formControlName="id"
+                    />
+                      </td> 
+                  </tr>
+                  
+                  <button *ngIf="i==embelishmentCostService.count-1" type="submit" (click)=" onSubmitEmbelishmentCost(embelishmentCostService.emblCostInformationForm)"   nbButton >Submit</button>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td colspan="9" class= "text-right ">Sum</td>
+                    <td > <input
+                     class="form-control form-rounded form-control-sm "
+                     type="text"
+                     name="TotalCons"
+                     [(ngModel)]="TotalCons"
+                     
+                     placeholder="Total"
+                    
+                   /></td>
+                    
+                  </tr>
+                </tbody>
+               
+             
+             
+               
+             
+           
+          </table>
+         
+        </form>
+        </div>
+      </div>
+      
+   
+    </nb-card-body>
+  </nb-card>
+  
+  <nb-card *ngIf="isShowWashCost">
+    <nb-card-header
+    > 
+    
+    Wash Cost
+   
+    <button
+      class="btn btn-outline-success float-right"
+      (click)="WashCostService.gmtsWashDetailsForm()"
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+   
+  </nb-card-header>
+    <nb-card-body>
+      <div class="col-md-12" style="overflow-x: scroll;">
+        <div class="smart-table-container" style="width:1500px;">
+        <form  >
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Country</th>
+                <th scope="col">Cons/ 1 Dzn Gmts</th>
+                <th scope="col"></th>
+                <th scope="col">Rate</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+               
+              </tr>
+            </thead>
+              
+                <tbody [formGroup]="fg"
+                *ngFor="let fg of WashCostService.gmtsWashInformationForm.controls;let i=index" >
+                  <tr>                
+                     <td>   
+                      <button  class="btn btn-light ml-1" (click)="onDeleteWashCost(WashCostService.gmtsWashInformationForm,i)"
+                      >
+                          <i class="far fa-trash-alt fa-lg text-danger"></i>
+                          
+                      </button> 
+                     </td>
+                      <td>
+              
+                        <select 
+                        formControlName="name"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=''>Select Wash Name </option>
+                          <option  *ngFor="let btnAction of washname" value="{{btnAction.val}}">{{btnAction.btn}}</option>   
+                   </select> 
+                       
+                      </td>
+                      <td>                     
+                        <select 
+                        formControlName="typeId"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=0>Select Type </option>
+                          <option  *ngFor="let typelist of dropdownValueService.typeList" value="{{typelist.id}}">{{typelist.typeName}}</option>   
+                   </select> 
+  
+                      </td>    
+                      <td>                 
+                        <select 
+                        formControlName="countryId"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=0>Select Country</option>
+                        <option  *ngFor="let c of dropdownValueService.regionList" 
+                        value="{{c.regionID}}">{{c.region_Name}}</option>
+                   </select>  
+                      </td>
+                      <td>
+                          <input
+                          class="form-control form-rounded form-control-sm "
+                          type="text"            
+                          placeholder="Cons/ 1 Dzn Gmts"
+                          formControlName="consOneDznGmts"
+                         
+                        />
+                      </td>
+                      <td><button  class=" btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAdd(i)" >Add Consump.</button></td>
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"                   
+                        placeholder="Rate"
+                        knifeOnlyNumbers
+                        formControlName="rate"
+                      />
+                      </td>
+                      <td>
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        knifeOnlyNumbers
+                        placeholder="Amount"
+                        (change)="totalCalculationWashCost(WashCostService.gmtsWashInformationForm)"
+                        formControlName="amount"
+                      />
+                      </td>
+                      <td>
+                       
+                      <select 
+                      formControlName="status"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=''>Select Status  </option>
+                        <option  *ngFor="let btnAction of status" value="{{btnAction.val}}">{{btnAction.btn}}</option>   
+                 </select> 
+                      </td>
+                      
+                     
+                       
+                  </tr>
+                  
+                  <button *ngIf="i==WashCostService.count-1" type="submit" 
+                  [disabled]="fg.invalid" 
+                  (click)="recordSubmitGmtsWash(WashCostService.gmtsWashInformationForm)"
+                  nbButton >Submit</button>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td colspan="7" class= "text-right ">Sum</td>
+                    <td > <input readonly
+                     class="form-control form-rounded form-control-sm "
+                     type="text"
+                     name="totalAmount"
+                     [(ngModel)]="WashCostService.totalAmount"
+                     placeholder="Total Amount"
+                    
+                   /></td>
+                    
+                  </tr>
+                </tbody>
+               
+             
+             
+               
+             
+           
+          </table>
+         
+        </form>
+        </div>
+      </div>
+      
+   
+    </nb-card-body>
+  </nb-card>
+  
+  </div>
+</div>
+

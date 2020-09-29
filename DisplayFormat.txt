@@ -1,0 +1,193 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+      <div class="smart-table-container" style = "width:1200px;">
+  
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+           
+            <h5>Depo Location Mapping</h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            </ng-container>
+              <!-- Fav Column -->
+              <ng-container matColumnDef="countryId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">country Name </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.countryId}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="ultimateCountryId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Ultimate Country </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.ultimateCountryId}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="countryDepoName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Country Depo Name </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.countryDepoName}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Status </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.status}}</mat-header-cell>
+                 
+              </ng-container>
+     
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+       
+        </div>
+  
+      </div>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>
+
+
+
+
+
+
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    
+  }
+  
+  .example-header {
+    min-height: 100px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+  font-size: 18px;
+    width: 70%;
+  }
+  .mat-header-cell{
+  font-size:15px;
+  width: 100%;;
+  }
+
+
+
+  countryLocationMapping:CountryLocationMapping[]
+  public countryList:CountryInfo[]=[];
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  dataSource = new MatTableDataSource();
+  displayedColumns = ['id', 'countryId','ultimateCountryId','countryDepoName','status'];
+  Tostr=new Tostr();
+  subscription:Subscription;
+  constructor(private depoLocationMappingService:DepoLocationMappingService,
+     private toastrService:NbToastrService,
+     private mathdialogService: MatDialogService,
+     private countryService:CountryService,
+     private router:Router,
+     private countryLocationMappingService:CountryLocationMappingService) { }
+
+  ngOnInit() {
+ this.refresList();
+this.countryDDL();
+  }
+  countryDDL(){
+    this.countryService.getAllCountry().
+    subscribe(data=>{
+    this.countryList=data;
+        
+    });
+   } 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); 
+    filterValue = filterValue.toLowerCase(); 
+    this.dataSource.filter = filterValue;
+  }
+  
+  AddNewInpurRow(){
+    this.router.navigate(["/pages/depo-location-mapping-create"]);
+   
+  }
+  edit(element){
+    this.router.navigate(["/pages/depo-location-mapping-edit/",element.id]);  
+}
+
+  delete(element){
+    console.log(element);
+    this.mathdialogService.openConfirmDialog('Are you sure to delete this record ?')
+               .afterClosed().subscribe(res=>{
+                if(res){
+                  this.depoLocationMappingService.delete(element.id).subscribe(res=>{
+                    this.refresList();
+                    this.Tostr.showToast("primary","", "Deleleted", "Successfully",this.toastrService);
+                  },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);});
+                }
+               })
+  }
+
+
+  refresList(){
+    
+    this.depoLocationMappingService.getAll().subscribe(item=>{
+     
+      item.forEach(element => {
+
+        this.countryService.getAllCountry().
+        subscribe(data=>{
+        this.countryList=data;
+        let countryName=this.countryList.find(f=>f.regionId==element.countryId).regionName;
+        element.countryId=countryName;
+          });  
+          
+        this.countryLocationMappingService.getCountryLocationMapping().subscribe(data=>{
+          let ultimateCountryName=data.find(f=>f.id==element.ultimateCountryId).ultimateCountryName;
+          element.ultimateCountryId=ultimateCountryName;
+        })
+          
+        });
+     
+      
+      this.dataSource=new MatTableDataSource(item);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    })
+   
+  }
+
+
+
+
+
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Tostr } from '../../../@core/data/tostr.model';
+import { Subscription } from 'rxjs';
+import { NbToastrService } from '@nebular/theme';
+import { MatDialogService } from '../../../@core/mock/mat-dialog.service';
+import { Router } from '@angular/router';
+import { CountryLocationMapping } from '../../../@core/data/Library-Modul-model/country-location-mapping';
+import { CountryInfo } from '../../../@core/data/country-info.model';
+import { CountryService } from '../../../@core/mock/country.service';
+import { DepoLocationMappingService } from '../../../@core/mock/library/depo-location-mapping.service';
+import { CountryLocationMappingService } from '../../../@core/mock/library/country-location-mapping.service';
+
+
+
+
+

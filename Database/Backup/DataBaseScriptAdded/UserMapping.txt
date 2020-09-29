@@ -1,0 +1,8 @@
+create table public."UserMapping"(
+"Id" serial primary key,
+"UserId" integer,
+"EmpCategoryId" integer,
+"DepartmentId" integer,
+"DesignationId" integer,
+"AdditionDesignationId" integer
+)

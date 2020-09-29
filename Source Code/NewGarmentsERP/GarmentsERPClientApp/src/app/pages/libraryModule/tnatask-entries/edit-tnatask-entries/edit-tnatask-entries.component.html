@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backToTaskEntriesHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>TNA Task Edit
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="taskName" class="label text-dark">Task Name<span class="text-danger">*</span></label>
+                <select required name="taskNameId" [(ngModel)]="tNATaskEntriesService.tNATaskEntries.taskNameId"
+                id="taskName" #TaskName="ngModel"
+               class="form-control form-rounded form-control-sm  "  >
+               <option [ngValue]=0>Select Task Name</option>
+               <option *ngFor="let taskNameEntryList of tNATaskNameEntryListItems" [value]="taskNameEntryList.id">{{taskNameEntryList.tnaTaskName}}</option>
+               
+           </select>
+          
+              </div>
+              <div class="text-left text-danger"
+              *ngIf="tNATaskEntriesService.tNATaskEntries.taskNameId==0&&TaskName.touched">
+              Task Name is required
+            </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="TaskShortName" class="label text-dark">Task Short Name<span class="text-danger">*</span></label>
+                <input required name="taskShortName"
+                 [(ngModel)]="tNATaskEntriesService.tNATaskEntries.taskShortName"
+                 #TaskShortName="ngModel"
+                class="form-control form-rounded form-control-sm  "  type="text" 
+                id="TaskShortName" placeholder="Task Short Name">
+              </div>
+              <div class="text-left text-danger"
+              *ngIf="tNATaskEntriesService.tNATaskEntries.taskShortName==''&&TaskShortName.touched">
+              Task Short Name is required
+            </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Penalty" class="label text-dark">Penalty<span class="text-danger">*</span></label>
+                <input required name="penalty"
+                [(ngModel)]="tNATaskEntriesService.tNATaskEntries.penalty"
+                #Penalty="ngModel"
+                class="form-control form-rounded form-control-sm  "  type="text" 
+                id="Penalty" placeholder="Penalty">
+              </div>
+              <div class="text-left text-danger"
+              *ngIf="tNATaskEntriesService.tNATaskEntries.penalty==''&&Penalty.touched">
+              Penalty is required
+            </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SequenceNo" class="label text-dark">Sequence No<span class="text-danger">*</span> </label>
+                <input required name="sequenceNo"
+                [(ngModel)]="tNATaskEntriesService.tNATaskEntries.sequenceNo"
+                #SequenceNo="ngModel"
+                class="form-control form-rounded form-control-sm  "  type="number" 
+                id="SequenceNo" placeholder="Sequence No">
+              
+              </div>
+              <div class="text-left text-danger"
+              *ngIf="tNATaskEntriesService.tNATaskEntries.sequenceNo==0&&SequenceNo.touched">
+              Sequence No is required
+            </div>
+              
+            </div>
+          </div>
+          <div class="row"> 
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Completion" class="label text-dark">Completion %</label>
+                <input name="completion"
+                [(ngModel)]="tNATaskEntriesService.tNATaskEntries.completion"
+                #Completion="ngModel"
+                class="form-control form-rounded form-control-sm  "  type="number" 
+                id="Completion" placeholder="Completion %">
+              
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="GroupName" class="label text-dark">Group Name </label>
+                  
+                <input name="groupName"
+                [(ngModel)]="tNATaskEntriesService.tNATaskEntries.groupName"
+                #GroupName="ngModel"
+                class="form-control form-rounded form-control-sm  "  type="text" 
+                id="GroupName" placeholder="Group Name">
+              
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">Status <span class="text-danger">*</span></label>
+               
+                <select required name="status"
+                [(ngModel)]="tNATaskEntriesService.tNATaskEntries.status"
+                #Status="ngModel"
+                id="Status" 
+               class="form-control form-rounded form-control-sm  "  >
+               <option value=''>Select Status</option>
+               <option  *ngFor="let btnAction of Active_Inactive" 
+               value="{{btnAction.val}}">{{btnAction.btn}}</option>
+               
+           </select>
+           <div class="text-left text-danger"
+           *ngIf="tNATaskEntriesService.tNATaskEntries.status==''&&Status.touched">
+           Status is required
+         </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="GroupSeqNo" class="label text-dark">Group Seq No</label>
+                <input  name="groupSeqNo"
+                [(ngModel)]="tNATaskEntriesService.tNATaskEntries.groupSeqNo"
+                #GroupSeqNo="ngModel"
+                class="form-control form-rounded form-control-sm  "  type="number" 
+                id="GroupSeqNo" placeholder="Group Seq No">
+               
+              </div>
+            </div>
+          </div>
+         
+          <button type="submit" [disabled]="form.invalid"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,178 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Lab Test Rate Chart Edit 
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="testCatagory" class="label text-dark">
+                  Test Catagory <span class="text-danger">*</span></label>
+                  <select   required  name="testCatagory" #TestCatagory="ngModel"
+                  [(ngModel)]="labTestRateChartService.labTestRateChart.testCatagory"  id="testCatagory" 
+                  class="form-control form-rounded form-control-sm  ">
+                 <option value=''>Select Test Catagory</option>
+                 <option  *ngFor="let btnAction of testCatagory" 
+                 value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="labTestRateChartService.labTestRateChart.testCatagory==''&&TestCatagory.touched">
+             Test Catagory is required
+           </div>
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="testFor" class="label text-dark">
+                  Test For<span class="text-danger">*</span> </label>
+                  <select   required  name="testFor" #TestFor="ngModel"
+                  [(ngModel)]="labTestRateChartService.labTestRateChart.testFor"  
+                  id="testFor" 
+                  class="form-control form-rounded form-control-sm  ">
+                 <option value=''>Select Test For</option>
+                 <option  *ngFor="let btnAction of testFor" 
+                 value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="labTestRateChartService.labTestRateChart.testFor==''&&TestFor.touched">
+             Test For is required
+           </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="testItem" class="label text-dark">
+                  Test Item<span class="text-danger">*</span></label>
+                <input   required  name="testItem" #TestItem="ngModel"
+                [(ngModel)]="labTestRateChartService.labTestRateChart.testItem"  
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="testItem" placeholder="Test Item">
+                
+                <div class="text-left text-danger"
+                *ngIf="labTestRateChartService.labTestRateChart.testItem==''&&TestItem.touched">
+                Test Item is required
+              </div>
+                
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="rate" class="label text-dark">
+                  Rate<span class="text-danger">*</span></label>
+                  <input   required  name="rate" #Rate="ngModel"
+                  [(ngModel)]="labTestRateChartService.labTestRateChart.rate"  
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="rate" placeholder="Rate">
+                <div class="text-left text-danger"
+                *ngIf="labTestRateChartService.labTestRateChart.rate==0&&Rate.touched">
+                Rate is required
+              </div>
+
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="upcharge" class="label text-dark">
+                  Upcharge %:</label>
+                <input    name="upcharge" #Upcharge="ngModel"
+                [(ngModel)]="labTestRateChartService.labTestRateChart.upcharge"  
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="upcharge" placeholder="Up charge">
+               
+              </div>
+              
+            </div>
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="upchargeAmout" class="label text-dark">
+                  Upcharge Amout </label>
+                <input     name="upchargeAmout" #UpchargeAmout="ngModel"
+                [(ngModel)]="labTestRateChartService.labTestRateChart.upchargeAmout"  
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="upchargeAmout" placeholder="Up charge Amout">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="netRate" class="label text-dark">
+                  Net Rate </label>
+                <input    name="netRate" #NetRate="ngModel"
+                [(ngModel)]="labTestRateChartService.labTestRateChart.netRate"   
+               class="form-control form-rounded form-control-sm  " type="text" 
+                id="netRate" placeholder="Net Rate">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="currency" class="label text-dark">
+                  Currency<span class="text-danger">*</span> </label>
+                  <select   required  name="currency" #Currency="ngModel"
+                  [(ngModel)]="labTestRateChartService.labTestRateChart.currency"  
+                  id="currency" 
+                  class="form-control form-rounded form-control-sm  ">
+                 <option value=''>Select Currency</option>
+                 <option  *ngFor="let btnAction of currency" 
+                 value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="labTestRateChartService.labTestRateChart.currency==''&&Currency.touched">
+             Currency is required
+           </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="testingCompany" class="label text-dark">
+                  Testing Company<span class="text-danger">*</span></label>
+                  <select   required  name="testingCompany" #TestingCompany="ngModel"
+                  [(ngModel)]="labTestRateChartService.labTestRateChart.testingCompany"  
+                   id="testingCompany" 
+                   class="form-control form-rounded form-control-sm  ">
+                  <option value=''>Select Testing Company</option>
+                  <option  *ngFor="let btnAction of testingCompany" 
+                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  
+              </select>
+              <div class="text-left text-danger"
+             *ngIf="labTestRateChartService.labTestRateChart.testingCompany==''&&TestingCompany.touched">
+             Testing Company is required
+           </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <button type="submit" [disabled]="form.invalid||labTestRateChartService.labTestRateChart.rate==0"  nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+create table public."FinancialParameterSetup"(
+"Id" serial primary key,
+"CompanyName" character varying(100),
+"ApplyingPeriod" character varying(100),
+"To" character varying(100),
+"BEPCM" integer,
+"AskingCM" integer,
+"AskingProfit" integer,
+"NoOfFactoryMachine" integer,
+"MonthlyCMExpense" integer,
+"WorkingHour" integer,
+"CostPerMinute" integer,
+"ActualCM" integer,
+"AskingAVGRate" integer,
+"Status" character varying(100),
+"MaxProfi" integer,
+"DepreciationAndAmortization" integer,
+"InterestExpenses" integer,
+"IncomeTax" integer,
+"OperatingExpenses" integer
+)

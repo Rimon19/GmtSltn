@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/31/2020 09:57:04" ReportInfo.Modified="08/31/2020 10:39:13" ReportInfo.CreatorVersion="2020.1.0.0">
+  <Styles Name="Blue">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="LightSkyBlue" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Fill.Color="LightSkyBlue" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="AliceBlue" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <PostgresDataConnection Name="Connection" ConnectionString="rijcmlqx1T0cxaam7moPnKfk8dkZ//UtlLHjTy0OMpmCRUR0U+/r8szWvQEqyp/uoDrmMfYKebvvxhxeYG8KXKkUbzy70TI0yu6DPln0qkGwcoM0tn4SHk+PEfPXP1HFKTANJOCTcUc4sQqSo/5RybEnyKQLOvQOyUwLbqjGXk84boKRgtSefWLQib/eP3JVPMJrJsHFV0rXZoanEABO7l+4AjRPC6SNTVZEmTYCBo18s4kq6wHjEnv2LvWfJ57K4ccgVmz">
+      <TableDataSource Name="Table" Alias="fnGetBuyerProfile" DataType="System.Int32" Enabled="true" SelectCommand="SELECT * from public.get_buyer_profile(3)">
+        <Column Name="buyerid" DataType="System.Int32"/>
+        <Column Name="contactname" DataType="System.String"/>
+        <Column Name="shortname" DataType="System.String"/>
+        <CommandParameter Name="BuyerId" DataType="9" Expression="[BuyerId]" DefaultValue="0"/>
+      </TableDataSource>
+    </PostgresDataConnection>
+    <Parameter Name="BuyerId" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="141.75">
+      <TextObject Name="Text1" Width="718.2" Height="141.75" Dock="Fill" Text="MEEK KNIT LTD&#13;&#10;" HorzAlign="Center" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+      <TextObject Name="Text9" Left="274.05" Top="75.6" Width="179.55" Height="18.9" Text="Vogra,Gazipur,Bangladesh" Font="Arial, 10pt"/>
+      <TextObject Name="Text10" Left="302.4" Top="103.95" Width="132.3" Height="18.9" Text="Buyer Profile" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text11" Left="576.45" Top="113.4" Width="47.25" Height="18.9" Text="Date:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text12" Left="633.15" Top="113.4" Width="75.6" Height="18.9" Text="[Date]" Font="Arial, 10pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="145.75" Width="718.2" Height="28.35">
+      <TextObject Name="Text3" Width="245.7" Height="18.9" Fill.Color="LightSkyBlue" Text="buyerid" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text5" Left="245.7" Width="236.25" Height="18.9" Fill.Color="LightSkyBlue" Text="contactname" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text7" Left="481.95" Width="236.25" Height="18.9" Fill.Color="LightSkyBlue" Text="shortname" Font="Arial, 10pt, style=Bold" Style="Header"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="178.1" Width="718.2" Height="18.9" EvenStyle="EvenRows" DataSource="Table">
+      <TextObject Name="Text2" Width="245.7" Height="18.9" Text="[fnGetBuyerProfile.buyerid]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text4" Left="245.7" Width="236.25" Height="18.9" Text="[fnGetBuyerProfile.contactname]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text6" Left="481.95" Width="236.25" Height="18.9" Text="[fnGetBuyerProfile.shortname]" Font="Arial, 10pt" Style="Data"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="201" Width="718.2" Height="18.9">
+      <TextObject Name="Text8" Width="718.2" Height="18.9" Dock="Fill" Fill.Color="LightSkyBlue" Text="[PageN]" HorzAlign="Right" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

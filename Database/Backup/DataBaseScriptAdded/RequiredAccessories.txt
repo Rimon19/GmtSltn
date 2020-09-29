@@ -1,0 +1,26 @@
+create table public."RequiredAccessories"(
+"Id" serial primary key,
+"SampleFabricBookingid" integer,
+"OrderId" integer,
+"SampleRequisitionId" integer,
+ "SampleName" character varying(100),
+"GarmentsItemId" integer,
+"TrimsGroupId" integer,
+"SupplierProfileId" integer,
+"BrandOrSuppRef" character varying(100),
+"Description" character varying(100),
+"Uom" character varying(100),
+"ReqDzn" character varying(100),
+"ReqQty" numeric,
+"AccDelDate" character varying(100),
+"AccSource" character varying(100),
+"Remarks" character varying(100),
+"Image" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

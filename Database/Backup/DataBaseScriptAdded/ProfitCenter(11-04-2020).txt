@@ -1,0 +1,15 @@
+CREATE TABLE public."ProfitCenter"
+(
+    "Id" serial primary key,
+    "ProfitCenterName" character varying(100) ,
+    "Company" character varying(100) ,
+    "Address" character varying(200) ,
+    "ContactNumber" character varying(100) ,
+    "ContactPerson" character varying(100) ,
+    "Remark" character varying(100) ,
+    "CountryId" integer,
+    "Website" character varying(100) ,
+    "Status" character varying(100) ,
+    "Email" character varying(100) 
+    
+)

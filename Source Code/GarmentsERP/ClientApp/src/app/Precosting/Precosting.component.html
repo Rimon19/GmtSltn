@@ -1,0 +1,2738 @@
+
+<h4>Precosting</h4>
+<!--this is table for showing Precosting -->
+<div style="overflow:auto; height:200px;border:1px solid #8DAFDA;
+padding:10px;margin-bottom:30px;">
+  <!--may be code mistake-->
+  <table class='table' style="background-color:#FFFFFF;
+border:2px#6D7B8D; padding:3px;border:1px solid #ddd;
+font-size:11px;" cellpadding="2" cellspacing="2">
+    <!--may be code mistake-->
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF;
+     border:1px solid #ddd">
+
+      <th>
+        <button type="button" class="btn btn-info btn--sm"
+                (click)="openModalDialogPrecost()">
+          Add New
+        </button>
+      </th>
+
+      <th> Pre-Costing </th>
+      <th> Job No </th>
+      <th> Costing Date </th>
+      <th> Incoterm </th>
+      <th> Incoterm Place </th>
+      <th> Sew Efficiency  </th>
+      <th> Action </th>
+
+    </tr>
+
+    <tbody *ngIf="PreCostList?.length>0" style="overflow:scroll">
+      <!--may be this code is right-->
+
+      <tr *ngFor="let precostlist of PreCostList"
+          onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+           else { this.bgColor = 'yellow' }">
+        <!--may be this code is right-->
+        <td>
+          <!--Fabric Cost,Trims Cost , Embel.Cost,Gmts.Wash,Comml.Cost,Lab Test,Inspection,Freight,Currier Cost,
+          Certificate Cost,Deffd.LC Cost,Design Cost,Studio Cost,Opert Exp., CM Cost,Interest,Income Tax,
+          Depc. & Amort,Commission,Total Cost,Price/1 Dzn,Margin/1Dzn ,Price/Pcs,Final Cost/Pcs,Margin/pcs
+                        -->
+          <select *ngIf="btnActionPreCosting"
+                  ngModel (ngModelChange)="selectbtnAction($event,precostlist.precostingId)">
+            <option *ngFor="let btnAction of btnActionPreCosting"
+                    value="{{btnAction.val}}"
+                    (click)=getFabCost(precostlist.precostingId)>
+              {{btnAction.btn}}
+            </option>
+          </select>
+        </td>
+        <!--<td><button type="button" clas (click)=getFabCost(precostlist.precostingId)> Fabric Cost </button></td>-->
+
+        <td><span style="color:#9F000F">{{precostlist.precostingId }}</span></td>
+        <td><span style="color:#9F000F">{{precostlist.orderId}}</span></td>
+        <td><span style="color:#9F000F">{{precostlist.costingDate | date:'dd-MM-yyyy' }}</span></td>
+        <td><span style="color:#9F000F">{{precostlist.incoterm}}</span></td>
+        <td><span style="color:#9F000F">{{precostlist.incotermPlace }}</span></td>
+        <td><span style="color:#9F000F">{{precostlist.sewEfficiency}}</span></td>
+
+        <!--<td>
+          <span style="color:#9F000F">
+            <div *ngFor='let c of complist'>
+              <div *ngIf='c.compId== precostlist.companyId'> {{c.companyName}}</div>
+            </div>
+          </span>
+        </td>
+
+
+        <td style="width:50px;">
+          <span style="color:#9F000F">
+            <div *ngFor='let c of locationlist'>
+              <div *ngIf='c.locationId== precostlist.locationId'> {{c.locationName}}</div>
+            </div>
+          </span>
+        </td>
+
+
+        <td>
+          <span style="color:#9F000F">
+            <div *ngFor='let c of buyerlist'>
+              <div *ngIf='c.buyerId== precostlist.buyerId'> {{c.buyerName}}</div>
+            </div>
+          </span>
+        </td>-->
+
+        <td>
+          <button type="button"
+                  (click)="openModalDialogPrecost(precostlist.precostingId)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="delete(precostlist.precostingId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!--<div style="height:20px;">
+
+</div>-->
+<!--this is table for showing Fabric-->
+
+
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="FabricCostList">
+
+  <table class='tabledetails' style="background-color:#ECF3F4;
+   padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2"
+         *ngIf="FabricCostList">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Fabric Cost</h4> </td>
+    </tr>
+
+    <tr style="height: 30px; background-color:#336699 ;
+     color:#FFFFFF ;border:1px solid #ddd">
+
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalDialogFabcost()">
+          Add New
+        </button>
+      </th>
+      <th>fabric Cost Id </th>
+      <th>pre Costing Id </th>
+      <th>body PartId </th>
+      <th>body Part Type </th>
+      <th>fab Nature </th>
+      <th>colorType </th>
+      <th>fabDescId </th>
+      <th>fabric Source </th>
+      <th>nominated Supplier Id </th>
+      <th>widthor Dia Type </th>
+      <th>color Size Sensitive </th>
+      <th colspan="2">
+        Action
+      </th>
+
+
+    </tr>
+    <tbody *ngFor="let fabriccostdetailslst of FabricCostList">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+       else { this.bgColor = 'yellow' }"
+          style="padding-top:5px !important;padding-bottom:5px !important;">
+        <td>
+
+
+
+          <!--<td>
+            <div *ngFor='let c of iniorderlist'>
+              <div *ngIf='c.orderAutoId== fabriccostdetailslst.initialOrderId'> {{c.jobNo}}</div>
+            </div>
+          </td>
+
+          <td>
+            <div *ngFor='let c of PoOrderStatusList'>
+              <div *ngIf='c.id== fabriccostdetailslst.poorderStatusId'> {{c.orderStatus}}</div>
+            </div>
+          </td>-->
+
+
+
+
+
+
+        <td>{{fabriccostdetailslst.fabricCostId}}</td>
+        <td>{{fabriccostdetailslst.preCostingId}}</td>
+        <td>{{fabriccostdetailslst.bodyPartId}}</td>
+        <td>{{fabriccostdetailslst.bodyPartType }}</td>
+        <td>{{fabriccostdetailslst.fabNature}}</td>
+        <td>{{fabriccostdetailslst.colorType }}</td>
+        <td>{{fabriccostdetailslst.fabDescId }}</td>
+        <td>{{fabriccostdetailslst.fabricSource}}</td>
+        <td>{{fabriccostdetailslst.nominatedSupplierId}}</td>
+        <td>{{fabriccostdetailslst.widthorDiaType}}</td>
+        <td>{{fabriccostdetailslst.colornSizenSensitive}}</td>
+        <td colspan="2">
+          <button type="button"
+                  (click)="openModalDialogFabcost(fabriccostdetailslst.fabricCostId)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="deleteFabcost(fabriccostdetailslst.fabricCostId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--<div style="height:20px;">
+
+</div>-->
+<!--this is table for showing yarncost-->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="YarnCostlist">
+
+  <table class='tabledetails' style="background-color:#ECF3F4;
+padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2"
+         *ngIf="YarnCostlist">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Yarn Cost</h4> </td>
+
+    </tr>
+
+    <tr style="height: 30px; background-color:#336699 ;
+      color:#FFFFFF ;border:1px solid #ddd">
+
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalDialogYarncost()">
+          Add New
+        </button>
+      </th>
+      <th> id </th>
+      <th>pre Costing Id </th>
+      <th>countId </th>
+      <th>comp1Id </th>
+      <th>% </th>
+      <th>yarn TypeId </th>
+      <th>consQnty </th>
+      <th>supplierId </th>
+      <th>rate </th>
+      <th>amont </th>
+
+      <th colspan="3">
+        Action
+      </th>
+
+
+
+
+    </tr>
+    <tbody *ngFor="let yarncostlst of YarnCostlist">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+       else { this.bgColor = 'yellow' }"
+          style="padding-top:5px !important;padding-bottom:5px !important;">
+        <td> </td>
+
+        <td>{{yarncostlst.id}}</td>
+        <td>{{yarncostlst.preCostingId}}</td>
+        <td>{{yarncostlst.countId}}</td>
+        <td>{{yarncostlst.comp1Id }}</td>
+        <td>{{yarncostlst.percent}}</td>
+        <td>{{yarncostlst.yarnTypeId }}</td>
+        <td>{{yarncostlst.consQnty }}</td>
+        <td>{{yarncostlst.supplierId}}</td>
+        <td>{{yarncostlst.rate}}</td>
+        <td>{{yarncostlst.amont}}</td>
+
+        <td colspan="3">
+          <button type="button"
+                  (click)="openModalDialogYarncost(yarncostlst.id)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="deleteYarnCost(yarncostlst.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!--this is table for showing conversion cost-->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="ConversionCostlist">
+
+  <table class='tabledetails' style="background-color:#ECF3F4;
+padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2"
+         *ngIf="ConversionCostlist">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Conversion Cost</h4> </td>
+    </tr>
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;
+         border:1px solid #ddd">
+
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalDialogConversionost()">
+          Add New
+        </button>
+      </th>
+      <th> conversion Cost Id </th>
+      <th>pre Costing Id </th>
+      <th>fabDesc Id </th>
+      <th>conversion Process Id </th>
+      <th>process Loss</th>
+      <th>reqQty </th>
+      <th>avgReq Qty </th>
+      <th>charge Unit </th>
+      <th>amount </th>
+      <th>status </th>
+      <th colspan="3">
+        Action
+      </th>
+    </tr>
+    <tbody *ngFor="let conversioncostlst of ConversionCostlist">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+          else { this.bgColor = 'yellow' }" style="padding-top:5px !important;
+             padding-bottom:5px !important;">
+        <td> </td>
+        <td>{{conversioncostlst.conversionCostId}}</td>
+        <td>{{conversioncostlst.preCostingId}}</td>
+        <td>{{conversioncostlst.fabDescId}}</td>
+        <td>{{conversioncostlst.conversionProcessId }}</td>
+        <td>{{conversioncostlst.processLoss}}</td>
+        <td>{{conversioncostlst.reqQty }}</td>
+        <td>{{conversioncostlst.avgReqQty }}</td>
+        <td>{{conversioncostlst.chargeUnit}}</td>
+        <td>{{conversioncostlst.amount}}</td>
+        <td>{{conversioncostlst.status}}</td>
+        <td colspan="3">
+          <button type="button"
+                  (click)="openModalDialogConversionost(conversioncostlst.conversionCostId)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="deleteConversionCost(conversioncostlst.conversionCostId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--This is table for showing Trim Cost -->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="TrimsCostList">
+  <table class='tabledetails' style="background-color:#ECF3F4;
+padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2"
+         *ngIf="TrimsCostList">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Trim Cost</h4> </td>
+    </tr>
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalTrimCost()">
+          Add New
+        </button>
+      </th>
+      <th>Procosting Id</th>
+      <th>Group Name</th>
+      <th>Country</th>
+      <th>Description</th>
+      <th>Band Sup Ref</th>
+      <th>Remarks</th>
+      <th>Nominated Supp</th>
+      <th>Cons Uom</th>
+      <th>Cons Unit Gmts</th>
+      <th>Rate</th>
+      <th>Amount</th>
+      <th>Total Quantity</th>
+      <th>Total Amount</th>
+      <th>Apvl Req</th>
+      <th>Image</th>
+      <th>Action </th>
+    </tr>
+    <tbody *ngFor="let trimCostdetail of TrimsCostList">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+     else { this.bgColor = 'yellow' }" style="padding-top:5px !important;
+         padding-bottom:5px !important;">
+        <td> </td>
+        <td>{{trimCostdetail.precostingId}}</td>
+        <td>{{trimCostdetail.groupName}}</td>
+        <td>{{trimCostdetail.country }}</td>
+        <td>{{trimCostdetail.description}}</td>
+        <td>{{trimCostdetail.bandSupRef }}</td>
+        <td>{{trimCostdetail.remarks }}</td>
+        <td>{{trimCostdetail.nominatedSupp}}</td>
+        <td>{{trimCostdetail.consUom}}</td>
+        <td>{{trimCostdetail.consUnitGmts}}</td>
+        <td>{{trimCostdetail.rate}}</td>
+        <td>{{trimCostdetail.amount}}</td>
+        <td>{{trimCostdetail.totalQty}}</td>
+        <td>{{trimCostdetail.totalAmount}}</td>
+        <td>{{trimCostdetail.apvlReq}}</td>
+        <td>{{trimCostdetail.image}}</td>
+        <td colspan="2">
+          <button type="button" (click)="openModalTrimCost(trimCostdetail.id)">Edit</button>
+          <button type="button" (click)="deleteTrimCost(trimCostdetail.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--end of showing Trim Cost -->
+<!--This is table for showing Embellishment Cost-->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="EmbellishmentCostList">
+
+  <table class='tabledetails' style="background-color:#ECF3F4;
+          padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2"
+         *ngIf="EmbellishmentCostList">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Embellishment Cost</h4> </td>
+    </tr>
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalEmbelishmentCost()">
+          Add New
+        </button>
+      </th>
+      <th>Procosting Id</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Body Part</th>
+      <th>Country</th>
+      <th>Emb Supplier</th>
+      <th>Cons Dzn Gmts</th>
+      <th>Rate</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Action </th>
+    </tr>
+    <tbody *ngFor="let embellishmentCostdetail of EmbellishmentCostList">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+          else { this.bgColor = 'yellow' }" style="padding-top:5px !important;
+         padding-bottom:5px !important;">
+        <td> </td>
+        <td>{{embellishmentCostdetail.precostingId}}</td>
+        <td>{{embellishmentCostdetail.name}}</td>
+        <td>{{embellishmentCostdetail.type }}</td>
+        <td>{{embellishmentCostdetail.bodyPart}}</td>
+        <td>{{embellishmentCostdetail.country }}</td>
+        <td>{{embellishmentCostdetail.embSupplier }}</td>
+        <td>{{embellishmentCostdetail.consDznGmts}}</td>
+        <td>{{embellishmentCostdetail.rate}}</td>
+        <td>{{embellishmentCostdetail.amount}}</td>
+        <td>{{embellishmentCostdetail.status}}</td>
+
+        <td colspan="2">
+          <button type="button"
+                  (click)="openModalEmbelishmentCost(embellishmentCostdetail.id)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="deleteEmbelishmentCost(embellishmentCostdetail.id)">
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+<!--end of showing Embellishment Cost -->
+<!--This is table for showing WashCostList -->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="WashCostList">
+  <table class='tabledetails' style="background-color:#ECF3F4;
+          padding:5px;width:99%;table-layout:fixed;"
+         cellpadding="2" cellspacing="2" *ngIf="WashCostList">
+    <tr>
+
+      <td colspan="14"><h4 style="text-align:left">Wash Cost</h4> </td>
+
+    </tr>
+
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+      <th> <button type="button" class="btn btn-info btn-sm" (click)="openModalWashCost()">Add New</button></th>
+      <th>Procosting Id</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Country</th>
+      <th>Cons Dzn Gmts</th>
+      <th>Rate</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Action </th>
+    </tr>
+
+    <tbody *ngFor="let washCostListdetail of WashCostList">
+      <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}" style="padding-top:5px !important;padding-bottom:5px !important;">
+
+        <td> </td>
+        <td>{{washCostListdetail.precostingId}}</td>
+        <td>{{washCostListdetail.name}}</td>
+        <td>{{washCostListdetail.type }}</td>
+        <td>{{washCostListdetail.country }}</td>
+        <td>{{washCostListdetail.consDznGmts}}</td>
+        <td>{{washCostListdetail.rate}}</td>
+        <td>{{washCostListdetail.amount}}</td>
+        <td>{{washCostListdetail.status}}</td>
+
+        <td colspan="2">
+          <button type="button" (click)="openModalWashCost(washCostListdetail.id)">Edit</button>
+          <button type="button" (click)="deleteWashCost(washCostListdetail.id)">Delete</button>
+
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+<!--end of showing WashCostList-->
+<!--This is table for showing CommercialCostsList -->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="CommercialCostsList">
+
+  <table class='tabledetails' style="background-color:#ECF3F4; padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2" *ngIf="CommercialCostsList">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Commercial Cost</h4> </td>
+    </tr>
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;
+        border:1px solid #ddd">
+
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalCommercialCost()">
+          Add New
+        </button>
+      </th>
+      <th>Procosting Id</th>
+      <th>Item</th>
+      <th>RateIn</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Action </th>
+    </tr>
+
+    <tbody *ngFor="let commercialCostdetail of CommercialCostsList">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+            else { this.bgColor = 'yellow' }" style="padding-top:5px !important;
+                     padding-bottom:5px !important;">
+        <td> </td>
+        <td>{{commercialCostdetail.precostingId}}</td>
+        <td>{{commercialCostdetail.item}}</td>
+        <td>{{commercialCostdetail.rateIn }}</td>
+        <td>{{commercialCostdetail.amount }}</td>
+        <td>{{commercialCostdetail.status}}</td>
+        <td colspan="2">
+          <button type="button"
+                  (click)="openModalCommercialCost(commercialCostdetail.id)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="deleteCommercialCost(commercialCostdetail.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+<!--end of showing CommercialCostsList-->
+<!--This is table for showing OtherCostsList -->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="OtherCostsList">
+  <table class='tabledetails' style="background-color:#ECF3F4; padding:5px;width:99%;" cellpadding="2" cellspacing="2" *ngIf="OtherCostsList">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Other Cost</h4> </td>
+    </tr>
+    <tr style="height: 30px; background-color:#336699 ;
+        color:#FFFFFF ;border:1px solid #ddd">
+
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalOtherCost()">
+          Add New
+        </button>
+      </th>
+      <th>Procosting Id</th>
+      <th>Cost Components</th>
+      <th>Budgeted Cost</th>
+      <th>% To Q.price</th>
+      <th>Action</th>
+    </tr>
+    <tbody *ngFor="let otherCostsdetail of OtherCostsList">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+         else { this.bgColor = 'yellow' }"
+          style="padding-top:5px; padding-right:10px !important;
+               padding-bottom:5px !important;">
+        <td> </td>
+        <td>{{otherCostsdetail.preCostingId}}</td>
+        <td>{{otherCostsdetail.costComponent}}</td>
+        <td>{{otherCostsdetail.budgetedCost}}</td>
+        <td>{{otherCostsdetail.percentageQPrice}}</td>
+
+        <td colspan="2">
+          <button type="button"
+                  (click)="openModalOtherCost(otherCostsdetail.id)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="deleteOtherCost(otherCostsdetail.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--end of showing OtherCostsList-->
+<!--This is table for showing commissionCostPreCostingsList -->
+<div style="overflow:auto;margin-bottom:40px;" *ngIf="commissionCostPreCostingsList">
+
+  <table class='tabledetails' style="background-color:#ECF3F4;
+        padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2"
+         *ngIf="commissionCostPreCostingsList">
+    <tr>
+      <td colspan="14"><h4 style="text-align:left">Commission Cost</h4> </td>
+    </tr>
+    <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:1px solid #ddd">
+
+      <th>
+        <button type="button" class="btn btn-info btn-sm"
+                (click)="openModalCommissionCost()">
+          Add New
+        </button>
+      </th>
+      <th>Procosting Id</th>
+      <th>Particulars</th>
+      <th>CommnBase</th>
+      <th>CommnRate</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Action </th>
+    </tr>
+
+    <tbody *ngFor="let commissionCostdetail of commissionCostPreCostingsList">
+      <tr onClick="if (this.bgColor == 'yellow') { this.bgColor = '' }
+        else { this.bgColor = 'yellow' }" style="padding-top:5px !important;
+               padding-bottom:5px !important;">
+
+        <td> </td>
+        <td>{{commissionCostdetail.precostingId}}</td>
+        <td>{{commissionCostdetail.particulars}}</td>
+        <td>{{commissionCostdetail.commnBase }}</td>
+        <td>{{commissionCostdetail.commnRate }}</td>
+        <td>{{commissionCostdetail.amount }}</td>
+        <td>{{commissionCostdetail.status}}</td>
+
+        <td colspan="2">
+          <button type="button"
+                  (click)="openModalCommissionCost(commissionCostdetail.id)">
+            Edit
+          </button>
+          <button type="button"
+                  (click)="deleteCommissionCost(commissionCostdetail.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--end of showing commissionCostPreCostingsList-->
+
+
+
+
+
+
+
+<!--Here has  the design for the Insert operation of Precosting-->
+<div class="modal" id="modalPrecosting" tabindex="1"
+     role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="PreCostingForm" (ngSubmit)="savePreCosting()"
+              #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;
+           line-height:15px;border-color:red;border:1px solid red">
+            <thead>
+              <tr>
+                <th>Job No:</th>
+                <th>Costing Date:</th>
+                <th>Incoterm: </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div>
+                    <!--<input class="form-control" type="text" formControlName="orderId" data-val="true">
+                    <select name="cars" class="form-control"  formControlName="orderId" *ngFor="let orderId of orderAutoId">
+                      <option value="{{orderId.orderAutoId}}">{{orderId.orderAutoId}}</option>
+                    </select> orderInfo  -->
+
+                    <select *ngIf="orderInfo" class="form-control" formControlName="orderId">
+                      <option *ngFor="let orderId of orderInfo" value="{{orderId.orderAutoId}}">
+                        {{orderId.jobNo}}
+                      </option>
+                    </select>
+                  </div>
+                  <span class="text-danger"
+                        *ngIf="PreCostingForm.hasError('required', 'orderId')
+                        && formDir.submitted">
+                    *
+                  </span>
+                </td>
+
+                <td>
+                  <div>
+                    <!--<input class="form-control"
+                        type="text" formControlName="
+                        costingDate" data-val="true">-->
+                    <input class="form-control" type="date"
+                           formControlName="costingDate" data-val="true">
+
+                  </div>
+                  <span class="text-danger"
+                        *ngIf="PreCostingForm.hasError('required', 'costingDate')
+                        && formDir.submitted">
+                    *
+                  </span>
+                </td>
+                <td>
+                  <div>
+                    <input class="form-control" type="text"
+                           formControlName="incoterm"
+                           data-val="true">
+                  </div>
+                  <span class="text-danger"
+                        *ngIf="PreCostingForm.hasError('required', 'incoterm')
+                        && formDir.submitted">
+                    *
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th>Incoterm Place:</th>
+                <th>Sew Efficiency %:</th>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <input class="form-control" type="text"
+                           formControlName="incotermPlace" data-val="true">
+                  </div>
+                  <span class="text-danger"
+                        *ngIf="PreCostingForm.hasError('required', 'incotermPlace')
+                        && formDir.submitted">
+                    *
+                  </span>
+                </td>
+                <td>
+                  <div>
+                    <input class="form-control" type="number"
+                           formControlName="sewEfficiency" data-val="true">
+                  </div>
+                  <span class="text-danger"
+                        *ngIf="PreCostingForm.hasError('required', 'sewEfficiency')
+                        && formDir.submitted">
+                    *
+                  </span>
+                <td colspan="2">
+                  <button type="submit" class="btn btn-default">
+                    Save
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <!--<button type="submit" class="btn btn-default">Save</button>-->
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalDialogPreCost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of Insert operation Process-->
+
+
+
+
+
+
+
+
+<!--Testing another stable form-->
+<!--
+<div class="modal" id="modalMaster" tabindex="1" role="dialog" [ngStyle]="{'display':displaytest}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="masterorderFormTest" (ngSubmit)="saveOrderMaster(file.files,$event)" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;border-color:red;border:1px solid red">
+            <thead>
+              <tr>
+                <th>soijdoj</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sdfsdf</td>
+                <td>
+                  <button>Avg Greay</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<!--End Testing stable form-->
+<!--Here has  the design for the Insert/Edit operation of Fabric Cost-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayFabCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <form [formGroup]="FabricCosForm" (ngSubmit)="saveFabCost()"
+              #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>bodyPartId </th>
+              <th>bodyPartType</th>
+              <th>fabNature </th>
+              <th>colorType</th>
+              <th>fabDescId</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <select *ngIf="BodyPartofForfabcost" class="form-control"
+                          formControlName="bodyPartId">
+                    <option *ngFor="let bodyPart of BodyPartofForfabcost"
+                            value="{{bodyPart.id}}">
+                      {{bodyPart.itemGroup}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="bodyPartId">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'bodyPartId')
+                      && formDir.submitted">
+                  bodyPartId is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select *ngIf="BodyPartofForfabcost" class="form-control"
+                          formControlName="bodyPartType">
+                    <option *ngFor="let bodyPart of BodyPartofForfabcost"
+                            value="{{bodyPart.id}}">
+                      {{bodyPart.type}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="bodyPartType">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'bodyPartType')
+                      && formDir.submitted">
+                  bodyPartType is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fabNature">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'fabNature')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="colorType" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'colorType')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="fabDescId">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'fabDescId')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+            </tr>
+
+
+
+            <tr>
+              <th>fabricSource</th>
+              <th>nominatedSupplierId</th>
+              <th>widthorDiaType</th>
+              <th>gsmorWeight </th>
+              <th>colornSizenSensitive</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fabricSource">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'fabricSource')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="nominatedSupplierId">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'nominatedSupplierId')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="widthorDiaType" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'widthorDiaType')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="gsmorWeight">
+                </div>
+                <span class="text-danger" *ngIf="FabricCosForm.hasError('required', 'gsmorWeight') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="colornSizenSensitive">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'colornSizenSensitive')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+
+            </tr>
+
+            <tr>
+
+              <th>color</th>
+              <th>consumptionBasis </th>
+              <th>uom</th>
+              <th>.</th>
+              <th>avgGreyCons</th>
+              <th>rate</th>
+
+            </tr>
+
+
+            <tr>
+
+
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="color">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'color')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="consumptionBasis">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'consumptionBasis')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="uom">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'uom')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <button class="btn"
+                          (click)="openModalAvgGreyCons()">
+                    Avg Greay
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number"
+                         [readonly]="!editable" formControlName="avgGreyCons">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'avgGreyCons')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="rate">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'rate')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>amount</th>
+              <th>totalQty</th>
+              <th>totalAmount</th>
+              <th colspan="3"></th>
+
+
+            </tr>
+            <tr>
+
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'amount')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totalQty">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'totalQty')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totalAmount" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="FabricCosForm.hasError('required', 'totalAmount')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td colspan="3">
+                <button type="submit" class="btn btn-default">Save</button>
+
+              </td>
+
+            </tr>
+
+          </table>
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalDialogFabcost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--Here has  the design for the Insert/Edit operation of Yarn Cost-->
+<div class="modal" id="modalyarncost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayYarnCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <form [formGroup]="YarnCostForm"
+              (ngSubmit)="saveYarnCost()" #formDir="ngForm" novalidate>
+
+
+
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+
+
+            <tr>
+
+              <th>countId </th>
+              <th>comp1Id </th>
+              <th>percent </th>
+              <th>yarnTypeId</th>
+
+            </tr>
+
+            <tr>
+
+              <td>
+                <div>
+                  <select *ngIf="YarnCountInfo" class="form-control" formControlName="countId">
+                    <option *ngFor="let yarnCount of YarnCountInfo" value="{{yarnCount.id}}">
+                      {{yarnCount.name}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="countId">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="YarnCostForm.hasError('required', 'countId')
+                      && formDir.submitted">
+                  countId is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <!--YarnComp1Info-->
+
+                  <select *ngIf="YarnComp1Info" class="form-control" formControlName="comp1Id">
+                    <option *ngFor="let yarnComp1 of YarnComp1Info" value="{{yarnComp1.id}}">
+                      {{yarnComp1.name}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="comp1Id">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="YarnCostForm.hasError('required', 'comp1Id')
+                      && formDir.submitted">
+                  bodyPartType is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="percent">
+                </div>
+                <span class="text-danger" *ngIf="YarnCostForm.hasError('required', 'percent')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <!--YarnTypesInfo-->
+                  <select *ngIf="YarnTypesInfo" class="form-control" formControlName="yarnTypeId">
+                    <option *ngFor="let yarnType of YarnTypesInfo" value="{{yarnType.id}}">
+                      {{yarnType.type}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="yarnTypeId">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="YarnCostForm.hasError('required', 'yarnTypeId')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+            </tr>
+            <tr>
+              <th>consQnty</th>
+              <th>supplierId</th>
+              <th>rate</th>
+              <th>amount </th>
+
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="consQnty">
+                </div>
+                <span class="text-danger"
+                      *ngIf="YarnCostForm.hasError('required', 'consQnty')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select *ngIf="SupliersInfo" class="form-control" formControlName="supplierId">
+                    <option *ngFor="let suplier of SupliersInfo" value="{{suplier.id}}">
+                      {{suplier.name}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="supplierId">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="YarnCostForm.hasError('required', 'supplierId')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number"
+                         formControlName="rate" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="YarnCostForm.hasError('required', 'rate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amont">
+                </div>
+                <span class="text-danger"
+                      *ngIf="YarnCostForm.hasError('required', 'amont')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+
+
+
+            </tr>
+
+
+
+
+            <tr>
+              <th colspan="4"></th>
+
+
+
+            </tr>
+            <tr>
+
+              <td colspan="4">
+                <button type="submit" class="btn btn-default">Save</button>
+
+              </td>
+
+            </tr>
+
+          </table>
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeYarncost()">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--Here has  the design for the Insert/Edit operation of Conversion Cost-->
+<div class="modal" id="modalconversioncost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayConversionCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <form [formGroup]="ConversionCostForm"
+              (ngSubmit)="saveConversioncost()" #formDir="ngForm" novalidate>
+
+
+
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+
+
+            <tr>
+
+              <th>fabDescId </th>
+              <th>conversionProcessId </th>
+              <th>processLoss </th>
+              <th>reqQty</th>
+
+            </tr>
+
+            <tr>
+
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="fabDescId">
+                </div>
+                <span class="text-danger" *ngIf="ConversionCostForm.hasError('required', 'fabDescId') && formDir.submitted">
+                  fabDescId is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="conversionProcessId">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConversionCostForm.hasError('required', 'conversionProcessId')
+                      && formDir.submitted">
+                  conversionProcessId is required
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="processLoss">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConversionCostForm.hasError('required', 'processLoss')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="reqQty">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConversionCostForm.hasError('required', 'reqQty')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+            </tr>
+
+
+
+            <tr>
+              <th>avgReqQty</th>
+              <th>chargeUnit</th>
+              <th>amount</th>
+              <th>status </th>
+
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="avgReqQty">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConversionCostForm.hasError('required', 'avgReqQty')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="chargeUnit">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConversionCostForm.hasError('required', 'chargeUnit')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number"
+                         formControlName="amount" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConversionCostForm.hasError('required', 'amount')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+
+                  <select *ngIf="statusCost" class="form-control"
+                          (change)="filterChanged($event.target.value)">
+                    <option *ngFor="let btnAction of statusCost" value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="status">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConversionCostForm.hasError('required', 'status')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="4"></th>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeModalDialogconversioncost()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Here has  the design for the Insert/Edit operation of Trim Cost-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog" [ngStyle]="{'display':displayTrimCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="TrimCosForm" (ngSubmit)="saveTrimCost()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>groupName</th>
+              <th>country</th>
+              <th>description</th>
+              <th>bandSupRef</th>
+              <th>remarks</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="groupName">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'groupName') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="country" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'country') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="description">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'description')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="bandSupRef">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'bandSupRef') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="remarks">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'remarks') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>nominatedSupp</th>
+              <th>consUom</th>
+              <th>.</th>
+              <th>consUnitGmts</th>
+              <th>rate</th>
+              <th>amount</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <select *ngIf="SupliersForTrimCost" class="form-control"
+                          formControlName="nominatedSupp">
+                    <option *ngFor="let suplier of SupliersForTrimCost"
+                            value="{{suplier.id}}">
+                      {{suplier.name}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="nominatedSupp" data-val="true">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'nominatedSupp')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="consUom">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'consUom') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <button class="btn"
+                          (click)="openModalConsUnitGmts()">
+                    consUnitGmts
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" [readonly]="!editable"
+                         formControlName="consUnitGmts">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'consUnitGmts') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="rate">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'rate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'amount') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>totalQty</th>
+              <th>totalAmount</th>
+              <th>apvlReq</th>
+              <th>image</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totalQty">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'totalQty') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number"
+                         formControlName="totalAmount" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'totalAmount')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <!--<select *ngIf="statusCost" class="form-control" (change)="filterChanged($event.target.value)">-->
+                  <select *ngIf="apvl" class="form-control" (change)="filterApvl($event.target.value)">
+                    <option *ngFor="let btnAction of apvl" value="{{btnAction.val}}">{{btnAction.btn}} </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="apvlReq">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'apvlReq') && formDir.submitted">
+                  *
+                </span>
+              </td>
+
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="image">
+                </div>
+                <span class="text-danger"
+                      *ngIf="TrimCosForm.hasError('required', 'image') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalTrimCost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--Here has  the design for the Insert/Edit operation of Embellishment Cost-->
+
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayEmbelishmentCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="EmbelishmentCostForm"
+              (ngSubmit)="saveEmbelishmentCost()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>name</th>
+              <th>type</th>
+              <th>bodyPart</th>
+              <th>country</th>
+              <th>embSupplier</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="name">
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'name')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="type">
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'type')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+
+                  <select *ngIf="BodyPartofForEmbel" class="form-control"
+                          formControlName="bodyPart">
+                    <option *ngFor="let bodyPart of BodyPartofForEmbel" value="{{bodyPart.id}}">
+                      {{bodyPart.itemGroup}}
+                    </option>
+                  </select>
+
+                  <!--<input class="form-control" type="text" formControlName="bodyPart">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'bodyPart')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="country">
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'country')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="embSupplier">
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'embSupplier')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>consDznGmts</th>
+              <th>.</th>
+              <th>rate</th>
+              <th>amount</th>
+              <th>status</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <button class="btn"
+                          (click)="openModalConsDznGmts()">
+                    ConsDznGmts
+                  </button>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text"
+                         formControlName="consDznGmts" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'consDznGmts')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="rate">
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'rate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'amount') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select *ngIf="statusCost" class="form-control"
+                          (change)="filterChanged($event.target.value)">
+                    <option *ngFor="let btnAction of statusCost" value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="status">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="EmbelishmentCostForm.hasError('required', 'status') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td colspan="3">
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalEmbelishmentCost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--Here has  the design for the Insert/Edit operation of Wash Cost-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayWashCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="WashCostForm"
+              (ngSubmit)="saveWashCost()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>name</th>
+              <th>type</th>
+              <th>country</th>
+              <th>consDznGmts</th>
+              <th>rate</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="name">
+                </div>
+                <span class="text-danger"
+                      *ngIf="WashCostForm.hasError('required', 'name') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="type" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="WashCostForm.hasError('required', 'type') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="country">
+                </div>
+                <span class="text-danger"
+                      *ngIf="WashCostForm.hasError('required', 'country') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="consDznGmts">
+                </div>
+                <span class="text-danger"
+                      *ngIf="WashCostForm.hasError('required', 'consDznGmts') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="rate">
+                </div>
+                <span class="text-danger"
+                      *ngIf="WashCostForm.hasError('required', 'rate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <th>amount</th>
+              <th>status</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number"
+                         formControlName="amount" data-val="true">
+                </div>
+                <span class="text-danger"
+                      *ngIf="WashCostForm.hasError('required', 'amount') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select *ngIf="statusCost" class="form-control"
+                          (change)="filterChanged($event.target.value)">
+                    <option *ngFor="let btnAction of statusCost" value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="status">-->
+                </div>
+                <span class="text-danger" *ngIf="WashCostForm.hasError('required', 'status') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td colspan="3">
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalWashCost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Here has  the design for the Insert/Edit operation of Commercial Cost-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayCommercialCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="CommercialCostForm"
+              (ngSubmit)="saveCommercialCost()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>item</th>
+              <th>rateIn</th>
+              <th>amount</th>
+              <th>status</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <select *ngIf="commercialItem" class="form-control" (change)="filterCommercialItem($event.target.value)">
+                    <option *ngFor="let btnAction of commercialItem" value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="item">-->
+                </div>
+                <span class="text-danger" *ngIf="CommercialCostForm.hasError('required', 'item')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="rateIn">
+                </div>
+                <span class="text-danger" *ngIf="CommercialCostForm.hasError('required', 'rateIn')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+                </div>
+                <span class="text-danger" *ngIf="CommercialCostForm.hasError('required', 'amount')
+                      && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select *ngIf="statusCost" class="form-control"
+                          (change)="filterChanged($event.target.value)">
+                    <option *ngFor="let btnAction of statusCost"
+                            value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="status">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="CommercialCostForm.hasError('required', 'status') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+            <tr></tr>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalCommercialCost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--Here has  the design for the Insert/Edit operation of Commission Cost-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayCommissionCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="CommissionCostForm"
+              (ngSubmit)="saveCommissionCost()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>particulars</th>
+              <th>commnBase</th>
+              <th>commnRate</th>
+              <th>amount</th>
+              <th>status</th>
+            </tr>
+            <tr>
+
+              <td>
+                <div>
+                  <select *ngIf="particulars" class="form-control"
+                          (change)="filterparticulars($event.target.value)">
+                    <option *ngFor="let btnAction of particulars"
+                            value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="particulars">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="CommissionCostForm.hasError('required', 'particulars') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <select *ngIf="commnBase" class="form-control"
+                          (change)="filtercommnBase($event.target.value)">
+                    <option *ngFor="let btnAction of commnBase"
+                            value="{{btnAction.val}}">
+                      {{btnAction.btn}}
+                    </option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="commnBase">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="CommissionCostForm.hasError('required', 'commnBase') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="commnRate">
+                </div>
+                <span class="text-danger"
+                      *ngIf="CommissionCostForm.hasError('required', 'commnRate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+                </div>
+                <span class="text-danger"
+                      *ngIf="CommissionCostForm.hasError('required', 'amount') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <!--ngModel (ngModelChange)="selectbtnAction($event,precostlist.precostingId)"   {{btnAction.btn}} -->
+                  <select *ngIf="statusCost" class="form-control" (change)="filterChanged($event.target.value)">
+                    <option *ngFor="let btnAction of statusCost" value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  </select>
+                  <!--<input class="form-control" type="text" formControlName="status">-->
+                </div>
+                <span class="text-danger"
+                      *ngIf="CommissionCostForm.hasError('required', 'status') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+
+              <td colspan="5">
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalCommissionCost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Here has  the design for the Insert/Edit operation of Other Cost-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayOtherCost}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="OtherCostForm"
+              (ngSubmit)="saveOtherCost()" #formDir="ngForm" novalidate>
+          <table class="table table-bordered" style="margin-top:10px;line-height:15px;">
+            <tr>
+              <!--<th>id</th>-->
+              <!--<th>preCostingId</th>-->
+              <th>costComponent</th>
+              <th>budgetedCost</th>
+              <th>percentageQPrice</th>
+            </tr>
+            <tr>
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="id">
+                </div>
+                <span class="text-danger" *ngIf="OtherCostForm.hasError('required', 'id') && formDir.submitted">
+                  id is required
+                </span>
+              </td>-->
+              <!--<td>
+                <div>
+                  <input class="form-control" type="text" formControlName="preCostingId">
+                </div>
+                <span class="text-danger" *ngIf="OtherCostForm.hasError('required', 'preCostingId') && formDir.submitted">
+                  precostingId is required
+                </span>
+              </td>-->
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="costComponent">
+                </div>
+                <span class="text-danger"
+                      *ngIf="OtherCostForm.hasError('required', 'costComponent') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="budgetedCost">
+                </div>
+                <span class="text-danger"
+                      *ngIf="OtherCostForm.hasError('required', 'budgetedCost') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="percentageQPrice">
+                </div>
+                <span class="text-danger"
+                      *ngIf="OtherCostForm.hasError('required', 'percentageQPrice') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <button type="submit" class="btn btn-default">Save</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalOtherCost()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Here has  the design for the Show of AvgGrayConst -->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayAvgGrayCons}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="overflow:auto;">
+        <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D;
+         padding:3px;border:1px solid #ddd;font-size:11px;"
+               cellpadding="2" cellspacing="2" *ngIf="itemDetailsArray">
+          <tr style="height: 30px; background-color:#336699 ;
+            color:#FFFFFF ;border:1px solid #ddd">
+            <th>
+              <button type="button" class="btn btn-info btn--sm"
+                      (click)="openModalAvgGrayConsAdd()">
+                Add New
+              </button>
+            </th>
+            <th>poNo</th>
+            <th>finishCons</th>
+            <th>processLoss</th>
+            <th>greyCons</th>
+            <th>rate</th>
+            <th>amount</th>
+            <th>pcs</th>
+            <th>totalQty</th>
+            <th>totalAmount</th>
+
+            <th>greyCons</th>
+            <th>rate</th>
+            <th>amount</th>
+            <th>pcs</th>
+            <th>totalQty</th>
+            <th>totalAmount</th>
+            <th>remarks</th>
+            <th>Action</th>
+          </tr>
+          <tbody *ngFor="let avgGrayConstDetails of itemDetailsArray" style="overflow:scroll">
+            <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}">
+              <td><button type="button" clas (click)=getOrderMasterDetails(odrmstrlst.orderAutoId)> Detail </button></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.poNo}}</span></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.finishCons}}</span></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.processLoss}}</span></td>
+              <td style="width:50px;"><span style="color:#9F000F">{{avgGrayConstDetails.greyCons}}</span></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.rate}}</span></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.amount}}</span></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.pcs}}</span></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.totalQty}}</span></td>
+              <td><span style="color:#9F000F">{{avgGrayConstDetails.totalAmount}}</span></td>
+              <td>
+                <button type="button"
+                        (click)="openModalAvgGrayConsAdd(avgGrayConstDetails.id)">
+                  Edit
+                </button>
+                <button type="button"
+                        (click)="deleteAvgGrayCons(avgGrayConstDetails.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody style="overflow:scroll">
+            <tr>
+              <td colspan="2">SUM</td>
+              <td>{{sum_finishCons}}</td>
+              <td>{{sum_processLoss}}</td>
+              <td>{{sum_greyCons}}</td>
+              <td>{{sum_rate}}</td>
+              <td>{{sum_amount}}</td>
+              <td>{{sum_pcs}}</td>
+              <td>{{sum_totalQty}}</td>
+              <td>{{sum_totalAmount}}</td>
+            </tr>
+            <tr>
+              <td colspan="2">AVG</td>
+              <td>{{avg_finishCons}}</td>
+              <td>
+                {{avg_processLoss === 'NaN' ? '0' : avg_processLoss }}
+                <!--<span *ngIf="avg_processLoss === NaN ; else elseSpan">0</span>
+                <ng-template #elseSpan> {{avg_processLoss}} </ng-template>-->
+              </td>
+              <td>{{avg_greyCons}}</td>
+              <td>{{avg_rate}}</td>
+              <td>{{avg_amount}}</td>
+              <td>{{avg_pcs}}</td>
+              <td>{{avg_totalQty}}</td>
+              <td>{{avg_totalAmount}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalAvgGreyCons()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--Here has  the design for the Insert/Edit operation of AvgGrayConst-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayAvgGrayConsAdd}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="AvgGreyConsForm" (ngSubmit)="saveAvgGreCons()"
+              #formDir="ngForm" novalidate>
+          <table class="table table-bordered"
+                 style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>poNo</th>
+              <th>color</th>
+              <th>gmtsSizes</th>
+              <th>dia</th>
+              <th>itemSizes</th>
+              <th>finishCons</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="poNo">
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'poNo') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="color">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'color') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="gmtsSizes">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'gmtsSizes') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="dia">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'dia') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="itemSizes">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'itemSizes') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="finishCons">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'finishCons') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>processLoss</td>
+              <td>greyCons</td>
+              <td>rate</td>
+              <td>amount</td>
+              <td>pcs</td>
+              <td>totalQty</td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="processLoss">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'processLoss') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="greyCons">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'greyCons') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="rate">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'rate') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'amount') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="pcs">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'pcs') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totalQty">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'totalQty') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>totalAmount</td>
+              <td>remarks</td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totalAmount">
+
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'totalAmount') && formDir.submitted">
+                  *
+                </span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="remarks">
+                </div>
+                <span class="text-danger"
+                      *ngIf="AvgGreyConsForm.hasError('required', 'remarks') && formDir.submitted">
+                  *
+                </span>
+              </td>
+            </tr>
+          </table>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default">Add</button>
+            <button type="button" class="btn btn-default"
+                    (click)="closeModalAvgGrayConsAdd()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--Here has  the design for the Show of consUnitGmts -->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayConsUnitGmts}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="overflow:auto;">
+        <table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D;
+         padding:3px;border:1px solid #ddd;font-size:11px;" cellpadding="2"
+               cellspacing="2" *ngIf="itemDetailsArray">
+          <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;
+             border:1px solid #ddd">
+            <th>
+              <button type="button" class="btn btn-info btn--sm"
+                      (click)="openModalConsUnitGmtsAdd()">
+                Add New
+              </button>
+            </th>
+            <th>poNo</th>
+            <th>cons</th>
+            <th>exPercentage</th>
+            <th>totCons</th>
+            <th>rate</th>
+            <th>amount</th>
+            <th>totalQty</th>
+            <th>totalAmount</th>
+            <th>pcs</th>
+            <th>greyCons</th>
+            <th>rate</th>
+            <th>amount</th>
+            <th>pcs</th>
+            <th>totalQty</th>
+            <th>totalAmount</th>
+            <th>remarks</th>
+            <th>Action</th>
+          </tr>
+          <tbody *ngFor="let consUnitGmtsDetails of itemDetailsArray2" style="overflow:scroll">
+            <tr onClick="if (this.bgColor=='yellow'){this.bgColor=''} else {this.bgColor='yellow'}">
+              <td>
+                <button type="button" clas (click)=getOrderMasterDetails(odrmstrlst.orderAutoId)>
+                  Detail
+                </button>
+              </td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.poNo}}</span></td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.cons}}</span></td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.exPercentage}}</span></td>
+              <td style="width:50px;"><span style="color:#9F000F">{{consUnitGmtsDetails.totCons}}</span></td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.rate}}</span></td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.amount}}</span></td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.totalQty}}</span></td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.totalAmount}}</span></td>
+              <td><span style="color:#9F000F">{{consUnitGmtsDetails.pcs}}</span></td>
+              <td>
+                <button type="button"
+                        (click)="openModalConsUnitGmtsAdd(consUnitGmtsDetails.id)">
+                  Edit
+                </button>
+                <button type="button"
+                        (click)="deleteConsUnitGmts(consUnitGmtsDetails.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody style="overflow:scroll">
+            <tr>
+              <td colspan="2">SUM</td>
+              <td>{{sum_cons}}</td>
+              <td>{{sum_exPercentage}}</td>
+              <td>{{sum_totCons}}</td>
+              <td>{{sum_cons_rate}}</td>
+              <td>{{sum_cons_amount}}</td>
+              <td>{{sum_cons_totalQty}}</td>
+              <td>{{sum_cons_totalAmount}}</td>
+              <td>{{sum_cons_pcs}}</td>
+            </tr>
+            <tr>
+              <td colspan="2">AVG</td>
+              <td>{{avg_cons}}</td>
+              <td>{{avg_exPercentage}}</td>
+              <td>{{avg_totCons}}</td>
+              <td>{{avg_cons_rate}}</td>
+              <td>{{avg_cons_amount}}</td>
+              <td>{{avg_cons_totalQty}}</td>
+              <td>{{avg_cons_totalAmount}}</td>
+              <td>{{avg_cons_pcs}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+                  (click)="closeModalConsUnitGmts()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--Here has  the design for the Insert/Edit operation of consUnitGmts-->
+<div class="modal" id="modalFabcost" tabindex="1" role="dialog"
+     [ngStyle]="{'display':displayConsUnitGmtsAdd}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="ConsUnitGmtsForm"
+              (ngSubmit)="saveConsUnitGmts()"
+              #formDir="ngForm" novalidate>
+          <table class="table table-bordered"
+                 style="margin-top:10px;line-height:15px;">
+            <tr>
+              <th>poNo</th>
+              <th>gmtsItem</th>
+              <th>country</th>
+              <th>gmtsColor</th>
+              <th>gmtsSizes</th>
+              <th>itemSizes</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="poNo">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'poNo') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="gmtsItem">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'gmtsItem') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="country">
+                </div>
+                <span class="text-danger" *ngIf="ConsUnitGmtsForm.hasError('required', 'country') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="text" formControlName="gmtsColor">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'gmtsColor') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="gmtsSizes">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'gmtsSizes') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="itemSizes">
+                </div>
+                <span class="text-danger" *ngIf="ConsUnitGmtsForm.hasError('required', 'itemSizes') && formDir.submitted">*</span>
+              </td>
+            </tr>
+            <tr>
+              <td>cons</td>
+              <td>exPercentage</td>
+              <td>totCons</td>
+              <td>rate</td>
+              <td>amount</td>
+              <td>totalQty</td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="cons">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'cons') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="exPercentage">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'exPercentage') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totCons">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'totCons') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="rate">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'rate') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="amount">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'amount') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totalQty">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'totalQty') && formDir.submitted">*</span>
+              </td>
+            </tr>
+            <tr>
+              <td>totalAmount</td>
+              <td>placement</td>
+              <td>pcs</td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="totalAmount">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'totalAmount') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="placement">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'placement') && formDir.submitted">*</span>
+              </td>
+              <td>
+                <div>
+                  <input class="form-control" type="number" formControlName="pcs">
+                </div>
+                <span class="text-danger"
+                      *ngIf="ConsUnitGmtsForm.hasError('required', 'pcs') && formDir.submitted">*</span>
+              </td>
+            </tr>
+          </table>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default">Add</button>
+            <button type="button" class="btn btn-default"
+                    (click)="closeModalConsUnitGmtsAdd()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

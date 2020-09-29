@@ -1,0 +1,253 @@
+<nb-card>
+
+  <div class="example-container mat-elevation-z8">
+     <div class="example-header">
+         <h5>Sample Fabric Booking -Without Order(Details)</h5>
+         <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field>
+        <mat-label style="font-size:15px;font-weight: bold;">Search All Here ..</mat-label>
+          <input
+            matInput
+            #filter
+            (change)="applyFilter($event.target.value)"
+           
+          />
+        
+         
+          <button
+            mat-icon-button
+            matSuffix
+            aria-label="clear"
+            *ngIf="filter.value"
+            (click)="filter.value = ''; applyFilter('')"
+          >
+            <mat-icon>close</mat-icon>
+            
+          
+          </button>
+         
+          
+          <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
+        </mat-form-field>
+        <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+         </div>
+       </div>
+     
+       <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+        <mat-label style="font-size:15px;font-weight: bold;">S.{{filter.name}}</mat-label>
+          <input  matInput  
+          name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+          (change)="filterChange(filter,$event)">
+          
+        </mat-form-field>
+       </div>
+
+         <mat-table
+           [dataSource]="dataSource"
+           matSort
+           mat-table
+         >
+         
+         <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef class="text-dark">   
+           <button class="btn btn-outline-success ml-2" (click)="redirectToAddPage()"> <i class="fa fa-plus"></i></button>
+         </mat-header-cell>
+         <mat-cell *matCellDef="let element" >       
+           <button *ngIf="element.id!=0"  mat-icon-button (click)="redirectToEditPage(element)" > <mat-icon>launch</mat-icon></button>
+           <button *ngIf="element.id!=0" mat-icon-button (click)="onDelete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+         </mat-cell>
+       </ng-container>
+           
+          <ng-container matColumnDef="sfbWithoutOrderId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >SFB Without Order</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.sfbWithoutOrderId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="buyerProfileId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Buyer</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.buyerProfileId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="stypeRef">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Style Ref</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.stypeRef }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="styleDes">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Style Des</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.styleDes }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="sampletype">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Sample type</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.sampletype }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="bodyPartEntryId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Body Part</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.bodyPartEntryId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="colorType">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Color Type</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.colorType }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="fabricDescriptionId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Description</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fabricDescriptionId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="gsm">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >GSM</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.gsm }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="gmtsColor">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Gmts Color</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.gmtsColor }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="fabricColor">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Color</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fabricColor }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="gmtsSize">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Gmts size</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.gmtsSize }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="itemsize">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Item size</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.itemsize }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="diaWidth">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Dia/ Width</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.diaWidth }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="finishFabric">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Finish Fabric</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.finishFabric }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="processloss">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Process loss</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.processloss }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="grayFabric">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Gray Fabric</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.grayFabric }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="articleNumber">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Article Number</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.articleNumber }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="rate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Rate</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.rate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="amount">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Amount</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.amount }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="bodyPartTypeId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Body Type</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.bodyPartTypeId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="itemQty">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Item Qty</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.itemQty }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="yarnDetails">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Yarn Details</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.yarnDetails }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="fabricSource">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Source</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.fabricSource }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="knittingChargeKG">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Knitting Charge/KG</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.knittingChargeKG }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="bhQty">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Bh Qty</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.bhQty }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="rhQty">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >RH Qty</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.rhQty }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="deliveryDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Delivery Date</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.deliveryDate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="remarks">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Remarks</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.remarks }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="uom">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Uom</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.uom }}</mat-cell>
+</ng-container>
+
+           <mat-header-row
+             *matHeaderRowDef="displayedColumns"
+           ></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+         </mat-table>
+
+      </div>
+ <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>
+
+

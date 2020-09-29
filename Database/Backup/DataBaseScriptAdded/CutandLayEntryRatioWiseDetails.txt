@@ -1,0 +1,23 @@
+create table public."CutandLayEntryRatioWiseDetails"(
+"Id" serial primary key,
+  "PoId" integer,
+"OrderCutNo" numeric,
+"ShipDate" character varying(100),
+"GarmentsItemId" integer,
+"GarmentsColor" character varying(100),
+"Batch" character varying(100),
+"Plies" character varying(100),
+"SizeRatio" numeric,
+"MarkerQnty" numeric,
+"Orderqty" numeric,
+"TotalLayqty" numeric,
+"Laybalanceqty" numeric,
+"CutandLayEntryRatioWiseMasterId" numeric,
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

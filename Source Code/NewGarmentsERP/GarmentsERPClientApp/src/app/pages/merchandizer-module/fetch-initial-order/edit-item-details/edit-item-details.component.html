@@ -1,0 +1,266 @@
+
+<nb-card>
+  <nb-card-header
+  > 
+  Items Details
+  <button class="float-right ml-5"  mat-button (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="itemDetailsForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:3000px;">
+      <form   >
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col">Item<span class="text-danger">*</span></th>
+              <th scope="col">Set Ratio</th>
+              <th scope="col">Sew SMV/ Pcs</th>
+              <th scope="col">Cut SMV/ Pcs</th>
+              <th scope="col">Fin SMV/ Pcs</th>
+              <th scope="col">Complexity<span class="text-danger">*</span></th>
+              <th scope="col">Print<span class="text-danger">*</span></th>
+              <th scope="col">Embro<span class="text-danger">*</span></th>
+              <th scope="col">Embro Number</th>
+              <th scope="col">Wash<span class="text-danger">*</span></th>
+              <th scope="col">Wash Number</th>
+              <th scope="col">SP Works<span class="text-danger">*</span></th>
+              <th scope="col">SP Works Number</th>
+              <th scope="col">Gmts Dyeing<span class="text-danger">*</span></th>
+              <th scope="col">Gmts Dyeing Number</th>
+              <th scope="col">APO<span class="text-danger">*</span></th>
+              <th scope="col">APO Number</th>
+             
+              
+              
+            </tr>
+          </thead>
+            
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of itemDetailsInformationForm.controls;let i=index" >
+                <tr>
+                  
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1" (click)="onDelete(itemDetailsInformationForm,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+                    <td>
+                      
+                      <select class="form-control" formControlName="item">
+                        <option value=''>Select Item</option> 
+                            <option  *ngFor="let btnAction of item_btn" 
+                            value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                      </select>
+                    </td>
+    
+                    <td >
+                      <input
+                        class="form-control"
+                        type="text"
+                       id="{{i}}ratio"
+                        placeholder="Set Ratio"
+                        formControlName="ratio"
+                        (change)="onChangeSetRation(itemDetailsInformationForm)"
+                      />
+                     
+                    </td>
+    
+                    <td>
+                      <input
+                        class="form-control"
+                        type="text"
+                       
+                        placeholder="Sew Smv Pcs"
+                        formControlName="sewSmvPcs"
+                        (change)="onChangeSewSmv(itemDetailsInformationForm)"
+                      />
+                      
+                    </td>
+  
+                    <td>
+                      
+                      <input
+                        class="form-control"
+                        type="text"
+                       
+                        placeholder="Sew Smv Pcs"
+                        formControlName="cutSmvPcs"
+                        (change)="onChangeCutSmv(itemDetailsInformationForm)"
+                      />
+                    </td>
+    
+                    <td>
+                      
+                      <input
+                      class="form-control"
+                      type="text"
+                     
+                      placeholder="Fin Smv Pcs "
+                      formControlName="finSmvPcs"
+                      (change)="onChangeFinSmv(itemDetailsInformationForm)"
+                    />
+                    </td>
+    
+                    <td>
+                        <select class="form-control" formControlName="complexity">
+                          <option value=''>Select Complexity</option>
+                          <option  *ngFor="let btnAction of complexity_btn" 
+                          value="{{btnAction.val}}">{{btnAction.btn}}</option>    
+                        </select>
+                      
+                    </td>
+    
+                    <td>
+                     
+                      <select class="form-control" formControlName="print">
+                        <option value=''>Select Print<span class="text-danger">*</span> </option>
+                        <option  *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>   
+                      </select>
+                    </td>
+    
+                    <td>
+                      
+                      <select class="form-control" formControlName="embroYesNo">
+                        <option value=''>Select Embro</option>
+                    <option  *ngFor="let btnAction of yes_no_btn" 
+                    value="{{btnAction.val}}">{{btnAction.btn}}</option>  
+                      </select>
+                    </td>
+    
+                    <td>
+                     
+                      <input
+                      class="form-control"
+                      type="text"
+                     
+                      placeholder="embroNumber "
+                      formControlName="embroNumber"
+                    />
+                    </td>
+                    <td>
+                      <select class="form-control" formControlName="washYesNo">
+                        <option value=''>Select Embro</option>
+                    <option  *ngFor="let btnAction of yes_no_btn" 
+                    value="{{btnAction.val}}">{{btnAction.btn}}</option>  
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                      class="form-control"
+                      type="text"
+                     
+                      placeholder="Wash Number"
+                      formControlName="washNumber"
+                    />
+                    </td>
+                    <td>
+                      <select class="form-control" formControlName="spWorksYesNo">
+                        <option value=''>Select SP. Works</option>   
+                        <option  *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>      
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                      class="form-control"
+                      type="text"
+                     
+                      placeholder="SP Works Number"
+                      formControlName="spWorksNumber"
+                    />
+                    </td>
+                    <td>
+                      <select class="form-control" formControlName="gmtsDyeingYesNo">
+                        <option value=''>Select Gmts Dyeing</option>  
+                <option  *ngFor="let btnAction of yes_no_btn"
+                 value="{{btnAction.val}}">{{btnAction.btn}}</option> 
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                      class="form-control"
+                      type="text"
+                     
+                      placeholder="Gmts Dyeing Number"
+                      formControlName="gmtsDyeingNumber"
+                    />
+                    </td>
+                    <td>
+                      <select class="form-control" formControlName="aopYesNo">
+                        <option value=''>Select AOP</option> 
+                        <option  *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option> 
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                      class="form-control"
+                      type="text"
+                      
+                      placeholder="APO Number"
+                      formControlName="aopNumber"
+                    />
+                    </td>
+                  
+                </tr>
+                <button *ngIf="i==count-1" type="submit" [disabled]="fg.invalid" (click)="onSubmit(itemDetailsInformationForm)"   nbButton >Update</button>
+              </tbody>
+            
+           
+           <tbody>
+             <tr>
+               <td colspan="2">Total</td>
+               <td > <input
+                class="form-control"
+                type="text"
+                name="ratio"
+                [(ngModel)]="totalSetRatio"
+                placeholder="Set Ratio"
+               
+              /></td>
+               <td> <input
+                class="form-control"
+                type="text"
+                name="sewSmv"
+                placeholder="Sew SMV/ Pcs"
+                [(ngModel)]="totalSewSmvPcs"
+                
+              /></td>
+               <td> <input
+                class="form-control"
+                type="text"
+                name="cutSmv"
+                placeholder="Cut SMV/ Pcs"
+                [(ngModel)]="totalCutSmvPcs"
+              /></td>
+               <td> <input
+                class="form-control"
+                type="text"
+                name="finSmv"
+                placeholder="Fin SMV/ Pcs"
+                [(ngModel)]="totalFinSmvPcs"
+              /></td>
+             </tr>
+           </tbody>
+         
+        </table>
+       
+      </form>
+      </div>
+    </div>
+    
+ 
+  </nb-card-body>
+</nb-card>
+

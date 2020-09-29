@@ -1,0 +1,74 @@
+
+<h4>Buyer Data</h4>
+<p>This component demonstrates fetching Buyer data from the server.</p>
+<p *ngIf="!buyerlist"><em>Loading...</em></p>
+<p>
+  <button type="button" class="btn btn-info" (click)="openModalDialog()">Add new</button>
+</p>
+
+<table class='table' style="background-color:#FFFFFF; border:2px#6D7B8D; padding:5px;width:99%;table-layout:fixed;" cellpadding="2" cellspacing="2" *ngIf="buyerlist">
+  <tr style="height: 30px; background-color:#336699 ; color:#FFFFFF ;border:  1px solid #659EC7;">
+
+    <td width="80" align="center">Buyer ID</td>
+    <td width="150" align="center">Buyer Name</td>
+    <td width="150" align="center">Details</td>
+    <td width="150" align="center">Actions</td>
+
+  </tr>
+  <tbody *ngFor="let comp of buyerlist">
+    <tr>
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{comp.buyerId}}</span></td>
+      <td style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{comp.buyerName}}</span></td>
+      <td style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;"><span style="color:#9F000F">{{comp.details}}</span></td>
+
+
+      <td align="center" style="border: solid1px#659EC7; padding: 5px;table-layout:fixed;">
+        <button type="button" class="btn btn-link btn-sm" (click)="openModalDialog(comp.buyerId)">Edit</button>
+        <button type="button" class="btn btn-link btn-sm" (click)="delete(comp.buyerId)">Delete</button>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="modal" id="modalBuyer" tabindex="1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true"></span></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="BuyerForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+          <div class="form-group row">
+            <label class=" control-label col-md-12" for="buyerName">buyer Name</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="buyerName">
+            </div>
+            <span class="text-danger" *ngIf="BuyerForm.hasError('required', 'buyerName') && formDir.submitted">
+              buyer Name is required.
+            </span>
+          </div>
+          <div class="form-group row">
+            <label class="control-label col-md-12" for="details">details</label>
+            <div class="col-md-4">
+              <input class="form-control" type="text" formControlName="details">
+            </div>
+            <span class="text-danger" *ngIf="BuyerForm.hasError('required', 'details') && formDir.submitted">
+              details is required
+            </span>
+          </div>
+
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Save</button>
+            <button class="btn" (click)="closeModalDialog()">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

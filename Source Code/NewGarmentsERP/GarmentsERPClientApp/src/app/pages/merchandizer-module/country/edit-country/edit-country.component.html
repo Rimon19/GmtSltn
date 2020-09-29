@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Country Information</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+         <div class="col-sm-6">
+   <div class="form-group">
+     <label for="Region_Name" class="label text-dark">
+     Country Name<span class="text-danger">*</span></label
+     >
+     <input
+       required
+       name="region_Name"
+       #Region_Name="ngModel"
+       [(ngModel)]="
+       countryService.countryInfo.region_Name
+       "
+       type="text"
+       class="form-control form-rounded form-control-sm"
+       id="Region_Name"
+       placeholder="Country Name"
+     />
+     <div
+       class="text-left text-danger text-responsive"
+       *ngIf="
+       countryService.countryInfo.region_Name ==
+           '' && Region_Name.touched
+       "
+     >
+     Country Name is required
+     </div>
+   </div>
+ </div>
+ <div class="col-sm-6">
+  <div class="form-group">
+    <label for="CuttOff" class="label text-dark">
+      Cutt  Off</label
+    >
+    <input
+      name="cuttOff"    
+      [(ngModel)]="
+      countryService.countryInfo.cuttOff
+      "
+      class="form-control form-rounded form-control-sm"
+      type="text"
+      id="CuttOff"
+      placeholder=" Cutt  Off"
+    />
+  </div>
+ </div>
+</div>
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+create table public."YarnDyeingWOWithoutOrderMaster"(
+"Id" serial primary key,
+  "YarnDyeingWoNo" character varying(100),
+"YarnDyeingFactory" integer,
+"BookingDate" character varying(100),
+"Attention" character varying(100),
+"CurrencyId" integer,
+"ExchangeRate" integer,
+"PayMode" character varying(100),
+"Source" character varying(100),
+"GorYIssueStart" character varying(100),
+"GorYIssueEnd" character varying(100),
+"DorYDeliveryStart" character varying(100),
+"DorYDeliveryEnd" character varying(100),
+"ItemCategoryId" integer,
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

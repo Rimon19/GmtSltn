@@ -1,0 +1,101 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+      <div class="smart-table-container" style = "width:1200px;">
+  
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+           
+            <h5>Trims Costing Template</h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            </ng-container>
+              <!-- Fav Column -->
+              <ng-container matColumnDef="buyerId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Buyer </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.buyerId}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="userCode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">User Code </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.userCode}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="trimsGroupId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Trims Group  </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.trimsGroupId}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="itemDesc">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Item Desc </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.itemDesc}}</mat-cell>
+                 
+              </ng-container>
+
+              <ng-container matColumnDef="consUom">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Cons Uom </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.consUom}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="brandOrSupRef">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">brand/Sup Ref </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.brandOrSupRef}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="consOrDznGmts">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Cons/DznGmts </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.consOrDznGmts}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="purchaseRate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Purchase Rate </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.purchaseRate}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="amount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Amount </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.amount}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="approvalRequired">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Approval Required </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.approvalRequired}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="supplierId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Supplier  </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.supplierId}}</mat-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Status  </mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.status}}</mat-cell>
+                 
+              </ng-container>
+     
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+       
+        </div>
+  
+      </div>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>

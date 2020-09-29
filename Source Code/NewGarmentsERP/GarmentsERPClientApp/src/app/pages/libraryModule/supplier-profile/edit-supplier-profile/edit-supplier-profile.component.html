@@ -1,0 +1,417 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+        Supplier Profile Edit
+      </nb-card-header>
+      <nb-card-body>
+
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <input  required #Id="ngModel"
+          [(ngModel)]="supplierProfileService.supplierProfile.id" 
+             name="id"  type="hidden" 
+             >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Supplier Name<span class="text-danger">*</span></label>
+                <input  required #supplierName="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.supplierName" 
+                   name="supplierName"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Contact Name">
+                    <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.supplierName==''&&supplierName.touched">
+              Supplier Name is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Short Name</label>
+                <input   #shortName="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.shortName"
+                   name="shortName"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Short Name">
+                    <!-- <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.shortName==''&&shortName.touched">
+              Country Depo Name is required
+            </div> -->
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Contact Person<span class="text-danger">*</span></label>
+                <input  required #contactPerson="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.contactPerson" 
+                   name="contactPerson"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Contact Person">
+                    <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.contactPerson==''&&contactPerson.touched">
+              Contact Person is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Designation<span class="text-danger">*</span></label>
+                <input  required #designation="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.designation" 
+                   name="designation"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Designation">
+                    <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.designation==''&&designation.touched">
+              Designation is required
+            </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Supplier Ref.</label>
+                <input   #supplierRef="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.supplierRef"
+                   name="supplierRef"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="supplierRef">
+                   
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Email<span class="text-danger">*</span></label>
+                <input  required #email="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.email"
+                   name="email"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Email">
+                    <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.email==''&&email.touched">
+              Email is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">http://www.</label>
+                <input   #httpWww="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.httpWww" 
+                   name="httpWww"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="http://www.">
+                    
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Address 1<span class="text-danger">*</span></label>
+                <input  required #addressOne="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.addressOne"  
+                   name="addressOne"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Address 1">
+                    <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.addressOne==''&&addressOne.touched">
+              Address 1 is required
+            </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">address 2</label>
+                <input   #addressTwo="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.addressTwo" 
+                   name="addressTwo"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="address 2">
+                   
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">address 3</label>
+                <input   #addressThree="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.addressThree" 
+                   name="addressThree"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="address 3">
+                   
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">address 4</label>
+                <input   #addressFour="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.addressFour" 
+                   name="addressFour"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="address 4">
+                    
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="countryId" class="label text-dark">Country<span class="text-danger">*</span></label>
+                <select required #countryId="ngModel" 
+                [(ngModel)]="supplierProfileService.supplierProfile.countryId" class="form-control form-rounded form-control-sm  " name="countryId" >
+                  <option value="">Select Country </option>
+                  <option *ngFor="let countrylist of countryList" [value]="countrylist.region_Name">{{countrylist.region_Name}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.countryId==''&&countryId.touched">
+              Country  is required
+            </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="partyTypeselectedItems" class="label text-dark">Party Type</label>
+              <ng-multiselect-dropdown
+                  name="partyTypeselectedItems"
+                  [placeholder]="'Party Type'"
+                  [data]="partyTypedropdownList"
+                  [(ngModel)]="partyTypeselectedItems"
+                  [settings]="partyTypedropdownSettings"  
+                                 
+                  >
+                  </ng-multiselect-dropdown>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="tagePage" class="label text-dark">Tag Company</label>
+              <ng-multiselect-dropdown
+                  name="tagCompanyselectedItems"
+                  [placeholder]="'Tag Company'"
+                  [data]="tagCompanydropdownList"
+                  [(ngModel)]="tagCompanyselectedItems"
+                  [settings]="tagCompanydropdownSettings"  
+                                 
+                  >
+                  </ng-multiselect-dropdown>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="contactName" class="label text-dark">Link to Buyer</label>
+                <select  #linkToBuyer="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.linkToBuyer" class="form-control form-rounded form-control-sm  " name="linkToBuyer" >
+                  <option value="">Select Supplier </option>
+                  <option *ngFor="let bpl of this.buyerProfileList" [value]="bpl.contactName">{{bpl.contactName}}</option>
+                  
+               </select>
+               <!-- <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.contactName==0&&contactName.touched">
+              Ultimate  Country is required
+            </div> -->
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Credit Limit (Days)<span class="text-danger">*</span></label>
+                <input  required #creditLimitDays="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.creditLimitDays" 
+                   name="creditLimitDays"  class="form-control form-rounded form-control-sm  " type="number" 
+                    placeholder="Credit Limit (Days)">
+                    <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.creditLimitDays==0&&creditLimitDays.touched">
+              Credit Limit (Days) is required
+            </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Credit Limit (Amount)<span class="text-danger">*</span></label>
+                <input  required #crditLimitAmount="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.crditLimitAmount" 
+                   name="crditLimitAmount"  class="form-control form-rounded form-control-sm  " type="number" 
+                    placeholder="Credit Limit (Amount)">
+                    <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.crditLimitAmount==0&&crditLimitAmount.touched">
+              Credit Limit  is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="discountMethod" class="label text-dark">	Discount Method<span class="text-danger">*</span></label>
+                <select required #discountMethod="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.discountMethod" class="form-control form-rounded form-control-sm  " name="discountMethod" >
+                  <option value="">Select 	Discount Method </option>
+                  <option *ngFor="let dm of discountMethodList" [value]="dm.id">{{dm.discountMethodName}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.discountMethod==''&&discountMethod.touched">
+              Discount Method is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="secuirityDeducted" class="label text-dark">Security Deducted<span class="text-danger">*</span></label>
+                <select required #secuirityDeducted="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.secuirityDeducted" class="form-control form-rounded form-control-sm  " name="secuirityDeducted" >
+                  <option value=''>Select Security Deducted </option>
+                  <option value="Yes">Yes </option>
+                  <option value="No">No </option>
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="supplierProfileService.supplierProfile.secuirityDeducted==''&&secuirityDeducted.touched">
+              Security Deducted is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="vatToBeDeducted" class="label text-dark">VAT to be Deducted</label>
+                <select  #vatToBeDeducted="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.vatToBeDeducted" class="form-control form-rounded form-control-sm  " name="vatToBeDeducted" >
+                  <option  value=''>Select VAT to be Deducted </option>
+                  <option value="Yes">Yes </option>
+                  <option value="No">No </option>
+               </select>
+              
+              </div>
+              
+            </div>
+            
+          </div>
+         
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="aitToBeDeducted" class="label text-dark">AIT to be Deducted</label>
+                <select  #aitToBeDeducted="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.aitToBeDeducted" class="form-control form-rounded form-control-sm  " name="aitToBeDeducted" >
+                  <option  value=''>Select AIT to be Deducted </option>
+                  <option value="Yes">Yes </option>
+                  <option value="No">No </option>
+               </select>
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label class="label text-dark">Remark</label>
+                <input   #remark="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.remark" 
+                   name="remark"  class="form-control form-rounded form-control-sm  " type="text" 
+                    placeholder="Remark">
+                   
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="individual" class="label text-dark">Individual</label>
+                <select  #individual="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.individual" class="form-control form-rounded form-control-sm  " name="individual" >
+                  <option  value=''>Select </option>
+                  <option value="Yes">Yes </option>
+                  <option value="No">No </option>
+               </select>
+              
+              </div>
+              
+            </div>
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="supplierNature" class="label text-dark">Supplier Nature</label>
+                <select  #vatToBeDeducted="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.supplierNature" class="form-control form-rounded form-control-sm  " name="supplierNature" >
+                  <option  value=''>Select </option>
+                  <option value="Goods">Goods </option>
+                  <option value="Service">Service </option>
+                  <option value="Service">Both </option>
+               </select>
+              
+              </div>
+              
+            </div>
+            
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status" class="label text-dark">Status</label>
+                <select  #status="ngModel"
+                [(ngModel)]="supplierProfileService.supplierProfile.status"class="form-control form-rounded form-control-sm  " name="status" >
+                  <option  value=''>Select </option>
+                  <option value="Acitve">Acitve </option>
+                  <option value="Inactive">Inactive </option>
+               </select>
+              
+              </div>
+              
+            </div>
+          
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="tagBuyer" class="label text-dark">Tag Buyer</label>
+              <ng-multiselect-dropdown
+                  name="tagBuyerProfileSelectedItems"
+                  [placeholder]="'Tag Buyer'"
+                  [data]="buyerProfileList"
+                  [(ngModel)]="tagBuyerProfileSelectedItems"
+                  [settings]="tagBuyerProfileSettings"  
+                                 
+                  >
+                  </ng-multiselect-dropdown>
+              </div>
+            </div>
+       
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label>Add Image</label>
+                <img [src]="output_image" hieght="100" width="100" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  (change)="detectFilesForImageUrlFile($event)"
+                  name="image"
+                  class="form-control form-rounded form-control-sm"
+                  multiple="multiple"
+                  placeholder="image"
+                />
+              </div>
+            </div>
+            
+            
+          </div>
+         
+          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

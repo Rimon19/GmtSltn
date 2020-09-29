@@ -1,0 +1,8 @@
+CREATE TABLE public."YarnBrand"
+(
+    "yarnBrandId"  serial primary key,
+    "yarnBrandName" character varying(100),
+    "sequenceNo" integer,
+    "status" character varying(100)
+    
+)

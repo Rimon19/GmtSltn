@@ -1,0 +1,530 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+        
+      >
+      <i class="fas fa-arrow-left"></i>
+      </button>
+        Po Information Entry</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderStatus" class="label text-dark"
+                  >Order Status <span class="text-danger">*</span></label
+                >
+
+                <select
+                  required
+                  #orderStatus="ngModel"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes
+                      .poOrderStatusID
+                  "
+                  id="orderStatus"
+                  class="form-control form-rounded form-control-sm"
+                  name="poOrderStatusID"
+                >
+                  <option value="">Select Order Status</option>
+                  <option
+                    *ngFor="
+                      let poOrderStatusInfoesList of poOrderStatusInfoesItems
+                    "
+                    [value]="poOrderStatusInfoesList.id"
+                    >{{ poOrderStatusInfoesList.value }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes
+                    .poOrderStatusID == 0 && orderStatus.touched
+                "
+              >
+                Order Status is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="PoNo" class="label text-dark"
+                  >PO No <span class="text-danger">*</span></label
+                >
+                <input
+                  required
+                  #PoNo="ngModel"
+                  name="pO_No"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.pO_No
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="PoNo"
+                  placeholder="PO No"
+                />
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes.pO_No==''&&
+                  PoNo.touched
+                "
+              >
+                PO No is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderNumber" class="label text-dark"
+                  >PO Received Date <span class="text-danger">*</span></label
+                >
+                <input readonly
+                  required
+                  #poReceivedDate="ngModel"
+                  name="pO_Received_Date"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes
+                      .pO_Received_Date
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  placeholder="PO Received Date"
+                  [nbDatepicker]="POReceived"
+                />
+                <nb-datepicker #POReceived></nb-datepicker>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes
+                    .pO_Received_Date == '' && poReceivedDate.touched
+                "
+              >
+                PO Received Date is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderNumber" class="label text-dark"
+                  >Pub. Shipment Date <span class="text-danger">*</span></label
+                >
+                <input
+                  required readonly
+                  #pubShipmentDate="ngModel"
+                  name="pub_Shipment_Date"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes
+                      .pub_Shipment_Date
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  placeholder="Pub. Shipment Date"
+                  [nbDatepicker]="PubShipment"
+                />
+                <nb-datepicker #PubShipment></nb-datepicker>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes
+                    .pub_Shipment_Date == '' && pubShipmentDate.touched
+                "
+              >
+                Pub Received Date is required
+              </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderNumber" class="label text-dark"
+                  >Org. Shipment Date <span class="text-danger">*</span></label
+                >
+                <input readonly
+                  required
+                  #orgShipmentDate="ngModel"
+                  name="org_Shipment_Date"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes
+                      .org_Shipment_Date
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  placeholder="Org. Shipment Date"
+                  [nbDatepicker]="OrgShipment"
+                />
+                <nb-datepicker #OrgShipment></nb-datepicker>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes
+                    .org_Shipment_Date == '' && orgShipmentDate.touched
+                "
+              >
+                Org Received Date is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderNumber" class="label text-dark"
+                  >Fac. Receive Date <span class="text-danger">*</span></label
+                >
+                <input
+                  required readonly
+                  #facReceiveDate="ngModel"
+                  name="fac_Receive_Date"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes
+                      .fac_Receive_Date
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  placeholder="Fac. Receive Date"
+                  [nbDatepicker]="FacReceive"
+                />
+                <nb-datepicker #FacReceive></nb-datepicker>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes
+                    .fac_Receive_Date == '' && facReceiveDate.touched
+                "
+              >
+                Factory Received Date is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="poQuantity" class="label text-dark"
+                  >PO Quantity <span class="text-danger">*</span></label
+                >
+                <input type="number"
+                  required
+                  #poQuantity="ngModel"
+                  name="pO_Quantity"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.pO_Quantity
+                  "
+                  (change)="poQuantityCalculate(masterPodetailsInfroesService)"
+                  class="form-control form-rounded form-control-sm"
+                  id="poQuantity"
+                  placeholder="PO Quantity"
+                />
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes.pO_Quantity ==
+                    0 && poQuantity.touched
+                "
+              >
+                PO Quantity is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="planCut" class="label text-dark">Plan Cut</label>
+                <input type="number"
+                  #planCut="ngModel"
+                  name="plan_Cut"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.plan_Cut
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="planCut"
+                  placeholder="Plan Cut"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="avgPrice" class="label text-dark"
+                  >Avg. Price <span class="text-danger">*</span></label
+                >
+                <input type="number"
+                  required
+                  #avgPrice="ngModel"
+                  name="avg_Price"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.avg_Price
+                  "
+                  (change)="poQuantityCalculate(masterPodetailsInfroesService)"
+                  class="form-control form-rounded form-control-sm"
+                  id="avgPrice"
+                  placeholder="Avg. Price"
+                />
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes.avg_Price ==
+                    0 && avgPrice.touched
+                "
+              >
+                Avg. Price is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="amount" class="label text-dark"
+                  >Amount<span class="text-danger">*</span></label
+                >
+                <input type="number"
+                  readonly
+                  required
+                  #amount="ngModel"
+                  name="amount"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.amount
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="amount"
+                  placeholder="Amount"
+                />
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes.amount == 0 &&
+                  amount.touched
+                "
+              >
+                Amount is required
+              </div>
+              </div>
+             
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderNumber" class="label text-dark"
+                  >Status<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #poStatus="ngModel"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.poStatusID
+                  "
+                  id="orderStatus"
+                  class="form-control form-rounded form-control-sm"
+                  name="poStatusID"
+                >
+                  <option value="">Select Status</option>
+                  <option
+                    *ngFor="let PoStatusList of PoStatusItems"
+                    [value]="PoStatusList.id"
+                    >{{ PoStatusList.value }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes.poStatusID ==
+                    0 && poStatus.touched
+                "
+              >
+                Status is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="projectedPo" class="label text-dark"
+                  >Projected PO</label
+                >
+                <input
+                  #projectedPo="ngModel"
+                  name="projected_Po"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.projected_Po
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="projectedPo"
+                  placeholder="Projected PO"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="tna" class="label text-dark">TNA From/Upto</label>
+                <input
+                  id="tna"
+                  #tnaFromOrUpto="ngModel"
+                  name="tnA_FromOrUpto"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.tnA_FromOrUpto
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  placeholder="TNA From/Upto"
+                />
+             
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="internalRefOrGrouping" class="label text-dark"
+                  >Internal Ref/Grouping</label
+                >
+                <input
+                  #projectedPo="ngModel"
+                  name="internal_RefOrGrouping"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes
+                      .internal_RefOrGrouping
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="internalRefOrGrouping"
+                  placeholder="Internal Ref/Grouping"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="delayFor" class="label text-dark">Delay For</label>
+                <ng-multiselect-dropdown name="delay_For" [placeholder]="'Delay For'"
+                  [data]="dropdownValueService.delayForList" [(ngModel)]="masterPodetailsInfroesService.podetailsInfroes.delay_For"
+                  [settings]="delayForListSettings">
+                </ng-multiselect-dropdown>
+                <!-- <input
+                  #delayFor="ngModel"
+                  name="delay_For"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.delay_For
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="delayFor"
+                  placeholder="Delay For"
+                /> -->
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="orderNumber" class="label text-dark"
+                  >Packing<span class="text-danger">*</span></label
+                >
+                <select
+                  required
+                  #packing="ngModel"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.packing_ID
+                  "
+                  id="orderStatus"
+                  class="form-control form-rounded form-control-sm"
+                  name="packing_ID"
+                >
+                  <option value="">Select Packing</option>
+                  <option
+                    *ngFor="let packingInfoesList of packingInfoesItems"
+                    [value]="packingInfoesList.packingID"
+                    >{{ packingInfoesList.packing_Name }}</option
+                  >
+                </select>
+              </div>
+              <div
+                class="text-left text-danger"
+                *ngIf="
+                  masterPodetailsInfroesService.podetailsInfroes.packingId ==
+                    0 && packing.touched
+                "
+              >
+                Packing is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="fileNo" class="label text-dark">File No</label>
+                <input
+                  #fileNo="ngModel"
+                  name="file_No"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.file_No
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="fileNo"
+                  placeholder="File No"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="scorLc" class="label text-dark">SC/LC</label>
+                <input
+                  #scorLc="ngModel"
+                  name="sCorLC"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.sCorLC
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="scorLc"
+                  placeholder="SC/LC"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="remarks" class="label text-dark">Remarks</label>
+                <input
+                  #remarks="ngModel"
+                  name="remarks"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.remarks
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="remarks"
+                  placeholder="Remarks"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="excessCut" class="label text-dark"
+                  >Excess Cut%</label
+                >
+                <input
+                  #excessCut="ngModel"
+                  name="excess_Cut"
+                  [(ngModel)]="
+                    masterPodetailsInfroesService.podetailsInfroes.excess_Cut
+                  "
+                  class="form-control form-rounded form-control-sm"
+                  id="excessCut"
+                  placeholder="Excess Cut"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button
+            [disabled]="
+              form.invalid ||
+              form.value.packingId == 0 ||
+              form.value.poQuantity == 0 ||
+              form.value.avgPrice == 0 ||
+              form.value.amount == 0
+            "
+            type="submit"
+            nbButton
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

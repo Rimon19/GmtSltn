@@ -1,0 +1,12 @@
+CREATE TABLE public."GarmentsItemEntry"
+(
+    "Id" serial primary key,
+    "ItemName" character varying(100) ,
+    "CommercialName" character varying(100) ,
+    "ProductCategoryId" integer,
+    "ProductTypeId" integer,
+    "StandardSMV" integer,
+    "Efficiency" integer,
+    "Status" character varying(100)
+   
+)

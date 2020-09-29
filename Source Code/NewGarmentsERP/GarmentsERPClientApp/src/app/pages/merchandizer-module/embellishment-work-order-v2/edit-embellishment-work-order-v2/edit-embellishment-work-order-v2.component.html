@@ -1,0 +1,427 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Update Embellishment Work Order V2</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+          <!-- <div class="col-sm-3">
+<div class="form-group">
+ <label for="WoNo" class="label text-dark">
+   Wo No</label
+ >
+ <input
+   name="woNo"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.woNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="WoNo"
+   placeholder=" Wo No"
+ />
+</div>
+</div> -->
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="JobNo" class="label text-dark">
+   Job No</label
+ >
+ <input (dblclick)="onLoadOrderOrJobSelectionFormComponent()"
+ readonly
+   name="jobNo"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.jobNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="JobNo"
+   placeholder=" Job No"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BuyerProfileId" class="label text-dark">
+      Buyer Name
+      </label>
+      <select
+      
+        name="buyerProfileId"
+      
+        #BuyerProfileId="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.buyerProfileId
+        "
+        id="BuyerProfileId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Buyer Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.buyerList"
+        value="{{item.id}}"
+        >{{ item.contactName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+     <div class="col-sm-3">
+    <div class="form-group">
+      <label for="WODate" class="label text-dark">
+        WO Date<span class="text-danger">*</span>
+      </label>
+      <input readonly
+        name="woDate"
+        required
+        #woDate="ngModel"
+        [(ngModel)]="
+          embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.woDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="WODate"
+        [nbDatepicker]="WODate"
+        placeholder="WO Date"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.wODate ==
+            '' &&wODate.touched
+        "
+      >
+      WO Date is required
+      </div>
+      <nb-datepicker #WODate></nb-datepicker>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+     <label for="SupplierName" class="label text-dark">
+       Supplier Name</label
+     >
+     <input
+       name="supplierName"    
+       [(ngModel)]="
+       embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.supplierName
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="SupplierName"
+       placeholder=" Supplier Name"
+     />
+    </div>
+    </div>
+</div>
+
+<div class="row">
+     <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DeliveryDate" class="label text-dark">
+        Delivery Date<span class="text-danger">*</span>
+      </label>
+      <input readonly
+        name="deliveryDate"
+        required
+        #deliveryDate="ngModel"
+        [(ngModel)]="
+          embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.deliveryDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DeliveryDate"
+        [nbDatepicker]="DeliveryDate"
+        placeholder="Delivery Date"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.deliveryDate ==
+            '' &&deliveryDate.touched
+        "
+      >
+      Delivery Date is required
+      </div>
+      <nb-datepicker #DeliveryDate></nb-datepicker>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="CurrencyId" class="label text-dark">
+      Currency
+      </label>
+      <select
+        name="currencyId"
+      
+        #CurrencyId="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.currencyId
+        "
+        id="CurrencyId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Currency</option>
+      <option
+        *ngFor="let item of dropdownValueService.currencyList "
+        value="{{item.id}}"
+        >{{ item.discountMethodName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="ExchangeRate" class="label text-dark">
+   Exchange Rate</label
+ >
+ <input
+   name="exchangeRate"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.exchangeRate
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="ExchangeRate"
+   placeholder=" Exchange Rate"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PayMode" class="label text-dark">
+      Pay Mode
+      <span class="text-danger">*</span> </label>
+      <select
+        name="payMode"
+        required
+        #PayMode="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.payMode
+        "
+        id="PayMode"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Pay Mode</option>
+      <option
+        *ngFor="let item of dropdownValueService.payModeList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.payMode== '' && PayMode.touched
+        "
+      >
+      Pay Mode is required
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+ 
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ReadyToApprove" class="label text-dark">
+      Ready To Approve
+      </label>
+      <select
+        name="readyToApprove"
+      
+        #ReadyToApprove="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.readyToApprove
+        "
+        id="ReadyToApprove"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Ready To Approve</option>
+      <option
+        *ngFor="let item of dropdownValueService.yesNoList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Source" class="label text-dark">
+      Source
+      </label>
+      <select
+        name="source"
+      
+        #Source="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.source
+        "
+        id="Source"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.sourceList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="Attention" class="label text-dark">
+   Attention</label
+ >
+ <input
+   name="attention"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.attention
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Attention"
+   placeholder=" Attention"
+ />
+</div>
+</div>
+<div class="col-sm-3">
+  <div class="form-group">
+    <label for="CalculationBasis" class="label text-dark">
+    Calculation Basis
+    </label>
+    <select
+      name="calculationBasis"
+    
+      #CalculationBasis="ngModel"
+      [(ngModel)]="
+      embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.calculationBasis
+      "
+      id="CalculationBasis"
+      class="form-control form-rounded form-control-sm"
+    >
+    <option value="">Select Calculation Basis</option>
+    <option
+      *ngFor="let item of dropdownValueService.calculationBasisList"
+      value="{{item.value}}"
+      >{{ item.value}}</option
+    >
+    </select>
+    
+  </div>
+</div>
+
+</div>
+  
+<div class="row">
+   
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Level" class="label text-dark">
+      Level
+      </label>
+      <select
+        name="level"
+      
+        #Level="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.level
+        "
+        id="Level"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Level</option>
+      <option
+        *ngFor="let item of dropdownValueService.levelList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="IsShort" class="label text-dark">
+      Is Short
+      </label>
+      <select
+        name="isShort"
+      
+        #IsShort="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.isShort
+        "
+        id="IsShort"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Is Short</option>
+      <option
+        *ngFor="let item of dropdownValueService.yesNoList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="SeasonId" class="label text-dark">
+      Season
+      </label>
+      <select
+        name="seasonId"
+      
+        #SeasonId="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2Service.embellishmentWorkOrderV2.seasonId
+        "
+        id="SeasonId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Season</option>
+      <option
+        *ngFor="let item of dropdownValueService.buyerWiseSeasonList"
+        value="{{item.id}}"
+        >{{ item.seasonName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+
+</div>
+    
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

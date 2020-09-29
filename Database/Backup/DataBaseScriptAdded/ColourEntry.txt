@@ -1,0 +1,6 @@
+create table public."ColourEntry"(
+"Id" serial primary key,
+"ColorName" character varying(100),
+"Status" character varying(100),
+"BuyerNameId" integer
+)

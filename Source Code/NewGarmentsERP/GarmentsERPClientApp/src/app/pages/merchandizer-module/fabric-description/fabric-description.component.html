@@ -1,0 +1,81 @@
+<nb-card>
+    <nb-card-header>Fabric Description
+        <button class="float-right ml-5" mat-button (click)="onClose()">
+<mat-icon>close</mat-icon>
+</button>
+    </nb-card-header>
+
+    <div class="col-md-12" style="overflow-x: scroll;">
+        <div class="example-header">
+            <mat-form-field>
+                <mat-label style="font-size:15px;font-weight: bold;">Search All Here ..</mat-label>
+                <input matInput #filter (change)="applyFilter($event.target.value)" />
+
+
+                <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value = ''; applyFilter('')">
+                    <mat-icon>close</mat-icon>
+                    
+                  
+                  </button>
+
+
+                <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
+            </mat-form-field>
+        </div>
+
+        <div style="margin-left: 30px;width: 85%;">
+            <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+                <mat-label style="font-size:15px;font-weight: bold;">S.{{filter.name}}</mat-label>
+                <input matInput name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue" (change)="filterChange(filter,$event)">
+
+            </mat-form-field>
+        </div>
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+
+            <!-- Fav Column -->
+            <ng-container matColumnDef="fabNature">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Fabric Nature </mat-header-cell>
+                <mat-cell (dblclick)="selectFabricDescriptionRow(element)" *matCellDef="let element">{{element.fabNature}}</mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="construction">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Construction </mat-header-cell>
+                <mat-cell (dblclick)="selectFabricDescriptionRow(element)" *matCellDef="let element">{{element.construction}}</mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="colorRange">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Color Range </mat-header-cell>
+                <mat-cell (dblclick)="selectFabricDescriptionRow(element)" *matCellDef="let element">{{element.colorRange}}</mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="gsmWeight">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">GSM/Weight </mat-header-cell>
+                <mat-cell (dblclick)="selectFabricDescriptionRow(element)" *matCellDef="let element">{{element.gsmWeight}}</mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="stichLength">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Stitch Length</mat-header-cell>
+                <mat-cell (dblclick)="selectFabricDescriptionRow(element)" *matCellDef="let element">{{element.stichLength}}</mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="processLoss">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Process Loss</mat-header-cell>
+                <mat-cell (dblclick)="selectFabricDescriptionRow(element)" *matCellDef="let element">{{element.processLoss}}</mat-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="composition">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Composition</mat-header-cell>
+                <mat-cell (dblclick)="selectFabricDescriptionRow(element)" *matCellDef="let element">{{element.composition}}</mat-cell>
+
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+
+
+
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

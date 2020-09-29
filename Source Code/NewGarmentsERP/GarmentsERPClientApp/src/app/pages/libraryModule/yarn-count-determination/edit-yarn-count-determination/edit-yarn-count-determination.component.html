@@ -1,0 +1,247 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+     
+      
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+  
+       >
+       <i class="fas fa-arrow-left"></i></button>
+        Yarn Count Determination Edit
+      
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm"  >
+          <div class="row">
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="Country"  class="label text-dark">Fabric Nature<span class="text-danger">*</span></label>
+                
+                <select id="fabricNature"  required #fabricNature="ngModel"
+                   [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.fabricNature"
+                     class="form-control form-rounded form-control-sm" name="fabricNature">
+                  <option value="">Select </option>
+                  <option value="Knit Finish Fabrics">Knit Finish Fabrics</option>
+                  <option value="">Woven Fabrics </option>
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="yarnCountDeterminationService.yarnCountDetermination.fabricNature==''&&fabricNature.touched">
+              Fabric Nature is required
+              </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="construction"  class="label text-dark">Construction<span class="text-danger">*</span></label>
+                <input class="form-control" name="construction" required #construction="ngModel"
+                 [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.construction"
+                class="form-control form-rounded form-control-sm" type="text" id="construction"
+                  placeholder="Construction">
+                  <div class="text-left text-danger"
+                  *ngIf="yarnCountDeterminationService.yarnCountDetermination.construction==''&&construction.touched">
+                  Construction is required.
+                  </div>
+              </div>
+            
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Country"  class="label text-dark">Color Range</label>
+                
+                <select id="colorRange"   #colorRange="ngModel"
+                   [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.colorRange"
+                     class="form-control form-rounded form-control-sm" name="colorRange">
+                  <option value="">Select Color Range </option>
+                  <option *ngFor="let clr of ColorRangeList" [value]="clr.colorRangeName">{{clr.colorRangeName}}</option>
+              </select>
+              </div>
+               <!-- <div class="text-left text-danger"
+              *ngIf="yarnCountDeterminationService.yarnCountDetermination.colorRange==''&&colorRange.touched">
+              Color Range is required
+              </div> -->
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="gsm"  class="label text-dark">GSM</label>
+                <input class="form-control form-rounded form-control-sm" name="gsm"
+                 [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.gsm"
+                   class="form-control form-rounded form-control-sm" type="text" id="gsm"
+                  placeholder="GSM">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="status"  class="label text-dark">Status</label>
+                   <select name="status"
+                   #status="ngModel"
+                  [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.status" id="status" 
+                     class="form-control form-rounded form-control-sm" >
+                   <option value=''>Select Status</option>
+                   <option value="Active">Active </option>
+                   <option value=" In Active"> In Active </option> 
+                   
+               </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="stitchLength"  class="label text-dark">String Lentgh</label>
+                <input class="form-control" name="stitchLength"
+                 [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.stitchLength"
+                   class="form-control form-rounded form-control-sm" type="text" id="stitchLength"
+                  placeholder="Stitch Length">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="processLoss"  class="label text-dark">Process Loss</label>
+                <input class="form-control" name="processLoss"
+                 [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.processLoss"
+                   class="form-control form-rounded form-control-sm" type="text" id="processLoss"
+                  placeholder="Process Loss">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="sequenceNo"  class="label text-dark">Sequence No</label>
+                <input class="form-control form-rounded form-control-sm" name="sequenceNo"
+                 [(ngModel)]="yarnCountDeterminationService.yarnCountDetermination.sequenceNo"
+                   class="form-control form-rounded form-control-sm" type="text" id="sequenceNo"
+                  placeholder="Sequence No">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+              
+                <input class="form-control" readonly name="stitchLength"
+                
+                   class="form-control form-rounded form-control-sm" type="text" id="stitchLength"
+                  placeholder="S.Length/M.Dia/GG Pop Up">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+              
+                <input class="form-control" readonly name="stitchLength"
+               
+                   class="form-control form-rounded form-control-sm" type="text" id="stitchLength"
+                  placeholder="Process Loss% Break Down">
+              </div>
+            </div>
+        
+         
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<nb-card>
+  <nb-card-header
+  > 
+  Edit Yarn Count Determination 
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="resetSubForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12">
+      <div class="smart-table-container">
+        <form>
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+               
+                <th scope="col">Composition<span class="text-danger">*</span></th>
+                <th scope="col">%<span class="text-danger">*</span></th>
+                <th scope="col">Count</th>
+                <th scope="col">Type</th>
+               
+               
+              </tr>
+            </thead>
+         
+              <tbody 
+              [formGroup]="fg"
+              *ngFor="let fg of YarnCountDetermitionSubForm.controls;let k=index">
+                <tr>
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm" 
+                    (click)="onDeleteSubForm(YarnCountDetermitionSubForm,k)" >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+                   
+    
+                    <td >
+                    
+                      <select class="form-control form-rounded form-control-sm "formControlName="compositionId" required >
+                        <option value="">Select</option>
+                        <option *ngFor="let cml of compositionList" [value]="cml.id">{{cml.compositionName}}</option>
+                      </select>
+                      <div class="text-danger" *ngIf="fg.controls['compositionId'].hasError('required')&& fg.controls['compositionId'].touched" >
+                        Composition is Required.
+                      </div>
+                    </td>
+    
+                   
+  
+                    <td>
+                      
+                      <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        required
+                        placeholder="%"
+                        formControlName="percentage"
+                      />
+                      <div class="text-danger" *ngIf="fg.controls['percentage'].hasError('required')&& fg.controls['percentage'].touched" >
+                        Percentage is Required.
+                      </div>
+                    </td>
+    
+                    <td>
+                      
+                      <select class="form-control form-rounded form-control-sm " formControlName="yarnCountId">
+                        <option value="0">Select</option>
+                        <option *ngFor="let yc of yarnCountList" [value]="yc.id">{{yc.name}}</option>
+                      </select>
+                    </td>
+    
+                    <td>
+                      <select class="form-control form-rounded form-control-sm " formControlName="type">
+                        <option value="0">Select</option>
+                        <option *ngFor="let tp of typeList" [value]="tp.typeName">{{tp.typeName}}</option>
+                      </select>
+                    </td>
+                   
+                </tr>
+                <button *ngIf="k==count-1" [disabled]="form.invalid||YarnCountDetermitionSubForm.invalid" (click)="onSubmit(form,YarnCountDetermitionSubForm)"  type="submit" nbButton>Submit</button>
+              
+              </tbody>
+         
+           
+          </table>
+        </form>
+         
+          
+      </div>
+    </div>
+   
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,129 @@
+<nb-card>
+  <nb-card-header
+  >
+  <button (click)="backToPrecostingFromFabricCost()"
+  class="btn btn-outline-success"><i class="fas fa-arrow-left"></i></button> 
+  Commercial Cost
+ 
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="commlCostDetailsForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:1000px;">
+      <form  >
+        <table class="">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col">Item</th>
+              <th scope="col">Rate In %</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+  
+            </tr>
+          </thead>
+            
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of commlCostInformationForm.controls;let i=index" >
+                <tr>                
+                   <td>   
+                    <button  class="btn btn-light ml-1 "
+                     (click)="onDelete(commlCostInformationForm,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                   </td>
+                    <td>
+                      <select 
+                      formControlName="item"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=''>Select Item</option>
+                      <option  *ngFor="let btnAction of items" 
+                      value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                     
+                 </select>
+                     
+                    </td>
+                    <td>                     
+                      <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        knifeOnlyNumbers
+                        (change)="onChangeRateIn(commlCostInformationForm)"
+                        placeholder="Rate In%"
+                        formControlName="rateIn"
+                      />
+                    </td>    
+                    <td>                 
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      knifeOnlyNumbers
+                      (change)="onChangeAmount(commlCostInformationForm)"
+                      placeholder="Amount"
+                      formControlName="amount"
+                     
+                    />
+                    </td>
+                    <td>
+                      <select 
+                      formControlName="status"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=''>Select Status</option>
+                      <option  *ngFor="let btnAction of Active_Inactive" 
+                      value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                     
+                 </select>
+                    </td>
+                   
+                   
+                </tr>
+                
+                <button *ngIf="i==count-1" 
+                 type="submit"
+                 (click)="recordSubmitcommlCost(commlCostInformationForm)"
+                 [disabled]="fg.invalid"   
+                 nbButton >Submit</button>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td colspan="2" class= "text-right ">Sum</td>
+                  <td > <input
+                   class="form-control form-rounded form-control-sm "
+                   type="text" name="totalRateIn"
+                   readonly
+                   placeholder="Total Rate In"
+                  [(ngModel)]="totalRateIn"
+                 /></td>
+                 <td > <input
+                  class="form-control form-rounded form-control-sm "
+                  type="text" name="totalAmount"
+                  readonly
+                  [(ngModel)]="totalAmount"
+                  placeholder="Total Amount"
+                 
+                /></td>
+                </tr>
+              </tbody>
+             
+           
+           
+             
+           
+         
+        </table>
+       
+      </form>
+      </div>
+    </div>
+    
+ 
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,345 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+   Edit Embellishment Work Order V2 Details</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+          <div class="col-sm-3">
+<div class="form-group">
+ <label for="OrdNo" class="label text-dark">
+   Ord. No</label
+ >
+ <input (dblclick)="onLoadOrderOrJobSelectionFormComponent()"
+   readonly
+   name="ordNo"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.ordNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="OrdNo"
+   placeholder=" Ord. No"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="GarmentsItemId" class="label text-dark">
+      Garments Item
+      </label>
+      <select
+        name="garmentsItemId"
+      
+        #GarmentsItemId="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.garmentsItemId
+        "
+        id="GarmentsItemId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Garments Item</option>
+      <option
+        *ngFor="let item of dropdownValueService.garmentsItemList"
+        value="{{item.id}}"
+        >{{ item.itemName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingNature" class="label text-dark">
+      Booking Nature
+      </label>
+      <select
+        name="bookingNature"
+      
+        #BookingNature="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.bookingNature
+        "
+        id="BookingNature"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Booking Nature</option>
+      <option
+        *ngFor="let item of dropdownValueService.embellishmentNameList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingType" class="label text-dark">
+      Booking Type
+      </label>
+      <select
+        name="bookingType"
+      
+        #BookingType="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.bookingType
+        "
+        id="BookingType"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Booking Type</option>
+      <option
+        *ngFor="let item of dropdownValueService.bookingTypeList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="ColorId" class="label text-dark">
+      Color
+      </label>
+      <select
+        name="colorId"
+      
+        #ColorId="ngModel"
+        [(ngModel)]="
+        embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.colorId
+        "
+        id="ColorId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Color</option>
+      <option
+        *ngFor="let item of dropdownValueService.colorList"
+        value="{{item.id}}"
+        >{{ item.colorName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+
+
+     <div class="col-sm-3">
+<div class="form-group">
+ <label for="OrderQty" class="label text-dark">
+   Order Qty (Pcs)</label
+ >
+ <input
+   name="orderQty"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.orderQty
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="OrderQty"
+   placeholder=" Order Qty (Pcs)"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="ReqQtyDZN" class="label text-dark">
+   Req Qty /DZN</label
+ >
+ <input
+   name="reqQtyDZN"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.reqQtyDZN
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="ReqQtyDZN"
+   placeholder=" Req Qty /DZN"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="CuWoqDZN" class="label text-dark">
+   CU WOQ/DZN</label
+ >
+ <input
+   name="cuWoqDZN"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.cuWoqDZN
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="CuWoqDZN"
+   placeholder=" CU WOQ/DZN"
+ />
+</div>
+</div>
+
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="BalQtyDZN" class="label text-dark">
+   Bal Qty/DZN</label
+ >
+ <input
+   name="balQtyDZN"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.balQtyDZN
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="BalQtyDZN"
+   placeholder=" Bal Qty/DZN"
+ />
+</div>
+</div>
+
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="WoqDZN" class="label text-dark">
+   WOQ /DZN</label
+ >
+ <input
+   name="woqDZN"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.woqDZN
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="WoqDZN"
+   placeholder=" WOQ /DZN"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="RateDZN" class="label text-dark">
+   Rate/DZN</label
+ >
+ <input
+   name="rateDZN"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.rateDZN
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="RateDZN"
+   placeholder=" Rate/DZN"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="AmountDZN" class="label text-dark">
+   Amount/DZN</label
+ >
+ <input
+   name="amountDZN"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.amountDZN
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="AmountDZN"
+   placeholder=" Amount/DZN"
+ />
+</div>
+</div>
+
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DelvDate" class="label text-dark">
+        Delv. Date
+      </label>
+      <input readonly
+        name="delvDate"
+        
+        #delvDate="ngModel"
+        [(ngModel)]="
+          embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.delvDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DelvDate"
+        [nbDatepicker]="DelvDate"
+        placeholder="Delv. Date"
+      />
+      
+      <nb-datepicker #DelvDate></nb-datepicker>
+    </div>
+  </div> 
+
+  <div class="col-sm-9">
+    <div class="form-group">
+      <label for="description" class="label text-dark">
+        Description
+      </label>
+      <textarea
+        name="description"
+        
+        #description="ngModel"
+        [(ngModel)]="
+          embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.description
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="Description"
+        
+        placeholder="Description"
+        rows="1"
+      ></textarea>
+
+      
+     
+    </div>
+  </div> 
+  <!-- <div class="col-sm-3">
+<div class="form-group">
+ <label for="EmbellishmentWorkOrderV2Id" class="label text-dark">
+   MasterId</label
+ >
+ <input
+   name="embellishmentWorkOrderV2Id"    
+   [(ngModel)]="
+   embellishmentWorkOrderV2DetailsService.embellishmentWorkOrderV2Details.embellishmentWorkOrderV2Id
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="EmbellishmentWorkOrderV2Id"
+   placeholder=" MasterId"
+ />
+</div>
+</div> -->
+  
+</div>
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

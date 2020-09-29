@@ -1,0 +1,41 @@
+export class BuyerProfile {
+    id:number;
+    contactName: string ;
+    shortName: string ;
+    contactPerson: string ;
+    designation: string ;
+    exportersRef: string ;
+    email: string ;
+    httpWww: string ;
+    addressOne: string ;
+    addressTwo: string ;
+    addressThree: string ;
+    addressFour: string ;
+    countryId : any;
+    partyTypeIds: string ;
+    tagCompany: string ;
+    linkToSupplier: string ;
+    creditLimitDays : number ;
+    crditLimitAmount : any;
+    crditLimitAmountType : string ;
+    discountMethod : string ;
+    secuirityDeducted : string ;
+    vatToBeDeducted : string ;
+    aitToBeDeducted : string ;
+    remark :string ;
+    marketingTeamId : number;
+    sewingEffiMkt:number;
+    sewingEffiPlaning:number;
+    deffdLcCost:number;
+    cutOffUsed : string ;
+    controlDelivery : string ;
+    deliveryBufferDays : number;
+    minQuotedProfit :number;
+    minBudgetedProfit :number;
+    status : string ;
+    commercialInvoice: string ;
+    tagSample: string ;
+    imagePath:string;
+    imageName :string;
+}
+

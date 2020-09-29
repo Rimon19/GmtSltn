@@ -1,0 +1,413 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Trims Booking</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BookingNo" class="label text-dark">
+                  Booking No </label
+                >
+                <input readonly
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="BookingNo"
+                  placeholder="Booking No"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BookingMonth" class="label text-dark">
+                  Booking Month <span class="text-danger">*</span>
+                </label>
+                <select id="BookingMonth" name="bookingMonth"
+                 #BookingMonth="ngModel" required 
+                [(ngModel)]="
+                shortTrimsBookingService.shortTrimsBooking.bookingMonth
+              "
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select   Booking Month</option>
+                  <option
+                    *ngFor="let bookinglist of bookingMonthList"
+                    [value]="bookinglist.monthName"
+                    >{{ bookinglist.monthName }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                shortTrimsBookingService.shortTrimsBooking.bookingMonth ==
+                    '' && BookingMonth.touched
+                "
+              >
+              Booking Month is required
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BookingYear" class="label text-dark">
+                  Booking Year<span class="text-danger">*</span></label
+                >
+                <select name="bookingYear"
+                #BookingYear="ngModel" required 
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.bookingYear
+             "
+                id="BookingYear"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select  Booking Year</option>
+                  <option
+                    *ngFor="let bookingYearslist of bookingYearsList"
+                    [value]="bookingYearslist.year"
+                    >{{ bookingYearslist.year }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                shortTrimsBookingService.shortTrimsBooking.bookingYear ==
+                    '' && BookingYear.touched
+                "
+              >
+              Booking Year is required
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="JobNo" class="label text-dark">
+                  Job No<span class="text-danger">*</span></label
+                >
+                <select name="jobNo"
+                #JobNo="ngModel" required 
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.jobNo
+             " id="JobNo"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Job No</option>
+                  <option
+                    *ngFor="let jobNolist of orderInfoList"
+                    [value]="jobNolist.jobNo"
+                    >{{ jobNolist.jobNo }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                shortTrimsBookingService.shortTrimsBooking.jobNo ==
+                    '' && JobNo.touched
+                "
+              >
+              Job No is required
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CompanyName" 
+                class="label text-dark">Company Name<span class="text-danger">*</span>
+                   </label>
+                   <select name="companyNameId"
+                   #CompanyNameId="ngModel" required 
+                  [(ngModel)]="
+                  shortTrimsBookingService.shortTrimsBooking.companyNameId
+                "
+                  id="CompanyName"
+                   class="form-control form-rounded form-control-sm">
+                     <option value="">Select Company Name</option>
+                     <option
+                       *ngFor="let countrylist of companyListItems"
+                       [value]="countrylist.compID"
+                       >{{ countrylist.company_Name }}</option
+                     >
+                   </select>
+                   <div
+                   class="text-left text-danger text-responsive"
+                   *ngIf="
+                   shortTrimsBookingService.shortTrimsBooking.companyNameId ==
+                       '' &&CompanyNameId.touched
+                   "
+                 >
+                 Company Name is required
+                 </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BuyerName" class="label text-dark"> Buyer Name
+                  <span class="text-danger">*</span> </label>
+                <select name="buyerNameId"
+                #BuyerNameId="ngModel" required 
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.buyerNameId
+             " id="BuyerName"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Buyer Name</option>
+                  <option
+                    *ngFor="let countrylist of buyerListItems"
+                    [value]="countrylist.id"
+                    >{{ countrylist.contactName }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                shortTrimsBookingService.shortTrimsBooking.buyerNameId ==
+                    '' &&BuyerNameId.touched
+                "
+              >
+              Buyer Name is required
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="BookingDate" class="label text-dark"> Booking Date	 </label>
+                <input name="bookingDate"
+                #BookingDate="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.bookingDate
+             " readonly
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="BookingDate"
+                  [nbDatepicker]="BookingDate"
+                  placeholder="Booking Date"
+                />
+                <nb-datepicker #BookingDate></nb-datepicker>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="PayMode" class="label text-dark">Pay Mode
+                  <span class="text-danger">*</span>
+                </label>
+                <select name="payMode"
+                #PayMode="ngModel" required 
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.payMode
+             "
+                 id="PayMode"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Pay Mode</option>
+                  <option
+                    *ngFor="let payModelist of payModeList"
+                    [value]="payModelist.value"
+                    >{{ payModelist.value }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                shortTrimsBookingService.shortTrimsBooking.payMode ==
+                    '' &&PayMode.touched
+                "
+              >
+              Pay Mode is required
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="DeliveryDate" 
+                class="label text-dark"> Delivery Date</label>
+                <input name="deliveryDate"
+                #DeliveryDate="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.deliveryDate
+             " readonly
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  [nbDatepicker]="DeliveryDate"
+                  id="DeliveryDate"
+                  placeholder="Delivery Date"
+                />
+                <nb-datepicker #DeliveryDate></nb-datepicker>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Currency" class="label text-dark"> Currency</label>
+                <select name="currencyId" 
+                #CurrencyId="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.currencyId
+             " id="Currency"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Currency</option>
+                  <option
+                    *ngFor="let currencylist of currencyList"
+                    [value]="currencylist.id"
+                    >{{ currencylist.discountMethodName}}</option
+                  >
+                </select>
+               
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ExchangeRate" class="label text-dark"> Exchange Rate </label>
+                <input name="exchangeRate"
+                #exchangeRate="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.exchangeRate
+             "
+                class="form-control form-rounded form-control-sm"
+                type="number"
+                id="ExchangeRate"
+                placeholder="Exchange Rate"
+              />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SupplierName" class="label text-dark"> Supplier Name <span class="text-danger">*</span> </label>
+                <select name="supplierNameId" required
+                #SupplierNameId="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.supplierNameId
+             " id="SupplierName"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Supplier Name
+                   
+                  </option>
+                  <option
+                    *ngFor="let supplierList of supplierProfileList"
+                    [value]="supplierList.id"
+                    >{{ supplierList.supplierName}}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                shortTrimsBookingService.shortTrimsBooking.supplierNameId ==
+                    '' &&SupplierNameId.touched
+                "
+              >
+              Supplier Name is required
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Source" class="label text-dark">
+                  Source </label
+                >
+                <select name="source"
+                #source="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.source
+             "  id="Source"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Source</option>
+                  <option
+                    *ngFor="let sourcelist of sourceList"
+                    [value]="sourcelist.value"
+                    >{{ sourcelist.value }}</option
+                  >
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SelectItem" class="label text-dark">
+                  Select Item	
+                </label>
+                <input   readonly
+                class="form-control form-rounded form-control-sm"
+                type="text"
+                id="SelectItem"
+                placeholder="Select Item"
+              />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Attention" class="label text-dark">
+                  Attention</label
+                >
+                <input  name="attention"
+                #attention="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.attention
+             " 
+                class="form-control form-rounded form-control-sm"
+                type="text"
+                id="Attention"
+                placeholder="Attention"
+              />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ReadyToApproved" class="label text-dark">
+                  Ready To Approved</label
+                >
+                <select  name="readyToApproved"
+                #readyToApproved="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.readyToApproved
+             "  id="ReadyToApproved"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Ready To Approved</option>
+                  <option 
+                    *ngFor="let readyToApprovedlist of readyToApprovedList"
+                    [value]="readyToApprovedlist.value"
+                    >{{ readyToApprovedlist.value }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="MaterialSource" class="label text-dark">
+                  Material Source<span class="text-danger">*</span>	 </label
+                >
+                <select required name="materialSource"
+                #materialSource="ngModel"  
+               [(ngModel)]="
+               shortTrimsBookingService.shortTrimsBooking.materialSource
+             "  id="MaterialSource"
+                class="form-control form-rounded form-control-sm">
+                  <option value="">Select Material Source</option>
+                  <option
+                    *ngFor="let materialSourcelist of materialSourceList"
+                    [value]="materialSourcelist.value"
+                    >{{ materialSourcelist.value }}</option
+                  >
+                </select>
+                <div
+                class="text-left text-danger text-responsive"
+                *ngIf="
+                shortTrimsBookingService.shortTrimsBooking.materialSource ==
+                    '' &&materialSource.touched
+                "
+              >
+              Material Source  is required
+              </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" 
+          [disabled]="form.invalid" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>  
+        <button (click)="backToExpenseInfo()"
+        class="btn btn-outline-success "
+        
+      >
+      <i class="fas fa-arrow-left"></i>
+      </button> Create Daily Expanse 
+    </nb-card-header>
+        <nb-card-body>
+          <form>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                        <label for="date" class="label">Select Date</label>               
+                        <input
+                        class="form-control"
+                        [matDatepicker]="picker"
+                        name="date" 
+                         #date="ngModel"
+                        readonly
+                        [(ngModel)]="dailyIncomeExpanse.date"
+                         
+                         placeholder="{{dailyIncomeExpanse.date}}"
+                        required >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                     
+                          <div class="text-left text-danger"
+                          *ngIf="date.invalid&&date.touched">
+                          Date is Required !
+                       
+                       </div>
+                        
+                </div>
+                
+              </div>
+          
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="totalExpense" class="label">Total Expense</label>
+                   <input name="totalExpense"  #totalExpense="ngModel"
+                   [(ngModel)]="dailyIncomeExpanse.totalExpense" type="text"  class="form-control"
+                     id="totalExpense" placeholder="Total Expense" required>
+                     <div class="text-left text-danger"
+                     *ngIf="totalExpense.invalid&&totalExpense.touched">
+                     Total Expense is Required !
+                   </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="purpose" class="label">Purpose</label>
+                  <input name="purpose"  #purpose="ngModel"
+                  [(ngModel)]="dailyIncomeExpanse.purpose" type="text" class="form-control" class="form-control"
+                    id="purpose" placeholder="Purpose" required>
+                    <div class="text-left text-danger"
+                    *ngIf="purpose.invalid&&purpose.touched">
+                  Purpose is Required !
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+            
+            
+          
+             <div class="row">
+              <div class="col-sm-3 ">
+                <div class="form-group ">
+                  <button *ngIf="editkey==null" class="mr-1" nbButton (click)="save(dailyIncomeExpanse)">Submit</button>
+                  <button *ngIf="editkey!=null" class="mr-1" nbButton (click)="edit(dailyIncomeExpanse)">Update</button>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                 
+                </div>
+              </div>
+            </div> 
+            
+          </form>
+        </nb-card-body>
+     
+    </nb-card>
+  </div>
+</div>

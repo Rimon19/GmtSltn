@@ -1,0 +1,11 @@
+CREATE TABLE public."AccountingYearSubInfo"
+(
+    "Id"  serial primary key,
+    "StartingDate" character varying(100),
+    "EndingDate" character varying(100),
+    "Period" character varying(100),
+    "Locked" boolean,
+    "AccountingYearId" integer
+   
+    
+)

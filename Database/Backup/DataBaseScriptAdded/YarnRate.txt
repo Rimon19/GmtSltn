@@ -1,0 +1,11 @@
+CREATE TABLE public."YarnRate"
+(
+     "Id"  serial primary key,
+    "SupplierId" integer,
+    "YarnCountId" integer,
+    "CompositionId" integer,
+    "Percentage" numeric,
+    "Type" character varying(100),
+    "RateOrKg" numeric,
+    "EffectiveDate" character varying(100)
+)

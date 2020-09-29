@@ -1,0 +1,5 @@
+ create table public."Department"(
+ "Id" serial primary key,
+ "DepartmentName" character varying(100)
+
+)

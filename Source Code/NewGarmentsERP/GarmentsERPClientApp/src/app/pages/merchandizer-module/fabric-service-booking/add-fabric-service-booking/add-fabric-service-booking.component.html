@@ -1,0 +1,468 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Fabric Service Booking</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+       
+          <div class="row">
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingMonth" class="label text-dark">
+      Booking Month
+      <span class="text-danger">*</span> </label>
+      <select
+        name="bookingMonth"
+        required
+        #BookingMonth="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.bookingMonth
+        "
+        id="BookingMonth"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Booking Month</option>
+      <option
+        *ngFor="let item of dropdownValueService.monthList"
+        value="{{item.monthNumber}}"
+        >{{ item.monthName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        fabricServiceBookingService.fabricServiceBooking.bookingMonth== '' && BookingMonth.touched
+        "
+      >
+      Booking Month is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingYear" class="label text-dark">
+      Booking Year
+      <span class="text-danger">*</span> </label>
+      <select
+        name="bookingYear"
+        required
+        #BookingYear="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.bookingYear
+        "
+        id="BookingYear"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Booking Year</option>
+      <option
+        *ngFor="let item of dropdownValueService.yearList"
+        value="{{item.id}}"
+        >{{ item.year}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        fabricServiceBookingService.fabricServiceBooking.bookingYear== '' && BookingYear.touched
+        "
+      >
+      Booking Year is required
+      </div>
+    </div>
+  </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="BookingNo" class="label text-dark">
+   Booking No</label
+ >
+ <input
+   name="bookingNo"    
+   [(ngModel)]="
+   fabricServiceBookingService.fabricServiceBooking.bookingNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="BookingNo"
+   placeholder=" Booking No"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="OrderNo" class="label text-dark">
+   Order No</label
+ >
+ <input
+   name="orderNo"    
+   [(ngModel)]="
+   fabricServiceBookingService.fabricServiceBooking.orderNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="OrderNo"
+   placeholder=" Order No"
+ />
+</div>
+</div>
+
+</div>
+
+<div class="row">
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="JobNo" class="label text-dark">
+   Job No</label
+ >
+ <input
+   name="jobNo"    
+   [(ngModel)]="
+   fabricServiceBookingService.fabricServiceBooking.jobNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="JobNo"
+   placeholder=" Job No"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="BuyerProfileId" class="label text-dark">
+      Buyer Name
+      </label>
+      <select
+        name="buyerProfileId"
+      
+        #BuyerProfileId="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.buyerProfileId
+        "
+        id="BuyerProfileId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Buyer Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.buyerList"
+        value="{{item.id}}"
+        >{{ item.contactName}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="CurrencyId" class="label text-dark">
+      Currency
+      <span class="text-danger">*</span> </label>
+      <select
+        name="currencyId"
+        required
+        #CurrencyId="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.currencyId
+        "
+        id="CurrencyId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Currency</option>
+      <option
+        *ngFor="let item of dropdownValueService.currencyList"
+        value="{{item.id}}"
+        >{{ item.discountMethodName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        fabricServiceBookingService.fabricServiceBooking.currencyId== '' && CurrencyId.touched
+        "
+      >
+      Currency is required
+      </div>
+    </div>
+  </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="ExchangeRate" class="label text-dark">
+   Exchange Rate</label
+ >
+ <input
+   name="exchangeRate"    
+   [(ngModel)]="
+   fabricServiceBookingService.fabricServiceBooking.exchangeRate
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="ExchangeRate"
+   placeholder=" Exchange Rate"
+ />
+</div>
+</div>
+
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+    <div class="form-group">
+      <label for="BookingDate" class="label text-dark">
+        Booking Date
+      </label>
+      <input readonly
+        name="bookingDate"
+        
+        #bookingDate="ngModel"
+        [(ngModel)]="
+          fabricServiceBookingService.fabricServiceBooking.bookingDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="BookingDate"
+        [nbDatepicker]="BookingDate"
+        placeholder="Booking Date"
+      />
+      
+      <nb-datepicker #BookingDate></nb-datepicker>
+    </div>
+  </div> <div class="col-sm-3">
+    <div class="form-group">
+      <label for="DeliveryDate" class="label text-dark">
+        Delivery Date
+      </label>
+      <input readonly
+        name="deliveryDate"
+        
+        #deliveryDate="ngModel"
+        [(ngModel)]="
+          fabricServiceBookingService.fabricServiceBooking.deliveryDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="DeliveryDate"
+        [nbDatepicker]="DeliveryDate"
+        placeholder="Delivery Date"
+      />
+      
+      <nb-datepicker #DeliveryDate></nb-datepicker>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PayMode" class="label text-dark">
+      Pay Mode
+      <span class="text-danger">*</span> </label>
+      <select
+        name="payMode"
+        required
+        #PayMode="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.payMode
+        "
+        id="PayMode"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Pay Mode</option>
+      <option
+        *ngFor="let item of dropdownValueService.payModeList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        fabricServiceBookingService.fabricServiceBooking.payMode== '' && PayMode.touched
+        "
+      >
+      Pay Mode is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Source" class="label text-dark">
+      Source
+      </label>
+      <select
+        name="source"
+      
+        #Source="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.source
+        "
+        id="Source"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.sourceList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+   <div class="form-group">
+     <label for="SupplierName" class="label text-dark">
+     Supplier Name<span class="text-danger">*</span></label
+     >
+     <input
+       required
+       name="supplierName"
+       #SupplierName="ngModel"
+       [(ngModel)]="
+       fabricServiceBookingService.fabricServiceBooking.supplierName
+       "
+       type="text"
+       class="form-control form-rounded form-control-sm"
+       id="SupplierName"
+       placeholder="Supplier Name"
+     />
+     <div
+       class="text-left text-danger text-responsive"
+       *ngIf="
+       fabricServiceBookingService.fabricServiceBooking.supplierName ==
+           '' && SupplierName.touched
+       "
+     >
+     Supplier Name is required
+     </div>
+   </div>
+ </div> <div class="col-sm-3">
+<div class="form-group">
+ <label for="Attention" class="label text-dark">
+   Attention</label
+ >
+ <input
+   name="attention"    
+   [(ngModel)]="
+   fabricServiceBookingService.fabricServiceBooking.attention
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="Attention"
+   placeholder=" Attention"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="FabricDescriptionId" class="label text-dark">
+      Fabric Description
+      </label>
+      <select
+        name="fabricDescriptionId"
+      
+        #FabricDescriptionId="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.fabricDescriptionId
+        "
+        id="FabricDescriptionId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Fabric Description</option>
+      <option
+        *ngFor="let item of dropdownValueService.fabricDescriptionList"
+        value="{{item.id}}"
+        >{{ item.fabNature}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+    
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Process" class="label text-dark">
+      Process
+      <span class="text-danger">*</span> </label>
+      <select
+        name="process"
+        required
+        #Process="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.process
+        "
+        id="Process"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Process</option>
+      <option
+        *ngFor="let item of dropdownValueService.productionProcessList"
+        value="{{item.id}}"
+        >{{ item.productionProcessName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        fabricServiceBookingService.fabricServiceBooking.process== '' && Process.touched
+        "
+      >
+      Process is required
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Sensitivity" class="label text-dark">
+      Sensitivity
+      <span class="text-danger">*</span> </label>
+      <select
+        name="sensitivity"
+        required
+        #Sensitivity="ngModel"
+        [(ngModel)]="
+        fabricServiceBookingService.fabricServiceBooking.sensitivity
+        "
+        id="Sensitivity"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Sensitivity</option>
+      <option
+        *ngFor="let item of dropdownValueService.sensitivityList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        fabricServiceBookingService.fabricServiceBooking.sensitivity== '' && Sensitivity.touched
+        "
+      >
+      Sensitivity is required
+      </div>
+    </div>
+  </div>
+
+</div>
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

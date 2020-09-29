@@ -1,0 +1,13 @@
+create table public."EmpDesignation"(
+"Id" serial primary key,
+"Designation" character varying(100)
+)
+
+insert into public."EmpDesignation"(
+"Designation" )
+values('Asst. Manager'),
+('Incharge'),
+('GM'),
+('AGM');
+
+select * from public."EmpDesignation"

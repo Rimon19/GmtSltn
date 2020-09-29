@@ -1,0 +1,334 @@
+
+    
+    
+    <div >
+        <nb-card>
+          <nb-card-header>Bank Info Entry</nb-card-header>
+           <nb-card-body>
+       
+              
+              <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+           
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="bankName" class="label">Bank Name<span class="text-danger">*</span></label>
+                <input required name="bankName" #BankName="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.bankName"
+                class="form-control" type="text" 
+                id="bankName" placeholder="Bank Name">
+                <div class="text-left text-danger"
+               *ngIf="bankInfoService.bankInfo.bankName==''&&BankName.touched">
+               Bank Name is equired
+             </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="branchName" class="label">Branch Name<span class="text-danger">*</span></label>
+                <input required name="branchName" #BranchName="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.branchName"
+                class="form-control" type="text" 
+                id="branchName" placeholder="Branch Name">
+                <div class="text-left text-danger"
+               *ngIf="bankInfoService.bankInfo.branchName==''&&BranchName.touched">
+               Branch Name  is equired
+             </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="bankCode" class="label">Bank Code<span class="text-danger">*</span></label>
+                <input required name="bankCode" #BankCode="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.bankCode"
+                class="form-control" type="text" 
+                id="bankCode" placeholder="Bank Code">
+                <div class="text-left text-danger"
+               *ngIf="bankInfoService.bankInfo.bankCode==''&&BankCode.touched">
+               Bank Code is equired
+             </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="address" class="label">Address</label>
+                <input  name="address" #address="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.address"
+                class="form-control" type="text" 
+                id="address" placeholder="Address">
+                
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="email" class="label">Email</label>
+                <input  name="email" #email="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.email"
+                class="form-control" type="text" 
+                id="email" placeholder="Email">
+              
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="swiftCode" class="label">Swift Code</label>
+                <input  name="swiftCode" #swiftCode="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.swiftCode"
+                class="form-control" type="text" 
+                id="swiftCode" placeholder="Swift Code">
+             
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="webSite" class="label">WebSite</label>
+                <input  name="webSite" #WebSite="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.webSite"
+                class="form-control" type="text" 
+                id="webSite" placeholder="WebSite">
+               
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="contactPerson" class="label">Contact Person</label>
+                <input  name="contactPerson" #ContactPerson="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.contactPerson"
+                class="form-control" type="text" 
+                id="contactPerson" placeholder="Contact Person">
+                
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="phoneNo" class="label">Phone No</label>
+                <input  name="phoneNo" #PhoneNo="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.phoneNo"
+                class="form-control" type="text" 
+                id="phoneNo" placeholder="Phone No">
+                
+              </div>
+              
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label for="bankType" class="label">Bank Type</label>
+               <div class="row">
+                
+                <input type="checkbox"  name="lienBank" #LienBank="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.lienBank"
+               
+                id="lienBank" (change)="lienBankCheckValue(bankInfoService.bankInfo.lienBank?'lienBank':'')" />
+                <label class="label">&nbsp; Lien Bank &nbsp;&nbsp;&nbsp;</label>
+
+
+                
+                <input type="checkbox"  name="issuingBank" #IssuingBank="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.issuingBank"
+               
+                id="issuingBank" (change)="issuingBankCheckValue(bankInfoService.bankInfo.issuingBank?'IssuingBank':'')" />
+                <label class="label"> &nbsp; Issuing Bank &nbsp;&nbsp;&nbsp;</label>
+
+                <input type="checkbox"   name="salaryBank" #SalaryBank="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.salaryBank"
+               
+                id="salaryBank" (change)="salaryBankCheckValue(bankInfoService.bankInfo.salaryBank?'SalaryBank':'')" />
+                <label class="label"> &nbsp; Salary Bank &nbsp;&nbsp;&nbsp;</label>
+
+                <input type="checkbox"  name="advisingBank" #AdvisingBank="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.advisingBank"
+               
+                id="advisingBank" (change)="advisingBankCheckValue(bankInfoService.bankInfo.advisingBank?'AdvisingBank':'')" />
+                <label class="label"> &nbsp; Advising Bank &nbsp;&nbsp;&nbsp;</label>
+              </div>
+              </div>
+              
+            </div>
+        
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="remarks" class="label">Remarks</label>
+                <input  name="remarks" #Remarks="ngModel"
+                [(ngModel)]="bankInfoService.bankInfo.remarks"
+                class="form-control" type="text" 
+                id="remarks" placeholder="Remarks">
+                
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label">Status</label>
+                   <select name="status" #Status="ngModel"
+                   [(ngModel)]="bankInfoService.bankInfo.status"
+                    id="Status" 
+                    class="form-control text-responsive" >
+                   <option value=''>Select Status</option>
+                   <option  *ngFor="let btnAction of Active_Inactive" 
+                   value="{{btnAction.val}}">{{btnAction.btn}}</option> 
+                   
+               </select>
+               
+              </div>
+            </div>
+
+        
+            
+          </div>
+          <button type="submit" [disabled]="form.invalid" nbButton>Submit</button>
+             </form>
+       
+          </nb-card-body>
+         </nb-card>
+   </div>
+       
+        <div >
+          <nb-card>
+            <nb-card-header
+            >
+           
+            Account Info
+            <div class="col-md-4">
+              Search by Bank Name
+            <select class="form-control form-rounded form-control-sm"  [(ngModel)]="BankId" (change)="searchAccountByBankId(BankId)">
+              <option value="0">Select</option>
+              <option *ngFor="let item of bankName"  value="{{item.id}}">{{item.bankName}}</option>
+          </select>
+        </div>
+           
+            
+           
+          </nb-card-header>
+            <nb-card-body>
+              <div class="col-md-12" style="overflow-x: scroll;">
+                <div class="smart-table-container" style="width:1000px;">
+                  <header>
+                    <span *ngIf="notification" class="elementToFadeInAndOut">
+                      <i class="fas fa-check-circle {{notification.class}}"></i>
+                      {{notification.message}}
+                  </span>
+                  </header>
+                <form >
+                  <table class=""  >
+             <thead>
+                 <tr>
+                  <td>
+                    <button  
+                    class="btn btn-outline-success float-right"
+                    (click)="refreshList()"
+                  >
+                    <i class="fa fa-list"></i>
+                  </button> 
+                    <button
+                    class="btn btn-outline-success float-right"
+                    (click)="addBankAccountForm()"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                   </td>
+                 <td>Company Name</td>
+                 <td>Bank Name</td>
+                 <td>Account Type</td>
+                 <td>Account No</td>
+                 <td>Currency</td>
+                 <td>Loan Limit</td>
+                 <td>Limit Type</td>
+                 <td>Chart Of Account</td>
+                 <td>Status</td>
+                
+                
+                   
+                  </tr>
+            </thead>
+                
+                 <tbody [formGroup]="fg"
+                 *ngFor="let fg of bankAccountForms.controls;let i=index"  >
+
+                 <tr>
+                  <td>
+                  
+                    <button  class="btn btn-light ml-1 "
+                    (click)="onDelete(fg.get('id').value,i)"
+                   >
+                       <i class="far fa-trash-alt fa-lg text-danger"></i>
+                       
+                   </button>
+                   <button 
+                   *ngIf="i==count-1" 
+                 type="submit"
+                 (click)="recordSubmit(bankAccountForms.value)"
+                 [disabled]="fg.invalid"   
+                 nbButton >
+                 {{fg.get('id').value==0?'Submit':'Update'}}</button>
+                 <input  formControlName="id" type="hidden">
+                  </td>
+                   <td>
+                    <select class="form-control form-rounded form-control-sm" formControlName="companyId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let item of company" value="{{item.compId}}">{{item.companyName}}</option>
+                  </select>
+                   </td>
+                   <td>
+                    <select class="form-control form-rounded form-control-sm" formControlName="bankInfoId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let item of bankName" value="{{item.id}}">{{item.bankName}}</option>
+                  </select>
+                   </td>
+                   <td>
+                    <select class="form-control form-rounded form-control-sm" formControlName="accountTypeId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let item of accountType" value="{{item.id}}">{{item.accountTypeName}}</option>
+                  </select>
+                   </td>
+                   <td>
+                    <input class="form-control form-rounded form-control-sm" formControlName="accountNo">
+                   </td>
+                   <td>
+                    <select class="form-control form-rounded form-control-sm" formControlName="currencyId">
+                      <option value="0">Select</option>
+                      <option *ngFor="let item of currency" value="{{item.id}}">{{item.discountMethodName}}</option>
+                  </select>
+
+                   </td>
+                   <td>
+                    <input class="form-control form-rounded form-control-sm" formControlName="loanLimit">
+                   </td>
+                   <td>
+                    <select class="form-control form-rounded form-control-sm" formControlName="limitType">
+                      <option value="0">Select</option>
+                      <option *ngFor="let item of limitType" value="{{item.val}}">{{item.btn}}</option>
+                  </select>
+                   </td>
+                   <td>
+                    <input class="form-control form-rounded form-control-sm" formControlName="chartOfAccount">
+                   </td>
+                   <td>
+                    <select class="form-control form-rounded form-control-sm" formControlName="status">
+                      <option value="0">Select</option>
+                      <option *ngFor="let item of Active_Inactive" value="{{item.val}}">{{item.btn}}</option>
+                  </select>
+                   </td>
+                   
+                 </tr>
+                
+                 </tbody>
+            
+                </table>
+       
+              </form>
+              </div>
+            </div>
+            
+         
+          </nb-card-body>
+        </nb-card>
+        </div>
+

@@ -1,0 +1,28 @@
+<h1>Hello, world!</h1>
+<button type="button" class="btn btn-info btn-lg" (click)="openModalDialog()"> Open Modal Dialog!</button>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true"></span></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div>
+            <input type="text" class="textbox" name="name1" />
+          </div>
+          <div>
+            <input type="text" class="textbox" name="name2" />
+          </div>
+          <div>
+            <input type="text" class="textbox" name="name3" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+ </div>

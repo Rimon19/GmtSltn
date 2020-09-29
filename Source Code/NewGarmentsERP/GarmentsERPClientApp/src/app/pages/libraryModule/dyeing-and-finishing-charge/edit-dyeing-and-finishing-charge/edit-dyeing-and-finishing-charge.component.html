@@ -1,0 +1,198 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Dyeing and Finishing Charge
+    </nb-card-header>
+      
+      <nb-card-body>
+        <form #form="ngForm" >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="companyName" class="label">
+                  Company Name</label
+                >
+                <select name="companyName" #companyName="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.companyName"  
+                id="companyName" class="form-control text-responsive">
+                  <option value="">Select Company Name</option>
+                  <option
+                    *ngFor="let btnAction of company"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="constCompo" class="label"> Const. Compo. </label>
+                <input name="constCompo" #constCompo="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.constCompo"  
+                  class="form-control"
+                  type="text"
+                  id="constCompo"
+                  placeholder="Const. Compo. "
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="processType" class="label"> Process Type</label>
+                <select name="processType" #processType="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.processType"  
+                id="processType" class="form-control text-responsive">
+                  <option value="">Select Process Type</option>
+                  <option
+                    *ngFor="let btnAction of process"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="processName" class="label"> Process Name</label>
+                <select name="processName" #processName="ngModel" id="processName"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.processName"  
+                class="form-control text-responsive">
+                  <option value="">Select Process Name</option>
+                  <option
+                    *ngFor="let processNamelist of processname"
+                    [value]="processNamelist.val"
+                    >{{ processNamelist.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="color" class="label"> Color</label>
+                <input name="color" #color="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.color"  
+                  class="form-control"
+                  type="text"
+                  id="color"
+                  placeholder="color "
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="widthDiatype" class="label"> Width/Dia type </label>
+                <select name="widthDiatype" #widthDiatype="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.widthDiatype"  
+                id="widthDiatype" class="form-control text-responsive">
+                  <option value="">Select width Dia Type</option>
+                  <option
+                    *ngFor="let btnAction of widthdia"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="inHouseRate" class="label"> In House Rate</label>
+                <input name="inHouseRate" #inHouseRate="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.inHouseRate"  
+                  class="form-control"
+                  type="text"
+                  id="inHouseRate"
+                  placeholder="In House Rate"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="uomId" class="label"> UOM</label>
+                <select name="uomId" #uomId="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.uomId"  
+                id="uomId" class="form-control text-responsive">
+                  <option [ngValue]=0>Select UOM </option>
+                  <option *ngFor="let orderUOMList of orderUOM" [value]="orderUOMList.id">{{orderUOMList.uomName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ratetype" class="label"> Rate type</label>
+                <select name="ratetype" #ratetype="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.ratetype"  
+                id="ratetype" class="form-control text-responsive">
+                  <option value="">Select Rate type</option>
+                  <option
+                    *ngFor="let btnAction of rate"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="customerRate" class="label"> Customer Rate </label>
+                <input name="customerRate" #customerRate="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.customerRate"  
+                  class="form-control"
+                  type="text"
+                  id="customerRate"
+                  placeholder="Customer Rate"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="subconBuyer" class="label"> Subcon Buyer </label>
+                <select name="subconBuyer" #subconBuyer="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.subconBuyer"  
+                id="subconBuyer" class="form-control text-responsive">
+                  <option value="">Select Subcon Buyer</option>
+                  <option
+                    *ngFor="let btnAction of subcon"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label"> Status </label>
+                <select name="status" #status="ngModel"
+                [(ngModel)]="dyeingAndFinishingChargeService.dyeingAndFinishingCharge.status"  
+                id="Status" class="form-control text-responsive">
+                  <option value="">Select Status</option>
+                  <option
+                    *ngFor="let btnAction of Active_Inactive"
+                    value="{{ btnAction.val }}"
+                    >{{ btnAction.btn }}</option
+                  >
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" (click)="update(dyeingAndFinishingChargeService.dyeingAndFinishingCharge)"
+           nbButton>Update</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+

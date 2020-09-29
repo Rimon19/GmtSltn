@@ -1,0 +1,84 @@
+
+ <nb-card>
+
+ <div class="col-md-12" style = "overflow-x: scroll;">
+     <div class="example-header">
+         <h5>Country Information</h5>
+         <div >
+        <mat-form-field>
+        <mat-label >Search All Here ..</mat-label>
+          <input
+            matInput
+            #filter
+            (change)="applyFilter($event.target.value)"
+           
+          />
+        
+         
+          <button
+            mat-icon-button
+            matSuffix
+            aria-label="clear"
+            *ngIf="filter.value"
+            (click)="filter.value = ''; applyFilter('')"
+          >
+            <mat-icon>close</mat-icon>
+            
+          
+          </button>
+         
+          
+          <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
+        </mat-form-field>
+        <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+         </div>
+       </div>
+     
+       <div >
+        <mat-form-field *ngFor="let filter of filterSelectObj" >
+        <mat-label >Search {{filter.name}}</mat-label>
+          <input  matInput  
+          name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+          (change)="filterChange(filter,$event)">
+          
+        </mat-form-field>
+       </div>
+
+         <mat-table
+           [dataSource]="dataSource"
+           matSort
+           mat-table
+         >
+         
+         <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef class="text-dark">   
+           <button class="btn btn-outline-success ml-2" (click)="redirectToAddPage()"> <i class="fa fa-plus"></i></button>
+         </mat-header-cell>
+         <mat-cell *matCellDef="let element" >       
+           <button *ngIf="element.id!=0"  mat-icon-button (click)="redirectToEditPage(element)" > <mat-icon>launch</mat-icon></button>
+           <button *ngIf="element.id!=0" mat-icon-button (click)="onDelete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+         </mat-cell>
+       </ng-container>
+           
+          <ng-container matColumnDef="region_Name">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Country Name</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.region_Name }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="cuttOff">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Cutt Off</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.cuttOff }}</mat-cell>
+</ng-container>
+
+           <mat-header-row
+             *matHeaderRowDef="displayedColumns"
+           ></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+         </mat-table>
+
+  </div>
+ <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

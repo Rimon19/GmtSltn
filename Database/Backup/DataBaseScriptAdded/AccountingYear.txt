@@ -1,0 +1,12 @@
+CREATE TABLE public."AccountingYear"
+(
+    "Id"  serial primary key,
+    "CompanyId" integer,
+    "StartingYear" integer,
+    "CurrentYear" integer,
+    "StartingMonth" character varying(50),
+    "EndingMonth" character varying(50),
+    "PeriodName" character varying(100),
+    "IsActive" character varying(50)
+    
+)

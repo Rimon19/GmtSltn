@@ -1,0 +1,30 @@
+-- View: public."VwForSearchData"
+
+-- DROP VIEW public."VwForSearchData";
+
+CREATE OR REPLACE VIEW public."VwForSearchData" AS
+ SELECT "FabricCost"."Fabric_SOurce",
+    "FabricCost"."BodyPartType",
+    "FabricCost"."Uom",
+    "tblInitialOrder"."JobNo",
+    "FabricDesPreCost"."FabNature",
+    "FabricDesPreCost"."GSM/Weight",
+    "FabricDesPreCost"."Construction",
+    "FabricDesPreCost"."Composition",
+    agc.po_no,
+    agc.item_sizes
+   FROM "FabricCost"
+     JOIN ( SELECT avg_grey_cons_fabric_cost.febric_cost_id,
+            avg_grey_cons_fabric_cost.po_no,
+            avg_grey_cons_fabric_cost.item_sizes,
+            avg_grey_cons_fabric_cost.dia,
+            sum(avg_grey_cons_fabric_cost.total_qty) AS qty
+           FROM avg_grey_cons_fabric_cost
+          GROUP BY avg_grey_cons_fabric_cost.febric_cost_id, avg_grey_cons_fabric_cost.dia, avg_grey_cons_fabric_cost.po_no, avg_grey_cons_fabric_cost.item_sizes) agc ON agc.febric_cost_id = "FabricCost"."FabricCostID"
+     JOIN "FabricDesPreCost" ON "FabricCost"."FabDescID" = "FabricDesPreCost"."ID"
+     JOIN "PreCosting" ON "FabricCost"."PreCostingID" = "PreCosting"."PrecostingID"
+     JOIN "tblInitialOrder" ON "PreCosting"."OrderID" = "tblInitialOrder"."OrderAutoID";
+
+ALTER TABLE public."VwForSearchData"
+    OWNER TO postgres;
+

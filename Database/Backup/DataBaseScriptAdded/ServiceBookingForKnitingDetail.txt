@@ -1,0 +1,16 @@
+create table public."ServiceBookingForKnitingDetail"(
+"Id" serial primary key,
+  "ServiceBookingForKnitingId" integer,
+"ProcessId" integer,
+"Sensitivity" character varying(100),
+"ProgramNo" character varying(100),
+"FabricDescriptionId" integer,
+"Dia" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "IsApproved" boolean,
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

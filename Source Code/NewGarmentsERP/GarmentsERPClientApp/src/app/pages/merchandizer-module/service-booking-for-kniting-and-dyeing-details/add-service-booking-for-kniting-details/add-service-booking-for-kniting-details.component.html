@@ -1,0 +1,376 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Service Booking Details</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="FabricSource" class="label text-dark">
+          Fabric Source
+          <span class="text-danger">*</span> </label>
+          <select
+            name="fabricSource"
+            required
+            #FabricSource="ngModel"
+            [(ngModel)]="
+            serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.fabricSource
+            "
+            id="FabricSource"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Fabric Source</option>
+          <option
+            *ngFor="let item of dropdownValueService.fabricSourceList            "
+            value="{{item.value}}"
+            >{{ item.value}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.fabricSource== '' && FabricSource.touched
+            "
+          >
+          Fabric Source is required
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="FabricDescription" class="label text-dark">
+          Fabric Description
+          <span class="text-danger">*</span> </label>
+          <select
+            name="fabricDescription"
+            required
+            #FabricDescription="ngModel"
+            [(ngModel)]="
+            serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.fabricDescription
+            "
+            id="FabricDescription"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Fabric Description</option>
+          <option
+            *ngFor="let f of dropdownValueService.fabricDescriptionList "
+            value="{{f.id}}"
+            >F.N-{{f.fabNature}},Const:{{f.construction}},comp-{{f.composition}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.fabricDescription== '' && FabricDescription.touched
+            "
+          >
+          Fabric Description is required
+          </div>
+        </div>
+      </div>
+       <div class="col-sm-3">
+    <div class="form-group">
+     <label for="GSM" class="label text-dark">
+       GSM</label
+     >
+     <input
+       name="gSM"    
+       [(ngModel)]="
+       serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.gSM
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="GSM"
+       placeholder=" GSM"
+     />
+    </div>
+    </div>
+       <div class="col-sm-3">
+    <div class="form-group">
+     <label for="Dia" class="label text-dark">
+       Dia</label
+     >
+     <input
+       name="dia"    
+       [(ngModel)]="
+       serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.dia
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="Dia"
+       placeholder=" Dia"
+     />
+    </div>
+    </div>
+    </div>     
+ 
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="UOM" class="label text-dark">
+        UOM
+        </label>
+        <select
+          name="uom"
+        
+          #UOM="ngModel"
+          [(ngModel)]="
+          serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.uom
+          "
+          id="UOM"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select UOM</option>
+        <option
+          *ngFor="let item of dropdownValueService.uomList"
+          value="{{item.id}}"
+          >{{ item.uomName}}</option
+        >
+        </select>
+        
+      </div>
+    </div>
+       <div class="col-sm-3">
+  <div class="form-group">
+   <label for="ArtworkNo" class="label text-dark">
+     Artwork No</label
+   >
+   <input
+     name="artworkNo"    
+     [(ngModel)]="
+     serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.artworkNo
+     "
+     class="form-control form-rounded form-control-sm"
+     type="text"
+     id="ArtworkNo"
+     placeholder=" Artwork No"
+   />
+  </div>
+  </div>
+     <div class="col-sm-3">
+  <div class="form-group">
+   <label for="GmtsColor" class="label text-dark">
+     Gmts Color</label
+   >
+   <input
+     name="gmtsColor"    
+     [(ngModel)]="
+     serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.gmtsColor
+     "
+     class="form-control form-rounded form-control-sm"
+     type="text"
+     id="GmtsColor"
+     placeholder=" Gmts Color"
+   />
+  </div>
+  </div>
+     <div class="col-sm-3">
+  <div class="form-group">
+   <label for="WOQty" class="label text-dark">
+     WO. Qty.</label
+   >
+   <input (change)="totalAmmount(serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails)"
+     name="woQty"    
+     [(ngModel)]="
+     serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.woQty
+     "
+     class="form-control form-rounded form-control-sm"
+     type="number"
+     id="WOQty"
+     placeholder=" WO. Qty."
+   />
+  </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="Rate" class="label text-dark">
+        Rate<span class="text-danger">*</span></label
+        >
+        <input (change)="totalAmmount(serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails)"
+          required
+          name="rate"
+          #Rate="ngModel"
+          [(ngModel)]="
+          serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.rate
+          "
+          type="number"
+          class="form-control form-rounded form-control-sm"
+          id="Rate"
+          placeholder="Rate"
+        />
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.rate ==
+              '' && Rate.touched
+          "
+        >
+        Rate is required
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="Amount" class="label text-dark">
+        Amount<span class="text-danger">*</span></label
+        >
+        <input readonly
+          required
+          name="amount"
+          #Amount="ngModel"
+          [(ngModel)]="
+          serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.amount
+          "
+          type="number"
+          class="form-control form-rounded form-control-sm"
+          id="Amount"
+          placeholder="Amount"
+        />
+        <div
+          class="text-left text-danger text-responsive"
+          *ngIf="
+          serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.amount ==
+              '' && Amount.touched
+          "
+        >
+        Amount is required
+        </div>
+      </div>
+    </div>
+        <div class="col-sm-3">
+       <div class="form-group">
+         <label for="DeliveryStartDate" class="label text-dark">
+           Delivery Start Date<span class="text-danger">*</span>
+         </label>
+         <input readonly
+           name="deliveryStartDate"
+           required
+           #deliveryStartDate="ngModel"
+           [(ngModel)]="
+             serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.deliveryStartDate
+           "          
+           type="text"
+           class="form-control form-rounded form-control-sm"
+           id="DeliveryStartDate"
+           [nbDatepicker]="DeliveryStartDate"
+           placeholder="Delivery Start Date"
+         />
+         <div
+           class="text-left text-danger text-responsive"
+           *ngIf="
+           serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.deliveryStartDate ==
+               '' &&deliveryStartDate.touched
+           "
+         >
+         Delivery Start Date is required
+         </div>
+         <nb-datepicker #DeliveryStartDate></nb-datepicker>
+       </div>
+     </div>
+        <div class="col-sm-3">
+       <div class="form-group">
+         <label for="DeliveryEndDate" class="label text-dark">
+           Delivery End Date<span class="text-danger">*</span>
+         </label>
+         <input readonly
+           name="deliveryEndDate"
+           required
+           #deliveryEndDate="ngModel"
+           [(ngModel)]="
+             serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.deliveryEndDate
+           "          
+           type="text"
+           class="form-control form-rounded form-control-sm"
+           id="DeliveryEndDate"
+           [nbDatepicker]="DeliveryEndDate"
+           placeholder="Delivery End Date"
+         />
+         <div
+           class="text-left text-danger text-responsive"
+           *ngIf="
+           serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.deliveryEndDate ==
+               '' &&deliveryEndDate.touched
+           "
+         >
+         Delivery End Date is required
+         </div>
+         <nb-datepicker #DeliveryEndDate></nb-datepicker>
+       </div>
+     </div> 
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+       <label for="Remarks" class="label text-dark">
+         Remarks</label
+       >
+       <input
+         name="remarks"    
+         [(ngModel)]="
+         serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.remarks
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="Remarks"
+         placeholder=" Remarks"
+       />
+      </div>
+      </div>
+        
+          <div class="col-sm-3">
+          <div class="form-group">
+            <label for="Process" class="label text-dark">
+            Process
+            <span class="text-danger">*</span> </label>
+            <select
+              name="process"
+              required
+              #Process="ngModel"
+              [(ngModel)]="
+              serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.process
+              "
+              id="Process"
+              class="form-control form-rounded form-control-sm"
+            >
+            <option value="">Select Process</option>
+            <option
+              *ngFor="let item of dropdownValueService.processList"
+              value="{{item.id}}"
+              >{{ item.productionProcessName}}</option
+            >
+            </select>
+            <div
+              class="text-left text-danger text-responsive"
+              *ngIf="
+              serviceBookingForKnitingandDyeingWithoutOrderDetailsService.serviceBookingForKnitingandDyeingWithoutOrderDetails.process== '' && Process.touched
+              "
+            >
+            Process is required
+            </div>
+          </div>
+        </div>
+  </div>
+  
+  
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

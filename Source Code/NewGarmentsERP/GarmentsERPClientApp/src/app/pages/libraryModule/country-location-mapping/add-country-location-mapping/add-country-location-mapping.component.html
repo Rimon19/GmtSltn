@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i>
+      </button>  Country Location Mapping Entry 
+    </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)"  >
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status"  class="label text-dark">Region Name <span class="text-danger">*</span></label>
+                <select required #countryName="ngModel"
+                [(ngModel)]="countryLocationMappingService.countryLocationMapping.countryId" class="form-control form-rounded form-control-sm"name="countryId" >
+                  <option [ngValue]=0>Select Region </option>
+                  <option *ngFor="let countrylist of dropdownValueService.regionList" [value]="countrylist.regionID">{{countrylist.region_Name}}</option>
+                  
+               </select>
+               <div class="text-left text-danger"
+              *ngIf="countryLocationMappingService.countryLocationMapping.countryId==0&&countryName.touched">
+              Region name is required
+            </div>
+              </div>
+              
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label  class="label text-dark">Ultimate Country Name <span class="text-danger">*</span></label>
+                <input  required #ultimateCountryName="ngModel"
+                [(ngModel)]="countryLocationMappingService.countryLocationMapping.ultimateCountryName" class="form-control form-rounded form-control-sm"
+                   name="ultimateCountryName"   type="text" 
+                    placeholder="Ultimate Country Name">
+                    <div class="text-left text-danger"
+              *ngIf="countryLocationMappingService.countryLocationMapping.ultimateCountryName==''&&ultimateCountryName.touched">
+              Ultimate name is required
+            </div>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

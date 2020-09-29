@@ -1,0 +1,276 @@
+
+<nb-card>
+  <nb-card-header
+  > 
+
+ Trim Cost Form
+ 
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="trimCostsService.trimsCostDetailsForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:1800px;">
+      <form  >
+        <table class="">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col"></th>
+              <th scope="col">Group</th>
+              <th scope="col">Country</th>
+              <th scope="col">Description</th>
+              <th scope="col">Brand/Sup Ref</th>
+              <th scope="col">Remarks</th>
+              <th scope="col">Nominated Supp</th>
+              <th scope="col">Cons UOM</th>
+              <th scope="col">Cons/Unit Gmts</th>
+              <th scope="col"></th>
+              <th scope="col">Rate</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Total Qty</th>
+              <th scope="col">Total Amount</th>
+              <th scope="col">Apvl Req</th>
+              <th scope="col">Image</th>
+              
+             
+              
+              
+            </tr>
+          </thead>
+            
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of trimCostsService.trimsCostInformationForm.controls;let i=index" >
+                <tr>
+                  
+                  <td> 
+                      
+                    <button  class="btn btn-light ml-1" (click)="onDelete(trimCostsService.trimsCostInformationForm,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                  </td>
+                    <td>
+                      
+                    </td>
+                    <td >
+                      <select 
+                      formControlName="groupId"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=0>Select Group</option>
+                      <option  *ngFor="let itemlist of dropdownValueService.itemGroupList" 
+                      value="{{itemlist.id}}">{{itemlist.itemGroupName}}</option>
+                     
+                 </select>
+                     
+                    </td>
+    
+                    <td>
+                      <select 
+                      formControlName="countryId"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=0>Select Group</option>
+                      <option  *ngFor="let r of dropdownValueService.regionList" 
+                      value="{{r.regionID}}">{{r.region_Name}}</option>
+                 </select>                    
+                    </td>
+  
+                    <td>
+                      
+                      <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        placeholder="Description"
+                        formControlName="description"
+                      />
+                    </td>
+    
+                    <td>
+                      
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                     
+                      placeholder="BrandSupRef "
+                      formControlName="brandSupRef"
+                     
+                    />
+                    </td>
+    
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                     
+                      placeholder="Remarks "
+                      formControlName="remarks"
+                     
+                    />
+                      
+                    </td>
+    
+                    <td>
+                      <select 
+                      formControlName="nominatedSuppId"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=0>Select Nominated Supp</option>
+                      <option  *ngFor="let supplierlist of dropdownValueService.subpplierList" 
+                      value="{{supplierlist.id}}">{{supplierlist.supplierName}}</option>
+                 </select> 
+                    </td>
+    
+                    <td>
+                      <select 
+                      formControlName="consUOMId"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=0>Select cons Uom</option>
+                      <option  *ngFor="let uomlist of dropdownValueService.uomList" 
+                      value="{{uomlist.id}}">{{uomlist.uomName}}</option>
+                 </select> 
+                      
+                    </td>
+    
+                    <td>
+                     
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"   
+                      knifeOnlyNumbers
+                      (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"                
+                      placeholder="Cons Unit Gmts "
+                      formControlName="consUnitGmts"
+                    />
+                    </td>
+                    <td><button  class="btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAdd(i)" >Add Consumption</button></td>
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"  
+                      knifeOnlyNumbers   
+                      (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"                              
+                      placeholder="Rate"
+                      formControlName="rate"
+                    />
+                    </td>
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      knifeOnlyNumbers
+                      placeholder="Amount"
+                      (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"  
+                      formControlName="amount"
+                    />
+                    </td>
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Total Qty."
+                      knifeOnlyNumbers
+                      formControlName="totalQty"
+                    />
+                    </td>
+                   
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      knifeOnlyNumbers
+                      (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"  
+                      placeholder="Total Amount"
+                      formControlName="totalAmount"
+                    />
+                    </td>
+                    <td>
+
+                      <select 
+                      formControlName="apvlReq"  
+                      class="form-control form-rounded form-control-sm">
+                      <option value=''>Select Print<span class="text-danger">*</span> </option>
+                        <option  *ngFor="let btnAction of yes_no_btn" value="{{btnAction.val}}">{{btnAction.btn}}</option>   
+                 </select> 
+  
+                    </td>
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Image"
+                      formControlName="imagePath"
+                    />
+                    </td>
+                    
+                  
+                </tr>
+                <button *ngIf="i==count-1"
+                (click)="recordSubmittrimsCost(trimCostsService.trimsCostInformationForm)"
+                 type="submit" [disabled]="fg.invalid" 
+                   nbButton >Submit</button>
+              </tbody>
+            
+           
+           <tbody>
+             <tr>
+               <td colspan="9" class="text-right">Sum</td>
+               <td > <input
+                class="form-control form-rounded form-control-sm "
+                type="text"
+                readonly
+                name="ConsUnitGmts"
+                [(ngModel)]="trimCostsService.ConsUnitGmts"
+                placeholder="Cons/Unit Gmts"
+               
+              /></td>
+               <td> 
+
+                
+             </td>
+               <td> <input
+                class="form-control form-rounded form-control-sm "
+                type="text"
+                name="Rate"
+                readonly
+                [(ngModel)]="trimCostsService.Rate"
+                placeholder="Rate"
+                
+              /></td>
+               <td> <input readonly
+                class="form-control form-rounded form-control-sm "
+                type="text"
+                name="Amount"
+                [(ngModel)]="trimCostsService.Amount"
+                placeholder="Amount"
+                
+              /></td>
+              <td> 
+
+            </td>
+              <td> <input readonly
+                class="form-control form-rounded form-control-sm "
+                type="text"
+                name="TotalAmount"
+                [(ngModel)]="trimCostsService.TotalAmount"
+                placeholder="Total Amount"
+                placeholder="Total Amount"
+                
+              /></td>
+             </tr>
+           </tbody>
+         
+        </table>
+       
+      </form>
+      </div>
+    </div>
+    
+ 
+  </nb-card-body>
+</nb-card>
+

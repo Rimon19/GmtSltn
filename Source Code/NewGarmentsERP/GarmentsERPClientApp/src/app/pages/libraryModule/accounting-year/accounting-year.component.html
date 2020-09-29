@@ -1,0 +1,80 @@
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+      <div class="smart-table-container" style = "width:1200px;">
+  
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+           
+            <h5>Accounting Year</h5>
+            <mat-form-field>
+              <input matInput #filter (keyup)="applyFilter($event.target.value)" placeholder="Search Here..">
+              <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value=''; applyFilter('');">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+  
+          <mat-table #table [dataSource]="dataSource" matSort >
+  
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef class="text-dark"> Actions  
+                <button class="btn btn-outline-success" (click)="AddNewInpurRow()"> <i class="fa fa-plus"></i></button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <button *ngIf="element.id!=0"  mat-icon-button (click)="edit(element)" > <mat-icon>launch</mat-icon></button>
+                <button *ngIf="element.id!=0" mat-button (click)="delete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+              </mat-cell>
+            </ng-container>
+              <!-- Fav Column -->
+              <ng-container matColumnDef="companyId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Company  </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.companyId}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="startingYear">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Starting Year </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.startingYear}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="currentYear">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Current Year </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.currentYear}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="startingMonth">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Starting Month </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.startingMonth}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="endingMonth">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Ending Month </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.endingMonth}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="periodName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Period Name </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.periodName}}</mat-header-cell>
+                 
+              </ng-container>
+              <ng-container matColumnDef="isActive">
+                <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">Is Active </mat-header-cell>
+                <mat-header-cell *matCellDef="let element" >{{element.isActive}}</mat-header-cell>
+                 
+              </ng-container>
+     
+     
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+       
+        </div>
+  
+      </div>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </nb-card>
+
+
+
+

@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      TNA Mail Setup</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+         
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="User" class="label text-dark">
+      User
+      <span class="text-danger">*</span> </label>
+      <select
+        name="user"
+        required
+        #User="ngModel"
+        [(ngModel)]="
+        tnaMailSetupService.tnaMailSetup.user
+        "
+        id="User"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select User</option>
+      <option
+        *ngFor="let item of dropdownValueService.userList"
+        value="{{item.userID}}"
+        >{{ item.fullName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        tnaMailSetupService.tnaMailSetup.user== '' && User.touched
+        "
+      >
+      User is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="TNATask" class="label text-dark">
+      TNA Task
+      <span class="text-danger">*</span> </label>
+      <!-- <select
+        name="tNATask"
+        required
+        #TNATask="ngModel"
+        [(ngModel)]="
+        tnaMailSetupService.tnaMailSetup.tNATask
+        "
+        id="TNATask"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select TNA Task</option>
+      <option
+        *ngFor="let item of dropdownValueService.tnaShortNameList"
+        value="{{item.id}}"
+        >{{ item.taskShortName}}</option
+      >
+      </select> -->
+
+      <ng-multiselect-dropdown 
+      name="tagTNATaskselectedItems" 
+       [placeholder]="'Tag TNA Task'"
+        [data]="tagTNATasksdropdownList"
+         [(ngModel)]="tagTNATaskselectedItems"
+        [settings]="tagTNATasksdropdownSettings">
+      </ng-multiselect-dropdown>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        tagTNATaskselectedItems.tNATask== '' && tagTNATaskselectedItems.touched
+        "
+      >
+      TNA Task is required
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="MailType" class="label text-dark">
+      Mail Type
+      <span class="text-danger">*</span> </label>
+      <!-- <select
+        name="mailType"
+        required
+        #MailType="ngModel"
+        [(ngModel)]="
+        tnaMailSetupService.tnaMailSetup.mailType
+        "
+        id="MailType"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Mail Type</option>
+      <option
+        *ngFor="let item of dropdownValueService.mailTypeList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select> -->
+
+      <ng-multiselect-dropdown 
+      name="tagMailTypeselectedItems" 
+       [placeholder]="'Tag Mail Type'"
+        [data]="tagMailTypedropdownList"
+         [(ngModel)]="tagMailTypeselectedItems"
+        [settings]="tagMailTypedropdownSettings">
+      </ng-multiselect-dropdown>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        tagMailTypeselectedItems.mailType== '' && tagMailTypeselectedItems.touched
+        "
+      >
+      Mail Type is required
+      </div>
+    </div>
+  </div>
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

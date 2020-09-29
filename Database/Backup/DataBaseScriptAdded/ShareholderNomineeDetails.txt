@@ -1,0 +1,11 @@
+
+create table public."ShareholderNomineeDetails"(
+"Id" serial primary key,
+"CompanyId" integer,
+"Name" character varying(100),
+"Relation" character varying(100),
+"Ratio"  numeric,
+"Amount" numeric,
+"ShareholderId" integer
+
+)

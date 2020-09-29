@@ -1,0 +1,8 @@
+create table public."ReportSetting"(
+"Id" serial primary key,
+"CompanyId" integer,
+"ModuleId" integer,
+"ReportId" integer,
+"ReportFormatId" integer,
+"Status" character varying(100)
+)

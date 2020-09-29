@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-lg-12">
+        <nb-card>
+            <nb-card-header>Fabric Cost Entry</nb-card-header>
+            <nb-card-body>
+                <form #form="ngForm" (submit)="onSubmit(form)">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="preCostingId" class="label">Pre Cost</label>
+                                <select required [(ngModel)]="fabricCost.preCostingId" name="preCostingId" #preCostingId="ngModel" class="form-control">
+                  <option value="select">Select Pre Cost</option>
+                  <option *ngFor="let precost of precostingList" [value]="precost.precostingId">{{precost.orderId}}</option>
+                  
+              </select>
+                                <div *ngIf="preCostingId.invalid&&preCostingId.touched" class="alert alert-danger">
+                                    Body Part is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="bodyPart" class="label">Body Part</label>
+                                <select required [(ngModel)]="fabricCost.bodyPartId" name="bodyPartId" #bodyPartId="ngModel" class="form-control">
+                  <option value="select">Select Body Part </option>
+                  <option *ngFor="let bodyPart of bodyPartList" [value]="bodyPart.id">{{bodyPart.itemGroup}}</option>
+                  
+              </select>
+                                <div *ngIf="bodyPartId.invalid&&bodyPartId.touched" class="alert alert-danger">
+                                    Body Part is required
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="bodyPartType" class="label">Body Part Type</label>
+                                <select [(ngModel)]="fabricCost.bodyPartType" name="bodyPartType" #bodyPartType="ngModel" class="form-control">
+                  <option>Select Location </option>
+                  <option *ngFor="let bodyPart of bodyPartList" [value]="bodyPart.id">{{bodyPart.type}}</option>
+                  
+              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="fabNature" class="label">Fabric Nature</label>
+                                <input class="form-control form-rounded form-control-sm" [(ngModel)]="fabricCost.fabNature" name="fabNature" #fabNature="ngModel" type="text" id="fabricNature" placeholder="fabric Nature">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="colorType" class="label">Color Type</label>
+                                <input [(ngModel)]="fabricCost.colorType" name="colorType" #colorType="ngModel" type="text" class="form-control form-rounded form-control-sm" id="colorType" placeholder="color Type">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="fabDescId" class="label">Fabric Description</label>
+                                <input [(ngModel)]="fabricCost.fabDescId" name="fabDescId" #fabDescId="ngModel" type="text" class="form-control form-rounded form-control-sm" id="FabricDescription" placeholder="Fabric Description">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="fabricSource" class="label">Fabric Source</label>
+                                <input [(ngModel)]="fabricCost.fabricSource" name="fabricSource" #fabricSource="ngModel" type="text" class="form-control form-rounded form-control-sm" id="fabricSource" placeholder="fabric Source">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="nominatedSupplier" class="label">Nominated Supplier</label>
+                                <input [(ngModel)]="fabricCost.nominatedSupplierId" name="nominatedSupplierId" #nominatedSupplierId="ngModel" type="text" class="form-control form-rounded form-control-sm" id="nominatedSupplier" placeholder="nominated Supplier">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="withoutDiaType" class="label">Without Dia Type</label>
+                                <input [(ngModel)]="fabricCost.widthorDiaType" name="widthorDiaType" #widthorDiaType="ngModel" type="text" class="form-control form-rounded form-control-sm" id="withoutDiaType" placeholder="without Dia Type">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="colorSizenSensitive" class="label">color Sizen Sensitive</label>
+                                <input required [(ngModel)]="fabricCost.colornSizenSensitive" name="colorSizenSensitive" #colorSizenSensitive="ngModel" type="text" class="form-control form-rounded form-control-sm" id="colorSizenSensitive" placeholder="color Sizen Sensitive">
+                                <div *ngIf="colorSizenSensitive.invalid&&colorSizenSensitive.touched" class="alert alert-danger">
+                                    color Sizen Sensitive is required
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button type="submit" nbButton [disabled]="form.invalid">Submit</button>
+                </form>
+
+
+
+
+
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+
+</div>

@@ -1,0 +1,44 @@
+export class AddItemModalProparty {
+
+  OrderNo: number;
+  JobNo: string;
+  CompanyId: number;
+  CompanyName: string;
+  LocationId: number;
+  LocationName: string;
+  BuyerId: number;
+  BuyerName: string;
+  StyleRef: string;
+  StyleDescription: string;
+  ProdDeptId: number;
+  ProdDeptName: string;
+  SubDeptId: number;
+  SubDeptName: string;
+  CurrencyId: number;
+  RegionId: number;
+  RegionName: string;
+  ProductCatId: number;
+  ProductCatName: string;
+  TeamLeaderId: number;
+  TeamLeaderName: string;
+  DealingMerchantId: number;
+  DealingMerchantName: string;
+  BhMerchant: string;
+  Remarks: string;
+  ShipmentModeId: number;
+  ShipmentModeName: string;
+  OrderUomId: number;
+  OrderUomName: string;
+  Smv: number;
+  PackingId: number;
+  PackingName: number;
+  SeasonId: number;
+  SeasonName: number;
+  AgentId: number;
+  AgentName: string;
+  UserId: number;
+  UserName: number;
+  RepeatNoJob: number;
+  OrderNumber: number;
+  OrderImage: File;
+}

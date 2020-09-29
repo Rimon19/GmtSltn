@@ -1,0 +1,15 @@
+CREATE TABLE public."ItemGroup"
+(
+    "Id"  serial primary key,
+    "ItemCategoryId" integer,
+    "GroupCode" character varying(100),
+    "ItemGroupName" character varying(100),
+    "ItemType" character varying(100),
+    "OrderUom" character varying(100),
+    "ConsUom" character varying(100),
+    "ConvFactor"  integer,
+    "FancyItem" character varying(100),
+    "CalParameter" character varying(100),
+    "status" character varying(100)
+
+)

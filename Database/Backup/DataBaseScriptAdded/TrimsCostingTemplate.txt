@@ -1,0 +1,17 @@
+CREATE TABLE public."TrimsCostingTemplate"
+(
+     "Id"  serial primary key,
+   "BuyerId" integer,
+    "UserCode" character varying(100) COLLATE pg_catalog."default",
+    "TrimsGroupId" integer,
+    "ItemDesc" character varying(150) COLLATE pg_catalog."default",
+    "ConsUom" character varying(100) COLLATE pg_catalog."default",
+    "BrandOrSupRef" character varying(100) COLLATE pg_catalog."default",
+    "ConsOrDznGmts" numeric,
+    "PurchaseRate" numeric,
+    "Amount" numeric,
+    "ApprovalRequired" character varying(50) COLLATE pg_catalog."default",
+    "SupplierId" integer,
+    "Status" character varying(50) COLLATE pg_catalog."default"
+
+)

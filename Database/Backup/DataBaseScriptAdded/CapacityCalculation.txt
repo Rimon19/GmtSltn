@@ -1,0 +1,14 @@
+create table public."CapacityCalculation"(
+"Id" serial primary key,
+"CompanyId" integer,
+"CapacitySource" character varying(100),
+"Location" character varying(100),
+"Year"  character varying(100),
+"Month" character varying(100),
+"ManOrMachinePerLine" character varying(100),
+"BasicSAM" numeric,
+"Efficiency" numeric,
+"FinType" character varying(100),
+"Smv" numeric,
+"WoHrs" numeric
+)

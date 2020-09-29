@@ -1,0 +1,15 @@
+create table public."StoreLocation"(
+"Id" serial primary key,
+"StoreName" character varying(100),
+"CompanyName" character varying(100),
+"Location" character varying(100),
+"ItemCategoryId" integer,
+"Status" character varying(100)
+) 
+insert into public."StoreLocation"(
+"StoreName",
+"CompanyName",
+"Location",
+"ItemCategoryId" ,
+"Status"
+)values('a','a','a',1,'a');

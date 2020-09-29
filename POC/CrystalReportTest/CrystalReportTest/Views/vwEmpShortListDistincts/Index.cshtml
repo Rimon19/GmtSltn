@@ -1,0 +1,213 @@
+﻿@model IEnumerable<CrystalReportTest.Models.vwEmpShortListDistinct>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Join_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceUpto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desig_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_dob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perm_Add)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pres_Add)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CardID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Head_Quarter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalOthersAllowance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Special)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OldID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sheet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeZone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Insurance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeZoneID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_BGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_Ref1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_Ref2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.X_Emp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcademicRecords)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Job_Cat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Job_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emp_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cont_Num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personal_Phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Join_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceUpto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desig_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emp_dob)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Perm_Add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pres_Add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Head_Quarter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalOthersAllowance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Special)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OldID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sheet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeZone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Insurance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeZoneID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emp_BGroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emp_Ref1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emp_Ref2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.X_Emp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcademicRecords)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Job_Cat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Job_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emp_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cont_Num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personal_Phone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

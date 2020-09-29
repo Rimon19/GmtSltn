@@ -1,0 +1,114 @@
+<!-- Order Info -->
+<nb-card>
+    <div class="col-md-12" style="overflow-x: scroll;">
+        <div class="example-header">
+            <h5>Order Informations</h5>
+            <mat-form-field>
+                <input matInput #filter (keyup)="applyFilterForInitialOrder($event.target.value)" placeholder="Search Here.." />
+                <button mat-icon-button matSuffix aria-label="clear" *ngIf="filter.value" (click)="filter.value = ''; applyFilter('')">
+              <mat-icon>close</mat-icon>
+            </button>
+            </mat-form-field>
+        </div>
+        <form #testForm="ngForm" (ngSubmit)="(testForm.form.valid)" novalidate>
+            <mat-table [dataSource]="dataSource" #InitialOrderMatSort="matSort" matSort mat-table>
+                <!-- Position Column -->
+                <ng-container matColumnDef="Action" sticky>
+                    <mat-header-cell *matHeaderCellDef>
+                        Actions
+                        <button class="btn btn-outline-success m-2" (click)="AddNewInpurRow()">
+                  <i class="fa fa-plus"></i>
+                </button>
+                    </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+
+                        <section>
+                            <div class="example-button-row">
+                                <button *ngIf="element.orderAutoID!= 0" mat-icon-button (click)="edit(element)">
+                    <mat-icon>launch</mat-icon>
+                  </button>
+                                <button *ngIf="element.orderAutoID!= 0" mat-button (click)="deleteOrderInitialInfoList(element.orderAutoID)">
+                  <i class="far fa-trash-alt fa-lg text-danger"></i>
+                </button>
+                                <button 
+                                *ngIf="element.orderAutoID != 0" 
+                                 (click)="orderInfoDetails(element.orderAutoID)" 
+                                 class="btn-outline-success">
+              NEXT
+              </button>
+                            </div>
+                        </section>
+
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="jobNo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>job No</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.jobNo }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="companyID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Company Name</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.companyID }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="locationID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.locationID }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="buyerID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Buyer Name</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.buyerID }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="style_Ref">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Style No</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.style_Ref }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="prod_DeptID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Prod.Dept</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.prod_DeptID }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="product_CatID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Product Category</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.product_CatID }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="team_Leader_ID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Team Leader</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.team_Leader_ID }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="dealing_Merchant_ID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Dealing Merchant</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.dealing_Merchant_ID }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="packing_ID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Packing</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.packing_ID }}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="order_Uom_ID">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Order Uom</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.order_Uom_ID }}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="smv">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Smv</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.smv }}</mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </mat-table>
+        </form>
+
+
+    </div>
+    <mat-paginator #InitialOrderMatPaginator="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

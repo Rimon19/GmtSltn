@@ -1,0 +1,10 @@
+create table public."CapacityCalculationYearly"(
+"Id" serial primary key,
+"Month" character varying(100),
+"WorkingDay"  integer,
+"CapacityMinutes"  numeric,
+"CapacityPcs" numeric,
+"CapacityCalculationId" integer,
+"CapacityCalculationYear"character varying(100),
+"CapacityCalculationMonth"character varying(100)
+)

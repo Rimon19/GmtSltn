@@ -1,0 +1,51 @@
+<div>
+  <table class="table table-hover">
+    <thead class="thead-light">
+    <th>#Order No.</th>
+    <th>Customer</th>
+    <th>P. Method</th>
+    <th>G. Total</th>
+    <th>
+      <a class="btn btn-outline-success" routerLink="/order"><i class="fa fa-plus-square"></i> Create New</a>
+    </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderList">
+        <th (click)="openForEdit(item.orderId)">{{item.orderNo}}</th>
+        <td (click)="openForEdit(item.orderId)">{{item.customer}}</td>
+        <td (click)="openForEdit(item.orderId)">{{item.pmethod}}</td>
+        <td (click)="openForEdit(item.orderId)">{{item.gtotal}}</td>
+        <td>
+          <a class="btn text-danger" (click)="onOrderDelete(item.orderId)"><i class="fa fa-trash fa-lg"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <mat-progress-spinner [mode]="'indeterminate'">
+  </mat-progress-spinner>
+
+  <mat-progress-bar [mode]="'indeterminate'">
+  </mat-progress-bar>
+
+  <mat-grid-list cols="4">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+
+      <mat-calendar [selected]="selectedDate"
+                    [startAt]="startAt"
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                    [dateFilter]="myDateFilter"
+                    (selectedChange)="onSelect($event)">
+      </mat-calendar>
+
+    </mat-grid-tile>
+    <mat-grid-tile>
+
+      <p class="cal_date">{{DayAndDate}}, {{year}}</p>
+
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+  </mat-grid-list>
+</div>

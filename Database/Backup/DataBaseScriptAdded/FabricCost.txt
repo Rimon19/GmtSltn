@@ -1,0 +1,29 @@
+
+-- DROP TABLE public."FabricCost";
+ 
+create table public."FabricCost"(
+    "Id" serial primary key,
+      "PoNoId" integer,
+      "GmtsItemId" integer,
+      "BodyPartId" integer,
+      "BodyPartTypeId" integer,
+      "FabNatureId" integer,
+      "ColorTypeId" integer,
+      "FabricDesPreCostId" integer,
+      "FabricSourceId" integer,
+      "NominatedSuppId" integer,
+      "WidthDiaType" character varying(100),
+      "GsmWeight" numeric,
+      "ColorSizeSensitive" character varying(100),
+      "Color" character varying(100),
+      "ConsumptionBasis" character varying(100),
+      "Uom" character varying(100) ,
+      "AvgGreyCons" numeric,
+      "Rate" numeric,
+      "Amount" numeric,
+      "TotalQty" numeric,
+      "TotalAmount" numeric,
+      "PreCostingId" integer,
+      "SuplierId" integer,
+      "FabricDescription" character varying(300)
+)

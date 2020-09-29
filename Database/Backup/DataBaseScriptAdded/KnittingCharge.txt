@@ -1,0 +1,14 @@
+create table public."KnittingCharge"(
+"Id" serial primary key,
+"CompanyName" integer,
+"BodyPartId" integer,
+"ConstructionComposition" character varying(100),
+"GSM" character varying(100),
+"Gauge" character varying(100),
+"YarnDescription" character varying(100),
+"InHouseRate" integer,
+"CustomerRate" character varying(100),
+"SubconBuyer"  integer,
+"UOMId" integer,
+"Status"  character varying(100)
+)

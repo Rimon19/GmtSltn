@@ -1,0 +1,200 @@
+
+ <nb-card>
+
+  <div class="example-container mat-elevation-z8">
+     <div class="example-header">
+         <h5>Cut and Lay Entry Info</h5>
+         <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field>
+        <mat-label style="font-size:15px;font-weight: bold;">Search All Here ..</mat-label>
+          <input
+            matInput
+            #filter
+            (change)="applyFilter($event.target.value)"
+           
+          />
+        
+         
+          <button
+            mat-icon-button
+            matSuffix
+            aria-label="clear"
+            *ngIf="filter.value"
+            (click)="filter.value = ''; applyFilter('')"
+          >
+            <mat-icon>close</mat-icon>
+            
+          
+          </button>
+         
+          
+          <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
+        </mat-form-field>
+        <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+         </div>
+       </div>
+     
+       <div style="margin-left: 30px;width: 85%;">
+        <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+        <mat-label style="font-size:15px;font-weight: bold;">S.{{filter.name}}</mat-label>
+          <input  matInput  
+          name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+          (change)="filterChange(filter,$event)">
+          
+        </mat-form-field>
+       </div>
+
+         <mat-table
+           [dataSource]="dataSource"
+           matSort
+           mat-table
+         >
+         
+         <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef class="text-dark">   
+           <button class="btn btn-outline-success ml-2" (click)="redirectToAddPage()"> <i class="fa fa-plus"></i></button>
+         </mat-header-cell>
+         <mat-cell *matCellDef="let element" >       
+           <button *ngIf="element.id!=0"  mat-icon-button (click)="redirectToEditPage(element)" > <mat-icon>launch</mat-icon></button>
+           <button *ngIf="element.id!=0" mat-icon-button (click)="onDelete(element)" ><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+         </mat-cell>
+       </ng-container>
+           
+          <ng-container matColumnDef="locationId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Locaton</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.locationId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="floorId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Floor</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.floorId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="tableNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Table No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.tableNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="cadMarkerlength">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Marker length</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.cadMarkerlength }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="cadMarkerWidthOrDia">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Marker Width/Dia</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.cadMarkerWidthOrDia }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="cadFabricWidthOrDia">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Fabric Width/Dia</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.cadFabricWidthOrDia }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="cadGsm">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >CAD GSM</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.cadGsm }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="jobNo">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Job No</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.jobNo }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="yearId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Year</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.yearId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="batch">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Batch</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.batch }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="buyerProfileId">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Buyer</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.buyerProfileId }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="planStartDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Plan Start Date</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.planStartDate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="startTimeHour">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Start Time</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.startTimeHour }}:{{element.startTimeMinute}}</mat-cell>
+</ng-container>
+
+<ng-container matColumnDef="planEndDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Plan End Date</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.planEndDate }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="endTimeHour">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >End Time</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.endTimeHour }}:{{ element.endTimeMinute }}</mat-cell>
+</ng-container>
+
+<!-- <ng-container matColumnDef="widthOrDiaType">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Width/Dia Type</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.widthOrDiaType }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="layFabricWeight">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Lay Fabric Weight</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.layFabricWeight }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="cadMarkerConsOrDzn">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >CAD Marker Cons/Dzn</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.cadMarkerConsOrDzn }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="wastageQnty">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Wastage Qnty. (kg) </mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.wastageQnty }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="remark">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Remark</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.remark }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="efficiency">
+  <mat-header-cell *matHeaderCellDef mat-sort-header
+    >Efficiency %</mat-header-cell
+  >
+  <mat-cell *matCellDef="let element">{{ element.efficiency }}</mat-cell>
+</ng-container> -->
+
+           <mat-header-row
+             *matHeaderRowDef="displayedColumns"
+           ></mat-header-row>
+           <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+         </mat-table>
+
+      </div>
+ <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>

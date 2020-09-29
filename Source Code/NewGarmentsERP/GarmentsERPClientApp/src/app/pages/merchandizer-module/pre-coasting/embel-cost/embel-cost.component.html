@@ -1,0 +1,172 @@
+
+<nb-card>
+  <nb-card-header
+  >
+  
+  Embellishment Cost
+ 
+  <button
+    class="btn btn-outline-success float-right"
+    (click)="embelishmentCostService.emblCostDetailsForm()"
+  >
+    <i class="fa fa-plus"></i>
+  </button>
+ 
+</nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width:1500px;">
+      <form  >
+        <table class="">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Body Part</th>
+              <th scope="col">Country</th>
+              <th scope="col">Emb. Supplier</th>
+              <th scope="col">Cons/ 1 Dzn Gmts</th>
+              <th scope="col"></th>
+              <th scope="col">Rate </th>
+              <th scope="col">Amount </th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+            
+              <tbody [formGroup]="fg"
+              *ngFor="let fg of embelishmentCostService.emblCostInformationForm.controls;let i=index" >
+                <tr>                
+                   <td>   
+                    <button  class="btn btn-light ml-1 " (click)="onDeleteEmbelishmentCost(embelishmentCostService.emblCostInformationForm,i)"
+                    >
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        
+                    </button> 
+                   </td>
+                    <td>
+                      <select class="form-control form-rounded 
+                    form-control-sm " formControlName="embelName">
+                    <option value="">Select</option>
+                    <option value="Printing">Printing</option>
+                    <option value="Embroidery">Embroidery</option>
+                    <option value="Special Works">Special Works</option>
+                    <option value="Gmts Dyeing">Gmts Dyeing</option>
+                    <option value="Others">Others</option>
+                    
+                  
+                    </select>
+
+                     
+                    </td>
+                    <td>                     
+
+                      <select class="form-control form-rounded 
+                      form-control-sm " formControlName="embelTypeId">
+                      <option [ngValue]=0>Select</option>
+                      <option *ngFor="let e of dropdownValueService.embellishmentTypeList" [value]="e.id">{{e.typeName}}</option>
+                      </select>
+                    </td>    
+                    <td>                 
+                    <select class="form-control form-rounded 
+                    form-control-sm " formControlName="bodyPartId">
+                    <option [ngValue]=0>Select</option>
+                    <option *ngFor="let s of dropdownValueService.bodyPartList" [value]="s.id">{{s.bodyPartFullName}}</option>
+                    </select>
+                    </td>
+                    <td>
+                      <select class="form-control form-rounded 
+                      form-control-sm " formControlName="countryId">
+                      <option [ngValue]=0>Select</option>
+                      <option  *ngFor="let r of dropdownValueService.regionList" 
+                      value="{{r.regionID}}">{{r.region_Name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                    <select class="form-control form-rounded 
+                    form-control-sm " formControlName="supplierId">
+                    <option [ngValue]=0>Select</option>
+                    <option  *ngFor="let s of dropdownValueService.subpplierList" 
+                    value="{{s.id}}">{{s.supplierName}}</option>
+                    </select>
+                    </td>
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                      placeholder="Cons/1 Dzn Gmts"
+                      formControlName="cons"
+                      readonly
+                    />
+                    </td>
+                    <td><button  class=" btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAdd(i)" >Add Consump.</button></td>
+                    <td>
+                      <input
+                      
+                      class="form-control form-rounded form-control-sm " 
+                      type="text"
+                      placeholder="Rate"
+                      formControlName="rate"
+                      readonly
+                    />
+                    </td>
+                   
+                    <td>
+                      <input
+                      class="form-control form-rounded form-control-sm "
+                      type="text"
+                     readonly
+                      placeholder="Amount"
+                      formControlName="amount"
+                    />
+                    </td>
+                    <td>
+                   
+                    <select class="form-control form-rounded 
+                    form-control-sm " formControlName="status">
+                    <option value="">Select</option>
+                    <option value="Active">Active</option>
+                    <option value="In Active">In Active</option>
+                  
+                    </select>
+
+                    <input
+                    type="hidden"
+                    formControlName="id"
+                  />
+                    </td> 
+                </tr>
+                
+                <button *ngIf="i==embelishmentCostService.count-1" type="submit" (click)=" onSubmitEmbelishmentCost(embelishmentCostService.emblCostInformationForm)"   nbButton >Submit</button>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td colspan="9" class= "text-right ">Sum</td>
+                  <td > <input
+                   class="form-control form-rounded form-control-sm "
+                   type="text"
+                   name="TotalCons"
+                   [(ngModel)]="TotalCons"
+                   
+                   placeholder="Total"
+                  
+                 /></td>
+                  
+                </tr>
+              </tbody>
+             
+           
+           
+             
+           
+         
+        </table>
+       
+      </form>
+      </div>
+    </div>
+    
+ 
+  </nb-card-body>
+</nb-card>
+

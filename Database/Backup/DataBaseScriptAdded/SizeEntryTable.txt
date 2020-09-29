@@ -1,0 +1,17 @@
+-- Table: public."SiezeEntry"
+
+-- DROP TABLE public."SiezeEntry";
+
+CREATE TABLE public."SiezeEntry"
+(
+    "Id" integer NOT NULL,
+    "Sequence" numeric,
+    "Status" character varying COLLATE pg_catalog."default",
+    "SinzeName" character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT "SiezeEntry_pkey" PRIMARY KEY ("Id")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."SiezeEntry"
+    OWNER to postgres;

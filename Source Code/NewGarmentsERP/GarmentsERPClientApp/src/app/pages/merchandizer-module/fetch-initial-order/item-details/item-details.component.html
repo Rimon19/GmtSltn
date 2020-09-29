@@ -1,0 +1,323 @@
+<nb-card>
+  <nb-card-header>
+    Items Details
+    <button 
+      class="float-right ml-5"
+      mat-button type="button"
+      (click)="onClose()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <button
+     
+      class="btn btn-outline-success float-right"
+      (click)="test()"
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12" style="overflow-x: scroll;">
+      <div class="smart-table-container" style="width: 1800px;">
+        <form (submit)="onSubmit(itemDetailsInformationForm)">
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Item<span class="text-danger">*</span></th>
+                <th scope="col">Set Ratio</th>
+                <th scope="col">Sew SMV/ Pcs</th>
+                <th scope="col">Cut SMV/ Pcs</th>
+                <th scope="col">Fin SMV/ Pcs</th>
+                <th scope="col">
+                  Complexity
+                </th>
+                <th scope="col">Print</th>
+                <th scope="col">Embro</th>
+                <th scope="col">Embro Number</th>
+                <th scope="col">Wash</th>
+                <th scope="col">Wash Number</th>
+                <th scope="col">SP Works</th>
+                <th scope="col">SP Works Number</th>
+                <th scope="col">
+                  Gmts Dyeing
+                </th>
+                <th scope="col">Gmts Dyeing Number</th>
+                <th scope="col">APO</th>
+                <th scope="col">APO Number</th>
+              </tr>
+            </thead>
+
+            <tbody
+              [formGroup]="fg"
+              *ngFor="
+                let fg of itemDetailsInformationForm.controls;
+                let i = index
+              "
+            >
+              <tr>
+                <td>
+                  <button
+                    class="btn btn-light ml-1"
+                    (click)="onDelete(fg.value.order_entry_id, i)"
+                  >
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                  </button>
+                </td>
+                <td>
+                  <select 
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="item"
+                    (change)="onChangeGarmentsItem(fg.value.item,itemDetailsInformationForm,i)"
+                  >
+                    <option value="">Select Item</option>
+                    <option
+                      *ngFor="let garmentsItem of dropdownValueService.garmentsItemList"
+                      [value]="garmentsItem.id"
+                      >{{garmentsItem.itemName}}</option
+                    >
+                  </select>
+                  <div class="text-danger" *ngIf="fg.controls['item'].hasError('required')&& fg.controls['item'].touched" >
+                    Item is required.
+                  </div>
+                </td>
+
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    id="{{ i }}ratio"
+                    placeholder="Set Ratio"
+                    formControlName="ratio"
+                    (change)="onChangeSetRation(itemDetailsInformationForm)"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="Sew Smv Pcs"
+                    formControlName="sew_smv_pcs"
+                    (change)="onChangeSewSmv(itemDetailsInformationForm)"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="Cut Smv Pcs"
+                    formControlName="cut_smv_pcs"
+                    (change)="onChangeCutSmv(itemDetailsInformationForm)"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="Fin Smv Pcs "
+                    formControlName="fin_smv_pcs"
+                    (change)="onChangeFinSmv(itemDetailsInformationForm)"
+                  />
+                </td>
+
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="complexity"
+                  >
+                    <option value="">Select Complexity</option>
+                    <option
+                      *ngFor="let btnAction of complexity_btn"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </td>
+
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="print"
+                  >
+                    <option value=""
+                      >Select Print
+                    </option>
+                    <option
+                      *ngFor="let btnAction of yes_no_btn"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </td>
+
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="embro_yes_no"
+                  >
+                    <option value="">Select Embro</option>
+                    <option
+                      *ngFor="let btnAction of yes_no_btn"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </td>
+
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="embroNumber "
+                    formControlName="embro_number"
+                  />
+                </td>
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="wash_yes_no"
+                  >
+                    <option value="">Select Embro</option>
+                    <option
+                      *ngFor="let btnAction of yes_no_btn"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </td>
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="Wash Number"
+                    formControlName="wash_number"
+                  />
+                </td>
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="sp_works_yes_no"
+                  >
+                    <option value="">Select SP. Works</option>
+                    <option
+                      *ngFor="let btnAction of yes_no_btn"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </td>
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="SP Works Number"
+                    formControlName="sp_works_number"
+                  />
+                </td>
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="gmts_dyeing_yes_no"
+                  >
+                    <option value="">Select Gmts Dyeing</option>
+                    <option
+                      *ngFor="let btnAction of yes_no_btn"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </td>
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="Gmts Dyeing Number"
+                    formControlName="gmts_dyeing_number"
+                  />
+                </td>
+                <td>
+                  <select
+                    class="form-control form-rounded form-control-sm"
+                    formControlName="aop_yes_no"
+                  >
+                    <option value="">Select AOP</option>
+                    <option
+                      *ngFor="let btnAction of yes_no_btn"
+                      value="{{ btnAction.val }}"
+                      >{{ btnAction.btn }}</option
+                    >
+                  </select>
+                </td>
+                <td>
+                  <input
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    placeholder="APO Number"
+                    formControlName="aop_number"
+                  />
+                </td>
+              </tr>
+              <button
+                *ngIf="i==count-1"
+                type="submit"
+                [disabled]="fg.invalid"
+                nbButton
+              >
+                Submit
+              </button>
+            </tbody>
+
+            <tbody>
+              <tr>
+                <td colspan="2" class="text-right">Total</td>
+                <td>
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="ratio"
+                    [(ngModel)]="totalSetRatio"
+                    placeholder="Set Ratio"
+                  />
+                </td>
+                <td>
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="sew_smv_pcs"
+                    placeholder="Sew SMV/ Pcs"
+                    [(ngModel)]="totalSewSmvPcs"
+                  />
+                </td>
+                <td>
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="cutSmv"
+                    placeholder="Cut SMV/ Pcs"
+                    [(ngModel)]="totalCutSmvPcs"
+                  />
+                </td>
+                <td>
+                  <input
+                    readonly
+                    class="form-control form-rounded form-control-sm"
+                    type="number"
+                    name="finSmv"
+                    placeholder="Fin SMV/ Pcs"
+                    [(ngModel)]="totalFinSmvPcs"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

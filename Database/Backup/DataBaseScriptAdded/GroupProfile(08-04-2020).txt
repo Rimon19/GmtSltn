@@ -1,0 +1,12 @@
+create table public."GroupProfile"(
+"Id" serial primary key,
+"GroupName" character varying(100),
+"ContactPerson" character varying(100),
+"ContactNumber" character varying(100),
+"CountryId" integer,
+"Website" character varying(100),
+"Email" character varying(100),
+"Address" character varying(200),
+"Remark"  character varying(200),
+"Status"  character varying(100)
+)

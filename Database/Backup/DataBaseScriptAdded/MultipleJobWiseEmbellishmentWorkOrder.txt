@@ -1,0 +1,22 @@
+create table public."MultipleJobWiseEmbellishmentWorkOrder"(
+"Id" serial primary key,
+  "WoNo" character varying(100),
+"CompanyNameId" integer,
+"BuyerNameId" integer,
+"WODate" character varying(100),
+"DeliveryDate" character varying(100),
+"CurrencyId" integer,
+"Source" character varying(100),
+"PayMode" character varying(100),
+"SupplierNameId" integer,
+"ReadyToApprove" character varying(100),
+"Level" character varying(100),
+"Attention" character varying(100),
+"Remarks" character varying(100),
+
+  "EntryDate" character varying(100),
+  "EntryBy" character varying(100),
+  "ApprovedDate" character varying(100),
+  "ApprovedBy" character varying(100),
+  "Status" character varying(100)
+  )

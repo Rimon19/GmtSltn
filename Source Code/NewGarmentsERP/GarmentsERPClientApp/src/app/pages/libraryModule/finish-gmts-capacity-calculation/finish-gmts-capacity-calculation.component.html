@@ -1,0 +1,387 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+     
+      
+      <nb-card-header>
+        <!-- <button (click)="backTo()"
+        class="btn btn-outline-success "
+  
+       >
+       <i class="fas fa-arrow-left"></i></button> -->
+    Finish Gmts Capacity Calculation
+      
+      </nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm"  >
+          <div class="row">
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="companyId"class="label text-dark">Company<span class="text-danger">*</span></label>
+                
+                <select id="companyId"  required #companyId="ngModel"
+                   [(ngModel)]="capacityCalculationService.capacityCalculation.companyId"
+                    class="form-control form-rounded form-control-sm" name="companyId">
+                  <option [ngValue]=0>Select </option>
+                  <option *ngFor="let c of companyList" [value]="c.compID">{{c.company_Name}}</option>
+              </select>
+              </div>
+               <div class="text-left text-danger"
+              *ngIf="capacityCalculationService.capacityCalculation.companyId==0&&companyId.touched">
+              CompanyId is required
+              </div>
+            </div>
+          
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="capacitySource"class="label text-dark">Location</label>
+                
+                <select id="location"   #location="ngModel"
+                   [(ngModel)]="capacityCalculationService.capacityCalculation.location"
+                    class="form-control form-rounded form-control-sm" name="location">
+                  <option value=''>Select </option>
+                  <option *ngFor="let l of locationList" [value]="l.locationId">{{l.location_Name}}</option>
+              </select>
+              </div>
+               
+            </div>
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="year"class="label text-dark">Year<span class="text-danger">*</span></label>
+                
+                <select id="year" required  #year="ngModel" (change)="onChangeYear(capacityCalculationService.capacityCalculation.companyId,capacityCalculationService.capacityCalculation.year)"
+                   [(ngModel)]="capacityCalculationService.capacityCalculation.year"
+                    class="form-control form-rounded form-control-sm" name="year">
+                  <option value=''>Select </option>
+                  <option *ngFor="let y of yearList" [value]="y.id">{{y.year}}</option>
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="capacityCalculationService.capacityCalculation.year==''&&year.touched">
+              Year is required
+              </div>
+              </div>
+               
+            </div>
+
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="month"class="label text-dark">Month<span class="text-danger">*</span></label>
+                
+                <select id="month"  required #month="ngModel" (change)="onChangeMonth(capacityCalculationService.capacityCalculation.companyId,capacityCalculationService.capacityCalculation.year,capacityCalculationService.capacityCalculation.month)"
+                   [(ngModel)]="capacityCalculationService.capacityCalculation.month"
+                    class="form-control form-rounded form-control-sm" name="month">
+                  <option value=''>Select </option>
+                  <option *ngFor="let m of monthList" [value]="m.id">{{m.monthName}}</option>
+              </select>
+              <div class="text-left text-danger"
+              *ngIf="capacityCalculationService.capacityCalculation.month==''&&month.touched">
+              Month is required
+              </div>
+              </div>
+               
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="efficiency"class="label text-dark">Efficiency %</label>
+                <input class="form-control form-rounded form-control-sm" name="efficiency"
+                 [(ngModel)]="capacityCalculationService.capacityCalculation.efficiency"
+                  class="form-control form-rounded form-control-sm" type="text" id="efficiency"
+                  placeholder="Efficiency %">
+              </div>
+            </div>
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <label for="finType"class="label text-dark">Fin Type<span class="text-danger">*</span></label>
+                
+                <select id="finType"  required #finType="ngModel"
+                   [(ngModel)]="capacityCalculationService.capacityCalculation.finType"
+                    class="form-control form-rounded form-control-sm" name="finType">
+                    <option value=''>Select Fin Type </option>
+                 <option value="Iron">Iron</option>
+                 <option value="Poly">Poly</option>
+                 <option value="QC">QC</option>
+                 <option value="Carton">Carton</option>
+                 
+              </select>
+              </div>
+               <div class="text-left text-danger"
+              *ngIf="capacityCalculationService.capacityCalculation.finType==''&&finType.touched">
+              Fin Type is required
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="woHrs"class="label text-dark">Working Hours</label>
+                <input class="form-control" name="woHrs"
+                 [(ngModel)]="capacityCalculationService.capacityCalculation.woHrs"
+                  class="form-control form-rounded form-control-sm" type="text" id="woHrs"
+                  placeholder="Wo Hrs">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="smv"class="label text-dark">SMV</label>
+                <input class="form-control" name="smv"
+                 [(ngModel)]="capacityCalculationService.capacityCalculation.smv"
+                  class="form-control form-rounded form-control-sm" type="text" id="smv"
+                  placeholder="SMV">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 ">
+              <div class="form-group">
+                <input hidden name="id" [(ngModel)]="capacityCalculationService.capacityCalculation.id" type="text">
+                <input hidden name="capacitySource" [(ngModel)]="capacityCalculationService.capacityCalculation.capacitySource" type="text">
+                <input hidden name="manOrMachinePerLine" [(ngModel)]="capacityCalculationService.capacityCalculation.manOrMachinePerLine" type="text">
+                <input hidden name="basicSAM" [(ngModel)]="capacityCalculationService.capacityCalculation.basicSAM" type="text">
+                
+                <button *ngIf="updateButton" type="submit" nbButton [disabled]="form.invalid" (click)="onUpdate(form,CapacityCalculationMontly,CapacityCalculationYearly)" >Update</button>
+              </div>
+            </div>
+          </div>
+       
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-7">
+    <nb-card>
+      <nb-card-header
+      > 
+      Capacity Calculation Monthly
+      <button
+        class="btn btn-outline-success float-right"
+        (click)="capacityCalculationMontlyForm()"
+      >
+        <i class="fa fa-plus"></i>
+      </button>
+    
+    </nb-card-header>
+      <nb-card-body>
+        <div class="col-md-12">
+          <div class="smart-table-container">
+            <form>
+              <table class="">
+                <thead>
+                  <tr>
+                    <th scope="col" class="label text-dark">Action</th>
+                    <th scope="col"class="label text-dark">Date</th>
+                   
+                    <th scope="col" class="label text-dark">DayStatus<span class="text-danger">*</span></th>
+                    <th scope="col" class="label text-dark">Manpower</th>
+                    <th scope="col" class="label text-dark">Capacity (Mnt)</th>
+                    <th scope="col" class="label text-dark">Capacity(Pcs)</th>
+                   
+                   
+                  </tr>
+                </thead>
+             
+                  <tbody 
+                  [formGroup]="fg"
+                  *ngFor="let fg of CapacityCalculationMontly.controls;let k=index">
+                    <tr>
+                      <td> 
+                          
+                        <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm" 
+                        (click)="onDeleteCapacityMonthlyForm(CapacityCalculationMontly,k)" >
+                            <i class="far fa-trash-alt fa-lg text-danger"></i>
+                            
+                        </button> 
+                      </td>
+                       
+        
+                        <td >
+                        
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="date"
+                            type="text"
+                            
+                            placeholder="Date"
+                            [nbDatepicker]="date">
+                          
+                          <nb-datepicker #date></nb-datepicker>
+                        </td>
+        
+                       
+      
+                        <td>
+                          
+                          <select class="form-control form-rounded form-control-sm " 
+                          (change)="onChangeDayStatus(form,CapacityCalculationMontly,CapacityCalculationYearly,k)"
+                        required  formControlName="dayStatus">
+                        <option value=''>Select</option>
+                            <option value="Open">Open</option>
+                            <option value="Close">Close</option>
+                          </select>
+                        </td>
+        
+                        <td>
+                          
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="manpower"
+                             type="text"
+                             
+                             placeholder="Manpower"
+                           
+                           />
+
+                          <input
+                       hidden   class="form-control form-rounded form-control-sm " formControlName="noOfLine"
+                          type="text"
+                          
+                          placeholder="No.Line"
+                        
+                        />
+                        </td>
+        
+                        <td>
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="capacityMinutes"
+                            type="text"
+                            
+                            placeholder="Capacity Minutes"
+                           
+                          />
+                        </td>
+                        <td>
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="capacityPcs"
+                            type="text"
+                            
+                            placeholder="capacityPcs"
+                          
+                          />
+                        </td>
+                    </tr>
+                 
+                  </tbody>
+             
+               
+              </table>
+            </form>
+             
+              
+          </div>
+        </div>
+       
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-5">
+    <nb-card>
+      <nb-card-header
+      > 
+      Capacity Calculation Yearly
+      <!-- <button
+        class="btn btn-outline-success float-right"
+        (click)="capacityCalculationYearlyForm()"
+      >
+        <i class="fa fa-plus"></i>
+      </button> -->
+    
+    </nb-card-header>
+      <nb-card-body>
+        <div class="col-md-12">
+          <div class="smart-table-container">
+            <form>
+              <table class="">
+                <thead>
+                  <tr>
+                    <th scope="col" class="label text-dark">Action</th>
+                   
+                    <th scope="col" class="label text-dark">Month</th>
+                    <th scope="col" class="label text-dark">Working Day</th>
+                    <th scope="col" class="label text-dark">Capacity(Mnt)</th>
+                    <th scope="col" class="label text-dark">Capacity(Pcs)</th>
+                   
+                   
+                  </tr>
+                </thead>
+             
+                  <tbody 
+                  [formGroup]="fg"
+                  *ngFor="let fg of CapacityCalculationYearly.controls;let k=index">
+                    <tr>
+                      <td> 
+                          
+                        <button  class="btn btn-light ml-1  form-control form-rounded form-control-sm" 
+                        (click)="onDeleteCapacityYearlyForm(CapacityCalculationYearly,k)" >
+                            <i class="far fa-trash-alt fa-lg text-danger"></i>
+                            
+                        </button> 
+                      </td>
+                       
+        
+                        <td >
+                        
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="month"
+                            type="text"
+                            
+                            placeholder="Month"
+                          
+                          />
+                        </td>
+        
+                       
+      
+                        <td>
+                          
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="workingDay"
+                            type="text"
+                            
+                            placeholder="Working Day"
+                          
+                          />
+                        </td>
+        
+                        <td>
+                          
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="capacityMinutes"
+                            type="text"
+                            
+                            placeholder="Capacity Minutes"
+                          
+                          />
+                        </td>
+        
+                        <td>
+                          <input
+                            class="form-control form-rounded form-control-sm " formControlName="capacityPcs"
+                            type="text"
+                            
+                            placeholder="Capacity Pcs"
+                          
+                          />
+                        </td>
+                       
+                    </tr>
+                  
+                  </tbody>
+             
+               
+              </table>
+            </form>
+           
+              <label for="totalWorkingDay"class="label text-dark">Total Working Day</label>
+               <input class="form-control form-rounded form-control-sm" name="totalWorkingDay"
+              
+               class="form-control form-rounded form-control-sm" type="text" id="totalWorkingDay"
+               placeholder="Total Working Day">
+             
+              
+          </div>
+        </div>
+       
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+

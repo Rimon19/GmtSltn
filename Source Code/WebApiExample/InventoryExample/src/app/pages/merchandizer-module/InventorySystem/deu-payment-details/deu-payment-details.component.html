@@ -1,0 +1,94 @@
+
+<nb-card>
+  <div class="col-md-12" style = "overflow-x: scroll;">
+    <div class="smart-table-container" style = "width:100%;">
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <h5>Due Payment's Details</h5>
+          <div class="row">
+
+            <div class="col-sm-2">
+              <div class="form-group">
+            <input  type="text" #eDate="ngModel"  [(ngModel)]="entryDate"  class="form-control"  id="JobNo" placeholder="Select Date"
+                
+            [nbDatepicker]="formpicker">
+     <nb-datepicker #formpicker></nb-datepicker>
+   
+    </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="form-group">
+    <input  type="text"  [(ngModel)]="mobileNo"  class="form-control"  id="mobileNo" placeholder="Mobile No.">
+
+
+</div>
+</div>
+    <div class="col-sm-2">
+      <div class="form-group">
+        <button   type="submit" class="btn btn-outline-success"   (click)="applyFilter(entryDate)"
+        >
+            
+            Search
+    </button>
+      </div>
+    </div>
+    </div>
+
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" matSort >
+
+          <!-- <ng-container matColumnDef="entryDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark"> Date</mat-header-cell>
+            <mat-header-cell *matCellDef="let element" >{{element.entryDate}}</mat-header-cell>
+  
+          </ng-container> -->
+        
+          <ng-container matColumnDef="clienName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark"> Customer Name</mat-header-cell>
+          <mat-header-cell *matCellDef="let element" >{{element.clienName}}</mat-header-cell>
+
+        </ng-container>
+      
+
+       
+        <ng-container matColumnDef="mobile">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark"> Mobile</mat-header-cell>
+          <mat-header-cell *matCellDef="let element" >{{element.mobile}}</mat-header-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark"> Total Price</mat-header-cell>
+            <mat-header-cell *matCellDef="let element" >{{element.tAmount}}</mat-header-cell>
+
+          </ng-container>
+          <ng-container matColumnDef="PaidAmount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Paid Amount</mat-header-cell>
+            <mat-header-cell *matCellDef="let element">{{element.PAmount}}</mat-header-cell>
+
+      
+          
+          </ng-container>
+
+          <ng-container matColumnDef="DueAmount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Due Amount</mat-header-cell>
+            <mat-header-cell *matCellDef="let element">
+             <div *ngIf="element.DAmount!=0"> {{element.DAmount}} <button (click)="payment(element.mobile)"> pay</button></div>
+             <div *ngIf="element.DAmount==0"> <strong>Paid</strong></div>
+            </mat-header-cell>
+            
+           
+          
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+       
+      </div>
+    </div>
+     
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</nb-card>
