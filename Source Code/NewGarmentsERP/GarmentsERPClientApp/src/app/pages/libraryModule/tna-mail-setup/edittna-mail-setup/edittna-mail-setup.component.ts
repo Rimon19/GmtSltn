@@ -53,13 +53,27 @@ export class EdittnaMailSetupComponent implements OnInit {
 let array=[];
 tnaTaskIds.forEach(ele => {
         let obj= data.find(f=>f.id==parseInt(ele));
-        console.log(obj);
+      
       array.push(obj);
         
       });
       this.tagTNATaskselectedItems=array;
       
 });
+}
+if(items.mailType!=""){
+  let mailTypeList=this.staticFeaturesService.getMailType()
+      let mailTypes= items.mailType.split(',');
+let array=[];
+mailTypes.forEach(ele => {
+        let obj= mailTypeList.find(f=>f.value==ele);
+        
+      array.push(obj);
+        
+      });
+      this.tagMailTypeselectedItems=array;
+      
+
 }
   });
 
@@ -70,6 +84,8 @@ tnaTaskIds.forEach(ele => {
     this.dropdownValueService.getUsersByEmail();
 this.dropdownValueService.getTNAShortName();
 this.dropdownValueService.getMailType();
+this.TNATasksDDL();
+this.MailTypeDDL();
 
   }
 

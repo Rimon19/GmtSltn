@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DateResizeService } from '../../../../@core/mock/marchandizer/date-resize.service';
 import { NbToastrService } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-edit-currency-conversion-rate',
@@ -20,6 +21,7 @@ export class EditCurrencyConversionRateComponent implements OnInit {
     private route:ActivatedRoute,
     private dateResizeService:DateResizeService,
     private toastrService:NbToastrService,
+    public dropdownValueService:DropdownValueService
     ) {
 
       this.editedId = this.route.snapshot.paramMap.get('id');
@@ -33,6 +35,7 @@ export class EditCurrencyConversionRateComponent implements OnInit {
 
   ngOnInit() {
     this.resetFormForCurrencyConversionRate();
+    this.dropdownValueService.getCurrency();
   }
   resetFormForCurrencyConversionRate(form?:NgForm){
     if(form!=null)
@@ -45,20 +48,21 @@ export class EditCurrencyConversionRateComponent implements OnInit {
       date:'',
     }
   }
-  currency: any = [
-    // { btn: 'Select', val: 'Select' },
-      { btn: 'USD', val: 'USD' },
-      { btn: 'EURO', val:'EURO' },
-      { btn: 'CHF', val:'CHF' },
-      { btn: 'SGD', val:'SGD' },
-      { btn: 'Pound', val:'Pound' },
-      { btn: 'YEN', val:'YEN' }
-    ]
+  // currency: any = [
+  //   // { btn: 'Select', val: 'Select' },
+  //     { btn: 'USD', val: 'USD' },
+  //     { btn: 'EURO', val:'EURO' },
+  //     { btn: 'CHF', val:'CHF' },
+  //     { btn: 'SGD', val:'SGD' },
+  //     { btn: 'Pound', val:'Pound' },
+  //     { btn: 'YEN', val:'YEN' }
+  //   ]
    
    
-    update(currencyConversionRate){
-      currencyConversionRate.date= this.dateResizeService.dateResize(currencyConversionRate.date);
-      this.currencyConversionRateService.updateCurrencyConversionRate(currencyConversionRate).subscribe(s=>{
+    onSubmit(form:NgForm){
+      form.value.id=this.editedId;
+      form.value.date= this.dateResizeService.dateResize(form.value.date);
+      this.currencyConversionRateService.updateCurrencyConversionRate(form.value).subscribe(s=>{
         this.Tostr.showToast('primary',"", "update Successfull !", "",this.toastrService);
         this.router.navigate(['/pages/currency-conversion-rate']);
       },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);})

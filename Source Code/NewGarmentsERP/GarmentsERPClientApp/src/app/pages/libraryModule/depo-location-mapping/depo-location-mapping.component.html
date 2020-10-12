@@ -29,7 +29,7 @@
               <!-- Fav Column -->
               <ng-container matColumnDef="countryId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">country Name </mat-header-cell>
-                <mat-header-cell *matCellDef="let element" >{{element.countryId}}</mat-header-cell>
+                <mat-cell *matCellDef="let element" >{{element.countryId}}</mat-cell>
                  
               </ng-container>
               <ng-container matColumnDef="ultimateCountryId">

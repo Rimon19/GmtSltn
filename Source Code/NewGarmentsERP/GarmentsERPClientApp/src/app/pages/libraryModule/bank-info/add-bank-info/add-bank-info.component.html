@@ -3,7 +3,15 @@
     
     <div >
         <nb-card>
-          <nb-card-header>Bank Info Entry</nb-card-header>
+         
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success mr-2 "
+
+       >
+       <i class="fas fa-arrow-left "></i>
+      </button>Bank Info Entry 
+    </nb-card-header>
            <nb-card-body>
        
               
@@ -12,10 +20,10 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="bankName" class="label">Bank Name<span class="text-danger">*</span></label>
+                <label for="bankName" class="label text-dark">Bank Name<span class="text-danger">*</span></label>
                 <input required name="bankName" #BankName="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.bankName"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="bankName" placeholder="Bank Name">
                 <div class="text-left text-danger"
                *ngIf="bankInfoService.bankInfo.bankName==''&&BankName.touched">
@@ -26,10 +34,10 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="branchName" class="label">Branch Name<span class="text-danger">*</span></label>
+                <label for="branchName" class="label text-dark">Branch Name<span class="text-danger">*</span></label>
                 <input required name="branchName" #BranchName="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.branchName"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="branchName" placeholder="Branch Name">
                 <div class="text-left text-danger"
                *ngIf="bankInfoService.bankInfo.branchName==''&&BranchName.touched">
@@ -40,10 +48,10 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="bankCode" class="label">Bank Code<span class="text-danger">*</span></label>
+                <label for="bankCode" class="label text-dark">Bank Code<span class="text-danger">*</span></label>
                 <input required name="bankCode" #BankCode="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.bankCode"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="bankCode" placeholder="Bank Code">
                 <div class="text-left text-danger"
                *ngIf="bankInfoService.bankInfo.bankCode==''&&BankCode.touched">
@@ -54,10 +62,10 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="address" class="label">Address</label>
+                <label for="address" class="label text-dark">Address</label>
                 <input  name="address" #address="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.address"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="address" placeholder="Address">
                 
               </div>
@@ -65,10 +73,10 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="email" class="label">Email</label>
+                <label for="email" class="label text-dark">Email</label>
                 <input  name="email" #email="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.email"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="email" placeholder="Email">
               
               </div>
@@ -76,10 +84,10 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="swiftCode" class="label">Swift Code</label>
+                <label for="swiftCode" class="label text-dark">Swift Code</label>
                 <input  name="swiftCode" #swiftCode="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.swiftCode"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="swiftCode" placeholder="Swift Code">
              
               </div>
@@ -87,10 +95,10 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="webSite" class="label">WebSite</label>
+                <label for="webSite" class="label text-dark">WebSite</label>
                 <input  name="webSite" #WebSite="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.webSite"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="webSite" placeholder="WebSite">
                
               </div>
@@ -98,10 +106,10 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="contactPerson" class="label">Contact Person</label>
+                <label for="contactPerson" class="label text-dark">Contact Person</label>
                 <input  name="contactPerson" #ContactPerson="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.contactPerson"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="contactPerson" placeholder="Contact Person">
                 
               </div>
@@ -109,25 +117,25 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="phoneNo" class="label">Phone No</label>
+                <label for="phoneNo" class="label text-dark">Phone No</label>
                 <input  name="phoneNo" #PhoneNo="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.phoneNo"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="phoneNo" placeholder="Phone No">
                 
               </div>
               
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-6">
               <div class="form-group">
-                <label for="bankType" class="label">Bank Type</label>
+                <label for="bankType" class="label text-dark">Bank Type</label>
                <div class="row">
                 
                 <input type="checkbox"  name="lienBank" #LienBank="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.lienBank"
                
                 id="lienBank" (change)="lienBankCheckValue(bankInfoService.bankInfo.lienBank?'lienBank':'')" />
-                <label class="label">&nbsp; Lien Bank &nbsp;&nbsp;&nbsp;</label>
+                <label class="label text-dark">&nbsp; Lien Bank &nbsp;&nbsp;</label>
 
 
                 
@@ -135,19 +143,19 @@
                 [(ngModel)]="bankInfoService.bankInfo.issuingBank"
                
                 id="issuingBank" (change)="issuingBankCheckValue(bankInfoService.bankInfo.issuingBank?'IssuingBank':'')" />
-                <label class="label"> &nbsp; Issuing Bank &nbsp;&nbsp;&nbsp;</label>
+                <label class="label text-dark"> &nbsp; Issuing Bank &nbsp;&nbsp;</label>
 
                 <input type="checkbox"   name="salaryBank" #SalaryBank="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.salaryBank"
                
                 id="salaryBank" (change)="salaryBankCheckValue(bankInfoService.bankInfo.salaryBank?'SalaryBank':'')" />
-                <label class="label"> &nbsp; Salary Bank &nbsp;&nbsp;&nbsp;</label>
+                <label class="label text-dark"> &nbsp; Salary Bank &nbsp;&nbsp;</label>
 
                 <input type="checkbox"  name="advisingBank" #AdvisingBank="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.advisingBank"
                
                 id="advisingBank" (change)="advisingBankCheckValue(bankInfoService.bankInfo.advisingBank?'AdvisingBank':'')" />
-                <label class="label"> &nbsp; Advising Bank &nbsp;&nbsp;&nbsp;</label>
+                <label class="label text-dark"> &nbsp; Advising Bank &nbsp;&nbsp;</label>
               </div>
               </div>
               
@@ -155,10 +163,10 @@
         
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="remarks" class="label">Remarks</label>
+                <label for="remarks" class="label text-dark">Remarks</label>
                 <input  name="remarks" #Remarks="ngModel"
                 [(ngModel)]="bankInfoService.bankInfo.remarks"
-                class="form-control" type="text" 
+                class="form-control form-rounded form-control-sm" type="text" 
                 id="remarks" placeholder="Remarks">
                 
               </div>
@@ -166,11 +174,11 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="Status" class="label">Status</label>
+                <label for="Status" class="label text-dark">Status</label>
                    <select name="status" #Status="ngModel"
                    [(ngModel)]="bankInfoService.bankInfo.status"
                     id="Status" 
-                    class="form-control text-responsive" >
+                    class="form-control form-rounded form-control-sm" >
                    <option value=''>Select Status</option>
                    <option  *ngFor="let btnAction of Active_Inactive" 
                    value="{{btnAction.val}}">{{btnAction.btn}}</option> 
@@ -194,15 +202,27 @@
           <nb-card>
             <nb-card-header
             >
+           <div class="row">
+             <div class="col-sm-11">
+              Account Info
+             </div>
+             <div class="col-sm-1">
+              <button
+              class="btn btn-outline-success float-right"
+              (click)="addBankAccountForm()"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
+             </div>
+           </div>
            
-            Account Info
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               Search by Bank Name
             <select class="form-control form-rounded form-control-sm"  [(ngModel)]="BankId" (change)="searchAccountByBankId(BankId)">
               <option value="0">Select</option>
               <option *ngFor="let item of bankName"  value="{{item.id}}">{{item.bankName}}</option>
           </select>
-        </div>
+        </div> -->
            
             
            
@@ -221,28 +241,28 @@
              <thead>
                  <tr>
                   <td>
-                    <button  
+                    <!-- <button  
                     class="btn btn-outline-success float-right"
                     (click)="refreshList()"
                   >
                     <i class="fa fa-list"></i>
-                  </button> 
-                    <button
+                  </button>  -->
+                    <!-- <button
                     class="btn btn-outline-success float-right"
                     (click)="addBankAccountForm()"
                   >
                     <i class="fa fa-plus"></i>
-                  </button>
+                  </button> -->
                    </td>
-                 <td>Company Name</td>
-                 <td>Bank Name</td>
-                 <td>Account Type</td>
-                 <td>Account No</td>
-                 <td>Currency</td>
-                 <td>Loan Limit</td>
-                 <td>Limit Type</td>
-                 <td>Chart Of Account</td>
-                 <td>Status</td>
+                 <td class="label text-dark">Company Name</td>
+                 <td class="label text-dark">Bank Name</td>
+                 <td class="label text-dark">Account Type</td>
+                 <td class="label text-dark">Account No<span class="text-danger">*</span></td>
+                 <td class="label text-dark">Currency</td>
+                 <td class="label text-dark">Loan Limit</td>
+                 <td class="label text-dark">Limit Type</td>
+                 <td class="label text-dark">Chart Of Account</td>
+                 <td class="label text-dark">Status</td>
                 
                 
                    
@@ -262,18 +282,19 @@
                        
                    </button>
                    <button 
+                   nbButton
                    *ngIf="i==count-1" 
                  type="submit"
                  (click)="recordSubmit(bankAccountForms.value)"
                  [disabled]="fg.invalid"   
-                 nbButton >
-                 {{fg.get('id').value==0?'Submit':'Update'}}</button>
+                  >
+                 Submit</button>
                  <input  formControlName="id" type="hidden">
                   </td>
                    <td>
                     <select class="form-control form-rounded form-control-sm" formControlName="companyId">
-                      <option value="0">Select</option>
-                      <option *ngFor="let item of company" value="{{item.compId}}">{{item.companyName}}</option>
+                      <option value=''>Select</option>
+                      <option *ngFor="let item of company" value="{{item.compID}}">{{item.company_Name}}</option>
                   </select>
                    </td>
                    <td>
@@ -289,7 +310,7 @@
                   </select>
                    </td>
                    <td>
-                    <input class="form-control form-rounded form-control-sm" formControlName="accountNo">
+                    <input class="form-control form-rounded form-control-sm" formControlName="accountNo" placeholder="accountNo">
                    </td>
                    <td>
                     <select class="form-control form-rounded form-control-sm" formControlName="currencyId">
@@ -303,16 +324,16 @@
                    </td>
                    <td>
                     <select class="form-control form-rounded form-control-sm" formControlName="limitType">
-                      <option value="0">Select</option>
+                      <option value=''>Select</option>
                       <option *ngFor="let item of limitType" value="{{item.val}}">{{item.btn}}</option>
                   </select>
                    </td>
                    <td>
-                    <input class="form-control form-rounded form-control-sm" formControlName="chartOfAccount">
+                    <input class="form-control form-rounded form-control-sm" formControlName="chartOfAccount"placeholder="chartOfAccount">
                    </td>
                    <td>
                     <select class="form-control form-rounded form-control-sm" formControlName="status">
-                      <option value="0">Select</option>
+                      <option value=''>Select</option>
                       <option *ngFor="let item of Active_Inactive" value="{{item.val}}">{{item.btn}}</option>
                   </select>
                    </td>

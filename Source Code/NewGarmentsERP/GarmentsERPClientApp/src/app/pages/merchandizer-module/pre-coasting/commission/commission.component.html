@@ -7,7 +7,7 @@
  
   <button
     class="btn btn-outline-success float-right"
-    (click)="commissionDetailsForm()"
+    (click)="commissionCostService.commissionDetailsForm()"
   >
     <i class="fa fa-plus"></i>
   </button>
@@ -31,10 +31,10 @@
           </thead>
             
               <tbody [formGroup]="fg"
-              *ngFor="let fg of commissionInformationForm.controls;let i=index" >
+              *ngFor="let fg of commissionCostService.commissionInformationForm.controls;let i=index" >
                 <tr>                
                    <td>   
-                    <button  class="btn btn-light ml-1 " (click)="onDelete(commissionInformationForm,i)"
+                    <button  class="btn btn-light ml-1 " (click)="onDeleteCommisionCost(commissionCostService.commissionInformationForm,i)"
                     >
                         <i class="far fa-trash-alt fa-lg text-danger"></i>
                         
@@ -66,7 +66,7 @@
                       knifeOnlyNumbers
                       placeholder="Commn Rate"
                       formControlName="commnRate"
-                     (change)="onChangeCommnBaseRate(commissionInformationForm)"
+                     (change)="commissionCostService.totalCalculation(commissionCostService.commissionInformationForm)"
                     />
                     </td>
                     <td>
@@ -75,7 +75,7 @@
                         type="text"            
                         placeholder="Amount"
                         formControlName="amount"
-                        (change)="onChangeAmount(commissionInformationForm)"
+                        (change)="commissionCostService.totalCalculation(commissionCostService.commissionInformationForm)"
                         knifeOnlyNumbers
                       />
                     </td>
@@ -97,7 +97,7 @@
 
                 </tr>
                 
-                <button *ngIf="i==count-1" type="submit" (click)="onSubmit(commissionInformationForm)" nbButton >Submit</button>
+                <button *ngIf="i==commissionCostService.count-1" type="submit" (click)="onSubmitCommisionCost(commissionCostService.commissionInformationForm)" nbButton >Submit</button>
               </tbody>
               <tbody>
                 <tr>
@@ -107,14 +107,14 @@
                    type="text"
                    placeholder="Total"
                   name="commnBaseRate"
-                  [(ngModel)]="TotalCommnRate"
+                  [(ngModel)]="commissionCostService.TotalCommnRate"
                  /></td>
                  <td > <input
                   class="form-control form-rounded form-control-sm "
                   type="text"
                   placeholder="Total"
                  name="amount"
-                 [(ngModel)]="TotalAmmount"
+                 [(ngModel)]="commissionCostService.TotalAmmount"
                 /></td>
                 </tr>
               </tbody>

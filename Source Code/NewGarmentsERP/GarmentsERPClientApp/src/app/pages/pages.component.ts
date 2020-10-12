@@ -1,3 +1,4 @@
+import { ViewEncapsulation } from '@angular/core';
 import { Component } from '@angular/core';
 
 import { MENU_ITEMS } from './pages-menu';
@@ -11,8 +12,11 @@ import { MENU_ITEMS } from './pages-menu';
       <router-outlet></router-outlet>
     </ngx-one-column-layout>
   `,
+ // encapsulation: ViewEncapsulation.None
 })
 export class PagesComponent {
 
   menu = MENU_ITEMS;
+
+  
 }

@@ -42,7 +42,7 @@ export class CompositionCreateComponent implements OnInit {
   }
   
    save(compositionEntry){
-    
+    console.log(compositionEntry)
  
  this.compositionEntryService.addCompositionEntry(compositionEntry).subscribe(s=>{
    this.Tostr.showToast('primary',"", "Saved Successfully", "",this.toastrService);

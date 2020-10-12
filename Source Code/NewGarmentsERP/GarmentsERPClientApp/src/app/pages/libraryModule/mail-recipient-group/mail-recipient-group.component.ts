@@ -7,6 +7,7 @@ import { MatDialogService } from '../../../@core/mock/mat-dialog.service';
 import { Router } from '@angular/router';
 import { MailRecipientGroup } from '../../../@core/data/Library-Modul-model/mail-recipient-group';
 import { MailRecipientGroupService } from '../../../@core/mock/library/mail-recipient-group.service';
+import { CompanyService } from '../../../@core/mock/company.service';
 
 @Component({
   selector: 'ngx-mail-recipient-group',
@@ -35,6 +36,7 @@ export class MailRecipientGroupComponent implements OnInit {
      private mathdialogService: MatDialogService,
      private router:Router,
      public mailRecipientGroupService:MailRecipientGroupService,
+     private companyService:CompanyService
      ) { }
     
 
@@ -73,6 +75,12 @@ export class MailRecipientGroupComponent implements OnInit {
   getMailRecipientGroup(){
     this.subscription=this.mailRecipientGroupService.getAllMailRecipientGroup().subscribe(data=>{
     this.mailRecipientGroup=data;
+    this.mailRecipientGroup.forEach(element => {
+      this.companyService.getAllCompany().subscribe(data=>{
+        let companyNames=data.find(f=>f.compID==element.companyName)&&data.find(f=>f.compID==element.companyName).company_Name;
+        element.companyName=companyNames;
+      })
+    });
   
     this.dataSource=new MatTableDataSource(this.mailRecipientGroup);
     console.log('mailRecipientGroup',this.mailRecipientGroup);

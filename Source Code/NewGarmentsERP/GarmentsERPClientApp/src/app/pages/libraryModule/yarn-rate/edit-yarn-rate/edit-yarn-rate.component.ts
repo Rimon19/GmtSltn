@@ -60,7 +60,7 @@ export class EditYarnRateComponent implements OnInit {
   }
 
   supplierDDL(){
-    this.supplierProfileService.getAll().subscribe(data=>{
+    this.supplierProfileService.getAllSupplier().subscribe(data=>{
      this.supplierList=data;
     });
   }

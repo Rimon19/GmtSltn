@@ -30,7 +30,7 @@
                 <select required #teamLeaderId="ngModel" (change)="onChangeTeamLeader(marketingTeamInfoService.marketingTeamInfo.teamLeaderId)"
                 [(ngModel)]="marketingTeamInfoService.marketingTeamInfo.teamLeaderId"  class="form-control form-rounded form-control-sm  "name="teamLeaderId" >
                   <option value=''>Select </option>
-                  <option *ngFor="let ui of userInfoList" [value]="ui.userId">{{ui.fullName}}({{ui.userTypeId}})</option>
+                  <option *ngFor="let ui of dropdownValueService.teamleaderList" [value]="ui.id">{{ui.userId}}</option>
                   
                </select>
                <div class="text-left text-danger"

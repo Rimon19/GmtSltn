@@ -91,7 +91,7 @@ import { CurrencyConversionRateService } from './library/currency-conversion-rat
 import { StoreLocationService } from './library/store-location.service';
 import { FabricNaturesService } from './marchandizer/fabric-natures.service';
 import { ConversionCostForPreCostsService } from './marchandizer/conversion-cost-for-pre-costs.service';
-import { CommercialCostsService } from './commercial-costs.service';
+
 import { TrimCostsService } from './marchandizer/trim-costs.service';
 
 import { QuotationInqueryService } from './marchandizer/quotation-inquery.service';
@@ -118,6 +118,7 @@ import { ServiceBookingForKnittingService } from './marchandizer/service-booking
 import { UtilityService } from './shared/utility.service';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material';
 import { WashCostService } from './marchandizer/wash-cost.service';
+import { CommercialCostService } from './marchandizer/commercial-cost.service';
 
 const SERVICES = [
   ServiceBookingForKnittingService,
@@ -142,7 +143,7 @@ const SERVICES = [
   WashCostService,
   QuotationInqueryService,
   TrimCostsService,
-  CommercialCostsService,
+  CommercialCostService,
   ConversionCostForPreCostsService,
   StoreLocationService,
   FabricNaturesService,

@@ -1,13 +1,12 @@
 <nb-card>
   <nb-card-header
   >
-  <button (click)="backToPrecostingFromFabricCost()"
-  class="btn btn-outline-success"><i class="fas fa-arrow-left"></i></button> 
+
   Commercial Cost
  
   <button
     class="btn btn-outline-success float-right"
-    (click)="commlCostDetailsForm()"
+    (click)="commercialCostsService.commlCostDetailsForm()"
   >
     <i class="fa fa-plus"></i>
   </button>
@@ -30,11 +29,11 @@
           </thead>
             
               <tbody [formGroup]="fg"
-              *ngFor="let fg of commlCostInformationForm.controls;let i=index" >
+              *ngFor="let fg of commercialCostsService.commlCostInformationForm.controls;let i=index" >
                 <tr>                
                    <td>   
                     <button  class="btn btn-light ml-1 "
-                     (click)="onDelete(commlCostInformationForm,i)"
+                     (click)="onDeleteCommercialCost(commercialCostsService.commlCostInformationForm,i)"
                     >
                         <i class="far fa-trash-alt fa-lg text-danger"></i>
                         
@@ -56,7 +55,7 @@
                         class="form-control form-rounded form-control-sm "
                         type="text"
                         knifeOnlyNumbers
-                        (change)="onChangeRateIn(commlCostInformationForm)"
+                        (change)="commercialCostsService.totalCalculation(commercialCostsService.commlCostInformationForm)"
                         placeholder="Rate In%"
                         formControlName="rateIn"
                       />
@@ -66,7 +65,7 @@
                       class="form-control form-rounded form-control-sm "
                       type="text"
                       knifeOnlyNumbers
-                      (change)="onChangeAmount(commlCostInformationForm)"
+                      (change)="commercialCostsService.totalCalculation(commercialCostsService.commlCostInformationForm)"
                       placeholder="Amount"
                       formControlName="amount"
                      
@@ -86,9 +85,9 @@
                    
                 </tr>
                 
-                <button *ngIf="i==count-1" 
+                <button *ngIf="i==commercialCostsService.count-1" 
                  type="submit"
-                 (click)="recordSubmitcommlCost(commlCostInformationForm)"
+                 (click)="recordSubmitcommlCost(commercialCostsService.commlCostInformationForm)"
                  [disabled]="fg.invalid"   
                  nbButton >Submit</button>
               </tbody>
@@ -100,13 +99,13 @@
                    type="text" name="totalRateIn"
                    readonly
                    placeholder="Total Rate In"
-                  [(ngModel)]="totalRateIn"
+                  [(ngModel)]="commercialCostsService.totalRateIn"
                  /></td>
                  <td > <input
                   class="form-control form-rounded form-control-sm "
                   type="text" name="totalAmount"
                   readonly
-                  [(ngModel)]="totalAmount"
+                  [(ngModel)]="commercialCostsService.totalAmount"
                   placeholder="Total Amount"
                  
                 /></td>

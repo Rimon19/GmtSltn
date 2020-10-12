@@ -203,22 +203,19 @@ serviceCreator(){
 
 this.displayService=` ${variableName}:${modelName}; 
 
-constructor(public http:HttpClient) { 
- 
-}
-getAll():Observable<${modelName}[]>{
-  return this.http.get<${modelName}[]>(BaseURL.apiUrl+'/${modelName}s');
-} 
-add(${variableName}:${modelName}){
+constructor(httpClient: HttpClient,
+  toastr: NbToastrService,
+  private fb: FormBuilder,) {
+  super(
+    httpClient,
+    BaseURL.apiUrl,
+    '...please Set Url Action',
+    toastr
+   );
+   
   
-  return this.http.post<${modelName}>(BaseURL.apiUrl+'/${modelName}s',${variableName});
 }
-update(${variableName}:${modelName}){
-  return this.http.put(BaseURL.apiUrl+'/${modelName}s/'+${variableName}.id,${variableName});
-}
-delete(id: number){
-  return this.http.delete(BaseURL.apiUrl+'/${modelName}s/'+id);
-}
+
 `;
 }
 tsCreateCreator(){
@@ -246,13 +243,12 @@ if(this.singleOrMultiline=='Single'){
   this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}.entryBy=EntryBy.userName;
   this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}.status='Active';
 this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}.entryDate=this.dateResizeService.dateResize(new Date);
-  this.${this.lowercaseFirstLetter(this.serviceName)}.add(this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}).subscribe(res=>{
+  this.${this.lowercaseFirstLetter(this.serviceName)}.create(this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)});
     console.log(res);       
-   this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
-    this.resetForm();
+    this.${this.lowercaseFirstLetter(this.serviceName)}.resetForm();
    this.router.navigate(["/pages/"]);
    
-  })`;
+ `;
 }
 if(this.singleOrMultiline=='Multiline'){
   resetForm=`this.${this.capitalizeFirstLetter(this.className)}Form=this.fb.array([]);`
@@ -261,7 +257,7 @@ if(this.singleOrMultiline=='Multiline'){
  initialForm=this.initialMultiFormCreator();
  formBuilder=`private fb: FormBuilder,`;
   onSubmitCodeDependOnSinglePageorMulti=`
-  
+  //this.${this.lowercaseFirstLetter(this.serviceName)}.addOrUpdateMultilines(this.${this.capitalizeFirstLetter(this.className)}Form.value);
   this.${this.capitalizeFirstLetter(this.className)}Form.value.forEach(element => {
     element.entryBy=EntryBy.userName;
     element.status='Active';
@@ -271,15 +267,11 @@ if(this.singleOrMultiline=='Multiline'){
     element.isApproved=true;
 
     if(element.id!=0){
-      this.${this.lowercaseFirstLetter(this.serviceName)}.update(element).subscribe(data=>{
-      
-      });
+      this.${this.lowercaseFirstLetter(this.serviceName)}.updateMultiline(element);
     }
     if(element.id==0){
       console.log(element.id);
-      this.${this.lowercaseFirstLetter(this.serviceName)}.add(element).subscribe(data=>{
-      
-      });
+      this.${this.lowercaseFirstLetter(this.serviceName)}.createMultiline(element);
     }
     
   });
@@ -390,14 +382,14 @@ tsEditCreator(){
   let ziroInsertion='';
   
   if(this.singleOrMultiline=='Single'){
-    resetForm='this.resetForm();';
+    resetForm='this.${this.lowercaseFirstLetter(this.serviceName)}.resetForm();';
     dataLoadedCode=`
     
     this.editedId = this.route.snapshot.paramMap.get('id');
-    this.${this.lowercaseFirstLetter(this.serviceName)}.getAll().subscribe(data=>{
-   let items=  data.find(f=>f.id==this.editedId);
+    this.${this.lowercaseFirstLetter(this.serviceName)}.GetOnlyArrayList();
+   let items=  this.${this.lowercaseFirstLetter(this.serviceName)}.items.find(f=>f.id==this.editedId);
    this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}=items;
-    });`;
+    `;
 
     initialForm=this.initialFormCreator();
     onSubmitCodeDependOnSinglePageorMulti=`
@@ -408,22 +400,21 @@ tsEditCreator(){
     this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}.entryBy=EntryBy.userName;
     this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}.status='Active';
   this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}.entryDate=this.dateResizeService.dateResize(new Date);
-    this.${this.lowercaseFirstLetter(this.serviceName)}.update(this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}).subscribe(res=>{
-      console.log(res);       
-     this.Tostr.showToast('primary','', 'Update Successfully', '',this.toastrService);
-     this.resetForm();
+    this.${this.lowercaseFirstLetter(this.serviceName)}.update(this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)},this.${this.lowercaseFirstLetter(this.serviceName)}.${this.lowercaseFirstLetter(this.className)}.id);
+     
+     this.${this.lowercaseFirstLetter(this.serviceName)}.resetForm();
      this.router.navigate(["/pages/"]);
      
-    })`;
+    `;
   }
   if(this.singleOrMultiline=='Multiline'){
 
     resetForm=`this.${this.capitalizeFirstLetter(this.className)}Form=this.fb.array([]);`
     dataLoadedCode=`this.editedId = this.route.snapshot.paramMap.get('id');
-    this.${this.lowercaseFirstLetter(this.serviceName)}.getAll().subscribe(data=>{
-   let items=  data.filter(f=>f.id==this.editedId);
+    this.${this.lowercaseFirstLetter(this.serviceName)}.GetOnlyArrayList();
+   let items=  this.${this.lowercaseFirstLetter(this.serviceName)}.items.find(f=>f.id==this.editedId);
      // this.${this.className}Form.value=items;  manually write code here for data load
-    });`;
+    `;
    formArrayProperty=`${this.className}Form: FormArray = this.fb.array([]);
    public count=0;`;
    initialForm=this.initialMultiFormCreator();
@@ -438,15 +429,13 @@ tsEditCreator(){
       element.approvedBy=ApprovedBy.userName;
       element.isApproved=true;
       if(element.id!=0){
-        this.${this.lowercaseFirstLetter(this.serviceName)}.update(element).subscribe(data=>{
+        this.${this.lowercaseFirstLetter(this.serviceName)}.updateMultiline(element,element.id);
         
-        });
       }
       if(element.id==0){
         console.log(element.id);
-        this.${this.lowercaseFirstLetter(this.serviceName)}.add(element).subscribe(data=>{
+        this.${this.lowercaseFirstLetter(this.serviceName)}.createMultiline(element);
         
-        });
       }
       
     });
@@ -656,17 +645,13 @@ tsDisplayCreator(){
 
 let displayPageTs=`
 
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 
-@ViewChild(MatSort, {static: true}) sort: MatSort;
-@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-dataSource = new MatTableDataSource();
 displayedColumns = ['id',${displayColumnsRow}];
 Tostr=new Tostr();
-filterValues:any={};
+
   filterSelectObj  = [
     ${filterSelectObjRow} 
   ]
@@ -680,15 +665,9 @@ constructor(private ${this.lowercaseFirstLetter(this.serviceName)}:${this.capita
 ngOnInit() {
 
 ${dropdwnMethods}
-this.refresList();
+this.${this.lowercaseFirstLetter(this.serviceName)}.getDataSource();
 }
 
-applyFilter(filterValue: string) {
- 
-  filterValue = filterValue.trim(); 
-  filterValue = filterValue.toLowerCase(); 
-  this.dataSource.filter = filterValue;
-}
 
 redirectToAddPage(){
   this.router.navigate(["/pages/"]);
@@ -711,55 +690,6 @@ onDelete(element){
              })
 }
 
-refresList(){    
-  this.${this.lowercaseFirstLetter(this.serviceName)}.getAll().subscribe(items=>{
-    
-   ${forGetitemsNameProperty}
-    
-    this.dataSource=new MatTableDataSource(items);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  })
- 
-}
-filterChange(filter, event) {
-  //let filterValues = {}
-  this.dataSource.filterPredicate = this.createFilter(); 
-  this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
-  this.dataSource.filter = JSON.stringify(this.filterValues)
-}
-
-createFilter() {
-  let filterFunction = function (data: any, filter: string): boolean {
-    let searchTerms = JSON.parse(filter);
-    let isFilterSet = false;
-    for (const col in searchTerms) {
-      if (searchTerms[col].toString() !== '') {
-        isFilterSet = true;
-      } else {
-        delete searchTerms[col];
-      }
-    }
-
-    let nameSearch = () => {
-      let found = false;
-      if (isFilterSet) {
-        for (const col in searchTerms) {
-          searchTerms[col].trim().toLowerCase().split(' ').forEach(word => {
-            if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
-              found = true
-            }
-          });
-        }
-        return found
-      } else {
-        return true;
-      }
-    }
-    return nameSearch()
-  }
-  return filterFunction
-}
 
 resetFilters() {
   this.filterValues = {}
@@ -768,7 +698,7 @@ resetFilters() {
     value.modelValue = undefined;
   })
   this.dataSource.filter = "";
-  this.refresList();
+  this.getDataSource();
 }   
 `;
 
@@ -801,7 +731,7 @@ htmlDisplayPageCreator(){
             <input
               matInput
               #filter
-              (change)="applyFilter($event.target.value)"
+              (change)="${this.lowercaseFirstLetter(this.serviceName)}.applyFilter($event.target.value)"
              
             />
           
@@ -821,22 +751,22 @@ htmlDisplayPageCreator(){
             
             <!-- <button mat-flat-button class="float-right" color="warn" >Reset</button> -->
           </mat-form-field>
-          <mat-icon (click)="resetFilters()">autorenew</mat-icon>
+          <mat-icon (click)="${this.lowercaseFirstLetter(this.serviceName)}.resetFilters()">autorenew</mat-icon>
            </div>
          </div>
        
          <div style="margin-left: 30px;width: 85%;">
-          <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 10px;width: 10%;">
+          <mat-form-field *ngFor="let filter of ${this.lowercaseFirstLetter(this.serviceName)}.filterSelectObj" style="margin-left: 10px;width: 10%;">
           <mat-label style="font-size:15px;font-weight: bold;">S.{{filter.name}}</mat-label>
             <input  matInput  
             name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
-            (change)="filterChange(filter,$event)">
+            (change)="${this.lowercaseFirstLetter(this.serviceName)}.filterChange(filter,$event)">
             
           </mat-form-field>
          </div>
 
            <mat-table
-             [dataSource]="dataSource"
+             [dataSource]="${this.lowercaseFirstLetter(this.serviceName)}.dataSource"
              matSort
              mat-table
            >
@@ -975,7 +905,7 @@ htmlCreator() {
   ${this.pageTitle}
   <button
     class="btn btn-outline-success float-right"
-    (click)="${this.className}FormAction()"
+    (click)="${this.lowercaseFirstLetter(this.serviceName)}.${this.className}FormAction()"
   >
     <i class="fa fa-plus"></i>
   </button>
@@ -995,7 +925,7 @@ htmlCreator() {
             </thead>
          
               <tbody [formGroup]="fg"
-              *ngFor="let fg of ${this.className}Form.controls;let i=index" >
+              *ngFor="let fg of ${this.lowercaseFirstLetter(this.serviceName)}.${this.className}Form.controls;let i=index" >
                 <tr>
                   <td> 
                       
@@ -1016,7 +946,7 @@ htmlCreator() {
                
               />
 
-                <button [disabled]="${this.className}Form.invalid" *ngIf="i==count-1" type="submit" (click)=" onSubmit()" nbButton>Submit</button>
+                <button [disabled]="${this.lowercaseFirstLetter(this.serviceName)}.${this.className}Form.invalid" *ngIf="i==${this.lowercaseFirstLetter(this.serviceName)}.count-1" type="submit" (click)=" onSubmit()" nbButton>Submit</button>
               </tbody>
          
            

@@ -29,6 +29,7 @@ export class FabricCostService extends HTTPService {
   }
   
   fabricCostForm(precostingId) {
+    
     this.count = this.count + 1;
    this.fabricCostInformationForm.push(
       this.fb.group({
@@ -60,7 +61,8 @@ export class FabricCostService extends HTTPService {
     );
   }
   loadFabricCostFormWithData(fabricCostList){ 
-    console.log(fabricCostList);
+    this.fabricCostInformationForm = this.fb.array([]);
+    this.count = 0;
     fabricCostList.forEach(itemDts => {
       console.log(itemDts.fabricDescription);
       this.count = this.count + 1;  

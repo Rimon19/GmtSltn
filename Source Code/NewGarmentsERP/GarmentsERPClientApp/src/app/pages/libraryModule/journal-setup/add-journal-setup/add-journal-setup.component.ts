@@ -62,5 +62,9 @@ onSubmit(form:NgForm){
       { btn: 'Active', val: 'Active' },
       { btn: 'Inactive', val: 'Inactive' }
     ]
+  
 
+    backHomePage(){
+      this.router.navigate(['/pages/Journal-Setup-list']);
+      }
 }

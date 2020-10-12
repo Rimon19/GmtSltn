@@ -71,7 +71,7 @@ export class EditSupplierProfileComponent implements OnInit {
      
       this.editedId = this.route.snapshot.paramMap.get('id');
       console.log(this.editedId);
-      this.supplierProfileService.getAll().subscribe(item=>{
+      this.supplierProfileService.getAllSupplier().subscribe(item=>{
      let items=  item.find(f=>f.id==this.editedId);
      this.supplierProfileService.supplierProfile=items;
      if(items.partyTypeIds!=""){
@@ -109,7 +109,7 @@ export class EditSupplierProfileComponent implements OnInit {
         let buyerProfileIds= items.tagBuyer.split(',');
   let array=[];
   buyerProfileIds.forEach(ele => {
-          let obj= data.find(f=>f.id==parseInt(ele));
+          let obj= data.find(f=>f.id==parseInt(ele)) && data.find(f=>f.id==parseInt(ele));
           console.log(obj);
         array.push(obj);
           
@@ -261,7 +261,7 @@ export class EditSupplierProfileComponent implements OnInit {
     let partyIds='';
     let companyIds='';
     let buyerProfileIds='';
-
+      
     form.value.partyTypeselectedItems.forEach(e => {
       partyIds +=e.id+",";
     });
@@ -287,7 +287,7 @@ console.log(form.value);
   form.value.id=this.editedId;
     this.supplierProfileService.update(form.value).subscribe(res=>{
        console.log(res);       
-      this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
+      this.Tostr.showToast('primary','', 'Update Successfully', '',this.toastrService);
      this.router.navigate(["/pages/supplier-profile"]);
    this.resetForm();
     });
@@ -308,17 +308,17 @@ console.log(form.value);
     reader.readAsDataURL(file);
   }
     
-  onAdd(){
-    console.log(this.supplierProfileService.supplierProfile.id)
+
+  onAddImage(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus= true;
     dialogConfig.width="50%"; 
     dialogConfig.height="50%";
-// page id is 2 here from according to table imageOrFileHolderPages
+// page id is 5 here from according to table imageOrFileHolderPages
 let primaryKey=0; 
-    this.datapassingService.sendInfoPageToErpImages.next({pageId:4,primaryKey:this.supplierProfileService.supplierProfile.id});
-   console.log(this.supplierProfileService.supplierProfile.id)
+    this.datapassingService.sendInfoPageToErpImages.next({pageId:5,primaryKey:primaryKey});
+
     this.dialog.open(ErpImagesComponent, dialogConfig);
   }
 

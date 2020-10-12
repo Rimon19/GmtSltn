@@ -5,10 +5,10 @@
       <button (click)="backTo()"
       class="btn btn-outline-success ">
      <i class="fas fa-arrow-left"></i></button>
-      TNA Mail Setup</nb-card-header>
+      TNA Mail Setup Entry</nb-card-header>
       <nb-card-body>
         <form #form="ngForm" (submit)="onSubmit(form)">
-         
+         <div class="row">
     <div class="col-sm-3">
     <div class="form-group">
       <label for="User" class="label text-dark">
@@ -65,6 +65,7 @@
       </select> -->
 
       <ng-multiselect-dropdown 
+    
       name="tagTNATaskselectedItems" 
        [placeholder]="'Tag TNA Task'"
         [data]="tagTNATasksdropdownList"
@@ -121,6 +122,7 @@
       </div>
     </div>
   </div>
+</div>
           <button
             type="submit"
             nbButton

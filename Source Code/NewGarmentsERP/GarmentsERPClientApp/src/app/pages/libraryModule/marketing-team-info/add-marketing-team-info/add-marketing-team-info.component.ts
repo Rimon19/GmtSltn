@@ -14,6 +14,7 @@ import { UserData } from '../../../../@core/data/users';
 import { UserTypeInfoService } from '../../../../@core/mock/user-type-info.service';
 import { UserTypeInfo } from '../../../../@core/data/user-info-type';
 import { MarketingTeamInfoService } from '../../../../@core/mock/library/marketing-team-info.service';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 
 
 @Component({
@@ -32,12 +33,14 @@ export class AddMarketingTeamInfoComponent implements OnInit {
   public marketingTeamInfoService:MarketingTeamInfoService,
   private router:Router,
   private toastrService:NbToastrService,
-  private userService:UserService
+  private userService:UserService,
+  public dropdownValueService:DropdownValueService
     ) { }
 
   ngOnInit() {
     this.userInfoDDL();
     this.resetForm();
+    this.dropdownValueService.getTeamleaders();
   }
    userInfoDDL(){
     this.userTypeInfoService.getAll().subscribe(d=>{
@@ -47,7 +50,7 @@ export class AddMarketingTeamInfoComponent implements OnInit {
         this.userService.getAllUser().subscribe(data=>{
       this.userInfoList=data;
          this.userInfoList.forEach(element => {
-          let userTypeName=this.userTypeList.find(f=>f.userTypeId==element.userTypeID).userType;
+          let userTypeName=this.userTypeList.find(f=>f.userTypeId==element.userTypeID) && this.userTypeList.find(f=>f.userTypeId==element.userTypeID).userType;
           element.userTypeID=userTypeName;
        
          });
@@ -65,7 +68,8 @@ export class AddMarketingTeamInfoComponent implements OnInit {
     this.userService.getAllUser().subscribe(data=>{
      this.userInfoList=data;
      this.userInfoList.forEach(element => {
-      let userTypeName=this.userTypeList.find(f=>f.userTypeId==element.userTypeID).userType;
+      let userTypeName=this.userTypeList.find(f=>f.userTypeId==element.userTypeID) && this.userTypeList.find(f=>f.userTypeId==element.userTypeID).userType;
+      console.log(userTypeName);
       element.userTypeID=userTypeName;
    
      });

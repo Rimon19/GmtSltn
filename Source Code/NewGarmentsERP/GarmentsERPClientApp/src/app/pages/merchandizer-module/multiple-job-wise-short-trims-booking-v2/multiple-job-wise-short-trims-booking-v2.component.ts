@@ -190,7 +190,7 @@ DropDownIdToNameDisplay(){
       });
 
       //Get supplier Profile name from SupplierProfile table and then assaign to supplierNameId
-      this.supplierProfileService.getAll().subscribe(data=>{
+      this.supplierProfileService.getAllSupplier().subscribe(data=>{
             this.SupplierProfileListItems=data;
             let supplierName=this.SupplierProfileListItems.find(f=>f.id==res.supplierNameId).supplierName;
             res.supplierNameId=supplierName;

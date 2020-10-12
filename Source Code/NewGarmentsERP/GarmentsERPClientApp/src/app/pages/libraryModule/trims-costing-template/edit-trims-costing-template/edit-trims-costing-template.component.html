@@ -26,7 +26,7 @@
                   >
                   </ng-multiselect-dropdown>
                   <div class="text-left text-danger"
-                  *ngIf="buyerselectedItems.length==0">
+                  *ngIf="buyerselectedItems.length==0&&buyerselectedItems.touched">
                   Buyer is required
                 </div>
               </div>

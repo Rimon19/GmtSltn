@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "partial-fabric-booking.component.scss"
+    ],
+    "names": [],
+    "file": "partial-fabric-booking.component.css"
+}

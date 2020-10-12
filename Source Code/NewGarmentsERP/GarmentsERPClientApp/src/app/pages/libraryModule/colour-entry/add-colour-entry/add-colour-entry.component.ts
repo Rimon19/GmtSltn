@@ -71,7 +71,7 @@ export class AddColourEntryComponent  extends HTTPService  implements OnInit {
       ]
       onSubmit(form:NgForm){
         this.create(form.value);
-       
+        this.resetFormForColourEntry();
          this.router.navigate(["/pages/colour-entry"]);
        
       }

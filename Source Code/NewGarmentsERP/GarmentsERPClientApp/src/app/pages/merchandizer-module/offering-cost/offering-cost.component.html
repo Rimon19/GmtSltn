@@ -1,33 +1,24 @@
 <div class="row">
     <div class="col-sm-12">
         <nb-card>
-            <nb-card-header>
-                Costing Sheet
-            </nb-card-header>
+            <nb-card-header> Costing Sheet </nb-card-header>
             <nb-card-body>
                 <div class="col-md-12" style="overflow-x: scroll">
                     <div class="smart-table-container" style="width: 2500px">
-                        <form>
+                        <form class="align-center">
                             <table border="1">
                                 <tbody>
                                     <tr>
-                                        <th>
-                                            Order Qty
-                                        </th>
+                                        <th>Order Qty</th>
                                         <td>
                                             <input class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
                                             <input class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-
                                     </tr>
                                     <tr>
-                                        <th>
-                                            Shipment Qty
-                                        </th>
-
-
+                                        <th>Shipment Qty</th>
 
                                         <td>
                                             <input class="form-control form-rounded form-control-sm" type="number" />
@@ -35,14 +26,9 @@
                                         <td>
                                             <input class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-
                                     </tr>
                                     <tr>
-
-
-                                        <th>
-                                            Short/Extra
-                                        </th>
+                                        <th>Short/Extra</th>
 
                                         <td>
                                             <input class="form-control form-rounded form-control-sm" type="number" />
@@ -50,12 +36,8 @@
                                         <td>
                                             <input class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-
                                     </tr>
-
-
                                 </tbody>
-
                             </table>
                         </form>
                     </div>
@@ -64,61 +46,50 @@
         </nb-card>
 
         <nb-card>
-            <nb-card-header>
-                Buyer Information
-            </nb-card-header>
+            <nb-card-header> Buyer Information </nb-card-header>
             <nb-card-body>
                 <div class="col-md-12" style="overflow-x: scroll">
                     <div class="smart-table-container" style="width: 1000px">
-                        <form>
+                        <form [formGroup]="oCBuyerInfoService.offeringCostBuyerInfoForm">
                             <table border="1">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Buing House</th>
                                         <th scope="col" class="text-center">Customar</th>
-                                        <th scope="col" class="text-center">
-                                            Item
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            style No.
-                                        </th>
+                                        <th scope="col" class="text-center">Item</th>
+                                        <th scope="col" class="text-center">style No.</th>
                                         <th colspan="2" scope="col" class="text-center">
                                             Size Rage
                                         </th>
-                                        <th scope="col" class="text-center">
-                                            Costing
-                                        </th>
+                                        <th scope="col" class="text-center">Costing</th>
                                     </tr>
-
                                 </thead>
 
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input formControlName="buyingHouse" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
 
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input formControlName="customer" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input formControlName="item" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input formControlName="styleNo" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input formControlName="sizeRangeStart" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input formControlName="sizeRangeEnd" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input formControlName="costing" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
                         </form>
@@ -128,76 +99,51 @@
         </nb-card>
 
         <nb-card>
-            <nb-card-header>
-                Fabric Information
-            </nb-card-header>
+            <nb-card-header> Fabric Information </nb-card-header>
             <nb-card-body>
                 <div class="col-md-12" style="overflow-x: scroll">
                     <div class="smart-table-container" style="width: 1000px">
-                        <form>
+                        <form [formGroup]="oCfabInfoService.fabricInfoForm">
                             <table border="1">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Fabrics</th>
                                         <th scope="col" class="text-center">GSM</th>
-                                        <th scope="col" class="text-center">
-                                            Cotton%
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Polyeter%
-                                        </th>
-                                        <th scope="col" class="text-center">
+                                        <th scope="col" class="text-center">Cotton%</th>
+                                        <th scope="col" class="text-center">Polyeter%</th>
+                                        <th scope="col" class="text-center text-white">Empty cell</th>
 
-                                        </th>
-
-                                        <th scope="col" class="text-center">
-                                            Viscose%
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Lycra%
-                                        </th>
-                                        <th scope="col" class="text-center">
-
-                                        </th>
-                                        <th scope="col" class="text-center">
-
-                                        </th>
-                                        <th scope="col" class="text-center">
-
-                                        </th>
-                                        <th scope="col" class="text-center">
-
-                                        </th>
+                                        <th scope="col" class="text-center">Viscose%</th>
+                                        <th scope="col" class="text-center">Lycra%</th>
+                                        <th scope="col" class="text-center"></th>
+                                        <th scope="col" class="text-center"></th>
+                                        <th scope="col" class="text-center"></th>
+                                        <th scope="col" class="text-center"></th>
                                     </tr>
-
                                 </thead>
 
                                 <tbody>
                                     <tr>
-
-                                        <th scope="col" class="text-center">
-                                            L/S/J
-                                        </th>
-
+                                        <th scope="col" class="text-center">L/S/J</th>
 
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="gsm" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation(0)" class="form-control form-rounded form-control-sm" formControlName="cottonPercent" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" class="form-control form-rounded form-control-sm" formControlName="polysterPercent" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input type="hidden" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" class="form-control form-rounded form-control-sm" formControlName="viscosePercent" type="number" />
                                         </td>
 
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation(1)" class="form-control form-rounded form-control-sm" formControlName="laycraPercent" type="number" />
                                         </td>
                                         <td>
                                             <input class="form-control form-rounded form-control-sm" type="number" />
@@ -213,269 +159,175 @@
                                         </td>
                                     </tr>
                                     <tr>
-
                                         <th rowspan="2" scope="col" class="text-center">
                                             Fabrics&Yarn Requirement
                                         </th>
 
-
                                         <th scope="col" class="text-center">Or.Qty</th>
                                         <th scope="col" class="text-center">Fab. Qty</th>
-                                        <th scope="col" class="text-center">Yarn</th>
-                                        <th scope="col" class="text-center"> <input class="form-control form-rounded form-control-sm" type="number" /></th>
+                                        <th scope="col" class="text-center">Yarn Count</th>
+                                        <th scope="col" class="text-center">
+                                            <input type="hidden" />
+                                        </th>
                                         <th scope="col" class="text-center">Yarn type</th>
                                         <th scope="col" class="text-center">D.P.L%</th>
                                         <th scope="col" class="text-center">Yarn Qty</th>
                                         <th scope="col" class="text-center">Lycra Qty</th>
                                         <th scope="col" class="text-center">Ac. Yarn</th>
                                         <th scope="col" class="text-center">Lycra/D</th>
-
-
                                     </tr>
                                     <tr>
-
-
-
-
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="orQty" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input readonly formControlName="fabQty" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="yarnCount" class="form-control form-rounded form-control-sm" type="text" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input type="hidden" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="yarnType" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation(9)" formControlName="dpl" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input readonly formControlName="yarnQty" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input readonly formControlName="lycraQty" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="acYarn" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="lycraD" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-
                                     </tr>
                                 </tbody>
                             </table>
-
                         </form>
                     </div>
                 </div>
-
             </nb-card-body>
         </nb-card>
         <nb-card>
-            <nb-card-header>
-                Consumption Information
-            </nb-card-header>
+            <nb-card-header> Consumption Information </nb-card-header>
             <nb-card-body>
                 <div class="col-md-12" style="overflow-x: scroll">
                     <div class="smart-table-container" style="width: 1000px">
-                        <form>
+                        <form [formGroup]="oCConsumCostService.costConsumCostForm">
                             <table border="1">
                                 <thead>
                                     <tr>
                                         <th colspan="6" scope="col" class="text-center"></th>
-                                        <th scope="col" class="text-center">Solid</th>
+                                        <th scope="col" class="text-center">
+                                            <input formControlName="fabricType" class="form-control form-rounded form-control-sm" type="text" />
+                                        </th>
                                         <th colspan="6" scope="col" class="text-center"></th>
-
-
                                     </tr>
                                     <tr>
                                         <th class="text-center">Measurment</th>
                                         <th scope="col" class="text-center">Actual</th>
-                                        <th scope="col" class="text-center">
-                                            Allowance
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            GSM
-                                        </th>
-                                        <th scope="col" class="text-center">
+                                        <th scope="col" class="text-center">Allowance</th>
+                                        <th scope="col" class="text-center">GSM</th>
+                                        <th scope="col" class="text-center text-white">Empty cell</th>
 
-                                        </th>
-
+                                        <th scope="col" class="text-center">Fab./Dzn</th>
                                         <th scope="col" class="text-center">
-                                            Fab./Dzn
+                                            <input (change)="offeringCostCalculation()" formControlName="fabricTypePercentage" class="form-control form-rounded form-control-sm" type="number" />
                                         </th>
-                                        <th scope="col" class="text-center">
-                                            6%
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            CAD
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Neck+cuff/Dzn
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Pocket
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            TTL Fab-Kg
-                                        </th>
+                                        <th scope="col" class="text-center">CAD</th>
+                                        <th scope="col" class="text-center">Neck+cuff/Dzn</th>
+                                        <th scope="col" class="text-center">Pocket</th>
+                                        <th scope="col" class="text-center">TTL Fab-Kg</th>
                                     </tr>
-
                                 </thead>
 
                                 <tbody>
                                     <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Width(CM)
-                                        </th>
-
+                                        <th scope="col" class="text-center">Width(CM)</th>
 
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="actualWith" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="allowanceWith" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td rowspan="3">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input readonly formControlName="gsm" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input type="hidden" />
                                         </td>
 
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                        <td rowspan="3">
+                                            <input readonly formControlName="fabByDznWidth" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                        <td rowspan="3">
+                                            <input readonly formControlName="sixPercentWith" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                        <td rowspan="3">
+                                            <input (change)="offeringCostCalculation()" formControlName="cadWith" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                        <td rowspan="3">
+                                            <input (change)="offeringCostCalculation()" formControlName="neckPluscuffByDznWith" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                        <td rowspan="3">
+                                            <input (change)="offeringCostCalculation()" formControlName="pocketWith" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                        <td rowspan="3">
+                                            <input readonly formControlName="ttlFabKgWith" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                     </tr>
                                     <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Length(CM)
-                                        </th>
+                                        <th scope="col" class="text-center">Length(CM)</th>
 
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="actualLength" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="allowanceLength" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input class="form-control form-rounded form-control-sm" type="hidden" />
                                         </td>
-
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-
-
-
                                     </tr>
                                     <tr>
-
-
-                                        <th scope="col" class="text-center">
-                                            Sleev Length(CM)
-                                        </th>
+                                        <th scope="col" class="text-center">Sleev Length(CM)</th>
 
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="actualSleevLength" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="allowanceSleevLength" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input class="form-control form-rounded form-control-sm" type="hidden" />
                                         </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
                                     </tr>
                                     <tr>
-
                                         <th colspan="10" scope="col" class="text-center">
                                             Additional Fabric For
                                         </th>
 
-
-
-
-
-
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation()" formControlName="additionalFabricFor" class="form-control form-rounded form-control-sm" type="number" />
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th colspan="10" scope="col" class="text-center">Total</th>
 
-                                        <th colspan="10" scope="col" class="text-center">
-                                            Total
+                                        <th scope="col" class="text-center">
+                                            <input readonly formControlName="total" class="form-control form-rounded form-control-sm" type="number" />
                                         </th>
-
-
-
-                                        <th scope="col" class="text-center"> <input class="form-control form-rounded form-control-sm" type="number" /></th>
-
                                     </tr>
-
                                 </tbody>
                             </table>
-
                         </form>
                     </div>
                 </div>
@@ -483,1244 +335,86 @@
                 <button nbButton class="ml-4">Update</button>
             </nb-card-body>
         </nb-card>
-
-
     </div>
-
 </div>
+
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <nb-card>
-            <nb-card-header>
-                Fabric Price Calculation/kg
-            </nb-card-header>
+            <nb-card-header> Fabric Price Calculation/kg </nb-card-header>
             <nb-card-body>
                 <div class="col-md-12" style="overflow-x: scroll">
-                    <div class="smart-table-container" style="width:800px">
+                    <div class="smart-table-container" style="width: 1000px">
                         <form>
-                            <table border="1">
-                                <thead>
+                            <table border="1" cellpadding="5">
+                                <tbody>
                                     <tr>
                                         <th colspan="3" scope="col" class="text-center">
                                             Fabric Price Calculation/kg
                                         </th>
-
-
-
                                     </tr>
                                     <tr>
                                         <th class="text-center">Yarn Count</th>
-                                        <th scope="col" class="text-center">34/1</th>
                                         <th scope="col" class="text-center">
-                                            Use%
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Total
+                                            <input name="yarnCount" [(ngModel)]="yarnCount" class="form-control form-rounded form-control-sm" type="text" />
                                         </th>
 
+                                        <th scope="col" class="text-center">Use%</th>
+                                        <th scope="col" class="text-center">Total</th>
+
+                                        <th scope="col" class="text-center text-white">
+                                            target Cost
+                                        </th>
+                                        <th scope="col" class="text-center">M. Costing</th>
+                                        <th scope="col" class="text-center">Cost.</th>
+                                        <th scope="col" class="text-center">Pre- Costing</th>
+                                        <th scope="col" class="text-center">Target Cost.</th>
+                                        <th scope="col" class="text-center">Post Cost.</th>
+                                        <th scope="col" class="text-center">Remarks</th>
                                     </tr>
-
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Yarn Price
-                                        </th>
+                                    <tr [formGroup]="fg" *ngFor="
+                      let fg of offeringCostInformationService
+                        .CostInformationForm.controls;
+                      let i = index
+                    ">
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="offeringCostTypeName" size="60" type="text" class="form-control form-rounded form-control-sm w-100 p-3" readonly id="offeringCostTypeName" formControlName="offeringCostTypeName" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input (change)="offeringCostCalculation(i)" name="yarnCountMeaurment" type="number" class="form-control form-rounded form-control-sm" id="yarnCountMeaurment" formControlName="yarnCountMeaurment" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            LYCRA yarn Price
-                                        </th>
-
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="" type="number" class="form-control form-rounded form-control-sm" id="use" formControlName="use" (change)="offeringCostCalculation(i)" />
                                         </td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="total" type="text" class="form-control form-rounded form-control-sm" type="number" id="total" formControlName="total" />
                                         </td>
+                                        <td scope="col" class="text-center">&nbsp;</td>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="mcosting" type="number" class="form-control form-rounded form-control-sm" id="mcosting" formControlName="mcosting" />
                                         </td>
-                                    </tr>
-                                    <tr>
-
-
-                                        <th scope="col" class="text-center">
-                                            Knitting CHarge Tk.
-                                        </th>
 
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="cost" type="number" class="form-control form-rounded form-control-sm" id="cost" formControlName="cost" />
                                         </td>
+
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="preCosting" type="number" class="form-control form-rounded form-control-sm" id="preCosting" formControlName="preCosting" />
                                         </td>
+
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="targetCost" type="number" class="form-control form-rounded form-control-sm" id="targetCost" formControlName="targetCost" />
                                         </td>
 
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Fab. Dye. Chage With E+S
-                                        </th>
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="postCost" type="number" class="form-control form-rounded form-control-sm" id="postCost" formControlName="postCost" />
                                         </td>
+
                                         <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
+                                            <input name="remarks" type="number" class="form-control form-rounded form-control-sm" id="remarks" formControlName="remarks" />
                                         </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Yarn Deying Charge
-                                        </th>
-
-
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Wash With E+S
-                                        </th>
-
-
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Peach Finish
-                                        </th>
-
-
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Stander+Compecting
-                                        </th>
-
-
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Total
-                                        </th>
-
-
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Deying Process lost%
-                                        </th>
-
-
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th colspan="3" scope="col" class="text-center">
-                                            Fabric Price
-                                        </th>
-
-
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-
-                                    </tr>
-                                    <tr>
-
-                                        <th colspan="2" scope="col" class="text-center">
-                                            Garments Calculation
-                                        </th>
-                                    </tr>
-
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Price/Dzn
-                                        </th>
-
-                                    </tr>
-
-
-
-
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            1 Fabric Value
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            2 Accessories factory
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            3 Accessories Nomination
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            4 Print
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            5 Embroidery
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            6 All over Print
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            7 Woven Fabric
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            8 CM
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            9 TEST
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            10 CIF Cost
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Total Cost
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            L/C+Com Charge %
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Total Cost
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Total Cost/Pc
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Price/pc With profit
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            Buying Commision
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            FOB WIth B.Com%
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-
                                     </tr>
                                 </tbody>
-
-                            </table>
-                        </form>
-                    </div>
-                </div>
-                <button nbButton>Submit</button>
-                <button nbButton class="ml-4">Update</button>
-            </nb-card-body>
-        </nb-card>
-    </div>
-    <div class="col-sm-6">
-        <nb-card>
-            <nb-card-header>
-                Fabric Price Calculation/kg
-            </nb-card-header>
-            <nb-card-body>
-                <div class="col-md-12" style="overflow-x: scroll">
-                    <div class="smart-table-container" style="width:1000px">
-                        <form>
-                            <table border="1">
-                                <thead>
-
-                                    <tr>
-                                        <th class="text-center">M. Costing</th>
-                                        <th scope="col" class="text-center">Cost</th>
-                                        <th scope="col" class="text-center">
-                                            Pre-Costing
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Target Cost
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Post Cost
-                                        </th>
-                                        <th scope="col" class="text-center">
-                                            Remark
-                                        </th>
-
-                                    </tr>
-
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th scope="col" class="text-center">
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </th>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-                                        <td>
-                                            <input class="form-control form-rounded form-control-sm" type="number" />
-                                        </td>
-
-                                    </tr>
-                                </tbody>
-
                             </table>
                         </form>
                     </div>

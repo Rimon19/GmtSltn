@@ -100,7 +100,7 @@ export class TrimsCostingTemplateComponent implements OnInit {
             element.trimsGroupId=trimsGroupName;
           });
           
-         this.supplierProfileService.getAll().subscribe(data=>{
+         this.supplierProfileService.getAllSupplier().subscribe(data=>{
            this.supplierList=data;
            let supplierName= this.supplierList.find(f=>f.id==element.supplierId) && this.supplierList.find(f=>f.id==element.supplierId).supplierName;
            element.supplierId=supplierName;

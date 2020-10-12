@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
 import { DateResizeService } from '../../../../@core/mock/marchandizer/date-resize.service';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 @Component({
   selector: 'ngx-add-fPast-react-intgration',
   templateUrl: './add-fast-react-intgration.component.html',
@@ -18,10 +19,12 @@ export class AddFastReactIntgrationComponent implements OnInit {
     private router:Router,
     private dateResizeService:DateResizeService,
     private toastrService:NbToastrService,
+    public dropdownValueService:DropdownValueService
     ) { }
 
   ngOnInit() {
     this.resetFormForFastReactIntgration();
+    this.dropdownValueService.getModule();
   }
   resetFormForFastReactIntgration(form?:NgForm){
     if(form!=null)
@@ -33,11 +36,11 @@ export class AddFastReactIntgrationComponent implements OnInit {
       
     }
   }
-  exportmodule: any = [
-    // { btn: 'Select', val: 'Select' },
-      { btn: 'All Modules', val: 'All Modules' }
+  // exportmodule: any = [
+  //   // { btn: 'Select', val: 'Select' },
+  //     { btn: 'All Modules', val: 'All Modules' }
      
-    ]
+  //   ]
    
     onSubmit(form:NgForm){
       form.value.exportPOReceivedfrom= this.dateResizeService.dateResize(form.value.exportPOReceivedfrom);
@@ -46,5 +49,10 @@ export class AddFastReactIntgrationComponent implements OnInit {
        this.router.navigate(["/pages/fast-react-intgration"]);
       })
     } 
+
+    backHomePage(){
+      this.router.navigate(['/pages/fast-react-intgration']);
+    }
+  
 
 }

@@ -79,7 +79,7 @@ export class YarnRateComponent implements OnInit {
      
       item.forEach(element => {
 
-        this.supplierProfileService.getAll().subscribe(data=>{
+        this.supplierProfileService.getAllSupplier().subscribe(data=>{
           let supplierName=data.find(f=>f.id==element.supplierId).supplierName;
           element.supplierId=supplierName;
         });

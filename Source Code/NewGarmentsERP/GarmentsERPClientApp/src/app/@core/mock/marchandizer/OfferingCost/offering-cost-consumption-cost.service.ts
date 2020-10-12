@@ -9,7 +9,7 @@ import { HTTPService } from '../../shared/http.service';
   providedIn: 'root'
 })
 export class OfferingCostConsumptionCostService extends HTTPService {
-  ConsumptionCost:FormArray = this.fb.array([]);
+
   constructor(
     httpClient: HttpClient,
     toastr: NbToastrService,
@@ -22,31 +22,50 @@ export class OfferingCostConsumptionCostService extends HTTPService {
       toastr
     );  
     }
-    CostConsumptionCostForm=this.fb.group({
-      id:[],
-      offeringCostId:[],
-      orderAutoId:[],
-      fabrics:[],
-      gsm:[],
-      cottonPercent :[],
-      polysterPercent :[],
-      viscosePercent :[],
-      laycraPercent :[],
-      orQty:[],
-      fabQty :[],
-      yarnCount:[],
-      yarnType:[],
-      dpl:[],
-      yarnQty :[],
-      lycraQty :[],
-      acYarn :[],
-      lycraD :[],
-      
-        entryDate:[],
-        entryBy:[],
-        approvedDate:[],
-        isApproved:[],
-        approvedBy:[],
-        status:[]
+    costConsumCostForm=this.fb.group({
+      id:[0],
+      offeringCostId:[0],
+      orderAutoId:[0],
+      actualWith:[0],
+actualLength:[0],
+actualSleevLength:[0],
+allowanceWith:[0],
+allowanceLength:[0],
+allowanceSleevLength:[0],
+gsm:[0],
+fabByDznWidth:[0],
+fabByDznLength:[0],
+fabByDznSleevLength:[0],
+sixPercentWith:[0],
+fabricTypePercentage:[0],
+fabricType:[''],
+cadWith:[0],
+cadLength:[0],
+cadSleevLength:[0],
+neckPluscuffByDznWith:[0],
+neckPluscuffByDznLength:[0],
+neckPluscuffByDznSleevLength:[0],
+pocketWith:[0],
+pocketLength:[0],
+pocketSleevLength:[0],
+ttlFabKgWith:[0],
+ttlFabKgLength:[0],
+ttlFabKgSleevLength:[0],
+additionalFabricFor:[0],
+total:[0],
+
+  entryDate :[''],
+  entryBy :[''],
+  approvedDate :[''],
+  approvedBy :[''],
+  isApproved :false,
+  status :[''],
     })
+    loadConsumptionInfoModelData(costConsumCostForm){
+      //this.fabricInfoForm=this.fb.group({});
+      console.log(costConsumCostForm);
+      this.costConsumCostForm.setValue(costConsumCostForm);
+      console.log(this.costConsumCostForm.value);
+     
+     }
     }

@@ -7,19 +7,19 @@
 
        >
        <i class="fas fa-arrow-left"></i></button>
-       Email Address Setup Update form
+       Email Address Setup Edit
       </nb-card-header>
       <nb-card-body>
-        <form #form="ngForm" >
+        <form #form="ngForm" (submit)="onSubmit(form)">
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="userType" class="label">
+                <label for="userType"class="label text-dark">
                   User Type <span class="text-danger">*</span></label>
                   <select required name="userType" #UserType="ngModel"
                   [(ngModel)]="emailAddressSetupService.emailAddressSetup.userType"  
                    id="userType" 
-                  class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm">
                   <option value=''>Select User Type</option>
                   <option  *ngFor="let btnAction of usertype" 
                   value="{{btnAction.val}}">{{btnAction.btn}}</option>        
@@ -34,12 +34,12 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="ContactPerson" class="label">
+                <label for="ContactPerson"class="label text-dark">
                   Recipient Name<span class="text-danger">*</span> </label>
                 <input required  name="recipientName" #RecipientName="ngModel"
                 [(ngModel)]="emailAddressSetupService.emailAddressSetup.recipientName"  
                  id="recipientName" 
-                class="form-control" type="text" 
+              class="form-control form-rounded form-control-sm"type="text" 
                 id="ContactPerson" placeholder="Recipient Name">
                 <div class="text-left text-danger"
                 *ngIf="emailAddressSetupService.emailAddressSetup.recipientName==''&&RecipientName.touched">
@@ -50,11 +50,11 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="emailAddress" class="label">
+                <label for="emailAddress"class="label text-dark">
                   Email Address<span class="text-danger">*</span></label>
                 <input required name="emailAddress" #EmailAddress="ngModel"
                 [(ngModel)]="emailAddressSetupService.emailAddressSetup.emailAddress"  
-                class="form-control" type="text" 
+              class="form-control form-rounded form-control-sm"type="text" 
                 id="emailAddress" placeholder="Email Address">
                
                 <div class="text-left text-danger"
@@ -68,9 +68,7 @@
             
           </div>
          
-          <button type="submit" (click)="update(emailAddressSetupService.emailAddressSetup)" 
-          [disabled]="form.invalid" 
-          nbButton>Update</button>
+          <button type="submit" [disabled]="form.invalid"   nbButton>Submit</button>
         </form>
       </nb-card-body>
     </nb-card>

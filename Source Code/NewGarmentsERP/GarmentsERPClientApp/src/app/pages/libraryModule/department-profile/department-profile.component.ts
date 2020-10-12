@@ -7,6 +7,7 @@ import { MatDialogService } from '../../../@core/mock/mat-dialog.service';
 import { Router } from '@angular/router';
 import { DepartmentProfile } from '../../../@core/data/Library-Modul-model/department-profile';
 import { DepartmentProfileService } from '../../../@core/mock/library/department-profile.service';
+import { DivisionProfileService } from '../../../@core/mock/library/division-profile.service';
 
 @Component({
   selector: 'ngx-department-profile',
@@ -35,7 +36,9 @@ export class DepartmentProfileComponent implements OnInit {
      private toastrService:NbToastrService,
      private mathdialogService: MatDialogService,
      private router:Router,
-     private departmentProfileService:DepartmentProfileService,) { }
+     private departmentProfileService:DepartmentProfileService,
+     private divisionProfileService:DivisionProfileService
+     ) { }
     
 
   ngOnInit() {
@@ -73,6 +76,12 @@ export class DepartmentProfileComponent implements OnInit {
   getDepartmentProfile(){
     this.subscription=   this.departmentProfileService.getDepartmentProfile().subscribe(data=>{
     this.departmentProfile=data;
+    this.departmentProfile.forEach(element => {
+      this.divisionProfileService.getDivisionProfile().subscribe(data=>{
+        let divisionName=data.find(f=>f.id==element.division).divisionName
+        element.division=divisionName;
+      })
+    });
    
     this.dataSource=new MatTableDataSource(this.departmentProfile);
     console.log('DivisionProfile',this.departmentProfile);

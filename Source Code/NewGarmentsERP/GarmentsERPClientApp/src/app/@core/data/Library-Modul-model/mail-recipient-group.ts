@@ -1,6 +1,6 @@
 export class MailRecipientGroup {
     id:number;
-    companyName:string;
+    companyName:any;
     mailItem:string;
     youHaveSelected:string;
     status:string;

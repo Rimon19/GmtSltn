@@ -4,6 +4,7 @@ import { MailRecipientGroupService } from '../../../../@core/mock/library/mail-r
 import { Router, ActivatedRoute } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-edit-mail-recipient-group',
@@ -18,6 +19,7 @@ export class EditMailRecipientGroupComponent implements OnInit {
     private router:Router,
     private route:ActivatedRoute,
     private toastrService:NbToastrService,
+    public dropdownValueService:DropdownValueService
     ) { 
 
       this.editedId = this.route.snapshot.paramMap.get('id');
@@ -31,6 +33,7 @@ export class EditMailRecipientGroupComponent implements OnInit {
 
   ngOnInit() {
     this.resetFormForEmailAddressSetup();
+    this.dropdownValueService.getCompany();
   }
   resetFormForEmailAddressSetup(form?:NgForm){
     if(form!=null)
@@ -43,10 +46,10 @@ export class EditMailRecipientGroupComponent implements OnInit {
       status:'',
     }
   }
-  companyname: any = [
-    // { btn: 'Select', val: 'Select' },
-      { btn: 'MEEK KNIT LIMITED', val: 'MEEK KNIT LIMITED' }
-    ]
+  // companyname: any = [
+  //   // { btn: 'Select', val: 'Select' },
+  //     { btn: 'MEEK KNIT LIMITED', val: 'MEEK KNIT LIMITED' }
+  //   ]
     mailitem: any = [
     // { btn: 'Select', val: 'Select' },
       { btn: 'Below 5% Profitability Order', val: 'Below 5% Profitability Order' },
@@ -85,10 +88,9 @@ export class EditMailRecipientGroupComponent implements OnInit {
         { btn: 'Active', val: 'Active' },
         { btn: 'Inactive', val: 'Inactive' }
       ]
- 
-    update(mailRecipientGroup){
-      console.log(mailRecipientGroup);
-      this.mailRecipientGroupService.updateMailRecipientGroup(mailRecipientGroup).subscribe(s=>{
+      onSubmit(form:NgForm){
+    form.value.id=this.editedId;
+      this.mailRecipientGroupService.updateMailRecipientGroup(form.value).subscribe(s=>{
         this.Tostr.showToast('primary',"", "update Successfull !", "",this.toastrService);
         this.router.navigate(['/pages/mail-recipient-group']);
       },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);})

@@ -15,9 +15,10 @@
       <nb-card-body>
         <div class="row">
            
-          <div class="col-sm-3 ">
+          <div class="col-sm-11">
+
             <div class="form-group">
-              <label for="Country" class="label">Search for Update or Delete</label>
+              <label for="Country" class="label text-dark" > <span style="color: #022f8e;">  Search for Update or Delete</span></label>
               
               <select id="fabricNature"   
                  [(ngModel)]="serchIdNo"
@@ -26,16 +27,28 @@
                 <option [ngValue]=0>Select </option>
                 <option *ngFor="let c of shareholdeList" [value]="c.id">{{c.idNo}}</option>
             </select>
+  
             </div>
              
           </div>
+          <div class="col-sm-1">
+            <div  class="form-group">
+              <label class="label text-dark">&nbsp;</label>
+            <button (click)="refresh()"
+        class="btn btn-outline-success form-control   "
+  
+       >
+       <i class="fas fa-sync" ></i></button> 
+           </div>
+          </div>
         </div>
+        <hr/>
         <form #form="ngForm" (submit)="onSubmit(form,ShareDetailsForm,NomineeDetailsForm)" >
          
           <div class="row">
             <!-- <div class="col-sm-3 ">
               <div class="form-group">
-                <label for="Country" class="label">Fabric Nature<span class="text-danger">*</span></label>
+                <label for="Country" class="label text-dark">Fabric Nature<span class="text-danger">*</span></label>
                 
                 <select id="fabricNature"  required #fabricNature="ngModel"
                    [(ngModel)]="shareholderService.shareholder.fabricNature"
@@ -51,7 +64,7 @@
             </div> -->
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="idNo" class="label">Id No<span class="text-danger">*</span></label>
+                <label for="idNo" class="label text-dark">Id No<span class="text-danger">*</span></label>
                 <input class="form-control" name="idNo" required #idNo="ngModel"
                  [(ngModel)]="shareholderService.shareholder.idNo"
                   class="form-control form-rounded form-control-sm" type="text" id="idNo"
@@ -65,7 +78,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="name" class="label">Name<span class="text-danger">*</span></label>
+                <label for="name" class="label text-dark">Name<span class="text-danger">*</span></label>
                 <input class="form-control" name="name" required #name="ngModel"
                  [(ngModel)]="shareholderService.shareholder.name"
                   class="form-control form-rounded form-control-sm" type="text" id="name"
@@ -78,7 +91,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="boAccountId" class="label">Bo Account Id</label>
+                <label for="boAccountId" class="label text-dark">Bo Account Id</label>
                 <input class="form-control form-rounded form-control-sm" name="boAccountId"
                  [(ngModel)]="shareholderService.shareholder.boAccountId"
                   class="form-control form-rounded form-control-sm" type="text" id="boAccountId"
@@ -87,7 +100,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="fatherhusband" class="label">Father/Husband</label>
+                <label for="fatherhusband" class="label text-dark">Father/Husband</label>
                 <input class="form-control form-rounded form-control-sm" name="fatherhusband"
                  [(ngModel)]="shareholderService.shareholder.fatherhusband"
                   class="form-control form-rounded form-control-sm" type="text" id="fatherhusband"
@@ -99,7 +112,7 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="mothersName" class="label">Mother's Name</label>
+                <label for="mothersName" class="label text-dark">Mother's Name</label>
                 <input class="form-control"name="mothersName"
                  [(ngModel)]="shareholderService.shareholder.mothersName"
                   class="form-control form-rounded form-control-sm" type="text" id="mothersName"
@@ -108,7 +121,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="profession" class="label">Profession</label>
+                <label for="profession" class="label text-dark">Profession</label>
                 <input class="form-control" name="profession"
                  [(ngModel)]="shareholderService.shareholder.profession"
                   class="form-control form-rounded form-control-sm" type="text" id="profession"
@@ -117,7 +130,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="organization" class="label">Organization</label>
+                <label for="organization" class="label text-dark">Organization</label>
                 <input class="form-control form-rounded form-control-sm" name="organization"
                  [(ngModel)]="shareholderService.shareholder.organization"
                   class="form-control form-rounded form-control-sm" type="text" id="organization"
@@ -126,7 +139,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="Designation" class="label">Designation</label>
+                <label for="Designation" class="label text-dark">Designation</label>
                 <input class="form-control form-rounded form-control-sm" name="designation"
                  [(ngModel)]="shareholderService.shareholder.designation"
                   class="form-control form-rounded form-control-sm" type="text" id="designation"
@@ -138,7 +151,7 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="nationalId" class="label">National Id</label>
+                <label for="nationalId" class="label text-dark">National Id</label>
                 <input class="form-control" name="nationalId"
                  [(ngModel)]="shareholderService.shareholder.nationalId"
                   class="form-control form-rounded form-control-sm" type="text" id="nationalId"
@@ -147,7 +160,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="tin" class="label">Tin</label>
+                <label for="tin" class="label text-dark">Tin</label>
                 <input class="form-control" name="tin"
                  [(ngModel)]="shareholderService.shareholder.tin"
                   class="form-control form-rounded form-control-sm" type="text" id="tin"
@@ -156,7 +169,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="vat" class="label">Vat</label>
+                <label for="vat" class="label text-dark">Vat</label>
                 <input class="form-control form-rounded form-control-sm" name="vat"
                  [(ngModel)]="shareholderService.shareholder.vat"
                   class="form-control form-rounded form-control-sm" type="text" id="vat"
@@ -165,7 +178,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="email" class="label">E-mail</label>
+                <label for="email" class="label text-dark">E-mail</label>
                 <input class="form-control form-rounded form-control-sm" name="email"
                  [(ngModel)]="shareholderService.shareholder.email"
                   class="form-control form-rounded form-control-sm" type="text" id="email"
@@ -177,7 +190,7 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="phone" class="label">Phone</label>
+                <label for="phone" class="label text-dark">Phone</label>
                 <input class="form-control" name="phone"
                  [(ngModel)]="shareholderService.shareholder.phone"
                   class="form-control form-rounded form-control-sm" type="text" id="phone"
@@ -186,7 +199,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="Status" class="label">Status</label>
+                <label for="Status" class="label text-dark">Status</label>
                    <select  name="status" #Status="ngModel"
                    [(ngModel)]="shareholderService.shareholder.status"
                    id="Status" 
@@ -203,11 +216,12 @@
             </div>
             
           </div>
+          <hr/>
           <div class="row">
           
             <div class="col-sm-3">
               <div class="form-group">
-              Present Address
+                <b style="color: #022f8e;">Permanent Address</b>
               </div>
             </div>
           </div>
@@ -215,7 +229,7 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="plotNoPr" class="label">Plot No</label>
+                <label for="plotNoPr" class="label text-dark">Plot No</label>
                 <input class="form-control" name="plotNoPr"
                  [(ngModel)]="shareholderService.shareholder.plotNoPr"
                   class="form-control form-rounded form-control-sm" type="text" id="plotNoPr"
@@ -224,7 +238,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="levelNoPr" class="label">Level No</label>
+                <label for="levelNoPr" class="label text-dark">Level No</label>
                 <input class="form-control" name="levelNoPr"
                  [(ngModel)]="shareholderService.shareholder.levelNoPr"
                   class="form-control form-rounded form-control-sm" type="text" id="levelNoPr"
@@ -233,7 +247,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="vat" class="label">Road No</label>
+                <label for="vat" class="label text-dark">Road No</label>
                 <input class="form-control form-rounded form-control-sm" name="roadNoPr"
                  [(ngModel)]="shareholderService.shareholder.roadNoPr"
                   class="form-control form-rounded form-control-sm" type="text" id="roadNoPr"
@@ -242,7 +256,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="blockNoPr" class="label">Block No</label>
+                <label for="blockNoPr" class="label text-dark">Block No</label>
                 <input class="form-control form-rounded form-control-sm" name="blockNoPr"
                  [(ngModel)]="shareholderService.shareholder.blockNoPr"
                   class="form-control form-rounded form-control-sm" type="text" id="blockNoPr"
@@ -254,20 +268,20 @@
            
          <div class="col-sm-3 ">
               <div class="form-group">
-                <label for="countryIdPr" class="label">Country </label>
+                <label for="countryIdPr" class="label text-dark">Country </label>
                 
                 <select id="countryIdPr"  
                    [(ngModel)]="shareholderService.shareholder.countryIdPr"
                     class="form-control form-rounded form-control-sm" name="countryIdPr">
                   <option [ngValue]=0>Select </option>
-                  <option *ngFor="let c of countryList" [value]="c.regionId">{{c.regionName}}</option>
+                  <option *ngFor="let c of countryList" [value]="c.regionID">{{c.region_Name}}</option>
               </select>
               </div>
               
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="provincePr" class="label">Province </label>
+                <label for="provincePr" class="label text-dark">Province </label>
                 <input class="form-control" name="provincePr"
                  [(ngModel)]="shareholderService.shareholder.provincePr"
                   class="form-control form-rounded form-control-sm" type="text" id="provincePr"
@@ -276,7 +290,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="cityOrTownPr" class="label">City/TownPr</label>
+                <label for="cityOrTownPr" class="label text-dark">City/TownPr</label>
                 <input class="form-control form-rounded form-control-sm" name="cityOrTownPr"
                  [(ngModel)]="shareholderService.shareholder.cityOrTownPr"
                   class="form-control form-rounded form-control-sm" type="text" id="cityOrTownPr"
@@ -285,7 +299,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="zipCodePr" class="label">Zip Code </label>
+                <label for="zipCodePr" class="label text-dark">Zip Code </label>
                 <input class="form-control form-rounded form-control-sm" name="zipCodePr"
                  [(ngModel)]="shareholderService.shareholder.zipCodePr"
                   class="form-control form-rounded form-control-sm" type="text" id="zipCodePr"
@@ -293,20 +307,21 @@
               </div>
             </div>
           </div>
-
+           <hr/>
           <div class="row">
           
             <div class="col-sm-3">
               <div class="form-group">
-              Permanent Address
+              <b style="color: #022f8e;">Permanent Address</b>
               </div>
             </div>
           </div>
+        
           <div class="row">
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="plotNoPe" class="label">Plot No</label>
+                <label for="plotNoPe" class="label text-dark">Plot No</label>
                 <input class="form-control" name="plotNoPe"
                  [(ngModel)]="shareholderService.shareholder.plotNoPe"
                   class="form-control form-rounded form-control-sm" type="text" id="plotNoPe"
@@ -315,7 +330,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="levelNoPe" class="label">Level No</label>
+                <label for="levelNoPe" class="label text-dark">Level No</label>
                 <input class="form-control" name="levelNoPe"
                  [(ngModel)]="shareholderService.shareholder.levelNoPe"
                   class="form-control form-rounded form-control-sm" type="text" id="levelNoPe"
@@ -324,7 +339,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="roadNoPe" class="label">Road No</label>
+                <label for="roadNoPe" class="label text-dark">Road No</label>
                 <input class="form-control form-rounded form-control-sm" name="roadNoPe"
                  [(ngModel)]="shareholderService.shareholder.roadNoPe"
                   class="form-control form-rounded form-control-sm" type="text" id="roadNoPe"
@@ -333,7 +348,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="blockNoPe" class="label">Block No</label>
+                <label for="blockNoPe" class="label text-dark">Block No</label>
                 <input class="form-control form-rounded form-control-sm" name="blockNoPe"
                  [(ngModel)]="shareholderService.shareholder.blockNoPe"
                   class="form-control form-rounded form-control-sm" type="text" id="blockNoPe"
@@ -345,20 +360,20 @@
            
          <div class="col-sm-3 ">
               <div class="form-group">
-                <label for="countryIdPr" class="label">Country </label>
+                <label for="countryIdPr" class="label text-dark">Country </label>
                 
                 <select id="countryIdPe"  
                    [(ngModel)]="shareholderService.shareholder.countryIdPe"
                     class="form-control form-rounded form-control-sm" name="countryIdPe">
                   <option [ngValue]=0>Select </option>
-                  <option *ngFor="let c of countryList" [value]="c.regionId">{{c.regionName}}</option>
+                  <option *ngFor="let c of countryList" [value]="c.regionID">{{c.region_Name}}</option>
               </select>
               </div>
               
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="provincePe" class="label">Province </label>
+                <label for="provincePe" class="label text-dark">Province </label>
                 <input class="form-control" name="provincePe"
                  [(ngModel)]="shareholderService.shareholder.provincePe"
                   class="form-control form-rounded form-control-sm" type="text" id="provincePe"
@@ -367,7 +382,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="cityOrTownPe" class="label">City/TownPr</label>
+                <label for="cityOrTownPe" class="label text-dark">City/TownPr</label>
                 <input class="form-control form-rounded form-control-sm" name="cityOrTownPe"
                  [(ngModel)]="shareholderService.shareholder.cityOrTownPe"
                   class="form-control form-rounded form-control-sm" type="text" id="cityOrTownPe"
@@ -376,7 +391,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="zipCodePe" class="label">Zip Code </label>
+                <label for="zipCodePe" class="label text-dark">Zip Code </label>
                 <input class="form-control form-rounded form-control-sm" name="zipCodePe"
                  [(ngModel)]="shareholderService.shareholder.zipCodePe"
                   class="form-control form-rounded form-control-sm" type="text" id="zipCodePe"
@@ -384,17 +399,18 @@
               </div>
             </div>
           </div>
+          <hr/>
           <div class="row">
            
-            <div class="col-sm-1 ">
+            <div class="col-sm-1 " *ngIf="submitBtn">
                  <div class="form-group">
-                  <button  type="submit" nbButton>Submit</button>
+                  <button   type="submit" nbButton>Submit</button>
                   
                  </div>
                  
                </div>
                
-               <div class="col-sm-1 ">
+               <div class="col-sm-1 "  *ngIf="updateBtn">
                 <div class="form-group">
                 
                  <button  type="button" (click)="onUpdate(form,ShareDetailsForm,NomineeDetailsForm)" nbButton>Update</button>
@@ -403,12 +419,12 @@
                 
               </div>
               
-              <div class="col-sm-1 ">
+              <div class="col-sm-1 "  *ngIf="deleteBtn" >
                 <div class="form-group">
                   <input hidden class="form-control" name="id"
                   [(ngModel)]="shareholderService.shareholder.id"
                    >
-                 <button  type="button" (click)="delete(shareholderService.shareholder.id)" nbButton>Delete</button>
+                 <button  [status]="deleteBtnstatuses" nbButton type="button" (click)="delete(shareholderService.shareholder.id)" >Delete</button>
                 </div>
                 
               </div>
@@ -470,7 +486,7 @@
                         
                           <select class="form-control form-rounded form-control-sm "formControlName="companyId" >
                             <option value="0">Select</option>
-                            <option *ngFor="let c of companyList" [value]="c.compId">{{c.companyName}}</option>
+                            <option *ngFor="let c of companyList" [value]="c.compID">{{c.company_Name}}</option>
                           </select>
                         </td>
         
@@ -578,7 +594,7 @@
                       
                         <select class="form-control form-rounded form-control-sm "formControlName="companyId" >
                           <option value="0">Select</option>
-                          <option *ngFor="let c of companyList" [value]="c.compId">{{c.companyName}}</option>
+                          <option *ngFor="let c of companyList" [value]="c.compID">{{c.company_Name}}</option>
                         </select>
                       </td>
       

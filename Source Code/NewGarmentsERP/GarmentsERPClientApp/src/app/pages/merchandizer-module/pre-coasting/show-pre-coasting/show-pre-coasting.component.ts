@@ -47,6 +47,9 @@ import { FabricDescriptionComponent } from '../../fabric-description/fabric-desc
 import { TrimCostsService } from '../../../../@core/mock/marchandizer/trim-costs.service';
 import { TrimCosts } from '../../../../@core/data/marchanzider-model/trim-costs';
 import { WashCost } from '../../../../@core/data/marchanzider-model/wash-cost.model';
+import { CommercialCost } from '../../../../@core/data/marchanzider-model/commercial-cost.model';
+import { AddConsumptionForTrimCostComponent } from '../add-consumption-for-trim-cost/add-consumption-for-trim-cost.component';
+import { AddConsumptionForEmbelCostComponent } from '../add-consumption-for-embel-cost/add-consumption-for-embel-cost.component';
 
 @Component({
   selector: 'ngx-show-pre-coasting',
@@ -62,17 +65,14 @@ export class ShowPreCoastingComponent implements OnInit {
 
  public totalConsQnty = 0;
  public totalAmount = 0;
- public totalProcessLoss = 0;
- public totalReqQty = 0;
- public totalAvgReqQty = 0;
- public totalAvgChargeOrUnit = 0;
+
  Tostr = new Tostr();
 
  public yarnCostList: YarnCost[] = [];
  public conversionCostList: ConversionCostForPreCosts[] = [];
  public TrimsCostsList:TrimCosts[];
  public GmtsWashCostList:WashCost[];
- 
+ public commercialCostsList:CommercialCost[];
  public yarnCountDeterminationMasterList: YarnCountDeterminationChild[] = [];
 
 isShowFabricCost=false;
@@ -81,6 +81,8 @@ isShowConversionCost=false;
 isShowTrimCost=false;
 isShowEmbelishmentCost=false;
 isShowWashCost=false;
+isShowCommercialCost=false;
+isShowCommisionCost=false;
 
   //precosting property
   @ViewChild('sort', {static: true}) sort: MatSort;
@@ -140,6 +142,8 @@ JobNoId:number=0;
 poNodropdownList = [];
 poNoselectedItems = [];
 poNodropdownSettings:IDropdownSettings;
+
+arrayIndex;
   constructor(private precostingService:PrecostingService,
    private fetchInitialOrderService: FetchInitialOrderService,
    private toastrService:NbToastrService,
@@ -153,6 +157,8 @@ poNodropdownSettings:IDropdownSettings;
    private MasterPodetailsInfroesService:MasterPodetailsInfroesService,
    private dropdownValueService:DropdownValueService,
    private trimCostsService: TrimCostsService,
+   private commercialCostsService:CommercialCostService,
+   private commissionCostService:CommissionCostService,
  //addcosting property
 
  private dialog: MatDialog,
@@ -280,9 +286,6 @@ poNodropdownSettings:IDropdownSettings;
        data.totalAmount;
 
      let fabricCostFormValues = this.fabricCostService.fabricCostInformationForm.value;
-     
-     this.fabricCostService.fabricCostInformationForm = this.fb.array([]);
-     this.fabricCostService.count = 0;
 
    this.fabricCostService.loadFabricCostFormWithData(fabricCostFormValues);
    }
@@ -469,10 +472,13 @@ poNodropdownSettings:IDropdownSettings;
              this.isShowTrimCost=false;
              this.isShowEmbelishmentCost=false;
             this. isShowWashCost=false;
-
+            this. isShowCommercialCost=false;
+           this.isShowCommisionCost=false;
              this.initialFabricCost();
              this.editModeForYarnCost();
              this.editModeForConversion();
+             console.log(this.fabricCostService.fabricCostInformationForm.value);
+             this.conversionCostForPreCostsService.loadFabricDescriptionValues(this.fabricCostService.fabricCostInformationForm.value);
             //  this.router.navigate(['/pages/add-cost',0]);       
             }
             if(i==1){
@@ -483,6 +489,8 @@ poNodropdownSettings:IDropdownSettings;
              this.isShowTrimCost=true;
              this.isShowEmbelishmentCost=false;
              this.isShowWashCost=false;
+             this.isShowCommercialCost=false;
+             this.isShowCommisionCost=false;
              // localStorage.setItem("CostComponentFormAndIndex", JSON.stringify({index:i,costComponentform: this.costComponentForm.value}));
              this.loadeditModeDataFortrimCost();
              // this.router.navigate(['/pages/trim-cost',0]);      
@@ -495,6 +503,8 @@ poNodropdownSettings:IDropdownSettings;
              this.isShowTrimCost=false;
              this.isShowEmbelishmentCost=true;
              this.isShowWashCost=false;
+             this.isShowCommercialCost=false;
+             this.isShowCommisionCost=false;
               this.loadEmblishmentEditModeData();
 
             //  localStorage.setItem("CostComponentFormAndIndex", JSON.stringify({index:i,costComponentform: this.costComponentForm.value}));
@@ -508,15 +518,35 @@ poNodropdownSettings:IDropdownSettings;
               this.isShowTrimCost=false;
               this.isShowEmbelishmentCost=false;
               this.isShowWashCost=true;
+              this.isShowCommercialCost=false;
+              this.isShowCommisionCost=false;
               this.editModeDataLoadForWashCost();
             }
             if(i==4){
-              localStorage.setItem("CostComponentFormAndIndex", JSON.stringify({index:i,costComponentform: this.costComponentForm.value}));
-              this.router.navigate(['/pages/comml-cost',0]); 
+              this.isShowFabricCost=false;
+              this.isShowYarncost=false;
+              this.isShowConversionCost=false;
+ 
+              this.isShowTrimCost=false;
+              this.isShowEmbelishmentCost=false;
+              this.isShowWashCost=false;
+              this.isShowCommercialCost=true;
+              this.isShowCommisionCost=false;
+              this.editForCommercialCosts();
             }
             if(i==18){
-              localStorage.setItem("CostComponentFormAndIndex", JSON.stringify({index:i,costComponentform: this.costComponentForm.value}));
-              this.router.navigate(['/pages/commission-cost',0]); 
+              this.isShowFabricCost=false;
+              this.isShowYarncost=false;
+              this.isShowConversionCost=false;
+ 
+              this.isShowTrimCost=false;
+              this.isShowEmbelishmentCost=false;
+              this.isShowWashCost=false;
+              this.isShowCommercialCost=false;
+              this.isShowCommisionCost=true;
+              this.loadEditModeDataForCommisionCost();
+              // localStorage.setItem("CostComponentFormAndIndex", JSON.stringify({index:i,costComponentform: this.costComponentForm.value}));
+              // this.router.navigate(['/pages/commission-cost',0]); 
             }
        
        
@@ -530,6 +560,9 @@ poNodropdownSettings:IDropdownSettings;
         this.isShowConversionCost=false;
         this.isShowTrimCost=false;
         this.isShowEmbelishmentCost=false;
+        this.isShowWashCost=false;
+        this.isShowCommercialCost=false;
+        this.isShowCommisionCost=false;
          
         this.JobNoId=this.dropdownValueService.initialOrderList.find(f=>f.jobNo.toLowerCase()==element.orderId.toLowerCase()).orderAutoID;
         //localStorage.setItem('PreCostingjobNoId',this.JobNoId.toString());
@@ -584,6 +617,34 @@ poNodropdownSettings:IDropdownSettings;
        this.refreshCostComponentList();
     
       }
+
+      this.fabricCostService.fabricCostInformationForm=this.fb.array([]);
+      this.fabricCostService.count=0;
+      
+      this.yarnCostService.yarnCostInformationForm==this.fb.array([]);
+      this.yarnCostService.count = 0;
+      this.yarnCostService.totalConsQnty = 0;
+      this.yarnCostService.totalAmount = 0;
+
+      this.conversionCostForPreCostsService.conversionCostInformationForm=this.fb.array([]);
+      this.conversionCostForPreCostsService.count=0;
+      this.conversionCostForPreCostsService.totalProcessLoss = 0;
+      this.conversionCostForPreCostsService.totalReqQty = 0;
+      this.conversionCostForPreCostsService.totalAvgReqQty = 0;
+      this.conversionCostForPreCostsService.totalAvgChargeOrUnit = 0;
+
+      
+    //   this.WashCostService.gmtsWashInformationForm = this.fb.array([]);
+    //   this.WashCostService.count = 0;
+    //   this.WashCostService.totalRateIn=0;
+    //   this.WashCostService.totalAmount=0;
+
+    //  this.commercialCostsService.commlCostInformationForm= this.fb.array([]);
+    //  this.commercialCostsService.count=0;
+    //  this.commercialCostsService.totalRateIn=0;
+    //  this.commercialCostsService.totalAmount=0;
+
+    
   }
 
 
@@ -600,63 +661,9 @@ poNodropdownSettings:IDropdownSettings;
         (f) => f.preCostingId == this.precostingId
       );
       if (fabricCostList.length > 0) {
-        this.fabricCostService.fabricCostInformationForm = this.fb.array([]);
-        this.fabricCostService.count = 0;
-        console.log(fabricCostList);
-        this.fabricDesPreCostService.getAll().subscribe((fabData) => {
-          console.log(fabData);
-          fabricCostList.forEach((itemDts) => {
-            //  this.fabricCostForm();
-            const fabricDescObject = fabData.find(
-              (f) => f.id == itemDts.fabricDesPreCostId
-            );
-
-            if (fabricDescObject != undefined) {
-              console.log(fabricDescObject);
-              itemDts.fabricDescription = fabricDescObject.fabricDescriptionDetails;
-            }
-            
-          
-              this.fabricCostService.count = this.fabricCostService.count + 1;  
-              this.fabricCostService.fabricCostInformationForm.push(
-                this.fb.group({
-                  id: itemDts.id,
-                  poNoId: itemDts.poNoId,
-                  gmtsItemId: itemDts.gmtsItemId,
-                  bodyPartId: itemDts.bodyPartId,
-                  bodyPartTypeId: itemDts.bodyPartTypeId,
-                  fabNatureId: itemDts.fabNatureId,
-                  colorTypeId: itemDts.colorTypeId,
-                  fabricDesPreCostId: itemDts.fabricDesPreCostId,
-                  fabricSourceId: itemDts.fabricSourceId,
-                  suplierId: itemDts.suplierId,
-                  preCostingId: itemDts.preCostingId,
-                  nominatedSuppId: itemDts.nominatedSuppId,
-                  widthDiaType: itemDts.widthDiaType,
-                  gsmWeight: itemDts.gsmWeight,
-                  colorSizeSensitive: itemDts.colorSizeSensitive,
-                  color: itemDts.color,
-                  consumptionBasis: itemDts.consumptionBasis,
-                  uom: itemDts.uom,
-                  avgGreyCons: itemDts.avgGreyCons,
-                  rate: itemDts.rate,
-                  amount: itemDts.amount,
-                  totalQty: itemDts.totalQty,
-                  totalAmount: itemDts.totalAmount, 
-                  fabricDescription: itemDts.fabricDescription 
-                })
-              );
-          
-           
-            
-          });
-        });
-       // console.log(fabricCostList);
-      // this.fabricCostService.loadFabricCostFormWithData(fabricCostList);
        
-
-        console.log(this.fabricCostService.fabricCostInformationForm.value);
-        //   this.fabricCostInformationForm.patchValue(fabricCostList);
+        this.fabricCostService.loadFabricCostFormWithData(fabricCostList);
+       
       } else {
         this.fabricCostService.fabricCostForm(this.precostingId);
       }
@@ -673,9 +680,7 @@ poNodropdownSettings:IDropdownSettings;
           data.id;
           let fabricCostFormValues = this.fabricCostService.fabricCostInformationForm.value;
         
-        this.fabricCostService.fabricCostInformationForm = this.fb.array([]);
-        this.fabricCostService.count = 0;
-
+  
       this.fabricCostService.loadFabricCostFormWithData(fabricCostFormValues);
       
       }
@@ -743,7 +748,6 @@ poNodropdownSettings:IDropdownSettings;
               (s) => {
                 this.yarnCostService.count = this.yarnCostService.count - 1;
                 yarnCostInformationForm.value.splice(j, 1);
-                this.yarnCostService.yarnCostInformationForm = this.fb.array([]);
               this.yarnCostService.loadYarnCostWithData(yarnCostInformationForm.value);
                 this.Tostr.showToast(
                   "primary",
@@ -770,9 +774,10 @@ poNodropdownSettings:IDropdownSettings;
  
   onDeleteForConversionCost(conversionCostInformationForm, k) {
     let idToBeDeleted = conversionCostInformationForm.value[k].id;
+    this.conversionCostForPreCostsService.count = this.conversionCostForPreCostsService.count - 1;
     console.log(idToBeDeleted);
     if (idToBeDeleted <= 0) {
-      this.conversionCostForPreCostsService.count = this.conversionCostForPreCostsService.count - 1;
+      
       conversionCostInformationForm.value.splice(k, 1);
       this.conversionCostForPreCostsService.conversionCostInformationForm = this.fb.array([]);
       this.conversionCostForPreCostsService.loadConversionCostFormData(conversionCostInformationForm.value);
@@ -787,7 +792,7 @@ poNodropdownSettings:IDropdownSettings;
               .deleteWithOutSubcribe(idToBeDeleted)
               .subscribe(
                 (s) => {
-                  this.conversionCostForPreCostsService.count = this.conversionCostForPreCostsService.count - 1;
+                 
                   conversionCostInformationForm.value.splice(k, 1);
                   this.conversionCostForPreCostsService.conversionCostInformationForm = this.fb.array([]);
                 this.conversionCostForPreCostsService.loadConversionCostFormData(conversionCostInformationForm.value);
@@ -821,12 +826,14 @@ poNodropdownSettings:IDropdownSettings;
         .subscribe((data) => {
           console.log(data);
           this.conversionCostList = data;
-          let conversionCostByPoNoId = this.conversionCostList.filter(
+          let conversionCostByPrecostingId = this.conversionCostList.filter(
             (f) => f.precostingId == this.precostingId
           );
-          if (conversionCostByPoNoId.length > 0) {
-
-              this.conversionCostForPreCostsService.loadConversionCostFormData(conversionCostByPoNoId);
+          if (conversionCostByPrecostingId.length > 0) {
+ 
+            //  this.conversionCostForPreCostsService.loadConversionCostFormData(conversionCostByPrecostingId);
+              this.conversionCostForPreCostsService.totalCalculationForConversionCost(conversionCostByPrecostingId);
+              this.conversionCostForPreCostsService.loadFabricDescriptionValues(this.fabricCostService.fabricCostInformationForm.value);
           } else {
             this.conversionCostForPreCostsService.conversionCostForm();
           }
@@ -844,15 +851,40 @@ poNodropdownSettings:IDropdownSettings;
 
     this.dialog.open(AddConsumptionComponent, dialogConfig);
   }
+  onAddTrimCost(i) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "90%";
+    dialogConfig.height = "70%";
+    dialogConfig.id = this.precostingId;
+    this.arrayIndex=i;
+    console.log('array index',this.arrayIndex);
+    //send to modal array index
+   // this.dateResizeService.source.next(i);
+
+    this.dialog.open(AddConsumptionForTrimCostComponent, dialogConfig);
+  }
+  onAddEmbelishmentCost(i) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "90%";
+    dialogConfig.height = "70%";
+    dialogConfig.id = this.precostingId;
+    this.arrayIndex=i;
+    console.log('array index',this.arrayIndex);
+    //send to modal array index
+   // this.dateResizeService.source.next(i);
+
+    this.dialog.open(AddConsumptionForEmbelCostComponent, dialogConfig);
+  }
   onDelete(fabricCostInformationForm, i) {
     let idToBeDeleted = fabricCostInformationForm.value[i].id;
 
     if (idToBeDeleted == 0) {
       this.fabricCostService.count = this.fabricCostService.count - 1;
       fabricCostInformationForm.value.splice(i, 1);
-
-      this.fabricCostService.fabricCostInformationForm = this.fb.array([]);
-      this.fabricCostService.count = 0;
     this.fabricCostService.loadFabricCostFormWithData(fabricCostInformationForm.value);
     }
 
@@ -866,8 +898,6 @@ poNodropdownSettings:IDropdownSettings;
               (s) => {
                
                 fabricCostInformationForm.value.splice(i, 1);
-                this.fabricCostService.fabricCostInformationForm = this.fb.array([]);
-                this.fabricCostService.count = 0;
                 this.fabricCostService.loadFabricCostFormWithData(fabricCostInformationForm.value);
 
                 this.Tostr.showToast(
@@ -927,46 +957,46 @@ poNodropdownSettings:IDropdownSettings;
   }
 
   recordSumitFabricCost() {
-    console.log(this.fabricCostService.fabricCostInformationForm.value);
+    
 
       //load yarn cost information by fabric description id .... 
  // this.yarnCountDeterminationService.getAll().subscribe(yarnData=>{
   this.yarnCountDeterminationChildService.getAll().subscribe(yarnChildData=>{
-    this.staticFeaturesService.getAllType().subscribe((typeData) => {
+  //  this.staticFeaturesService.getAllType().subscribe((typeData) => {
 
-    let newYarnCountDeterminationChildList=[];
+     let newYarnCountDeterminationChildList=[];
    
-    this.fabricCostService.fabricCostInformationForm.value.forEach(element => {
-      console.log(element.avgGreyCons);
+     this.fabricCostService.fabricCostInformationForm.value.forEach(element => {
+     
       let yarnCountDeterminationChildListByfabDescId=yarnChildData.filter(f=>f.yarnCountDeterminationMasterId==element.fabricDesPreCostId);
       yarnCountDeterminationChildListByfabDescId.map(option => {
         // New properties to be added
         const newPropsObj = {
           avgGreyCons:element.avgGreyCons,
-          rate:element.rate,
+          rate:0,// or element.rate,rate will be set in hand thats why it is 0 .
           amount:element.amount
 
         };
         // Assign new properties and return
         return Object.assign(option, newPropsObj);
       });
-      console.log(yarnCountDeterminationChildListByfabDescId);
+   
        newYarnCountDeterminationChildList.push(...yarnCountDeterminationChildListByfabDescId);
        
        this.yarnCostService.count=0;
        this.yarnCostService.yarnCostInformationForm = this.fb.array([]);
        newYarnCountDeterminationChildList.forEach((itemDts: any) => {
-          let typeId=typeData.find(f=>f.typeName==itemDts.type)&&typeData.find(f=>f.typeName==itemDts.type).id;
+     //     let typeId=typeData.find(f=>f.typeName==itemDts.type)&&typeData.find(f=>f.typeName==itemDts.type).id;
            this.yarnCostService.count = this.yarnCostService.count + 1;
            this.yarnCostService.yarnCostInformationForm.push(
              this.fb.group({
                id: 0,
-               countId: itemDts.yarnCountId,
+               countId:0,
                poId: itemDts.poId,
                comp1Id: itemDts.compositionId,
                percentage: itemDts.percentage,
                color: itemDts.color,
-               typeId: typeId,
+               typeId:0,
                consQnty: itemDts.avgGreyCons,
                supplierId: 0,
                rate: itemDts.rate,
@@ -976,7 +1006,7 @@ poNodropdownSettings:IDropdownSettings;
          });
        
  
-    });
+   // });
   });
 });
 //});
@@ -989,6 +1019,7 @@ this.fabricCostService.fabricCostInformationForm.value.forEach((element) => {
       }
       if (element.id == 0) {
         console.log(element.id);
+        
         this.fabricCostService.createMultiline(element);
       }
     });
@@ -1000,21 +1031,11 @@ this.fabricCostService.fabricCostInformationForm.value.forEach((element) => {
       this.toastrService
     );
 
+
+    this.conversionCostForPreCostsService.loadFabricDescriptionValues(this.fabricCostService.fabricCostInformationForm.value);
   }
 
-  totalCalculationForConversionCost(conversionCost) {
-    console.log(conversionCost.value);
-    this.totalProcessLoss = 0;
-    this.totalReqQty = 0;
-    this.totalAvgReqQty = 0;
-    this.totalAvgChargeOrUnit = 0;
-    conversionCost.value.forEach((itemDts: any) => {
-      this.totalProcessLoss += parseFloat(itemDts.processLoss);
-      this.totalReqQty += parseFloat(itemDts.reqQty);
-      this.totalAvgReqQty += parseFloat(itemDts.avgReqQty);
-      this.totalAvgChargeOrUnit += parseFloat(itemDts.chargeUnit);
-    });
-  }
+ 
   recordSubmitConversionCost(conversionCostInformationForm) {
     console.log(conversionCostInformationForm.value);
     conversionCostInformationForm.value.forEach((element) => {
@@ -1188,10 +1209,10 @@ this.fabricCostService.fabricCostInformationForm.value.forEach((element) => {
       editModeDataLoadForWashCost(){
         this.WashCostService.getAll().subscribe(data=>{
            this.GmtsWashCostList=data;
-           let GmtsWashCostListByPoNoId=this.GmtsWashCostList.filter(f=>f.precostingId==0);
-           if(GmtsWashCostListByPoNoId.length>0){
+           let GmtsWashCostListByPrecostingId=this.GmtsWashCostList.filter(f=>f.precostingId==this.precostingId);
+           if(GmtsWashCostListByPrecostingId.length>0){
              this.WashCostService.gmtsWashInformationForm= this.fb.array([]);
-             this.WashCostService.loadGmtsWashData(GmtsWashCostListByPoNoId);
+             this.WashCostService.loadGmtsWashData(GmtsWashCostListByPrecostingId);
        
            }else{
              this.WashCostService.gmtsWashDetailsForm();
@@ -1231,6 +1252,115 @@ this.fabricCostService.fabricCostInformationForm.value.forEach((element) => {
             });
             this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
             }
+
+
+              //load edit mode data for CommercialCosts 
+   editForCommercialCosts(){
+    this.commercialCostsService.getAll().subscribe(data=>{
+      console.log(data);
+       this.commercialCostsList=data;
+       let commercialCostsByPoNoId=this.commercialCostsList.filter(f=>f.precostingId==this.precostingId);
+       if(commercialCostsByPoNoId.length>0){
+     this.commercialCostsService.loadCommercialDataModel(commercialCostsByPoNoId);
+       }else{
+         this.commercialCostsService.commlCostDetailsForm();
+       }
+     })
+   }
+   onDeleteCommercialCost(commlCostInformationForm, i) {
+    let idToBeDeleted = commlCostInformationForm.value[i].id;
+
+    this.commercialCostsService.count = this.commercialCostsService.count - 1;
+    commlCostInformationForm.value.splice(i, 1);
+    this.commercialCostsService.count = 0;
+    if (idToBeDeleted == 0) {
+    this.commercialCostsService.loadCommercialDataModel(commlCostInformationForm.value);
+    }
+
+    if (idToBeDeleted > 0) {
+      this.commercialCostsService.delete(idToBeDeleted);
+       this.commercialCostsService.loadCommercialDataModel(commlCostInformationForm.value);                 
+    }
+  }
+  recordSubmitcommlCost(commlCostInformationForm){
+    commlCostInformationForm.value.forEach(element => {
+      element.precostingId=this.precostingId;
+      if(element.id!=0){
+        this.commercialCostsService.updateMultiline(element,element.id);
+        
+      }
+      if(element.id==0){
+        this.commercialCostsService.createMultiline(element);
+       
+      }
+     
+    });
+    this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
+    } 
+    
+    
+    loadEditModeDataForCommisionCost(){
+      this.commissionCostService.getAll().subscribe(data=>{
+        let commissionCosts=data.filter(f=>f.precostingId==this.precostingId);
+        if(commissionCosts.length!=0){
+          
+          this.commissionCostService.commissionInformationForm= this.fb.array([]);
+          this.commissionCostService.TotalCommnRate=0;
+          this.commissionCostService.TotalAmmount=0;
+          (commissionCosts).forEach((itemDts: any) => {
+            this.commissionCostService.count=this.commissionCostService.count+1;
+            this.commissionCostService.TotalCommnRate +=parseInt(itemDts.commnRate) ;
+            this.commissionCostService.TotalAmmount +=parseInt(itemDts.amount);
+            this.commissionCostService.commissionInformationForm.push(this.fb.group({
+              id:itemDts.id,
+              poNoId :itemDts.poNoId,
+              particulars :itemDts.particulars,
+              commnBase :itemDts.commnBase,
+              commnRate:itemDts.commnRate,
+              amount:itemDts.amount,
+              status :itemDts.status               
+            }));
+      });
+        
+        }else{
+          this.commissionCostService.commissionDetailsForm();
+        }
+      })
+    } 
+      onDeleteCommisionCost(commissionInformationForm, i) {
+        let idToBeDeleted = commissionInformationForm.value[i].id;
+    
+        this.commissionCostService.count = this.commissionCostService.count - 1;
+        commissionInformationForm.value.splice(i, 1);
+        
+        if (idToBeDeleted == 0) {
+        this.commissionCostService.loadCommissionCostModelData(commissionInformationForm.value);
+        }
+    
+        if (idToBeDeleted > 0) {
+          this.commissionCostService.delete(idToBeDeleted);
+           this.commissionCostService.loadCommissionCostModelData(commissionInformationForm.value);                 
+        }
+      }
+         
+          onSubmitCommisionCost(commissionInformationForm){
+            commissionInformationForm.value.forEach(element => {
+              element.precostingId=this.precostingId ;
+             
+              if(element.id!=0){
+                this.commissionCostService.updateMultiline(element,element.id);
+              }
+              if(element.id==0){
+                console.log(element.id);
+                this.commissionCostService.createMultiline(element);
+              }
+              
+            });
+           
+            this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
+            this.commissionCostService.commissionInformationForm= this.fb.array([]);
+            this.commissionCostService.count=0;
+          }
   Active_Inactive: any = [
     // { btn: 'Select', val: 'Select' },
     { btn: "Active", val: "Active" },
@@ -1242,5 +1372,17 @@ this.fabricCostService.fabricCostInformationForm.value.forEach((element) => {
       { btn: 'Yes', val: 'Yes' },
       { btn: 'No', val: 'No' }
     ]
+    washname	: any = [
+      { btn: 'Wash', val: 'Wash' }
+      
+    ]
+
+    items: any = [
+      // { btn: 'Select', val: 'Select' },
+        { btn: 'LC Cost ', val: 'LC Cost ' },
+        { btn: 'Port & Clearing', val:'Port & Clearing' },
+        { btn: 'Transportation', val:'Transportation' },
+        { btn: 'All Together', val:'All Together' },
+      ]
 }
 

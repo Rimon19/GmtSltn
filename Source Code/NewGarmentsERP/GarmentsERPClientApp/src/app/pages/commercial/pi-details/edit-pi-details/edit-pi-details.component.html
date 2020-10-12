@@ -1,0 +1,501 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      PiDetails Edit</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="ItemCategoryId" class="label text-dark">
+                Item Category
+                <span class="text-danger">*</span> </label>
+                <select
+                  name="itemCategoryId"
+                  required
+                  #ItemCategoryId="ngModel"
+                  [(ngModel)]="
+                  piDetailsService.piDetails.itemCategoryId
+                  "
+                  id="ItemCategoryId"
+                  class="form-control form-rounded form-control-sm"
+                >
+                <option value="">Select Item Category</option>
+                <option
+                  *ngFor="let item of dropdownValueService.itemCategoryList"
+                  value="{{item.id}}"
+                  >{{ item.itemCategoryName}}</option
+                >
+                </select>
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                  piDetailsService.piDetails.itemCategoryId== '' && ItemCategoryId.touched
+                  "
+                >
+                Item Category is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+             <div class="form-group">
+               <label for="Importer" class="label text-dark">
+               Importer<span class="text-danger">*</span></label
+               >
+               <input
+                 required
+                 name="importer"
+                 #Importer="ngModel"
+                 [(ngModel)]="
+                 piDetailsService.piDetails.importer
+                 "
+                 type="text"
+                 class="form-control form-rounded form-control-sm"
+                 id="Importer"
+                 placeholder="Importer"
+               />
+               <div
+                 class="text-left text-danger text-responsive"
+                 *ngIf="
+                 piDetailsService.piDetails.importer ==
+                     '' && Importer.touched
+                 "
+               >
+               Importer is required
+               </div>
+             </div>
+           </div>
+              <div class="col-sm-3">
+              <div class="form-group">
+                <label for="SupplierProfileId" class="label text-dark">
+                Supplier Profile
+                <span class="text-danger">*</span> </label>
+                <select
+                  name="supplierProfileId"
+                  required
+                  #SupplierProfileId="ngModel"
+                  [(ngModel)]="
+                  piDetailsService.piDetails.supplierProfileId
+                  "
+                  id="SupplierProfileId"
+                  class="form-control form-rounded form-control-sm"
+                >
+                <option value="">Select Supplier Profile</option>
+                <option
+                  *ngFor="let item of dropdownValueService.subpplierList"
+                  value="{{item.id}}"
+                  >{{ item.supplierName}}</option
+                >
+                </select>
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                  piDetailsService.piDetails.supplierProfileId== '' && SupplierProfileId.touched
+                  "
+                >
+                Supplier Profile is required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+             <div class="form-group">
+               <label for="PiNo" class="label text-dark">
+               PI No<span class="text-danger">*</span></label
+               >
+               <input
+                 required
+                 name="piNo"
+                 #PiNo="ngModel"
+                 [(ngModel)]="
+                 piDetailsService.piDetails.piNo
+                 "
+                 type="text"
+                 class="form-control form-rounded form-control-sm"
+                 id="PiNo"
+                 placeholder="PI No"
+               />
+               <div
+                 class="text-left text-danger text-responsive"
+                 *ngIf="
+                 piDetailsService.piDetails.piNo ==
+                     '' && PiNo.touched
+                 "
+               >
+               PI No is required
+               </div>
+             </div>
+           </div>
+          </div>
+         
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PiDate" class="label text-dark">
+        PI Date<span class="text-danger">*</span>
+      </label>
+      <input readonly
+        name="piDate"
+        required
+        #piDate="ngModel"
+        [(ngModel)]="
+          piDetailsService.piDetails.piDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="PiDate"
+        [nbDatepicker]="PiDate"
+        placeholder="PI Date"
+      />
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        piDetailsService.piDetails.piDate ==
+            '' &&piDate.touched
+        "
+      >
+      PI Date is required
+      </div>
+      <nb-datepicker #PiDate></nb-datepicker>
+    </div>
+  </div> 
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="LastShipmentDate" class="label text-dark">
+        Last Shipment Date
+      </label>
+      <input readonly
+        name="lastShipmentDate"
+        
+        #lastShipmentDate="ngModel"
+        [(ngModel)]="
+          piDetailsService.piDetails.lastShipmentDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="LastShipmentDate"
+        [nbDatepicker]="LastShipmentDate"
+        placeholder="Last Shipment Date"
+      />
+      
+      <nb-datepicker #LastShipmentDate></nb-datepicker>
+    </div>
+  </div>
+   <div class="col-sm-3">
+    <div class="form-group">
+      <label for="PiValidityDate" class="label text-dark">
+        PI Validity Date
+      </label>
+      <input readonly
+        name="piValidityDate"
+        
+        #piValidityDate="ngModel"
+        [(ngModel)]="
+          piDetailsService.piDetails.piValidityDate
+        "          
+        type="text"
+        class="form-control form-rounded form-control-sm"
+        id="PiValidityDate"
+        [nbDatepicker]="PiValidityDate"
+        placeholder="PI Validity Date"
+      />
+      
+      <nb-datepicker #PiValidityDate></nb-datepicker>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="CurrencyId" class="label text-dark">
+      Currency
+      <span class="text-danger">*</span> </label>
+      <select
+        name="currencyId"
+        required
+        #CurrencyId="ngModel"
+        [(ngModel)]="
+        piDetailsService.piDetails.currencyId
+        "
+        id="CurrencyId"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Currency</option>
+      <option
+        *ngFor="let item of dropdownValueService.currencyList"
+        value="{{item.id}}"
+        >{{ item.discountMethodName}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        piDetailsService.piDetails.currencyId== '' && CurrencyId.touched
+        "
+      >
+      Currency is required
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="Source" class="label text-dark">
+      Source
+      <span class="text-danger">*</span> </label>
+      <select
+        name="source"
+        required
+        #Source="ngModel"
+        [(ngModel)]="
+        piDetailsService.piDetails.source
+        "
+        id="Source"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Source</option>
+      <option
+        *ngFor="let item of dropdownValueService.sourceList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      <div
+        class="text-left text-danger text-responsive"
+        *ngIf="
+        piDetailsService.piDetails.source== '' && Source.touched
+        "
+      >
+      Source is required
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="HsCode" class="label text-dark">
+   HS Code</label
+ >
+ <input
+   name="hsCode"    
+   [(ngModel)]="
+   piDetailsService.piDetails.hsCode
+   "
+   class="form-control form-rounded form-control-sm"
+   type="text"
+   id="HsCode"
+   placeholder=" HS Code"
+ />
+</div>
+</div>
+   <div class="col-sm-3">
+<div class="form-group">
+ <label for="InternalFileNo" class="label text-dark">
+   Internal File No</label
+ >
+ <input
+   name="internalFileNo"    
+   [(ngModel)]="
+   piDetailsService.piDetails.internalFileNo
+   "
+   class="form-control form-rounded form-control-sm"
+   type="number"
+   id="InternalFileNo"
+   placeholder=" Internal File No"
+ />
+</div>
+</div>
+  
+    <div class="col-sm-3">
+    <div class="form-group">
+      <label for="IndentorName" class="label text-dark">
+      Indentor Name
+      </label>
+      <select
+        name="indentorName"
+      
+        #IndentorName="ngModel"
+        [(ngModel)]="
+        piDetailsService.piDetails.indentorName
+        "
+        id="IndentorName"
+        class="form-control form-rounded form-control-sm"
+      >
+      <option value="">Select Indentor Name</option>
+      <option
+        *ngFor="let item of dropdownValueService.indentorList"
+        value="{{item.value}}"
+        >{{ item.value}}</option
+      >
+      </select>
+      
+    </div>
+  </div>
+</div>
+ 
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="PiBasis" class="label text-dark">
+          PI Basis
+          <span class="text-danger">*</span> </label>
+          <select
+            name="piBasis"
+            required
+            #PiBasis="ngModel"
+            [(ngModel)]="
+            piDetailsService.piDetails.piBasis
+            "
+            id="PiBasis"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select PI Basis</option>
+          <option
+            *ngFor="let item of dropdownValueService.piBasisList"
+            value="{{item.value}}"
+            >{{ item.value}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            piDetailsService.piDetails.piBasis== '' && PiBasis.touched
+            "
+          >
+          PI Basis is required
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-3">
+        <div class="form-group">
+          <label for="GoodsRcvStatus" class="label text-dark">
+          Goods Rcv Status
+          <span class="text-danger">*</span> </label>
+          <select
+            name="goodsRcvStatus"
+            required
+            #GoodsRcvStatus="ngModel"
+            [(ngModel)]="
+            piDetailsService.piDetails.goodsRcvStatus
+            "
+            id="GoodsRcvStatus"
+            class="form-control form-rounded form-control-sm"
+          >
+          <option value="">Select Goods Rcv Status</option>
+          <option
+            *ngFor="let item of dropdownValueService.goodsRcvStatusList"
+            value="{{item.value}}"
+            >{{ item.value}}</option
+          >
+          </select>
+          <div
+            class="text-left text-danger text-responsive"
+            *ngIf="
+            piDetailsService.piDetails.goodsRcvStatus== '' && GoodsRcvStatus.touched
+            "
+          >
+          Goods Rcv Status is required
+          </div>
+        </div>
+      </div> 
+      <div class="col-sm-3">
+    <div class="form-group">
+     <label for="LcGroupNo" class="label text-dark">
+       LC Group No</label
+     >
+     <input
+       name="lcGroupNo"    
+       [(ngModel)]="
+       piDetailsService.piDetails.lcGroupNo
+       "
+       class="form-control form-rounded form-control-sm"
+       type="number"
+       id="LcGroupNo"
+       placeholder=" LC Group No"
+     />
+    </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="ReadyToApproved" class="label text-dark">
+        Ready To Approved
+        </label>
+        <select
+          name="readyToApproved"
+        
+          #ReadyToApproved="ngModel"
+          [(ngModel)]="
+          piDetailsService.piDetails.readyToApproved
+          "
+          id="ReadyToApproved"
+          class="form-control form-rounded form-control-sm"
+        >
+        <option value="">Select Ready To Approved</option>
+        <option
+          *ngFor="let item of dropdownValueService.yesNoList"
+          value="{{item.value}}"
+          >{{ item.value}}</option
+        >
+        </select>
+        
+      </div>
+    </div>
+    </div>
+ 
+  <div class="row">
+   
+       <div class="col-sm-3">
+  <div class="form-group">
+   <label for="RequestedBy" class="label text-dark">
+     Requested By</label
+   >
+   <input
+     name="requestedBy"    
+     [(ngModel)]="
+     piDetailsService.piDetails.requestedBy
+     "
+     class="form-control form-rounded form-control-sm"
+     type="text"
+     id="RequestedBy"
+     placeholder=" Requested By"
+   />
+  </div>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="form-group">
+     <label for="Remarks" class="label text-dark">
+       Remarks</label
+     >
+     <textarea
+       name="remarks"    
+       [(ngModel)]="
+       piDetailsService.piDetails.remarks
+       "
+       class="form-control form-rounded form-control-sm"
+       type="text"
+       id="Remarks"
+       placeholder=" Remarks"
+       row=1
+     ></textarea>
+    </div>
+    </div>
+  </div>
+   
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

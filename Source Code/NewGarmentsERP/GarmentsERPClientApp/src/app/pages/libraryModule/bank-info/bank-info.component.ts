@@ -9,6 +9,7 @@ import { BankInfo } from '../../../@core/data/Library-Modul-model/bank-info.mode
 import { AccountInfo } from '../../../@core/data/Library-Modul-model/account-info.model';
 import { BankInfoService } from '../../../@core/mock/library/bank-info.service';
 import { AccountInfoService } from '../../../@core/mock/library/account-info.service';
+import { DropdownValueService } from '../../../@core/mock/shared/dropdown-value.service';
 
 
 @Component({
@@ -32,12 +33,22 @@ export class BankInfoComponent implements OnInit {
     private mathdialogService: MatDialogService,
     private router:Router,
     public BankInfoService:BankInfoService,
-    private accountInfoService:AccountInfoService) { } 
+    private accountInfoService:AccountInfoService,
+    private dropdownValueService:DropdownValueService) { 
+    
+      this.dropdownValueService.getBuyers();} 
 
   ngOnInit() {
  this.countTotalAccount();
+
+
  
+
   }
+
+
+  
+
 
   countTotalAccount(){
 

@@ -102,7 +102,7 @@ export class UserMappingComponent implements OnInit {
           //Get EmpCategory Name from EmpCategory Table
           this.staticFeaturesService.getEmpCategorie().subscribe(data=>{
               this.empCategory=data;
-           let categoryName=this.empCategory.find(f=>f.id==res.empCategoryId).category;
+           let categoryName=this.empCategory.find(f=>f.empCatagoryId==res.empCategoryId).category;
            res.empCategoryId=categoryName;
           })
              //Get EmpDepartments Name from EmpDepartment Table

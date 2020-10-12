@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACb,SAAS,EAAE,UAAU;CACtB",
+    "sources": [
+        "edit-item-group.component.scss"
+    ],
+    "names": [],
+    "file": "edit-item-group.component.css"
+}

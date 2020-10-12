@@ -1,8 +1,6 @@
 <nb-card>
   <div class="col-md-12" style = "overflow-x: scroll;">
-      <div class="smart-table-container" style = "width:1200px;">
-  
-        <div class="example-container mat-elevation-z8">
+
           <div class="example-header">
             <h5>Mail Recipient Group</h5>
             <mat-form-field>
@@ -24,27 +22,25 @@
             </ng-container>  
           <ng-container matColumnDef="companyName">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Company Name</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.companyName}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.companyName}}</mat-cell>  
           </ng-container>  
           <ng-container matColumnDef="mailItem">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Mail Item</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.mailItem}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.mailItem}}</mat-cell>  
           </ng-container>
           <ng-container matColumnDef="youHaveSelected">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">You Have Selected</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.youHaveSelected}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.youHaveSelected}}</mat-cell>  
           </ng-container>
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Status</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.status}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.status}}</mat-cell>  
           </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
        
-        </div>
-  
-      </div>
+    
     </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </nb-card>  

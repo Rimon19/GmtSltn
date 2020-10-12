@@ -60,7 +60,7 @@ export class AddBankInfoComponent implements OnInit {
     this.accountTypeDDL();
     this.bankNameDDL();
    
-    this.refreshList();
+    //this.refreshList();
  
   }
 
@@ -195,38 +195,38 @@ searchAccountByBankId(BankId){
 }
 
 
-refreshList(){
-  this.accountInfoService.getAll().subscribe(
-    res => {
-      if (res == [])
-        this.addBankAccountForm(); 
-      else {
-        //generate formarray as per the data received from BankAccont table
-        this.bankAccountForms= this.formBuilder.array([]);
-        (res as []).forEach((accountInfo: any) => {
+// refreshList(){
+//   this.accountInfoService.getAll().subscribe(
+//     res => {
+//       if (res == [])
+//         this.addBankAccountForm(); 
+//       else {
+//         //generate formarray as per the data received from BankAccont table
+//         this.bankAccountForms= this.formBuilder.array([]);
+//         (res as []).forEach((accountInfo: any) => {
          
-          this.count=this.count+1;
-          this.bankAccountForms.push(this.formBuilder.group({
-            id: [accountInfo.id],
-            bankInfoId: [accountInfo.bankInfoId,Validators.required],
-            accountTypeId: [accountInfo.accountTypeId, Validators.required],
-            accountNo: [accountInfo.accountNo, Validators.required],
-            currencyId: [accountInfo.currencyId, Validators.required],
-            loanLimit: [accountInfo.loanLimit],
-            limitType: [accountInfo.limitType],
-            companyId: [accountInfo.companyId],
-            chartOfAccount: [accountInfo.chartOfAccount],
-            status: [accountInfo.status]
+//           this.count=this.count+1;
+//           this.bankAccountForms.push(this.formBuilder.group({
+//             id: [accountInfo.id],
+//             bankInfoId: [accountInfo.bankInfoId,Validators.required],
+//             accountTypeId: [accountInfo.accountTypeId, Validators.required],
+//             accountNo: [accountInfo.accountNo, Validators.required],
+//             currencyId: [accountInfo.currencyId, Validators.required],
+//             loanLimit: [accountInfo.loanLimit],
+//             limitType: [accountInfo.limitType],
+//             companyId: [accountInfo.companyId],
+//             chartOfAccount: [accountInfo.chartOfAccount],
+//             status: [accountInfo.status]
             
-          }));
-        });
-      }
-    }
-  );
-} 
+//           }));
+//         });
+//       }
+//     }
+//   );
+// } 
 addBankAccountForm() {
-  this.bankAccountForms= this.formBuilder.array([]);
-  this.count=0;
+  //this.bankAccountForms= this.formBuilder.array([]);
+  //this.count=0;
   this.count=this.count+1;   
   this.bankAccountForms.push(this.formBuilder.group({
     id: [0],
@@ -236,7 +236,7 @@ addBankAccountForm() {
     currencyId: [0, Validators.required],
     loanLimit:[0],
     limitType:[''],
-    companyId:[0],
+    companyId:[''],
     chartOfAccount:[''],
     status:['']
   }));
@@ -250,7 +250,10 @@ recordSubmit(bankAccountForms) {
       (res: any) => {
        // fg.patchValue({ id: res.id });
         this.showNotification('insert');
-        this.refreshList();
+        //this.refreshList();
+         this.bankAccountForms= this.formBuilder.array([]);
+       
+
       });
       
   else
@@ -278,25 +281,29 @@ onDelete(id, i) {
 showNotification(category) {
   switch (category) {
     case 'insert':
-      this.notification = { class: 'text-success', message: 'saved!' };
+      this.notification = { class: 'text-success', message: 'saved successfully !' };
       break;
     case 'update':
-      this.notification = { class: 'text-primary', message: 'updated!' };
+      this.notification = { class: 'text-primary', message: 'updated successfully !' };
       break;
     case 'delete':
-      this.notification = { class: 'text-danger', message: 'deleted!' };
+      this.notification = { class: 'text-danger', message: 'deleted successfully !' };
       break;
-
+  
     default:
       break;
   }
   setTimeout(() => {
     this.notification = null;
   }, 3000);
-}
+  }
 
 back(){
   this.router.navigate(["/pages/BankInfo-create"]);
 }
+
+backHomePage(){
+  this.router.navigate(['/pages/BankInfo-list']);
+  }
 
 }

@@ -19,6 +19,9 @@ import { StaticFeaturesService } from '../../../../@core/mock/library/static-fea
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { SupplierProfileService } from '../../../../@core/mock/library/supplier-profile.service';
 import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ErpImagesComponent } from '../../../Shared/erp-images/erp-images.component';
+import { DatapassingService } from '../../../../@core/mock/shared/datapassing.service';
 
 
 @Component({
@@ -57,7 +60,9 @@ export class AddSupplierProfileComponent implements OnInit {
   private companyService:CompanyService,
   private staticFeaturesService:StaticFeaturesService,
   private buyerProfileService:BuyerProfileService,
-  private dropdownValueService:DropdownValueService
+  private dropdownValueService:DropdownValueService,
+  private datapassingService:DatapassingService,
+  private dialog:MatDialog,
  
     ) { }
 
@@ -231,6 +236,19 @@ console.log(form.value);
     this.router.navigate(['/pages/supplier-profile']);
   }
 
+
+  onAddImage(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus= true;
+    dialogConfig.width="50%"; 
+    dialogConfig.height="50%";
+// page id is 5 here from according to table imageOrFileHolderPages
+let primaryKey=0; 
+    this.datapassingService.sendInfoPageToErpImages.next({pageId: 4,primaryKey:primaryKey});
+
+    this.dialog.open(ErpImagesComponent, dialogConfig);
+  }
 
 }
 

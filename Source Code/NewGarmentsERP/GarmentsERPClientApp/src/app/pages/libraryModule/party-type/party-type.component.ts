@@ -8,6 +8,7 @@ import { MatDialogService } from '../../../@core/mock/mat-dialog.service';
 import { Subscription } from 'rxjs';
 import { PartyTypeService } from '../../../@core/mock/library/party-type.service';
 import { PartyType } from '../../../@core/data/Library-Modul-model/party-type';
+import { DropdownValueService } from './../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-party-type',
@@ -27,11 +28,13 @@ export class PartyTypeComponent implements OnInit {
      private toastrService:NbToastrService,
      private mathdialogService: MatDialogService,
      private router:Router,
-     private partyTypeService:PartyTypeService) { }
+     private partyTypeService:PartyTypeService,
+     private dropdownValueService:DropdownValueService) { }
     
 
   ngOnInit() {
  this.getPartyTypeInfoDetails();
+ 
 
   }
 

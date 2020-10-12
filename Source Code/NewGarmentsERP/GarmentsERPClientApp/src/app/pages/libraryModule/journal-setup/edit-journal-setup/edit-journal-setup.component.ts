@@ -55,9 +55,9 @@ export class EditJournalSetupComponent implements OnInit {
     });
 }
 
-update(journalSetupEdit){
-  console.log(journalSetupEdit);
-  this.journalSetupService.update(journalSetupEdit).subscribe(s=>{
+onSubmit(form:NgForm){
+ form.value.id=this.editedId;
+  this.journalSetupService.update(form.value).subscribe(s=>{
   this.Tostr.showToast('primary',"", "update Successfull !", "",this.toastrService);
   this.router.navigate(['/pages/Journal-Setup-list']);
   },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);})

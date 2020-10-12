@@ -1,119 +1,87 @@
 <div class="row">
   <div class="col-lg-12">
     <nb-card>
-
       <nb-card-header>
         <button (click)="backHomePage()"
         class="btn btn-outline-success mr-2 "
 
        >
        <i class="fas fa-arrow-left "></i>
-      </button>Journal Setup Update 
+      </button>Journal Setup Edit 
     </nb-card-header>
-        <nb-card-body>
-          <form>
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="uomId" class="label">
-                    journal Type <span class="text-danger">*</span></label>
-                    <select  name="journalTypeId" #JournalTypeId="ngModel"
-                    [(ngModel)]="journalSetupService.journalSetup.journalTypeId"
-                     id="journalTypeId"  
-                    class="form-control text-responsive" >
-                    <option [ngValue]=0>Select Journal Type </option>
-                    <option *ngFor="let journalTypeList of journalType" [value]="journalTypeList.id">{{journalTypeList.journalTypeName}}</option>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="uomId" class="label text-dark">
+                  journal Type <span class="text-danger">*</span></label>
+                  <select  name="journalTypeId" #JournalTypeId="ngModel"
+                  [(ngModel)]="journalSetupService.journalSetup.journalTypeId"
+                   id="journalTypeId"  
+                   class="form-control form-rounded form-control-sm  " >
+                  <option [ngValue]=0>Select Journal Type </option>
+                  <option *ngFor="let journalTypeList of journalType" [value]="journalTypeList.id">{{journalTypeList.journalTypeName}}</option>
+                 
+             </select>
+             <div class="text-left text-danger"
+             *ngIf="journalSetupService.journalSetup.journalTypeId==0&&JournalTypeId.touched">
+             Journal Type  is required
+           </div>
+              </div>
+              
+            </div>
+            
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="preFix"  class="label text-dark">Pre Fix<span class="text-danger">*</span></label>
+                <input required name="preFix" #PreFix="ngModel"
+                [(ngModel)]="journalSetupService.journalSetup.preFix"
+                 class="form-control form-rounded form-control-sm  " type="text" 
+                id="preFix" placeholder="pre Fix">
+                <div class="text-left text-danger"
+               *ngIf="journalSetupService.journalSetup.preFix==''&&PreFix.touched">
+               Pre Fixis required
+             </div>
+              </div>
+              
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="startingNumber" class="label text-dark">Starting Number<span class="text-danger">*</span></label>
+                <input required name="startingNumber" #StartingNumber="ngModel"
+                [(ngModel)]="journalSetupService.journalSetup.startingNumber"
+                 class="form-control form-rounded form-control-sm  " type="number" 
+                id="startingNumber" placeholder="Starting Number">
+                <div class="text-left text-danger"
+               *ngIf="journalSetupService.journalSetup.startingNumber==0&&StartingNumber.touched">
+               Starting Number required
+             </div>
+              </div>
+              
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Status" class="label text-dark">Status</label>
+                   <select  name="status" #Status="ngModel"
+                   [(ngModel)]="journalSetupService.journalSetup.status"
+                    id="Status" 
+                     class="form-control form-rounded form-control-sm  " >
+                   <option value=''>Select Status</option>
+                   <option  *ngFor="let btnAction of Active_Inactive" 
+                   value="{{btnAction.val}}">{{btnAction.btn}}</option> 
                    
                </select>
-               <div class="text-left text-danger"
-               *ngIf="journalSetupService.journalSetup.journalTypeId==0&&JournalTypeId.touched">
-               Journal Type  is required
-             </div>
-                </div>
-                
+               
               </div>
-              
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="preFix" class="label">Pre Fix <span class="text-danger">*</span></label>
-                  <input required name="preFix" #PreFix="ngModel"
-                  [(ngModel)]="journalSetupService.journalSetup.preFix"
-                  class="form-control" type="text" 
-                  id="preFix" placeholder="pre Fix">
-                  <div class="text-left text-danger"
-                 *ngIf="journalSetupService.journalSetup.preFix==''&&PreFix.touched">
-                 Pre Fixis required
-               </div>
-                </div>
-                
-              </div>
-  
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="startingNumber" class="label">Starting Number<span class="text-danger">*</span> </label>
-                  <input required name="startingNumber" #StartingNumber="ngModel"
-                  [(ngModel)]="journalSetupService.journalSetup.startingNumber"
-                  class="form-control" type="text" 
-                  id="startingNumber" placeholder="Starting Number">
-                  <div class="text-left text-danger"
-                 *ngIf="journalSetupService.journalSetup.startingNumber==0&&StartingNumber.touched">
-                 Starting Number required
-               </div>
-                </div>
-                
-              </div>
-  
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="Status" class="label">Status</label>
-                     <select name="status" #Status="ngModel"
-                     [(ngModel)]="journalSetupService.journalSetup.status"
-                      id="Status" 
-                      class="form-control text-responsive" >
-                     <option value=''>Select Status</option>
-                     <option  *ngFor="let btnAction of Active_Inactive" 
-                     value="{{btnAction.val}}">{{btnAction.btn}}</option> 
-                     
-                 </select>
-                 
-                </div>
-              </div>
-              
-             
             </div>
-           
-            <div class="row">
-              <div class="col-sm-3 ">
-                <div class="form-group ">
-                  <button  class="mr-1"
-                   [disabled]="journalSetupService.journalSetup.journalTypeId==0||journalSetupService.journalSetup.preFix==''||journalSetupService.journalSetup.startingNumber==0" nbButton
-                    (click)="update(journalSetupService.journalSetup)">Update</button>
-                
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="form-group">
-                  
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="form-group">
-                  
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="form-group">
-                 
-                </div>
-              </div>
-            </div> 
-          
-       
             
-          </form>
-        </nb-card-body>
-     
+          </div>
+          <button type="submit" [disabled]="form.invalid||journalSetupService.journalSetup.startingNumber==0" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
     </nb-card>
   </div>
 </div>
-

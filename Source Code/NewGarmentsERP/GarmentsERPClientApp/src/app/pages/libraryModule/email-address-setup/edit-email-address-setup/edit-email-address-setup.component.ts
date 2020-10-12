@@ -18,6 +18,7 @@ export class EditEmailAddressSetupComponent implements OnInit {
     private router:Router,
     private route:ActivatedRoute,
     private toastrService:NbToastrService,
+
     ) {
       this.editedId = this.route.snapshot.paramMap.get('id');
       console.log(this.editedId);
@@ -51,9 +52,9 @@ export class EditEmailAddressSetupComponent implements OnInit {
    
   
 
-    update(emailAddressSetup){
-      console.log(emailAddressSetup);
-      this.emailAddressSetupService.updateEmailAddressSetup(emailAddressSetup).subscribe(s=>{
+    onSubmit(form:NgForm){
+     form.value.id=this.editedId;
+      this.emailAddressSetupService.updateEmailAddressSetup(form.value).subscribe(s=>{
         this.Tostr.showToast('primary',"", "update Successfull !", "",this.toastrService);
         this.router.navigate(['/pages/email-address-setup']);
       },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);})

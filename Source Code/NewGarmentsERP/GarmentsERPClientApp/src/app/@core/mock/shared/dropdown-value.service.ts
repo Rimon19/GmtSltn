@@ -59,6 +59,8 @@ import { FabricCost } from '../../data/marchanzider-model/fabric-cost';
 import { CompositionEntryService } from '../library/composition-entry.service';
 import { ItemGroup } from '../../data/Library-Modul-model/ItemGroup';
 import { ItemGroupService } from '../library/item-group.service';
+import { Observable } from 'rxjs';
+import { YarnTypesService } from '../marchandizer/yarn-types.service';
 
 
 @Injectable({
@@ -112,6 +114,7 @@ export class DropdownValueService {
   public aopSourceList:any[]=[];	
   public yarnCountList:YarnCounts[]=[];
   public colorList:ColourEntry[]=[];
+  public testcolorList;
   public colorRangeList:any[]=[];
   public yesNoList:any[]=[];
   public sampleNameList:any[]=[];
@@ -142,6 +145,12 @@ export class DropdownValueService {
   public InputPannelPodetailsList:InputPannelPodetails[]=[];
   public yarnComp1List:any[]=[];
   public typeList:any[]=[];
+  public moduleList:any[]=[];
+  public piBasisList:any[]=[];
+  public goodsRcvStatusList:any[]=[];
+  public  indentorList:any[]=[];
+  public yarnTypeList:any[]=[];
+
   
   constructor(public http:HttpClient,
     private buyerProfileService:BuyerProfileService,
@@ -178,7 +187,7 @@ export class DropdownValueService {
     private compositionEntryService:CompositionEntryService
 
     ) {
-    
+         
      }
   getUsers(){
   this.userService.getAllUser().subscribe(data=>{
@@ -238,7 +247,7 @@ getProductionDeptInfoes(){
     );
   }
   public getSuppliers(): any {
-    this.supplierProfileService.getAll().subscribe(
+    this.supplierProfileService.getAllSupplier().subscribe(
      (res: any) => {
      this.subpplierList=res;
      }, 
@@ -514,13 +523,25 @@ getFabricNature(){
 
 getYarnCount(){
   this.yarnCountsService.getAllYarnCount().subscribe(data=>{
-    this.yarnCountList=data;
+      this.yarnCountList=data;
   })
 }
-getColor(){
-  this.colourEntryService.getColourEntry().subscribe(data=>{
+// async function myMeeting(){
+//   const meetingDetails= await meeting;
+//   const message=await addToCalander(meetingDetails);
+//   console.log(message)
+// }
+ getColor(){
+   this.colourEntryService.getColourEntry().subscribe(data=>{
     this.colorList=data;
+    
   })
+}
+ getClr(){
+  this.colourEntryService.getClrEntry().then(data=>{
+    this.testcolorList=data;
+  });
+
 }
 
 getColorRange(){
@@ -725,5 +746,26 @@ getTrimsGroup(){
         
       });
     }
+
+    getModule(){
+      this.staticFeaturesService.getERPModule().subscribe(data=>{
+        this.moduleList=data;
+      })
+    }
+
+    //for commercial
+
+    getPIBasis(){
+      this.piBasisList=this.staticFeaturesService.getPIBasis();
+    }
+    getGoodsRcvStatus(){
+      this.goodsRcvStatusList=this.staticFeaturesService.getGoodsRcvStatus();
+
+    }
+    getIndentor(){
+      this.indentorList=this.staticFeaturesService.getIndentor();
+    }
+
+
 }
 

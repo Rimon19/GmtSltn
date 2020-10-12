@@ -1,16 +1,27 @@
 <div class="row">
     <div class="col-lg-12">
       <nb-card>
-        <nb-card-header>Employee Info Entry</nb-card-header>
-        <nb-card-body>
+        <nb-card-header>
+          <button (click)="backHomePage()"
+          class="btn btn-outline-success mr-2 "
+  
+         >
+         <i class="fas fa-arrow-left "></i>
+        </button>Employee Info Entry
+      </nb-card-header>
+        <nb-card-body >
+          <div class="mat-elevation-z8" >
+          <div  style="margin: 2px; padding: 10px;">
+
+         
           <form #form="ngForm" (submit)="onSubmit(form)">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="employeeCode" class="label">EmployeeCode </label>
+                      <label for="employeeCode" class="label text-dark">EmployeeCode </label>
                       <input  name="employeeCode" #EmployeeCode="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.employeeCode"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="employeeCode" placeholder="Employee Code">
                       
                     </div>
@@ -19,10 +30,10 @@
                 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="employeeFirstName" class="label">Employee First Name<span class="text-danger">*</span></label>
+                      <label for="employeeFirstName" class="label text-dark">Employee First Name<span class="text-danger">*</span></label>
                       <input required name="employeeFirstName" #EmployeeFirstName="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.employeeFirstName"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="employeeFirstName" placeholder="Employee First Name">
                       <div class="text-left text-danger"
                      *ngIf="employeeInfoService.employeeInfo.employeeFirstName==''&&EmployeeFirstName.touched">
@@ -34,10 +45,10 @@
                 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="employeeMiddleName" class="label">Employee Middle Name </label>
+                      <label for="employeeMiddleName" class="label text-dark">Employee Middle Name </label>
                       <input  name="employeeMiddleName" #EmployeeMiddleName="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.employeeMiddleName"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="employeeMiddleName" placeholder="Employee Middle Name">
                       
                     </div>
@@ -46,10 +57,10 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="employeeLastName" class="label">Employee Last Name </label>
+                      <label for="employeeLastName" class="label text-dark">Employee Last Name </label>
                       <input  name="employeeLastName" #EmployeeLastName="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.employeeLastName"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="employeeLastName" placeholder="Employee Last Name">
                       
                     </div>
@@ -58,10 +69,10 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="employeeNameBangla" class="label">Employee Name(Bangla) </label>
+                      <label for="employeeNameBangla" class="label text-dark">Employee Name(Bangla) </label>
                       <input  name="employeeNameBangla" #EmployeeNameBangla="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.employeeNameBangla"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="employeeNameBangla" placeholder="Employee First Name">
                       
                     </div>
@@ -70,10 +81,10 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="fathersName" class="label">Father's Name </label>
+                      <label for="fathersName" class="label text-dark">Father's Name </label>
                       <input  name="fathersName" #FathersName="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.fathersName"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="fathersName" placeholder="Father's Name">
                       
                     </div>
@@ -82,10 +93,10 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="fathersNameBangla" class="label">Father's Name Bangla </label>
+                      <label for="fathersNameBangla" class="label text-dark">Father's Name Bangla </label>
                       <input  name="fathersNameBangla" #FathersNameBangla="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.fathersNameBangla"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="fathersNameBangla" placeholder="Father's Name Bangla">
                       
                     </div>
@@ -94,10 +105,10 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="mothersName" class="label">Mother's Name</label>
+                      <label for="mothersName" class="label text-dark">Mother's Name</label>
                       <input  name="mothersName" #MothersName="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.mothersName"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="mothersName" placeholder="Mother's Name">
                       
                     </div>
@@ -105,10 +116,10 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="mothersNameBangla" class="label">Mother's Name Bangla</label>
+                      <label for="mothersNameBangla" class="label text-dark">Mother's Name Bangla</label>
                       <input  name="mothersNameBangla" #MothersNameBangla="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.mothersNameBangla"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="mothersNameBangla" placeholder="Mother's Name Bangla">
                       
                     </div>
@@ -117,11 +128,11 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="sex" class="label">Sex<span class="text-danger">*</span></label>
+                      <label for="sex" class="label text-dark">Sex<span class="text-danger">*</span></label>
                          <select required name="sex" #Sex="ngModel"
                          [(ngModel)]="employeeInfoService.employeeInfo.sex"
                           id="sex" 
-                          class="form-control text-responsive" >
+                          class="form-control form-rounded form-control-sm">
                          <option value=''>Select Sex</option>
                          <option  *ngFor="let btnAction of gender" 
                          value="{{btnAction.val}}">{{btnAction.btn}}</option> 
@@ -136,10 +147,10 @@
 
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="birthPlace" class="label">Birth Place</label>
+                      <label for="birthPlace" class="label text-dark">Birth Place</label>
                       <input  name="birthPlace" #BirthPlace="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.birthPlace"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="birthPlace" placeholder="BirthPlace">
                       
                     </div>
@@ -148,10 +159,10 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="dateofBirth" class="label">Date of Birth</label>
+                      <label for="dateofBirth" class="label text-dark">Date of Birth</label>
                       <input  name="dateofBirth" #DateofBirth="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.dateofBirth"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="dateofBirth" [nbDatepicker]="dateofBirth" placeholder="Date of Birth">
                       <nb-datepicker #dateofBirth></nb-datepicker>
                       
@@ -161,10 +172,10 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="age" class="label">Age</label>
+                      <label for="age" class="label text-dark">Age</label>
                       <input  name="age" #Age="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.age"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="age" placeholder="Age">
                       
                     </div>
@@ -173,12 +184,12 @@
                 
                 <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="religionId" class="label">
+                      <label for="religionId" class="label text-dark">
                         Religion </label>
                         <select  name="religionId" #religionId="ngModel"
                         [(ngModel)]="employeeInfoService.employeeInfo.religionId"
                          id="religionId"  
-                        class="form-control text-responsive" >
+                        class="form-control form-rounded form-control-sm">
                         <option [ngValue]=0>Select Religion </option>
                         <option *ngFor="let ReligionList of religion" [value]="ReligionList.id">{{ReligionList.religionName}}</option>
                        
@@ -190,11 +201,11 @@
 
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="maritalStatus" class="label">Marital Status</label>
+                      <label for="maritalStatus" class="label text-dark">Marital Status</label>
                          <select  name="maritalStatus" #MaritalStatus="ngModel"
                          [(ngModel)]="employeeInfoService.employeeInfo.maritalStatus"
                           id="maritalStatus" 
-                          class="form-control text-responsive" >
+                          class="form-control form-rounded form-control-sm">
                          <option value=''>Select MaritalStatus</option>
                          <option  *ngFor="let btnAction of maritalStatus" 
                          value="{{btnAction.val}}">{{btnAction.btn}}</option> 
@@ -206,12 +217,12 @@
 
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="bloodGroupId" class="label">
+                      <label for="bloodGroupId" class="label text-dark">
                         BloodGroup </label>
                         <select  name="bloodGroupId" #BloodGroupId="ngModel"
                         [(ngModel)]="employeeInfoService.employeeInfo.bloodGroupId"
                          id="bloodGroupId"  
-                        class="form-control text-responsive" >
+                        class="form-control form-rounded form-control-sm">
                         <option [ngValue]=0>Select BloodGroup </option>
                         <option *ngFor="let bloodGroupList of bloodGroup" [value]="bloodGroupList.id">{{bloodGroupList.bloodGroupName}}</option>
                        
@@ -223,10 +234,10 @@
 
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="nationality" class="label">Nationality</label>
+                      <label for="nationality" class="label text-dark">Nationality</label>
                       <input  name="nationality" #Nationality="ngModel"
                       [(ngModel)]="employeeInfoService.employeeInfo.nationality"
-                      class="form-control" type="text" 
+                     class="form-control form-rounded form-control-sm" type="text" 
                       id="nationality" placeholder="Nationality">
                       
                     </div>
@@ -235,10 +246,10 @@
 
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <label for="nationalId" class="label">National Id No</label>
+                    <label for="nationalId" class="label text-dark">National Id No</label>
                     <input  name="nationalId" #NationalId="ngModel"
                     [(ngModel)]="employeeInfoService.employeeInfo.nationalId"
-                    class="form-control" type="text" 
+                   class="form-control form-rounded form-control-sm" type="text" 
                     id="nationalId" placeholder="National Id No">
                     
                   </div>
@@ -247,10 +258,10 @@
 
               <div class="col-sm-3">
                 <div class="form-group">
-                  <label for="passportNo" class="label">Passport No</label>
+                  <label for="passportNo" class="label text-dark">Passport No</label>
                   <input  name="passportNo" #PassportNo="ngModel"
                   [(ngModel)]="employeeInfoService.employeeInfo.passportNo"
-                  class="form-control" type="text" 
+                 class="form-control form-rounded form-control-sm" type="text" 
                   id="passportNo" placeholder="Passport No">
                   
                 </div>
@@ -259,14 +270,14 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="employeeCategoryId" class="label">
+                <label for="employeeCategoryId" class="label text-dark">
                   Employee Category  </label>
                   <select  name="employeeCategoryId" #EmployeeCategoryId="ngModel"
                   [(ngModel)]="employeeInfoService.employeeInfo.employeeCategoryId"
                    id="employeeCategoryId"  
-                  class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm">
                   <option [ngValue]=0>Select Employee Category </option>
-                  <option *ngFor="let employeeCategoryList of employeeCategory" [value]="employeeCategoryList.id">{{employeeCategoryList.employeeCategoryName}}</option>
+                  <option *ngFor="let employeeCategoryList of employeeCategory" [value]="employeeCategoryList.id">{{employeeCategoryList.category}}</option>
                  
              </select>
              
@@ -276,12 +287,12 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="designationLebelId" class="label">
+                <label for="designationLebelId" class="label text-dark">
                   DesignationLebelId </label>
                   <select  name="designationLebelId" #DesignationLebelId="ngModel"
                   [(ngModel)]="employeeInfoService.employeeInfo.designationLebelId"
                    id="designationLebelId"  
-                  class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm">
                   <option [ngValue]=0>Select DesignationLebels </option>
                   <option *ngFor="let designationLebelsList of designationLebels" [value]="designationLebelsList.id">{{designationLebelsList.designationLebelName}}</option>
                  
@@ -293,12 +304,12 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="designationId" class="label">
+                <label for="designationId" class="label text-dark">
                   Designation<span class="text-danger">*</span> </label>
                   <select required name="designationId" #DesignationId="ngModel"
                   [(ngModel)]="employeeInfoService.employeeInfo.designationId"
                    id="designationId"  
-                  class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm">
                   <option [ngValue]=0>Select Designation </option>
                   <option *ngFor="let designationList of designation" [value]="designationList.id">{{designationList.designationName}}</option>
                  
@@ -313,12 +324,12 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="functionalSuperiorId" class="label">
+                <label for="functionalSuperiorId" class="label text-dark">
                   Functional Superior </label>
                   <select required name="functionalSuperiorId" #FunctionalSuperiorId="ngModel"
                   [(ngModel)]="employeeInfoService.employeeInfo.functionalSuperiorId"
                    id="functionalSuperiorId"  
-                  class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm">
                   <option [ngValue]=0>Select Functional Superior </option>
                   <option *ngFor="let functionalSuperiorsList of functionalSuperiors" [value]="functionalSuperiorsList.id">{{functionalSuperiorsList.functionalSuperiorName}}</option>
                  
@@ -330,12 +341,12 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="adminSuperiorId" class="label">
+                <label for="adminSuperiorId" class="label text-dark">
                   Admin Superior</label>
                   <select required name="adminSuperiorId" #AdminSuperiorId="ngModel"
                   [(ngModel)]="employeeInfoService.employeeInfo.adminSuperiorId"
                    id="adminSuperiorId"  
-                  class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm">
                   <option [ngValue]=0>Select Admin Superiors </option>
                   <option *ngFor="let adminSuperiorsList of adminSuperiors" [value]="adminSuperiorsList.id">{{adminSuperiorsList.adminSuperiorName}}</option>
                  
@@ -346,15 +357,15 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="idCardNo" class="label">IdCard No<span class="text-danger">*</span></label>
+                <label for="idCardNo" class="label text-dark">IdCard No<span class="text-danger">*</span></label>
                 <input required name="idCardNo" #IdCardNo="ngModel"
                 [(ngModel)]="employeeInfoService.employeeInfo.idCardNo"
-                class="form-control" type="text" 
+               class="form-control form-rounded form-control-sm" type="number" 
                 id="idCardNo" placeholder="IdCard No">
                 
               </div>
               <div class="text-left text-danger"
-              *ngIf="employeeInfoService.employeeInfo.idCardNo==0&&IdCardNo.touched">
+              *ngIf="employeeInfoService.employeeInfo.idCardNo== 0 &&IdCardNo.touched">
               IdCard No required
             </div>
               
@@ -362,10 +373,10 @@
 
           <div class="col-sm-3">
             <div class="form-group">
-              <label for="joiningDate" class="label">Joining Date</label>
+              <label for="joiningDate" class="label text-dark">Joining Date</label>
               <input  name="joiningDate" #JoiningDate="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.joiningDate"
-              class="form-control" type="text" 
+             class="form-control form-rounded form-control-sm" type="text" 
               id="joiningDate" [nbDatepicker]="joiningDate" placeholder="Joining Date">
               <nb-datepicker #joiningDate></nb-datepicker>
               
@@ -375,10 +386,10 @@
 
           <div class="col-sm-3">
             <div class="form-group">
-              <label for="confirmationDate" class="label">ConfirmationDate</label>
+              <label for="confirmationDate" class="label text-dark">ConfirmationDate</label>
               <input  name="confirmationDate" #ConfirmationDate="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.confirmationDate"
-              class="form-control" type="text" 
+             class="form-control form-rounded form-control-sm" type="text" 
               id="confirmationDate" [nbDatepicker]="confirmationDate" placeholder="Confirmation Date">
               <nb-datepicker #confirmationDate></nb-datepicker>
               
@@ -388,10 +399,10 @@
 
           <div class="col-sm-3">
             <div class="form-group">
-              <label for="punchCardNo" class="label">Punch Card No</label>
+              <label for="punchCardNo" class="label text-dark">Punch Card No</label>
               <input  name="punchCardNo" #PunchCardNo="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.punchCardNo"
-              class="form-control" type="text" 
+             class="form-control form-rounded form-control-sm" type="number" 
               id="punchCardNo" placeholder="Punch Card No">
               
             </div>
@@ -400,11 +411,11 @@
           
           <div class="col-sm-12">
             <div class="form-group">
-              <label for="remarks" class="label">Remarks</label>
+              <label for="remarks" class="label text-dark">Remarks</label>
               <textarea  name="remarks" #Remarks="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.remarks"
-              class="form-control" type="textarea" 
-              id="remarks" placeholder="Remarks"></textarea>
+             class="form-control form-rounded form-control-sm" type="textarea" 
+              id="remarks" placeholder="Remarks" rows="2"></textarea>
               
               
             </div>
@@ -413,14 +424,14 @@
 
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="companyId" class="label">
+            <label for="companyId" class="label text-dark">
               Company</label>
               <select name="companyId" #CompanyId="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.companyId"
                id="companyId"  
-              class="form-control text-responsive" >
+              class="form-control form-rounded form-control-sm">
               <option [ngValue]=0>Select Company</option>
-              <option *ngFor="let companyList of company" [value]="companyList.compId">{{companyList.companyName}}</option>
+              <option *ngFor="let companyList of company" [value]="companyList.compID">{{companyList.company_Name}}</option>
              
          </select>
          
@@ -430,14 +441,14 @@
 
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="locationId" class="label">
+            <label for="locationId" class="label text-dark">
               Location</label>
               <select  name="locationId" #LocationId="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.locationId"
                id="locationId"  
-              class="form-control text-responsive" >
+              class="form-control form-rounded form-control-sm">
               <option [ngValue]=0>Select Location</option>
-              <option *ngFor="let locationList of location" [value]="locationList.locationId">{{locationList.locationName}}</option>
+              <option *ngFor="let locationList of location" [value]="locationList.locationId">{{locationList.location_Name}}</option>
              
          </select>
          
@@ -446,12 +457,12 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="floorId" class="label">
+            <label for="floorId" class="label text-dark">
               Floor</label>
               <select  name="floorId" #FloorId="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.floorId"
                id="floorId"  
-              class="form-control text-responsive" >
+              class="form-control form-rounded form-control-sm">
               <option [ngValue]=0>Select Floor</option>
               <option *ngFor="let floorList of floor" [value]="floorList.id">{{floorList.floorName}}</option>
              
@@ -463,12 +474,12 @@
 
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="divisionId" class="label">
+            <label for="divisionId" class="label text-dark">
               Division</label>
               <select  name="divisionId" #DivisionId="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.divisionId"
                id="divisionId"  
-              class="form-control text-responsive" >
+              class="form-control form-rounded form-control-sm">
               <option [ngValue]=0>Select Division</option>
               <option *ngFor="let divisionList of division" [value]="divisionList.id">{{divisionList.divisionName}}</option>
              
@@ -480,12 +491,12 @@
 
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="departmentId" class="label">
+            <label for="departmentId" class="label text-dark">
               Department</label>
               <select  name="departmentId" #DepartmentId="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.departmentId"
                id="departmentId"  
-              class="form-control text-responsive" >
+              class="form-control form-rounded form-control-sm">
               <option [ngValue]=0>Select Department</option>
               <option *ngFor="let departmentList of department" [value]="departmentList.id">{{departmentList.departmentName}}</option>
              
@@ -497,12 +508,12 @@
 
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="sectionId" class="label">
+            <label for="sectionId" class="label text-dark">
               Section</label>
               <select  name="sectionId" #SectionId="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.sectionId"
                id="sectionId"  
-              class="form-control text-responsive" >
+              class="form-control form-rounded form-control-sm">
               <option [ngValue]=0>Select Section</option>
               <option *ngFor="let sectionList of section" [value]="sectionList.id">{{sectionList.sectionName}}</option>
              
@@ -514,12 +525,12 @@
 
         <div class="col-sm-3">
           <div class="form-group">
-            <label for="lineNoId" class="label">
+            <label for="lineNoId" class="label text-dark">
               Line No</label>
               <select  name="lineNoId" #LineNoId="ngModel"
               [(ngModel)]="employeeInfoService.employeeInfo.lineNoId"
                id="lineNoId"  
-              class="form-control text-responsive" >
+              class="form-control form-rounded form-control-sm">
               <option [ngValue]=0>Select Line No</option>
               <option *ngFor="let lineNoList of lineNo" [value]="lineNoList.id">{{lineNoList.lineNoName}}</option>
              
@@ -532,8 +543,10 @@
 
 
             </div>
-            <button type="submit" [disabled]="form.invalid" nbButton>Submit</button>
+            <button type="submit" [disabled]="form.invalid ||employeeInfoService.employeeInfo.idCardNo==0  " nbButton>Submit</button>
           </form>
+        </div>
+        </div>
         </nb-card-body>
       </nb-card>
     </div>

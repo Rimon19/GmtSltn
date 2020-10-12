@@ -240,6 +240,7 @@ import { EdittnaMailSetupComponent } from './libraryModule/tna-mail-setup/edittn
 import { ReportComponent } from './libraryModule/report/report.component';
 import { EditYarnBrandComponent } from './libraryModule/yarn-brand/edit-yarn-brand/edit-yarn-brand.component';
 
+
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -250,7 +251,7 @@ const routes: Routes = [{
     },
    
     {
-      path: 'iot-dashboard',
+      path: 'iot-dashboard', 
       component: DashboardComponent,
     },
     {
@@ -377,6 +378,7 @@ const routes: Routes = [{
       path: 'size-entry',
       component:SizeEntryComponent,
     },
+ 
     {
       path: 'size-entry-create',
       component:SizeEntryCreateComponent,

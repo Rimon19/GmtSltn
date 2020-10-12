@@ -1,6 +1,6 @@
 export class CurrencyConversionRate {
     id: number;
-    currency: string;
+    currency: any;
     conversionRate: number;
     marketingRate: number;
     date: string;

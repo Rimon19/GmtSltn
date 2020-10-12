@@ -17,8 +17,8 @@ export class EmployeeInfo {
     maritalStatus :string;
     bloodGroupId :number;
     nationality :string;
-    nationalId :number;
-    passportNo :number;
+    nationalId :string;
+    passportNo :string;
     employeeCategoryId :number;
     designationLebelId :number;
     designationId :number;

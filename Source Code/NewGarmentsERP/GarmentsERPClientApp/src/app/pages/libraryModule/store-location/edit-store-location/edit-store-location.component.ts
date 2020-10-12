@@ -6,6 +6,7 @@ import { NbToastrService } from '@nebular/theme';
 import { StoreLocationService } from '../../../../@core/mock/library/store-location.service';
 import { NgForm } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-edit-store-location',
@@ -24,9 +25,10 @@ export class EditStoreLocationComponent implements OnInit {
     private route:ActivatedRoute,
     private toastrService:NbToastrService,
     public storeLocationService:StoreLocationService,
+    public dropdownValueService:DropdownValueService
   ) {
     this.editedId = this.route.snapshot.paramMap.get('id');
-    console.log(this.editedId);
+    //console.log(this.editedId);
     this.storeLocationService.getStoreLocation().subscribe(item=>{
    let items=  item.find(f=>f.id==this.editedId);
    this.storeLocationService.storeLocation=items;
@@ -34,12 +36,12 @@ export class EditStoreLocationComponent implements OnInit {
      
    if(items.itemCategoryId!=""){
     this.itemCategoryService.getItemCategory().subscribe(data=>{
-         let itemCategoryId= items.itemCategoryId.split(',');
-         console.log(itemCategoryId)
+         let itemCategoryIds= items.itemCategoryId.split(',');
+         console.log(items.itemCategoryId)
    let array=[];
-   itemCategoryId.forEach(ele => {
+   itemCategoryIds.forEach(ele => {
            let obj= data.find(f=>f.id==parseInt(ele));
-           console.log(obj);
+          // console.log(obj);
          array.push(obj);
            
          });
@@ -54,6 +56,8 @@ export class EditStoreLocationComponent implements OnInit {
   ngOnInit() {
     this.itemcategoryDDL();
     this.resetForm();
+    this.dropdownValueService.getCompany();
+    this.dropdownValueService.getLocation();
   }
   resetForm(form?:NgForm){
     if(form!=null)
@@ -89,13 +93,13 @@ export class EditStoreLocationComponent implements OnInit {
       { btn: 'Inactive', val:'Inactive' },
       { btn: 'Cancelled', val:'Cancelled' }
     ]
-  company: any = [
-    { btn: 'MEEK KHIT LIMITED', val: 'MEEK KHIT LIMITED' }
-  ]
-  locations: any = [
-    { btn:'923,928 &930 Vogra,Gagipur,Bangladesh', val: '923,928 &930 Vogra,Gagipur,Bangladesh' },
-    { btn: 'South Salna,Gazipur', val: 'South Salna,Gazipur' }
-  ]
+  // company: any = [
+  //   { btn: 'MEEK KHIT LIMITED', val: 'MEEK KHIT LIMITED' }
+  // ]
+  // locations: any = [
+  //   { btn:'923,928 &930 Vogra,Gagipur,Bangladesh', val: '923,928 &930 Vogra,Gagipur,Bangladesh' },
+  //   { btn: 'South Salna,Gazipur', val: 'South Salna,Gazipur' }
+  // ]
 
 
 
@@ -118,9 +122,9 @@ export class EditStoreLocationComponent implements OnInit {
 //     },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);})
 // }
 onSubmit(form:NgForm){
-  console.log(form.value);
 
-  
+
+  form.value.id=this.editedId;
   let itemCategory='';
 
   form.value.itemCategoryselectedItems.forEach(e => {

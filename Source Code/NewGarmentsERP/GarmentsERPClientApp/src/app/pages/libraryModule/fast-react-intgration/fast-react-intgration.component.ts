@@ -7,6 +7,7 @@ import { NbToastrService } from '@nebular/theme';
 import { MatDialogService } from '../../../@core/mock/mat-dialog.service';
 import { Router } from '@angular/router';
 import { FastReactIntgrationService } from '../../../@core/mock/library/fast-react-intgration.service';
+import { StaticFeaturesService } from '../../../@core/mock/library/static-features.service';
 
 @Component({
   selector: 'ngx-fast-react-intgration',
@@ -23,6 +24,7 @@ export class FastReactIntgrationComponent implements OnInit {
     'id',
     'exportPOReceivedfrom',
     'exportModule'
+
   ];
   
   Tostr=new Tostr();
@@ -33,6 +35,7 @@ export class FastReactIntgrationComponent implements OnInit {
      private mathdialogService: MatDialogService,
      private router:Router,
      public fastReactIntgrationService:FastReactIntgrationService,
+     private staticFeaturesService:StaticFeaturesService
      ) { }
     
 
@@ -71,6 +74,12 @@ export class FastReactIntgrationComponent implements OnInit {
   getemailFastReactIntgration(){
     this.subscription=this.fastReactIntgrationService.getAllFastReactIntgration().subscribe(data=>{
     this.fastReactIntgration=data;
+    this.fastReactIntgration.forEach(element => {
+      this.staticFeaturesService.getERPModule().subscribe(data=>{
+        let moduleNames=data.find(f=>f.moduleId==element.exportModule)&&data.find(f=>f.moduleId==element.exportModule).moduleName;
+        element.exportModule=moduleNames;
+      })
+    });
   
     this.dataSource=new MatTableDataSource(this.fastReactIntgration);
     console.log('fastReactIntgration',this.fastReactIntgration);

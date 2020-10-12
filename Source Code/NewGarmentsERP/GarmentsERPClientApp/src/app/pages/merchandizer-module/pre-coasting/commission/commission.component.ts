@@ -15,11 +15,9 @@ import { NbToastrService } from '@nebular/theme';
 })
 export class CommissionComponent implements OnInit ,OnDestroy{
   Tostr=new Tostr();
-  PoNoId:any;
-  public count=0;
-  commissionInformationForm: FormArray = this.fb.array([]);
-  TotalCommnRate=0;
-  TotalAmmount=0;
+  precostingId:any=0;
+ 
+  
   constructor(
     private fb: FormBuilder,
     private dialog:MatDialog,
@@ -30,37 +28,11 @@ export class CommissionComponent implements OnInit ,OnDestroy{
     private toastrService:NbToastrService,
     private route:ActivatedRoute
     ) { 
-      this.PoNoId = this.route.snapshot.paramMap.get('poNoId');
-      console.log(this.PoNoId);
-      this.commissionCostService.getAllCommissionCost().subscribe(data=>{
-        let commissionCosts=data.filter(f=>f.poNoId==this.PoNoId);
-        if(commissionCosts.length!=0){
-          
-          this.commissionInformationForm= this.fb.array([]);
-          this.TotalCommnRate=0;
-          this.TotalAmmount=0;
-          (commissionCosts).forEach((itemDts: any) => {
-            this.count=this.count+1;
-            this.TotalCommnRate +=parseInt(itemDts.commnRate) ;
-            this.TotalAmmount +=parseInt(itemDts.amount);
-            this.commissionInformationForm.push(this.fb.group({
-              id:itemDts.id,
-              poNoId :itemDts.poNoId,
-              particulars :itemDts.particulars,
-              commnBase :itemDts.commnBase,
-              commnRate:itemDts.commnRate,
-              amount:itemDts.amount,
-              status :itemDts.status               
-            }));
-      });
-        
-        }else{
-          this.commissionDetailsForm();
-        }
-      })
+    
+      
   }
   ngOnInit() {
-
+this.loadEditModeDataForCommisionCost();
    }
    ngOnDestroy(){
     this.dateResizeService.preCostingSubject.subscribe(i=>{
@@ -68,86 +40,68 @@ export class CommissionComponent implements OnInit ,OnDestroy{
        this.dateResizeService.preCostingSourceObj.next({index:i.index,costComponentform:i.costComponentform,poNoId:i.poNoId,budgetedCost:1.111});
      });
   }
-   commissionDetailsForm() {
-        this.count=this.count+1;
-      console.log(this.count);
-        this.commissionInformationForm.push(this.fb.group({
-          id:0,
-          poNoId :0,
-          particulars :'',
-          commnBase :'',
-          commnRate:0,
-          amount:0,
-          status :''
+        
+     
+loadEditModeDataForCommisionCost(){
+  this.commissionCostService.getAll().subscribe(data=>{
+    let commissionCosts=data.filter(f=>f.precostingId==this.precostingId);
+    if(commissionCosts.length!=0){
+      
+      this.commissionCostService.commissionInformationForm= this.fb.array([]);
+      this.commissionCostService.TotalCommnRate=0;
+      this.commissionCostService.TotalAmmount=0;
+      (commissionCosts).forEach((itemDts: any) => {
+        this.commissionCostService.count=this.commissionCostService.count+1;
+        this.commissionCostService.TotalCommnRate +=parseInt(itemDts.commnRate) ;
+        this.commissionCostService.TotalAmmount +=parseInt(itemDts.amount);
+        this.commissionCostService.commissionInformationForm.push(this.fb.group({
+          id:itemDts.id,
+          poNoId :itemDts.poNoId,
+          particulars :itemDts.particulars,
+          commnBase :itemDts.commnBase,
+          commnRate:itemDts.commnRate,
+          amount:itemDts.amount,
+          status :itemDts.status               
         }));
-      }     
-     onDelete(commissionInformationForm,i) {
-    let idToBeDeleted=commissionInformationForm.value[i].id;
-         if(idToBeDeleted==0){
-          this.count=this.count-1;
-          commissionInformationForm.value.splice(i, 1);
-          this.commissionInformationForm= this.fb.array([]);
-            
-              (commissionInformationForm.value).forEach((itemDts: any) => {
-                this.commissionInformationForm.push(this.fb.group({
-                  id:itemDts.id,
-                  poNoId :itemDts.poNoId,
-                  particulars :itemDts.particulars,
-                  commnBase :itemDts.commnBase,
-                  commnRate:itemDts.commnRate,
-                  amount:itemDts.amount,
-                  status :itemDts.status               
-                }));
-          });  
-        }
-        if(idToBeDeleted>0){
-          this.mathdialogService.openConfirmDialog('Are you sure to delete this record ?')
-          .afterClosed().subscribe(res=>{
-            if(res){
-              this.commissionCostService.deleteCommissionCost(idToBeDeleted).subscribe(s=>{
-                          
-                this.count=this.count-1;
-                commissionInformationForm.value.splice(i, 1);
-                this.commissionInformationForm= this.fb.array([]);
-                
-                    (commissionInformationForm.value).forEach((itemDts: any) => {
-                      this.commissionInformationForm.push(this.fb.group({
-                        id:itemDts.id,
-                        poNoId :itemDts.poNoId,
-                        particulars :itemDts.particulars,
-                        commnBase :itemDts.commnBase,
-                        commnRate:itemDts.commnRate,
-                        amount:itemDts.amount,
-                        status :itemDts.status               
-                      }));
-                });  
-                          
-                this.Tostr.showToast('primary','', 'Deleleted', 'Successfully',this.toastrService);
-                
-              },(err) => { this.Tostr.showToast('danger','', err.statusText, '',this.toastrService);});
-            }
-          })
-        }
-                            
-      }
-      onSubmit(commissionInformationForm){
+  });
+    
+    }else{
+      this.commissionCostService.commissionDetailsForm();
+    }
+  })
+} 
+  onDeleteCommisionCost(commissionInformationForm, i) {
+    let idToBeDeleted = commissionInformationForm.value[i].id;
+
+    this.commissionCostService.count = this.commissionCostService.count - 1;
+    commissionInformationForm.value.splice(i, 1);
+    
+    if (idToBeDeleted == 0) {
+    this.commissionCostService.loadCommissionCostModelData(commissionInformationForm.value);
+    }
+
+    if (idToBeDeleted > 0) {
+      this.commissionCostService.delete(idToBeDeleted);
+       this.commissionCostService.loadCommissionCostModelData(commissionInformationForm.value);                 
+    }
+  }
+     
+      onSubmitCommisionCost(commissionInformationForm){
         commissionInformationForm.value.forEach(element => {
-          element.poNoId=this.PoNoId ;
+          element.precostingId=this.precostingId ;
          
           if(element.id!=0){
-            this.commissionCostService.updateCommissionCost(element).subscribe(data=>{
-            });
+            this.commissionCostService.updateMultiline(element,element.id);
           }
           if(element.id==0){
             console.log(element.id);
-            this.commissionCostService.addCommissionCost(element).subscribe(data=>{
-            
-            });
+            this.commissionCostService.createMultiline(element);
           }
           
         });
        
         this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
+        this.commissionCostService.commissionInformationForm= this.fb.array([]);
       }
       // onAdd(){
       //   const dialogConfig = new MatDialogConfig();
@@ -160,30 +114,7 @@ export class CommissionComponent implements OnInit ,OnDestroy{
       backToPrecostingFromFabricCost(){
         this.router.navigate(["/pages/show-precosting"]);
       }
-      onChangeCommnBaseRate(commissionInformationForm){
-        this.totalCalculation(commissionInformationForm);
-      }
-      onChangeAmount(commissionInformationForm){
-        this.totalCalculation(commissionInformationForm);
-      }
-      totalCalculation(commissionInformationForm){
-        this.commissionInformationForm= this.fb.array([]);
-        this.TotalCommnRate=0;
-        this.TotalAmmount=0;
-        (commissionInformationForm.value).forEach((itemDts: any) => {
-          this.count=this.count+1;
-          this.TotalCommnRate +=parseInt(itemDts.commnRate) ;
-            this.TotalAmmount +=parseInt(itemDts.amount);
-          this.commissionInformationForm.push(this.fb.group({
-            id:itemDts.id,
-            poNoId :itemDts.poNoId,
-            particulars :itemDts.particulars,
-            commnBase :itemDts.commnBase,
-            commnRate:itemDts.commnRate,
-            amount:itemDts.amount,
-            status :itemDts.status               
-          }));
-        });
-      }
+      
+    
 
 }

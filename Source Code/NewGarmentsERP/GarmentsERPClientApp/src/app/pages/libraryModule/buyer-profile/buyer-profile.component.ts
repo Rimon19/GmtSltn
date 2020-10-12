@@ -12,6 +12,7 @@ import { DepoLocationMappingService } from '../../../@core/mock/library/depo-loc
 import { CountryLocationMappingService } from '../../../@core/mock/library/country-location-mapping.service';
 import { BuyerProfile } from '../../../@core/data/Library-Modul-model/buyer-profile';
 import { BuyerProfileService } from '../../../@core/mock/library/buyer-profile.service';
+import { DropdownValueService } from '../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-buyer-profile',
@@ -34,11 +35,13 @@ buyerProfile:BuyerProfile;
      private mathdialogService: MatDialogService,
      private countryService:CountryService,
      private router:Router,
-     private countryLocationMappingService:CountryLocationMappingService) { }
+     private countryLocationMappingService:CountryLocationMappingService,
+     private dropdownValueService:DropdownValueService) { }
 
   ngOnInit() {
  this.refresList();
 this.countryDDL();
+
   }
   countryDDL(){
     this.countryService.getAllCountry().

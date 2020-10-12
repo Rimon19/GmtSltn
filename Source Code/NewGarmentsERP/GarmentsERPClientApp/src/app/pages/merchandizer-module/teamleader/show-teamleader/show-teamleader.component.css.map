@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,eAAe;AACf,AAAA,kBAAkB,CAAC;EACf,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,SAAS,EAAE,KAAK;CAEjB;;AAED,AAAA,eAAe,CAAC;EACd,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,UAAU;CACpB;;AAED,AAAA,eAAe,CAAC;EACd,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,IAAI;CACZ;;AACD,AAAA,gBAAgB,CAAA;EACd,SAAS,EAAE,IAAI;CAChB;;AACD,AAAA,UAAU,CAAC;EACT,QAAQ,EAAE,IAAI;EACd,UAAU,EAAE,KAAK;CAClB",
+    "sources": [
+        "show-teamleader.component.scss"
+    ],
+    "names": [],
+    "file": "show-teamleader.component.css"
+}

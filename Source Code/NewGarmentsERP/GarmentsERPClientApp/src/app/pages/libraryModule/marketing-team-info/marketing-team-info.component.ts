@@ -14,6 +14,8 @@ import { MarketingTeamInfoService } from '../../../@core/mock/library/marketing-
 import { UserTypeInfoService } from '../../../@core/mock/user-type-info.service';
 import { UserInfoesService } from '../../../@core/mock/marchandizer/user-infoes.service';
 import { MemberInfoService } from '../../../@core/mock/library/member-info.service';
+import { DropdownValueService } from '../../../@core/mock/shared/dropdown-value.service';
+import { UserService } from '../../../@core/mock/users.service';
 
 @Component({
   selector: 'ngx-marketing-team-info',
@@ -38,11 +40,13 @@ export class MarketingTeamInfoComponent implements OnInit {
      private countryService:CountryService,
      private router:Router,
      private userInfoesService:UserInfoesService,
-     private memberInfoService:MemberInfoService
+     private memberInfoService:MemberInfoService,
+     private userService:UserService,
     ) { }
 
   ngOnInit() {
  this.refresList();
+
 
   }
   
@@ -75,28 +79,36 @@ export class MarketingTeamInfoComponent implements OnInit {
 
 
   refresList(){
-    this.memberInfoService.getAll().subscribe(memberData=>{
+   
 
     
-    this.marketingTeamInfoService.getAll().subscribe(item=>{
-      this.userInfoesService.getAllUserInfoes().subscribe(data=>{
-       
-        item.forEach(element => {
-          let countTeamLeader=memberData.filter(f=>f.teamLeaderId==element.teamLeaderId);
-          element.numberOfMembers=countTeamLeader.length;
-          console.log(countTeamLeader);
-         let userName=data.find(f=>f.userId==element.teamLeaderId).fullName;
-         element.teamLeaderId=userName;
-       
+    this.marketingTeamInfoService.getAll().subscribe(items=>{
+     
+        console.log(items)
+        items.forEach(element => {
+          if(element.teamLeaderId!=0 ){
+            console.log(element.teamLeaderId)
+            this.userService.getAllUser().subscribe(data=>{
+              let teamLeaderName =  data.find(f=>f.userID==element.teamLeaderId) && data.find(f=>f.userID==element.teamLeaderId).fullName;
+              element.teamLeaderId=teamLeaderName;
+              console.log(teamLeaderName);
+            })
+
+            
+            
+            }else{
+             element.teamLeaderId='';
+           } 
+         
         });
-        
-      });  
+     
+       
     
-      this.dataSource=new MatTableDataSource(item);
+      this.dataSource=new MatTableDataSource(items);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
-  });
+ 
   }
 
 

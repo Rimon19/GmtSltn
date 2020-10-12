@@ -21,6 +21,7 @@ import { DatapassingService } from '../../../../@core/mock/shared/datapassing.se
 import { MasterPodetailsInfroesService } from '../../../../@core/mock/marchandizer/master-podetails-infroes.service';
 import { FetchInitialOrderService } from '../../../../@core/mock/fetch-initial-order.service';
 import { database } from 'firebase';
+import { SizeWisePannelPodetails } from '../../../../@core/data/marchanzider-model/size-wise-pannel-podetails.model';
 //import { ShowInputPannelInformationComponent } from '../show-input-pannel-information/show-input-pannel-information.component';
 
 @Component({
@@ -54,6 +55,13 @@ export class AddInputPannelInformationComponent implements OnInit {
         objQuanity:number=0;
         deductQuntity:number=0;
         editedQuntity:number=0;
+        isCopy=false;
+        isError :boolean = false;
+        quanity:number=0
+        obj :any=[];
+        sizeWiseList:SizeWisePannelPodetails[]=[];
+       poId=parseInt( localStorage.getItem("poNoPriKey"));
+      poQuantity=parseInt( localStorage.getItem("poQuantity"));
   constructor(
     public dialogbox:MatDialogRef<AddInputPannelInformationComponent>,
     private countryService:CountryService,
@@ -96,8 +104,26 @@ export class AddInputPannelInformationComponent implements OnInit {
               });
                  let i=undefined;
               this.CalculateTotal(obj,true,i);
-           
+                  
+
              })
+         }
+         else
+         {
+          this.sizeWisePannelPodetailsService.getAllSizeWisePannelPodetails().subscribe(data=>{
+           
+            this.sizeWiseList=data;
+
+            // let obj={value:[]}
+            // var index=0;
+            // obj.value=data.filter(f=>f.poId==this.poId);
+           
+            // (obj.value).forEach(element => {
+            //   this.editedQuntity=this.editedQuntity+ parseInt(element.quanity);
+              
+            // });
+           
+           });
          }
 
          this.sForm();
@@ -312,7 +338,7 @@ export class AddInputPannelInformationComponent implements OnInit {
   
                     
                     sInformationForm.value=[];
-                // this.onClose();
+                 this.onClose();
                // this.d.refresList();  
            
   
@@ -337,7 +363,7 @@ export class AddInputPannelInformationComponent implements OnInit {
   
   
                     sInformationForm.value=[];
-                /// this.onClose();
+                 this.onClose();
                // this.d.refresList();  
            
   
@@ -401,10 +427,10 @@ export class AddInputPannelInformationComponent implements OnInit {
           
         }
         CalculateTotal(sInformationForm,isAddMode,i){
-         
+          this.quanity=0;
           let excuteQuntity:number=0;
-          let poQuantity=parseInt( localStorage.getItem("poQuantity"));
-          let poId=parseInt( localStorage.getItem("poNoPriKey"));
+      
+         
           this.totalOrderQuantity=0;
           this.totalRate=0;
           this.totalAmount=0;
@@ -412,81 +438,96 @@ export class AddInputPannelInformationComponent implements OnInit {
           this.totalPlanCut=0;      
           this.sInformationForm= this.fb.array([]);   
           this.count=0;
-          let isError=false;
           var index=0;
-          // let updateMode=false;
-          let quanity:number=0;
           let intQuanity:number=0;
           let pQuantity :number=0;
-          let obj :any=[];
-          this.sizeWisePannelPodetailsService.getAllSizeWisePannelPodetails().subscribe(data=>{
-             obj = data.filter(f=>f.poId==poId);
-                obj.forEach(element => {
-                  quanity=quanity+element.quanity;
-                 });
         
+   
+          this.obj = this.sizeWiseList.filter(f=>f.poId==this.poId);
+           
+        
+          this.obj.forEach(element => {
+             
+               this.quanity= this.quanity+element.quanity;
+              });
+         
           
-          (sInformationForm.value).forEach((intObj: any) =>{
-            intQuanity=intQuanity+parseInt(intObj.quanity);
-          });
+          // (sInformationForm.value).forEach((intObj: any) =>{
+          //   intQuanity=intQuanity+parseInt(intObj.quanity);
+          // });
 
-          pQuantity=quanity-this.editedQuntity;
+          pQuantity=this.quanity-this.editedQuntity;
+       
 
             (sInformationForm.value).forEach((sizeWiseBreakDownObj: any) => {
          
-               
+              intQuanity=intQuanity+parseInt(sizeWiseBreakDownObj.quanity); 
+              
+
+
                  let sizePannelId =parseInt(sizeWiseBreakDownObj.sizePannelId);
     
                 if(sizePannelId!=0){
                    
-                    if(obj.length!=0){
+                    if( this.obj.length!=0){
  
-                       if(poQuantity>quanity){
+                       if(this.poQuantity>this.quanity){
                         if(this.editedQuntity>=intQuanity){
                              
-                          excuteQuntity=poQuantity;
+                          excuteQuntity=this.poQuantity;
                     
                         this.totalOrderQuantity=pQuantity+intQuanity
                         }
                         else{
-                          excuteQuntity=poQuantity;
+                          excuteQuntity=this.poQuantity;
                           this.totalOrderQuantity=pQuantity+intQuanity;
                         }
                         
                        }
-                       else if (poQuantity==quanity){
+                       else if (this.poQuantity==this.quanity){
 
                         if(this.editedQuntity>=intQuanity){
                           
-                          excuteQuntity=poQuantity;
+                          excuteQuntity=this.poQuantity;
                           this.totalOrderQuantity=pQuantity+intQuanity;
                         }
                         else{
-                          excuteQuntity=poQuantity;
+                          excuteQuntity=this.poQuantity;
                           this.totalOrderQuantity=pQuantity+intQuanity;
                         }
 
                        }
+                       else{
+                    
+                             
+                          excuteQuntity=this.poQuantity;
+                    
+                        this.totalOrderQuantity=pQuantity+intQuanity;
+                       
+                       
+                      
+                        
+                       }
                    
                   }
                   else{
-                    excuteQuntity=poQuantity;
+                    excuteQuntity=this.poQuantity;
                   }
                 }
                 else{
                 
-                  if(obj.length!=0){
+                  if( this.obj.length!=0){
                  
                    
-                      excuteQuntity=poQuantity-quanity;
-                      this.totalOrderQuantity=parseInt(sizeWiseBreakDownObj.quanity);
+                      excuteQuntity=this.poQuantity-this.quanity;
+                      this.totalOrderQuantity= parseInt(sizeWiseBreakDownObj.quanity);
                     
                    
                   }
                   else{
 
                    
-                    excuteQuntity=poQuantity;
+                    excuteQuntity=this.poQuantity;
                     this.totalOrderQuantity=intQuanity;
                   }
                 }
@@ -496,7 +537,7 @@ export class AddInputPannelInformationComponent implements OnInit {
             
               
                  if(excuteQuntity<this.totalOrderQuantity){
-                   isError=true;
+                  this.isError=true;
                    this.totalOrderQuantity=0;
                    this.totalOrderQuantity=this.totalOrderQuantity-sInformationForm.value[i].quanity;
                   if(isAddMode==true){
@@ -536,12 +577,15 @@ export class AddInputPannelInformationComponent implements OnInit {
                 this.totalExcessCut+= parseInt(sizeWiseBreakDownObj.excessCut);
                 this.totalPlanCut+= parseInt(sizeWiseBreakDownObj.planCutQty);
                 index++;
-              })
-              if(isError==true){
-              this.Tostr.showToast('danger','', 'Sum Of Po Quantity Exceeds Target Po Quantity !', '',this.toastrService);
-            }
-          });
 
+               
+              });
+            
+        
+              if(this.isError==true){
+                this.Tostr.showToast('danger','', 'Sum Of Po Quantity Exceeds Target Po Quantity !', '',this.toastrService);
+                this.isError=false;
+              }
        
        //this.editMode=false;
         }
@@ -552,27 +596,51 @@ export class AddInputPannelInformationComponent implements OnInit {
         }
         
         sForm() {
-          this.count=this.count+1;
-  
-          this.sInformationForm.push(this.fb.group({
-            sizePannelId: [0],
-            inputPannelId: [0],
-            itemId: ['',Validators.required],
-            poId:[0],
-              articleNumber: [''],
-              color: [''],
-              size:['',Validators.required] ,
-              quanity:['',Validators.required] ,
-              rate: [localStorage.getItem('AvgPrice')],
-              status: [''],
-              planCutQty: [0],
-              excessCut: [0],
-              amount: [0],
-              barCode: false
+          let objArray=this.sInformationForm.value;
+          if(this.isCopy&&objArray.length>0){
+           console.log(objArray);
+          let objElement= objArray[objArray.length-1];
+           this.count=this.count+1;
+            this.sInformationForm.push(this.fb.group({
+              sizePannelId: [0],
+              inputPannelId: objElement.inputPannelId,
+              itemId: objElement.itemId,
+              poId:objElement.poId,
+                articleNumber:objElement.articleNumber,
+                color:objElement.color,
+                size:['',Validators.required] ,
+                quanity:['',Validators.required] ,
+                rate: [localStorage.getItem('AvgPrice')],
+                status: objElement.status,
+                planCutQty: objElement.planCutQty,
+                excessCut: objElement.excessCut,
+                amount: objElement.amount,
+                barCode: objElement.barCode
+            }));
 
-             
-          
-          }));
+            
+          }else{
+            this.count=this.count+1;
+            this.sInformationForm.push(this.fb.group({
+              sizePannelId: [0],
+              inputPannelId: [0],
+              itemId: ['',Validators.required],
+              poId:[0],
+                articleNumber: [''],
+                color: [''],
+                size:['',Validators.required] ,
+                quanity:['',Validators.required] ,
+                rate: [localStorage.getItem('AvgPrice')],
+                status: [''],
+                planCutQty: [0],
+                excessCut: [0],
+                amount: [0],
+                barCode: false
+            }));
+  
+          }
+         
+         
 
         } 
 

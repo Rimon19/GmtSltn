@@ -110,7 +110,7 @@ export class ShortTrimsBookingComponent implements OnInit {
   res.buyerNameId = buyerName;
 });
  //Get supplierProfile Name from supplierProfile table and then assaign to supplierNameId
- this.supplierProfileService.getAll().subscribe((data) => {
+ this.supplierProfileService.getAllSupplier().subscribe((data) => {
   this.supplierProfileItems = data;
   let supplierProfileName = this.supplierProfileItems.find((f) => f.id == res.supplierNameId)
     .supplierName;

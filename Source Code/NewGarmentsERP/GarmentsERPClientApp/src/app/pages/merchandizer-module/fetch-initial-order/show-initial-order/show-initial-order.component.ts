@@ -43,6 +43,8 @@ import { BuyerProfile } from "../../../../@core/data/Library-Modul-model/buyer-p
 import { UserMapping } from "../../../../@core/data/user-mapping";
 import { DatapassingService } from '../../../../@core/mock/shared/datapassing.service';
 import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
+import { ItemGroup } from '../../../../@core/data/Library-Modul-model/ItemGroup';
+import { ColourEntry } from '../../../../@core/data/Library-Modul-model/colour-entry';
 @Component({
   selector: "ngx-show-initial-order",
   templateUrl: "./show-initial-order.component.html",
@@ -101,6 +103,8 @@ export class ShowInitialOrderComponent implements OnInit {
   public JobNumberItems: OrderInfo[] = [];
   public PoNumberItems: MasterPodetailsInfroes[] = [];
   public SizeWisePannelPodetailsItems: SizeWisePannelPodetails[] = [];
+  public itemGroupItems:ItemGroup[]=[];
+  //public colorItems:ColourEntry[]=[];
   Tostr = new Tostr();
   subscription: Subscription;
   IsorderAutoIdHas: boolean;
@@ -133,11 +137,13 @@ export class ShowInitialOrderComponent implements OnInit {
     this.dropdownValueService.getTeamleaders();
     this.dropdownValueService.getDealingMerchant();
     this.dropdownValueService.getUsers();
+    this.dropdownValueService.getColor();
+    this.dropdownValueService.getItemGroup();
   }
   ngOnInit() {
 
    
-
+    console.log(this.dropdownValueService.colorList);
 
     this.companyService.getAllCompany().subscribe((data) => {
       this.companyListItems=data;
@@ -255,6 +261,8 @@ export class ShowInitialOrderComponent implements OnInit {
               .find(f=>f.compID==res.companyID).company_Name;
              
               res.companyID=company_Name;
+
+             
               }else{
                 res.companyID='';
               } 
@@ -264,6 +272,7 @@ export class ShowInitialOrderComponent implements OnInit {
             let locationName=this.dropdownValueService.locationList
             .find(f=>f.locationId==res.locationID).location_Name;
             res.locationID=locationName;
+          
             }else{
               res.locationID='';
             } 
@@ -273,6 +282,8 @@ export class ShowInitialOrderComponent implements OnInit {
             .find(f=>f.id==res.buyerID) && this.dropdownValueService.buyerList
             .find(f=>f.id==res.buyerID).contactName;
             res.buyerID=contactName;
+            
+           
             }else{
               res.buyerID='';
             } 

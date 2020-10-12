@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
 import { DateResizeService } from '../../../../@core/mock/marchandizer/date-resize.service';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-add-currency-conversion-rate',
@@ -19,10 +20,12 @@ export class AddCurrencyConversionRateComponent implements OnInit {
     private router:Router,
     private dateResizeService:DateResizeService,
     private toastrService:NbToastrService,
+    public dropdownValueService:DropdownValueService
     ) { }
 
   ngOnInit() {
     this.resetFormForCurrencyConversionRate();
+    this.dropdownValueService.getCurrency();
   }
   resetFormForCurrencyConversionRate(form?:NgForm){
     if(form!=null)
@@ -35,15 +38,15 @@ export class AddCurrencyConversionRateComponent implements OnInit {
       date:'',
     }
   }
-  currency: any = [
-    // { btn: 'Select', val: 'Select' },
-      { btn: 'USD', val: 'USD' },
-      { btn: 'EURO', val:'EURO' },
-      { btn: 'CHF', val:'CHF' },
-      { btn: 'SGD', val:'SGD' },
-      { btn: 'Pound', val:'Pound' },
-      { btn: 'YEN', val:'YEN' }
-    ]
+  // currency: any = [
+  //   // { btn: 'Select', val: 'Select' },
+  //     { btn: 'USD', val: 'USD' },
+  //     { btn: 'EURO', val:'EURO' },
+  //     { btn: 'CHF', val:'CHF' },
+  //     { btn: 'SGD', val:'SGD' },
+  //     { btn: 'Pound', val:'Pound' },
+  //     { btn: 'YEN', val:'YEN' }
+  //   ]
    
     onSubmit(form:NgForm){
       form.value.date= this.dateResizeService.dateResize(form.value.date);
@@ -52,5 +55,9 @@ export class AddCurrencyConversionRateComponent implements OnInit {
        this.router.navigate(["/pages/currency-conversion-rate"]);
       })
     } 
+
+    backHomePage(){
+      this.router.navigate(['/pages/currency-conversion-rate']);
+    }
 
 }

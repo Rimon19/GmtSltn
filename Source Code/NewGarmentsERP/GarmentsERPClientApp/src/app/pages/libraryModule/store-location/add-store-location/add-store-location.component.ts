@@ -7,6 +7,7 @@ import { StoreLocationService } from '../../../../@core/mock/library/store-locat
 import { Tostr } from '../../../../@core/data/tostr.model';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 @Component({
   selector: 'ngx-add-store-location',
   templateUrl: './add-store-location.component.html',
@@ -22,11 +23,14 @@ export class AddStoreLocationComponent implements OnInit {
     private router:Router,
     private toastrService:NbToastrService,
     public storeLocationService:StoreLocationService,
+    public dropdownValueService:DropdownValueService
   ) { }
 
   ngOnInit() {
     this.itemcategoryDDL();
     this.resetForm();
+    this.dropdownValueService.getCompany();
+    this.dropdownValueService.getLocation();
   }
   resetForm(form?:NgForm){
     if(form!=null)
@@ -62,13 +66,13 @@ export class AddStoreLocationComponent implements OnInit {
       { btn: 'Inactive', val:'Inactive' },
       { btn: 'Cancelled', val:'Cancelled' }
     ]
-  company: any = [
-    { btn: 'MEEK KHIT LIMITED', val: 'MEEK KHIT LIMITED' }
-  ]
-  locations: any = [
-    { btn:'923,928 &930 Vogra,Gagipur,Bangladesh', val: '923,928 &930 Vogra,Gagipur,Bangladesh' },
-    { btn: 'South Salna,Gazipur', val: 'South Salna,Gazipur' }
-  ]
+  // company: any = [
+  //   { btn: 'MEEK KHIT LIMITED', val: 'MEEK KHIT LIMITED' }
+  // ]
+  // locations: any = [
+  //   { btn:'923,928 &930 Vogra,Gagipur,Bangladesh', val: '923,928 &930 Vogra,Gagipur,Bangladesh' },
+  //   { btn: 'South Salna,Gazipur', val: 'South Salna,Gazipur' }
+  // ]
 
 
   onSubmit(form:NgForm){
@@ -91,6 +95,9 @@ export class AddStoreLocationComponent implements OnInit {
   
     });
   
+  }
+  backTo(){
+    this.router.navigate(['/pages/store-location']);
   }
 
 

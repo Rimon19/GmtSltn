@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NbToastrService } from '@nebular/theme';
+import { NbComponentStatus, NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { Tostr } from '../../../../@core/data/tostr.model';
 import { NgForm, FormBuilder, FormArray } from '@angular/forms';
@@ -19,6 +19,11 @@ import { MatDialogService } from '../../../../@core/mock/mat-dialog.service';
   styleUrls: ['./add-shareholder.component.scss']
 })
 export class AddShareholderComponent implements OnInit {
+  deleteBtnstatuses: NbComponentStatus =  'danger' ;
+  submitBtnstatuses: NbComponentStatus=  'success';
+     submitBtn:boolean=false;
+     updateBtn:boolean=false;
+     deleteBtn:boolean=false;
     serchIdNo=0;
     editedId=0;
    public countryList:CountryInfo[]=[];
@@ -42,12 +47,23 @@ export class AddShareholderComponent implements OnInit {
      ) { }
  
    ngOnInit() {
-    
+    this.submitBtn=true;
      this.resetForm();
      this.countryDDL();
      this.companyDDL();
      this.shareholderDDL();
 
+   }
+
+   refresh(){
+     this.serchIdNo=0;
+  
+    this.ShareDetailsForm= this.fb.array([]);
+    this.NomineeDetailsForm= this.fb.array([]);
+     this.submitBtn=true;
+     this.deleteBtn=false;
+     this.updateBtn=false;
+     this.resetForm();
    }
    shareholderDDL(){
      this.shareholderService.getAll().subscribe(data=>{
@@ -64,7 +80,12 @@ export class AddShareholderComponent implements OnInit {
    }
 
    onChangeUpdateId(id){
-console.log(id);
+     this.submitBtn=false;
+     this.updateBtn=true;
+     this.deleteBtn=true;
+    this.ShareDetailsForm= this.fb.array([]);
+       this.NomineeDetailsForm= this.fb.array([]);
+
 this.editedId=id;
     this.shareholderService.getAll().subscribe(data=>{
       this.shareholdeList=data;
@@ -206,9 +227,7 @@ this.editedId=id;
                 });                       
       }
     onSubmit(form:NgForm,ShareDetailsForm,NomineeDetailsForm){
-     console.log(form);
-     console.log(ShareDetailsForm);
-     console.log(NomineeDetailsForm);
+ 
      this.shareholderService.add(form.value).subscribe(res=>{
         console.log(res);    
         
@@ -223,6 +242,8 @@ this.editedId=id;
         });
         
        this.Tostr.showToast('primary','', 'Saved Successfully', '',this.toastrService);
+       this.shareholderDDL();
+      this.refresh();
        //this.router.navigate(["/pages/yarn-count-determination"]);
       // this.resetForm();
      })
@@ -258,9 +279,10 @@ this.editedId=id;
        
       this.Tostr.showToast('primary','', 'Update Successfully', '',this.toastrService);
       //this.router.navigate(["/pages/yarn-count-determination"]);
-      this.resetForm();
-      this.ShareDetailsForm= this.fb.array([]);
-      this.NomineeDetailsForm= this.fb.array([]);
+    
+      this.shareholderDDL();
+      this.refresh();
+    
     })
   
   }

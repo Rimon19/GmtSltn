@@ -17,7 +17,7 @@ export class OfferingCostGarmentsCalculationService extends HTTPService{
         'OfferingCostGarmentsCalculations',
         toastr)
      }
-     FabricPriceCalculationBykgForm=this.fb.group({
+     gmtsCalBykgForm=this.fb.group({
       id:[],
       offeringCostId:[],
       orderAutoId:[],
@@ -41,10 +41,11 @@ export class OfferingCostGarmentsCalculationService extends HTTPService{
       cifCost: [],
       cifCostUsePercentage: [],
       totalCost: [],
-      totalCostUsePercentage: [],
+      totalCostUse: [],
        lbyCComChargePercentage: [],
       lbyCComChargeUsePercentage: [],
-      totalCostUse: [],
+      totalCostThirtyFourByOne:[],
+      totalCostUsePercentage: [],
       totalCostBypc: [],
       totalCostBypcUsePercentage: [],
       priceBypcWithprofitPercentage: [],

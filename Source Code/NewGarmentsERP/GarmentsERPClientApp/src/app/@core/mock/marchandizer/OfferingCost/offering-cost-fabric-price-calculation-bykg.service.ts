@@ -9,7 +9,6 @@ import { HTTPService } from '../../shared/http.service';
   providedIn: 'root'
 })
 export class OfferingCostFabricPriceCalculationBykgService extends HTTPService{
-  FabricPriceCalculationBykg:FormArray = this.fb.array([]);
   constructor( httpClient: HttpClient,
     toastr: NbToastrService,
     private fb: FormBuilder) {
@@ -18,11 +17,12 @@ export class OfferingCostFabricPriceCalculationBykgService extends HTTPService{
         'OfferingCostFabricPriceCalculationBykgs',
         toastr)
      }
-     FabricPriceCalculationBykgForm=this.fb.group({
+     fabPriceCalBykgForm=this.fb.group({
       id:[],
       offeringCostId:[],
       orderAutoId:[],
       yarnCount:[],
+      thirtyFourByOne:[],
     yarnPrice:[],
     yarnPriceUse:[],
     lycraYarnPrice:[],
@@ -38,6 +38,7 @@ export class OfferingCostFabricPriceCalculationBykgService extends HTTPService{
     peachFinish:[],
     peachFinishUse:[],
     standerPlusCompecting:[],
+    standerPlusCompectingUse:[],
     total:[],
     totalUse:[],
     deyingProcessLostPercentage:[],

@@ -12,10 +12,7 @@
       <nb-card-body>
 
         <form #form="ngForm" (submit)="onSubmit(form)"  >
-          <input  required #Id="ngModel"
-          [(ngModel)]="supplierProfileService.supplierProfile.id" 
-             name="id"  type="hidden" 
-             >
+      
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">
@@ -392,24 +389,23 @@
        
             <div class="col-sm-3">
               <div class="form-group">
-                <label>Add Image</label>
-                <img [src]="output_image" hieght="100" width="100" />
-                <input
-                  type="file"
-                  accept="image/*"
-                  (change)="detectFilesForImageUrlFile($event)"
+                  <label class="label text-dark">Image</label>
+                  <input
                   name="image"
+                  (dblclick)="onAddImage()"
                   class="form-control form-rounded form-control-sm"
-                  multiple="multiple"
-                  placeholder="image"
+                  type="text"
+                  id="image"
+                  placeholder="Double click"
+                  
                 />
               </div>
-            </div>
+          </div>
             
             
           </div>
          
-          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+          <button type="submit" nbButton  [disabled]="form.invalid  || supplierProfileService.supplierProfile.creditLimitDays==0 || supplierProfileService.supplierProfile.crditLimitAmount==0">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>

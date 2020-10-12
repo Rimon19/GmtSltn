@@ -140,7 +140,7 @@ export class EditBuyerProfileComponent implements OnInit {
     dialogConfig.height="50%";
 // page id is 5 here from according to table imageOrFileHolderPages
 let primaryKey=0; 
-    this.datapassingService.sendInfoPageToErpImages.next({pageId:5,primaryKey:primaryKey});
+    this.datapassingService.sendInfoPageToErpImages.next({pageId: 4,primaryKey:primaryKey});
 
     this.dialog.open(ErpImagesComponent, dialogConfig);
   }

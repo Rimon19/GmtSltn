@@ -1,15 +1,24 @@
 <nb-card>
   <nb-card-header>
    Consumption Entry Form
-    <button class="float-right ml-5"  mat-button (click)="onClose()">
-      <mat-icon>close</mat-icon>
-    </button>
-    <button
-      class="btn btn-outline-success float-right" (click)="consumptionForm()"
-      
-    >
-      <i class="fa fa-plus"></i>
-    </button>
+   <div class="row">
+     <div class="col-6">
+       <input type="checkbox" class="float-right">All Copy
+     </div>
+     <div class="col-6">
+      <button class="float-right ml-5"  mat-button (click)="onClose()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button
+        class="btn btn-outline-success float-right" (click)="consumptionForm()"
+        
+      >
+        <i class="fa fa-plus"></i>
+      </button>
+     </div>
+   </div>
+
+    
   </nb-card-header>
   <nb-card-body>
     <div class="col-md-12" style="overflow-x: scroll;">
@@ -18,8 +27,7 @@
         <table class="">
           <thead>
             <tr>
-              <th scope="col">Action</th>
-              <th scope="col"></th>
+              
               <th scope="col">PO NO</th>
               <th scope="col">Gmts. Item</th>
               <th scope="col">Country</th>
@@ -41,34 +49,33 @@
               <tbody [formGroup]="fg"
               *ngFor="let fg of consumptionInformationForm.controls;let i=index" >
                 <tr>
-                  
-                  <td> 
-                      
-                    <button  class="btn btn-light ml-1" (click)="onDelete(consumptionInformationForm,i)"
-                    >
-                        <i class="far fa-trash-alt fa-lg text-danger"></i>
-                        
-                    </button> 
-                  </td>
-                  <td>
-                    
-                  </td>
+
                     <td>
                       <input
                        class="form-control form-rounded form-control-sm "
                         type="text"
                        
                         placeholder="PO NO"
-                        formControlName="poNoId"
+                        formControlName="poName"
                       />
                       
                     </td>
                     <td >
-                      <input
-                       class="form-control form-rounded form-control-sm "
-                        placeholder="Gmts Item"
-                        formControlName="gmtsItem"
-                      />
+                      <select
+                      disabled
+                      class="form-control form-rounded form-control-sm"
+                      formControlName="gmtsItemId"
+                     
+                    >
+                      <option value="">Select</option>
+                      <option
+                        *ngFor="
+                          let itemslist of dropdownValueService.garmentsItemList
+                        "
+                        [value]="itemslist.id"
+                        >{{ itemslist.itemName }}</option
+                      >
+                    </select>
                      
                     </td>
     

@@ -90,8 +90,8 @@ export class EditEmployeeInfoComponent implements OnInit {
       maritalStatus :'',
       bloodGroupId :0,
       nationality :'',
-      nationalId :0,
-      passportNo :0,
+      nationalId :'',
+      passportNo :'',
       employeeCategoryId :0,
       designationLebelId :0,
       designationId :0,
@@ -230,12 +230,12 @@ export class EditEmployeeInfoComponent implements OnInit {
       });
     } 
 
-    update(employeeInfo){
-      console.log(employeeInfo);
-     this.employeeInfoService.employeeInfo.dateofBirth=this.dateResizeService.dateResize(this.employeeInfoService.employeeInfo.dateofBirth);
-     this.employeeInfoService.employeeInfo.joiningDate=this.dateResizeService.dateResize(this.employeeInfoService.employeeInfo.joiningDate);
-     this.employeeInfoService.employeeInfo.confirmationDate=this.dateResizeService.dateResize(this.employeeInfoService.employeeInfo.confirmationDate);
-      this.employeeInfoService.update(employeeInfo).subscribe(s=>{
+    onSubmit(form:NgForm){
+     form.value.id=this.editedId;
+     form.value.dateofBirth=this.dateResizeService.dateResize( form.value.dateofBirth);
+     form.value.joiningDate=this.dateResizeService.dateResize( form.value.joiningDate);
+     form.value.confirmationDate=this.dateResizeService.dateResize( form.value.confirmationDate);
+      this.employeeInfoService.update(form.value).subscribe(s=>{
       this.Tostr.showToast('primary',"", "update Successfull !", "",this.toastrService);
       this.router.navigate(['/pages/EmployeeInfo-list']);
       },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);})

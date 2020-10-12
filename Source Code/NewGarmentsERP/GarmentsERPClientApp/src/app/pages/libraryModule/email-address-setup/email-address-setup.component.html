@@ -1,8 +1,6 @@
 <nb-card>
   <div class="col-md-12" style = "overflow-x: scroll;">
-      <div class="smart-table-container" style = "width:1200px;">
-  
-        <div class="example-container mat-elevation-z8">
+    
           <div class="example-header">
             <h5>Email Address Setup</h5>
             <mat-form-field>
@@ -28,19 +26,19 @@
         
           <ng-container matColumnDef="userType">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">User Type</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.userType}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.userType}}</mat-cell>  
             
           
           </ng-container>  
           <ng-container matColumnDef="recipientName">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Recipient Name</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.recipientName}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.recipientName}}</mat-cell>  
             
           
           </ng-container>
           <ng-container matColumnDef="emailAddress">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Email Address</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.emailAddress}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.emailAddress}}</mat-cell>  
           </ng-container>
         
           
@@ -55,9 +53,7 @@
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
        
-        </div>
-  
-      </div>
+    
     </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </nb-card>  

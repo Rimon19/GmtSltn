@@ -13,12 +13,16 @@ export class SupplierProfileService {
   constructor(public http:HttpClient) {
     this.obj = new BehaviorSubject<any>(0);
    }
-  getAll():Observable<SupplierProfile[]>{
-     this.http.get<SupplierProfile[]>(BaseURL.apiUrl+'/SupplierProfiles').subscribe(data=>{
-      this.setValue(data);
-      });
-      return this.getValue();
-  } 
+  // getAll():Observable<SupplierProfile[]>{
+  //    this.http.get<SupplierProfile[]>(BaseURL.apiUrl+'/SupplierProfile').subscribe(data=>{
+  //     this.setValue(data);
+  //     });
+  //     return this.getValue();
+  // } 
+
+  getAllSupplier():Observable<SupplierProfile[]>{
+    return this.http.get<SupplierProfile[]>(BaseURL.apiUrl+'/SupplierProfiles');
+    } 
   add(supplierProfile:SupplierProfile){
     console.log('service data',supplierProfile);
     return this.http.post<SupplierProfile>(BaseURL.apiUrl+'/SupplierProfiles',supplierProfile);

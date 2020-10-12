@@ -45,4 +45,8 @@ export class AddEmailAddressSetupComponent implements OnInit {
        this.router.navigate(["/pages/email-address-setup"]);
       })
     } 
+
+    backHomePage(){
+      this.router.navigate(['/pages/email-address-setup']);
+    }
 }

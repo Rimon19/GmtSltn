@@ -228,7 +228,7 @@
                    name="creditLimitDays"  class="form-control form-rounded form-control-sm  " type="number" 
                     placeholder="Credit Limit (Days)">
                     <div class="text-left text-danger"
-              *ngIf="supplierProfileService.supplierProfile.creditLimitDays==0&&creditLimitDays.touched">
+              *ngIf="supplierProfileService.supplierProfile.creditLimitDays==0 &&creditLimitDays.touched">
               Credit Limit (Days) is required
             </div>
               </div>
@@ -245,7 +245,7 @@
                    name="crditLimitAmount"  class="form-control form-rounded form-control-sm  " type="number" 
                     placeholder="Credit Limit (Amount)">
                     <div class="text-left text-danger"
-              *ngIf="supplierProfileService.supplierProfile.crditLimitAmount==0&&crditLimitAmount.touched">
+              *ngIf="supplierProfileService.supplierProfile.crditLimitAmount==0 &&crditLimitAmount.touched">
               Credit Limit  is required
             </div>
               </div>
@@ -387,20 +387,23 @@
        
             <div class="col-sm-3">
               <div class="form-group">
-                <label class="label text-dark">Image</label>
-                <input   #image="ngModel"
-                [(ngModel)]="supplierProfileService.supplierProfile.image"
-                   name="image"  class="form-control form-rounded form-control-sm  " type="text" 
-                    placeholder="image">
-                   
+                  <label class="label text-dark">Image</label>
+                  <input
+                  name="image"
+                  (dblclick)="onAddImage()"
+                  class="form-control form-rounded form-control-sm"
+                  type="text"
+                  id="image"
+                  placeholder="Double click"
+                  
+                />
               </div>
-              
-            </div>
+          </div>
             
             
           </div>
          
-          <button type="submit" nbButton  [disabled]="form.invalid">Submit</button>
+          <button type="submit" nbButton  [disabled]="form.invalid || supplierProfileService.supplierProfile.creditLimitDays==0 || supplierProfileService.supplierProfile.crditLimitAmount==0">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>

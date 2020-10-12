@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACV,aAAa,EAAE,IAAI;CAClB;;AACD,AAAA,gBAAgB,CAAC;EACb,SAAS,EAAE,UAAU;CACtB",
+    "sources": [
+        "trims-cost.component.scss"
+    ],
+    "names": [],
+    "file": "trims-cost.component.css"
+}

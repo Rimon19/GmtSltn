@@ -34,7 +34,8 @@ const routes: Routes = [
   {path : 'edit-cut-and-lay-entry-ratio-wise/:id', component : EditCutandLayEntryRatioWiseComponent},
   
 
-  {path : 'cut-and-lay-entry-ratio-wise2', component : CutandLayEntryRatioWise2Component},
+  {path : 'cut-and-lay-entry-ratio-wise2',
+   component : CutandLayEntryRatioWise2Component},
   {path : 'create-cut-and-lay-entry-ratio-wise2', component : CreateCutandLayEntryRatioWise2Component},
   {path : 'edit-cut-and-lay-entry-ratio-wise2/:id', component : EditCutandLayEntryRatioWise2Component},
   
@@ -55,6 +56,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PlanningRoutingModule { 
+export class PlanningRoutingModule {  
   
 }

@@ -12,6 +12,10 @@ import { UtilityService } from '../../../@core/mock/shared/utility.service';
 import { HttpClient } from '@angular/common/http';
 import { BaseURL } from '../../../@core/data/baseUrl';
 import { HTTPService } from '../../../@core/mock/shared/http.service';
+import { DropdownValueService } from '../../../@core/mock/shared/dropdown-value.service';
+import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { TrimCosts } from './../../../@core/data/marchanzider-model/trim-costs';
+import { FabricCostService } from './../../../@core/mock/marchandizer/fabric-cost.service';
 
 @Component({
   selector: 'ngx-colour-entry',
@@ -35,11 +39,13 @@ export class ColourEntryComponent  extends HTTPService implements OnInit {
   colourEntry:ColourEntry[]; 
   constructor(
     private  toastrService:NbToastrService,
+    private  dropdownValueService:DropdownValueService,
      private mathdialogService: MatDialogService,
      private router:Router,
      private colourEntryService:ColourEntryService,
      private testService:TestService,
      private utilityService:UtilityService,
+     private fabricCostService:FabricCostService,
      httpClient: HttpClient,
       toastr: NbToastrService) {
       super(
@@ -48,26 +54,19 @@ export class ColourEntryComponent  extends HTTPService implements OnInit {
         'ColourEntries',
         toastr
        ); 
+ 
       }
 
   ngOnInit() {
-this.getAll();
- //console.log(this.items.getValue());
- //console.log(this.colourEntryService.getList());
- //console.log(this.items.complete());
+ this.getAll();
  this.getColourEntry();
- 
- 
+this.fabricCostService.GetOnlyArrayList();
+console.log(this.fabricCostService.items);
 
   }
-
-  //  test(){
-  //    let data:any=[];
-  //    this.getValue().subscribe(d=>{
-  //      data=d;
-  //    })
-  //    console.log(data);
-  //  }
+ 
+ 
+  
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); 
     filterValue = filterValue.toLowerCase(); 
@@ -79,23 +78,11 @@ this.getAll();
    
   }
   onDelete(element){
-    console.log(element);
     this.delete(element.id);
-    // this.mathdialogService.openConfirmDialog('Are you sure to delete this record ?')
-    //            .afterClosed().subscribe(res=>{
-    //             if(res){
-    //               this.colourEntryService.deleteColourEntry(element.id).subscribe(res=>{
-                    
-    //                 this.Tostr.showToast("primary","", "Deleleted", "Successfully",this.toastrService);
-    //                 this.getColourEntry();
-    //               },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);});
-    //             }
-    //            })
   }
   getColourEntry(){
-    this.subscription=   this.colourEntryService.getColourEntry().subscribe(data=>{
+    this.subscription= this.colourEntryService.getColourEntry().subscribe(data=>{
     this.colourEntry=data; 
-  
     this.dataSource=new MatTableDataSource(this.colourEntry);
     console.log('colourEntry',this.colourEntry);
   });
@@ -103,6 +90,8 @@ this.getAll();
         edit(element){
           this.router.navigate(["/pages/edit-colour-entry/",element.id]);  
       }
-
+      // getColorList(){
+      //  console.log(this.dropdownValueService.colorList)
+      // }
 
 }

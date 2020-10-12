@@ -7,6 +7,7 @@ import { MatDialogService } from '../../../@core/mock/mat-dialog.service';
 import { Router } from '@angular/router';
 import { CurrencyConversionRate } from '../../../@core/data/Library-Modul-model/currency-conversion-rate';
 import { CurrencyConversionRateService } from '../../../@core/mock/library/currency-conversion-rate.service';
+import { StaticFeaturesService } from '../../../@core/mock/library/static-features.service';
 
 @Component({
   selector: 'ngx-currency-conversion-rate',
@@ -35,6 +36,7 @@ export class CurrencyConversionRateComponent implements OnInit {
      private mathdialogService: MatDialogService,
      private router:Router,
      public currencyConversionRateService:CurrencyConversionRateService,
+     private staticFeaturesService:StaticFeaturesService
      ) { }
     
 
@@ -73,6 +75,14 @@ export class CurrencyConversionRateComponent implements OnInit {
   getCurrencyConversionRate(){
     this.subscription=this.currencyConversionRateService.getCurrencyConversionRate().subscribe(data=>{
     this.currencyConversionRate=data;
+    console.log(data);
+   this.currencyConversionRate.forEach(element => {
+      this.staticFeaturesService.getAllDiscountMethod().subscribe(data=>{
+        let currencyName = data.find(f=>f.id==element.currency) && data.find(f=>f.id==element.currency).discountMethodName;
+        element.currency=currencyName;
+      })
+      
+   });
   
     this.dataSource=new MatTableDataSource(this.currencyConversionRate);
     console.log('currencyConversionRate',this.currencyConversionRate);

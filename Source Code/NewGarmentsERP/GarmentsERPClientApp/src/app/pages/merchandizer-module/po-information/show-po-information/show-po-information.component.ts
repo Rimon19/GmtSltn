@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator, MatDialogConfig, MatDialog } from '@angular/material';
+import { MatTableDataSource,Sort, MatSort, MatPaginator, MatDialogConfig, MatDialog } from '@angular/material';
 import { MasterPodetailsInfroesService } from '../../../../@core/mock/marchandizer/master-podetails-infroes.service';
 import { Subscription } from 'rxjs';
 import { MasterPodetailsInfroes } from '../../../../@core/data/marchanzider-model/master-podetails-infroes.model';
@@ -19,7 +19,7 @@ import { InputPannelPodetailsService } from '../../../../@core/mock/marchandizer
 })
 export class ShowPoInformationComponent implements OnInit {
   editedId:any;
-  @ViewChild("PoDetails", { static: true }) sortPoDetails: MatSort;
+  @ViewChild("sortPoDetails", { static: true }) sortPoDetails: MatSort;
   @ViewChild("PoDetails", { static: false }) set contentFabricCost(
     sortPoDetails: MatSort
   ) {
@@ -77,6 +77,15 @@ export class ShowPoInformationComponent implements OnInit {
 
   ngOnInit() {
     this.refresPODetailsInfoList(this.editedId);
+
+    
+this.dataSourcePoDetails.sort = this.sortPoDetails;
+
+const sortState: Sort = {active: 'pO_No', direction: 'desc'};
+this.sortPoDetails.active = sortState.active;
+this.sortPoDetails.direction = sortState.direction;
+
+    
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

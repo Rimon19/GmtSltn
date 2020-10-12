@@ -126,7 +126,7 @@ const routes: Routes = [
   {
     path: "offering-cost",
     component: OfferingCostComponent,
-  },
+  }, 
   {
     path: "edit-po-information/:poDetId",
     component: EditPoInformationComponent,

@@ -1,17 +1,24 @@
 <div class="row">
   <div class="col-lg-12">
     <nb-card>
-      <nb-card-header>Store Location</nb-card-header>
+      <nb-card-header>
+        <button (click)="backTo()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Store Location Entry
+      </nb-card-header>
       <nb-card-body>
         <form #form="ngForm" (submit)="onSubmit(form)">
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="storeName" class="label">
+                <label for="storeName" class="label text-dark">
                   Store Name <span class="text-danger">*</span></label>
                 <input id="storeName" required #StoreName="ngModel" 
                 [(ngModel)]="storeLocationService.storeLocation.storeName"
-                 class="form-control text-responsive" name="storeName" 
+                class="form-control form-rounded form-control-sm" name="storeName" 
                  type="text" placeholder=" Store Name">
 
                  
@@ -26,14 +33,14 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="companyName" class="label">
+                <label for="companyName" class="label text-dark">
                   Company Name <span class="text-danger">*</span> </label>
                   <select required id="companyName" name="companyName" #CompanyName="ngModel" 
                   [(ngModel)]="storeLocationService.storeLocation.companyName" 
-                   class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm" >
                    <option value=''>Select Company Name</option>
-                   <option  *ngFor="let btnAction of company" 
-                   value="{{btnAction.val}}">{{btnAction.btn}}</option>                  
+                   <option  *ngFor="let btnAction of dropdownValueService.companyList" 
+                   value="{{btnAction.compID}}">{{btnAction.company_Name}}</option>                  
               </select>
               <div class="text-left text-danger"
               *ngIf="storeLocationService.storeLocation.companyName==''&&CompanyName.touched">
@@ -44,14 +51,14 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="location" class="label">
+                <label for="location" class="label text-dark">
                   Location<span class="text-danger">*</span></label>
                   <select  id="location" name="location" required #Location="ngModel" 
                   [(ngModel)]="storeLocationService.storeLocation.location" 
-                  class="form-control text-responsive" >
+                 class="form-control form-rounded form-control-sm" >
                   <option value=''>Select location Name</option>
-                  <option  *ngFor="let btnAction of locations" 
-                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  <option  *ngFor="let btnAction of dropdownValueService.locationList" 
+                  value="{{btnAction.locationId}}">{{btnAction.location_Name}}</option>
                  
              </select>
              <div class="text-left text-danger"
@@ -63,7 +70,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="itemCategoryselectedItems" class="label">
+                <label for="itemCategoryselectedItems" class="label text-dark">
                   Item Category<span class="text-danger">*</span></label>
                   <ng-multiselect-dropdown
                   name="itemCategoryselectedItems"
@@ -85,11 +92,11 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="status" class="label">
+                <label for="status" class="label text-dark">
                   Status  </label>
                   <select  id="status" name="status" #Status="ngModel" 
                   [(ngModel)]="storeLocationService.storeLocation.status"  
-                   class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm" >
                    <option value=''>Select Status</option>
                    <option  *ngFor="let btnAction of Active_Inactive" 
                    value="{{btnAction.val}}">{{btnAction.btn}}</option>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApprovedBy } from '../../../../@core/data/Shared/approved-by';
 import { EntryBy } from '../../../../@core/data/Shared/entry-by';
 import { NgForm } from '@angular/forms';
@@ -16,6 +16,7 @@ import { StaticFeaturesService } from '../../../../@core/mock/library/static-fea
   selector: 'ngx-addtna-mail-setup',
   templateUrl: './addtna-mail-setup.component.html',
   styleUrls: ['./addtna-mail-setup.component.scss']
+
 })
 export class AddtnaMailSetupComponent implements OnInit {
   tagTNATaskselectedItems = [];

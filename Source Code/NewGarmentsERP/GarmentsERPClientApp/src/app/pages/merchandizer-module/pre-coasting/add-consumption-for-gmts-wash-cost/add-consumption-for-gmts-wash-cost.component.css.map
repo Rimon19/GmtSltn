@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACV,aAAa,EAAE,IAAI;CAClB;;AACD,AAAA,gBAAgB,CAAC;EACb,SAAS,EAAE,UAAU;CACtB",
+    "sources": [
+        "add-consumption-for-gmts-wash-cost.component.scss"
+    ],
+    "names": [],
+    "file": "add-consumption-for-gmts-wash-cost.component.css"
+}

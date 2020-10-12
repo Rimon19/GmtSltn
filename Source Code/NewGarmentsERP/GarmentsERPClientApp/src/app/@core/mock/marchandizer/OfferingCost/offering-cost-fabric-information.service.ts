@@ -9,7 +9,7 @@ import { HTTPService } from '../../shared/http.service';
   providedIn: 'root'
 })
 export class OfferingCostFabricInformationService extends HTTPService {
-  FabricInformation:FormArray = this.fb.array([]);
+
   constructor(
     httpClient: HttpClient,
     toastr: NbToastrService,
@@ -20,31 +20,37 @@ export class OfferingCostFabricInformationService extends HTTPService {
       'OfferingCostFabricInformations',
       toastr)
    }
-   fabricInformationForm=this.fb.group({
-    id:[],
-    offeringCostId:[],
-    orderAutoId:[],
-  fabrics: [] ,
-gSM: [] ,
-cottonPercent: [] ,
-polysterPercent: [] ,
-viscosePercent: [] ,
-laycraPercent: [] ,
-orQty: [] ,
-fabQty: [] ,
-yarnCount: [] ,
-yarnType: [] ,
-dpl: [] ,
-yarnQty: [] ,
-lycraQty: [] ,
-acYarn: [] ,
-lycraD: [] ,
+   fabricInfoForm=this.fb.group({
+    id:[0],
+    offeringCostId:[0],
+    orderAutoId:[0],
+  fabrics: [0] ,
+gsm: [0] ,
+cottonPercent: [0] ,
+polysterPercent: [0] ,
+viscosePercent: [0] ,
+laycraPercent: [0] ,
+orQty: [0] ,
+fabQty: [0] ,
+yarnCount: [''] ,
+yarnType: [''] ,
+dpl: [0] ,
+yarnQty: [0] ,
+lycraQty: [0] ,
+acYarn: [0] ,
+lycraD: [0] ,
     
-      entryDate:[],
-      entryBy:[],
-      approvedDate:[],
-      isApproved:[],
-      approvedBy:[],
-      status:[]
+      entryDate:[''],
+      entryBy:[''],
+      approvedDate:[''],
+      isApproved:[''],
+      approvedBy:[''],
+      status:['']
   })
+
+
+  loadFabricInfoModelData(fabricInfoForm){
+ //this.fabricInfoForm=this.fb.group({});
+ this.fabricInfoForm.setValue(fabricInfoForm);
+}
 }

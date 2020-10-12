@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "composition-edit.component.scss"
+    ],
+    "names": [],
+    "file": "composition-edit.component.css"
+}

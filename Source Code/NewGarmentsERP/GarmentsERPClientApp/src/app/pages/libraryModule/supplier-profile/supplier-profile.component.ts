@@ -13,6 +13,8 @@ import { CountryLocationMappingService } from '../../../@core/mock/library/count
 import { BuyerProfile } from '../../../@core/data/Library-Modul-model/buyer-profile';
 import { BuyerProfileService } from '../../../@core/mock/library/buyer-profile.service';
 import { SupplierProfileService } from '../../../@core/mock/library/supplier-profile.service';
+import { SupplierProfile } from '../../../@core/data/Library-Modul-model/supplier-profile';
+import { DropdownValueService } from '../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-supplier-profile',
@@ -26,20 +28,25 @@ export class SupplierProfileComponent implements OnInit {
   public countryList:CountryInfo[]=[];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  // @ViewChild(MatSort, {static: true}) sort: MatSort;
+  // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   dataSource = new MatTableDataSource();
   displayedColumns = ['id', 'contactName','shortName','contactPerson','designation','creditLimitDays','crditLimitAmount'];
   Tostr=new Tostr();
   subscription:Subscription;
+  suplierList:SupplierProfile[];
   constructor(private supplierProfileService:SupplierProfileService,
      private toastrService:NbToastrService,
      private mathdialogService: MatDialogService,
      private countryService:CountryService,
      private router:Router,
-     private countryLocationMappingService:CountryLocationMappingService) { }
+     private countryLocationMappingService:CountryLocationMappingService,
+     private dropdownValueService:DropdownValueService) { }
 
   ngOnInit() {
  this.refresList();
 this.countryDDL();
+
   }
   countryDDL(){
     this.countryService.getAllCountry().
@@ -78,9 +85,11 @@ this.countryDDL();
 
   refresList(){
     
-    this.supplierProfileService.getAll().subscribe(item=>{
-     console.log(item);
-      this.dataSource=new MatTableDataSource(item);
+    this.supplierProfileService.getAllSupplier().subscribe(item=>{
+   
+
+       this.dataSource=new MatTableDataSource(item);
+      
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     })

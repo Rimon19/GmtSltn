@@ -4,6 +4,7 @@ import { MailRecipientGroupService } from '../../../../@core/mock/library/mail-r
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-add-mail-recipient-group',
@@ -17,10 +18,12 @@ export class AddMailRecipientGroupComponent implements OnInit {
     public mailRecipientGroupService:MailRecipientGroupService,
     private router:Router,
     private toastrService:NbToastrService,
+    public dropdownValueService:DropdownValueService
     ) { }
 
   ngOnInit() {
     this.resetFormForEmailAddressSetup();
+    this.dropdownValueService.getCompany();
   }
   resetFormForEmailAddressSetup(form?:NgForm){
     if(form!=null)
@@ -33,10 +36,10 @@ export class AddMailRecipientGroupComponent implements OnInit {
       status:'',
     }
   }
-  companyname: any = [
-    // { btn: 'Select', val: 'Select' },
-      { btn: 'MEEK KNIT LIMITED', val: 'MEEK KNIT LIMITED' }
-    ]
+  // companyname: any = [
+  //   // { btn: 'Select', val: 'Select' },
+  //     { btn: 'MEEK KNIT LIMITED', val: 'MEEK KNIT LIMITED' }
+  //   ]
     mailitem: any = [
     // { btn: 'Select', val: 'Select' },
       { btn: 'Below 5% Profitability Order', val: 'Below 5% Profitability Order' },
@@ -81,6 +84,10 @@ export class AddMailRecipientGroupComponent implements OnInit {
        this.router.navigate(["/pages/mail-recipient-group"]);
       })
     } 
+
+    backHomePage(){
+      this.router.navigate(['/pages/mail-recipient-group']);
+    }
 
 }
 

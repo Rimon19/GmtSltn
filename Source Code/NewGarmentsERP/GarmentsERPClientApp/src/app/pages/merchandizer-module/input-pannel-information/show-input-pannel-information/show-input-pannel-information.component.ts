@@ -1,6 +1,6 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatTableDataSource, MatSort, Sort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
 import { NbToastrService } from '@nebular/theme';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Tostr } from '../../../../@core/data/tostr.model';
@@ -16,6 +16,7 @@ import { InputPannelPodetails } from '../../../../@core/data/marchanzider-model/
 import { DatapassingService } from '../../../../@core/mock/shared/datapassing.service';
 import { MasterPodetailsInfroesService } from '../../../../@core/mock/marchandizer/master-podetails-infroes.service';
 import { SizeWisePannelPodetailsService } from '../../../../@core/mock/marchandizer/size-wise-pannel-podetails.service';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 @Component({
   selector: 'ngx-show-input-pannel-information',
   templateUrl: './show-input-pannel-information.component.html',
@@ -25,9 +26,11 @@ export  class ShowInputPannelInformationComponent implements OnInit {
  
   editedId:any='';
   autoOrderId:any='';
+  sizePannelIdList:any=[];
 
 
-@ViewChild(MatSort, {static: true}) sort: MatSort;
+// @ViewChild(MatSort, {static: true}) sort: MatSort;
+@ViewChild("sort", { static: true }) sort: MatSort;
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 inputPannelPodetails:InputPannelPodetails[];
 dataSource = new MatTableDataSource();
@@ -65,7 +68,8 @@ constructor(private inputPannelPodetailsService:InputPannelPodetailsService,
    private orderItemsService: OrderItemsService,
    private datapassingService:DatapassingService,
    private masterPodetailsInfroesService:MasterPodetailsInfroesService,
-   private sizeWisePannelPodetailsService:SizeWisePannelPodetailsService
+   private sizeWisePannelPodetailsService:SizeWisePannelPodetailsService,
+   private dropdownValueService:DropdownValueService
 
    ) { 
 
@@ -77,6 +81,13 @@ ngOnInit() {
 //this.refresList();
 this.refresInputPannelInfoList(this.editedId);
 this.recvClickEvent();
+
+
+this.dataSource.sort = this.sort;
+
+const sortState: Sort = {active: 'id', direction: 'desc'};
+this.sort.active = sortState.active;
+this.sort.direction = sortState.direction;
 
 
 }
@@ -105,11 +116,20 @@ redirectToEditPage(element){
 }
 
 onDelete(element){
- 
+         this.sizeWisePannelPodetailsService.getAllSizeWisePannelPodetails().subscribe(data=>{
+               this.sizePannelIdList=data.filter(f=>f.inputPannelId==element.input_Pannel_ID)
+         })
   this.mathdialogService.openConfirmDialog('Are you sure to delete this record ?')
              .afterClosed().subscribe(res=>{
               if(res){
                 this.inputPannelPodetailsService.deleteInputPannelPodetails(element.input_Pannel_ID).subscribe(res=>{
+                  this.sizePannelIdList.forEach(element => {
+                    this.sizeWisePannelPodetailsService.deleteSizeWisePannelPodetails(element.sizePannelId).subscribe(res=>{
+
+                    });
+                  });
+                  
+                  
                  // this.refresList();
                  this.refresInputPannelInfoList(this.editedId);
                   this.Tostr.showToast("primary","", "Deleleted", "Successfully",this.toastrService);
@@ -120,21 +140,29 @@ onDelete(element){
 
 refresList(){    
   this.inputPannelPodetailsService.getAllInputPannelPodetails().subscribe(item=>{
-    item.forEach(element => {
+    item.forEach(res => {
+      if(res.countryID!=0){
+      let countryName=this.dropdownValueService.regionList
+      .find(f=>f.regionID==res.countryID) && this.dropdownValueService.regionList
+      .find(f=>f.regionID==res.countryID).region_Name;
+     
+      res.countryID=countryName;
+     }
+     else{
+      res.countryID=''
+     }
+       if(res.packing_ID!=0){
+        let packingName=this.dropdownValueService.packingInfoesItemsList
+        .find(f=>f.packingID==res.packing_ID) &&this.dropdownValueService.packingInfoesItemsList
+        .find(f=>f.packingID==res.packing_ID).packing_Name;
+        res.packing_ID=packingName;
 
+       }
+       else{
+        res.packing_ID='';
+       }
 
-        this.countryService.getAllCountry().subscribe(data=>{
-          let countryName= data.find(
-           (f) => f.regionID == element.countryID
-         ).region_Name;
-         element.countryID = countryName;
-        })
-
-        this.packingInfoesService.getAllPackingInfoes().subscribe(data=>{
-         
-          let packingName=data.find(f=>f.packingID==element.packing_ID).packing_Name;
-          element.packing_ID=packingName;
-        })
+       
         
       });
          

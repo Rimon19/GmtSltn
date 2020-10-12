@@ -1,0 +1,26 @@
+.example-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 100px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 18px;
+  width: 70%;
+}
+
+.mat-header-cell {
+  font-size: 15px;
+  width: 100%;
+}
+/*# sourceMappingURL=bank-info.component.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACb,SAAS,EAAE,UAAU;CACtB",
+    "sources": [
+        "sales-forecast-entry.component.scss"
+    ],
+    "names": [],
+    "file": "sales-forecast-entry.component.css"
+}

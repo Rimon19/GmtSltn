@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DateResizeService } from '../../../../@core/mock/marchandizer/date-resize.service';
 import { NbToastrService } from '@nebular/theme';
 import { NgForm } from '@angular/forms';
+import { DropdownValueService } from '../../../../@core/mock/shared/dropdown-value.service';
 
 @Component({
   selector: 'ngx-edit-fast-react-intgration',
@@ -20,6 +21,7 @@ export class EditFastReactIntgrationComponent implements OnInit {
     private route:ActivatedRoute,
     private dateResizeService:DateResizeService,
     private toastrService:NbToastrService,
+    public dropdownValueService:DropdownValueService
     ) {
       this.editedId = this.route.snapshot.paramMap.get('id');
       console.log(this.editedId);
@@ -33,6 +35,7 @@ export class EditFastReactIntgrationComponent implements OnInit {
 
   ngOnInit() {
     this.resetFormForFastReactIntgration();
+    this.dropdownValueService.getModule();
   }
   resetFormForFastReactIntgration(form?:NgForm){
     if(form!=null)
@@ -44,14 +47,15 @@ export class EditFastReactIntgrationComponent implements OnInit {
       
     }
   }
-  exportmodule: any = [
-    // { btn: 'Select', val: 'Select' },
-      { btn: 'All Modules', val: 'All Modules' }
+  // exportmodule: any = [
+  //   // { btn: 'Select', val: 'Select' },
+  //     { btn: 'All Modules', val: 'All Modules' }
      
-    ]
-    update(exportPO){
-      exportPO.exportPOReceivedfrom= this.dateResizeService.dateResize(exportPO.exportPOReceivedfrom);
-      this.fastReactIntgrationService.updateFastReactIntgration(exportPO).subscribe(s=>{
+  //   ]
+  onSubmit(form:NgForm){
+    form.value.id=this.editedId;
+      form.value.exportPOReceivedfrom= this.dateResizeService.dateResize(form.value.exportPOReceivedfrom);
+      this.fastReactIntgrationService.updateFastReactIntgration(form.value).subscribe(s=>{
         this.Tostr.showToast('primary',"", "update Successfull !", "",this.toastrService);
         this.router.navigate(['/pages/fast-react-intgration']);
       },(err) => { this.Tostr.showToast("danger","", err.statusText, "",this.toastrService);})

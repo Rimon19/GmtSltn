@@ -12,6 +12,8 @@ import { HTTPService } from '../shared/http.service';
 })
 export class YarnCostService extends HTTPService {
   public count = 0;
+  public totalConsQnty = 0;
+  public totalAmount = 0;
   yarnCostInformationForm: FormArray = this.fb.array([]);
   constructor(httpClient: HttpClient,
     toastr: NbToastrService,
@@ -49,6 +51,9 @@ export class YarnCostService extends HTTPService {
     this.count=0;
     this.yarnCostInformationForm = this.fb.array([]);
       yarnCostInformationForm.forEach((itemDts: any) => {
+        this.totalConsQnty=+itemDts.consQnty;
+        this.totalAmount=+itemDts.amount;
+
         this.count = this.count + 1;
         this.yarnCostInformationForm.push(
           this.fb.group({
@@ -67,4 +72,35 @@ export class YarnCostService extends HTTPService {
         );
       });
     } 
+
+    onChangeRate(yarnCostInformationForm){
+      this.count=0;
+      this.totalConsQnty=0;
+      this.totalAmount=0;
+      this.yarnCostInformationForm = this.fb.array([]);
+        yarnCostInformationForm.forEach((itemDts: any) => {
+          this.count = this.count + 1;
+          console.log(itemDts.amount);
+          console.log(typeof(itemDts.amount) );
+
+          this.totalConsQnty +=itemDts.consQnty;
+          this.totalAmount +=itemDts.rate*itemDts.consQnty;
+
+          this.yarnCostInformationForm.push(
+            this.fb.group({
+              id: itemDts.id,
+              countId: itemDts.countId,
+              precostingId: itemDts.precostingId,
+              comp1Id: itemDts.comp1Id,
+              percentage: itemDts.percentage,
+              color: itemDts.color,
+              typeId: itemDts.typeId,
+              consQnty: itemDts.consQnty,
+              supplierId: itemDts.supplierId,
+              rate: itemDts.rate,
+              amount:itemDts.rate*itemDts.consQnty,
+            })
+          );
+        });
+    }
 }

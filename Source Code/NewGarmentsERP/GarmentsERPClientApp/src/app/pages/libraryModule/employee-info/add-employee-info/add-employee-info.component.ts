@@ -81,8 +81,8 @@ export class AddEmployeeInfoComponent implements OnInit {
       maritalStatus :'',
       bloodGroupId :0,
       nationality :'',
-      nationalId :0,
-      passportNo :0,
+      nationalId :'',
+      passportNo :'',
       employeeCategoryId :0,
       designationLebelId :0,
       designationId :0,
@@ -232,5 +232,9 @@ export class AddEmployeeInfoComponent implements OnInit {
       })
     }
 
+
+    backHomePage(){
+      this.router.navigate(['/pages/EmployeeInfo-list']);
+      }
 
 }

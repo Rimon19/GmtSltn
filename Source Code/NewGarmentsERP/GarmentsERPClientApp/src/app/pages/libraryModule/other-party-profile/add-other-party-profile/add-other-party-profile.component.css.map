@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACb,SAAS,EAAE,UAAU;CACtB",
+    "sources": [
+        "add-other-party-profile.component.scss"
+    ],
+    "names": [],
+    "file": "add-other-party-profile.component.css"
+}

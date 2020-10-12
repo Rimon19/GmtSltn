@@ -7,15 +7,14 @@
 
        >
        <i class="fas fa-arrow-left"></i></button>
-       Mail Recipient Group Update form
+       Mail Recipient Group Edit
       </nb-card-header>
-     
       <nb-card-body>
-        <form #form="ngForm">
+        <form #form="ngForm" (submit)="onSubmit(form)">
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="userType" class="label">
+                <label for="userType" class="label text-dark">
                   Company Name <span class="text-danger">*</span></label
                 >
                 <select
@@ -26,13 +25,13 @@
                     mailRecipientGroupService.mailRecipientGroup.companyName
                   "
                   id="companyName"
-                  class="form-control text-responsive"
+                  class="form-control form-rounded form-control-sm"
                 >
                   <option value="">Select Company Name</option>
                   <option
-                    *ngFor="let btnAction of companyname"
-                    value="{{ btnAction.val }}"
-                    >{{ btnAction.btn }}</option
+                    *ngFor="let btnAction of dropdownValueService.companyList"
+                    value="{{ btnAction.compID }}"
+                    >{{ btnAction.company_Name }}</option
                   >
                 </select>
                 <div
@@ -49,7 +48,7 @@
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="mailItem" class="label">
+                <label for="mailItem" class="label text-dark">
                   Mail Item<span class="text-danger">*</span>
                 </label>
                 <select
@@ -60,7 +59,7 @@
                     mailRecipientGroupService.mailRecipientGroup.mailItem
                   "
                   id="mailItem"
-                  class="form-control text-responsive"
+                  class="form-control form-rounded form-control-sm"
                 >
                   <option value="">Select Mail Item Name</option>
                   <option
@@ -83,7 +82,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="youHaveSelected" class="label">
+                <label for="youHaveSelected" class="label text-dark">
                   You Have Selected<span class="text-danger">*</span></label
                 >
                 <input
@@ -93,7 +92,7 @@
                   [(ngModel)]="
                     mailRecipientGroupService.mailRecipientGroup.youHaveSelected
                   "
-                  class="form-control"
+                  class="form-control form-rounded form-control-sm"
                   type="text"
                   id="youHaveSelected"
                   placeholder="You Have Selected"
@@ -112,7 +111,7 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="status" class="label">
+                <label for="status" class="label text-dark">
                   Status <span class="text-danger">*</span></label
                 >
                 <select
@@ -123,7 +122,7 @@
                     mailRecipientGroupService.mailRecipientGroup.status
                   "
                   id="status"
-                  class="form-control text-responsive"
+                  class="form-control form-rounded form-control-sm"
                 >
                   <option value="">Select Status</option>
                   <option
@@ -145,9 +144,8 @@
             </div>
           </div>
 
-          <button type="submit" (click)="update(mailRecipientGroupService.mailRecipientGroup)" 
-          [disabled]="form.invalid" nbButton>
-            Update
+          <button type="submit" [disabled]="form.invalid" nbButton>
+            Submit
           </button>
         </form>
       </nb-card-body>

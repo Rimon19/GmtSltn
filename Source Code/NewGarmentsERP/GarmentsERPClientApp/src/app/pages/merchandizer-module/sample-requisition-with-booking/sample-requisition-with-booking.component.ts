@@ -76,8 +76,7 @@ this.dropdownValueService.getProductDept();
 this.dropdownValueService.getDealingMerchant();
 this.dropdownValueService.getAgents();
 this.dropdownValueService.getYesNo();
-
-this.refresList();
+this.dropdownValueService.getBuyers();
 }
 
 applyFilter(filterValue: string) {
@@ -116,6 +115,7 @@ refresList(){
       console.log(element);
         if(element.companyNameId!=0){
         let company_Name=this.dropdownValueService.companyList
+        .find(f=>f.compID==element.companyNameId) && this.dropdownValueService.companyList
         .find(f=>f.compID==element.companyNameId).company_Name;
             element.companyNameId=company_Name;
         }else{
@@ -125,6 +125,7 @@ refresList(){
       
         if(element.locationId!=0){
         let location_Name=this.dropdownValueService.locationList
+        .find(f=>f.locationId==element.locationId) && this.dropdownValueService.locationList
         .find(f=>f.locationId==element.locationId).location_Name;
             element.locationId=location_Name;
         }else{
@@ -134,6 +135,7 @@ refresList(){
       
         if(element.buyerNameId!=0){
         let contactName=this.dropdownValueService.buyerList
+        .find(f=>f.id==element.buyerNameId) && this.dropdownValueService.buyerList
         .find(f=>f.id==element.buyerNameId).contactName;
             element.buyerNameId=contactName;
         }else{
@@ -152,6 +154,7 @@ refresList(){
       
         if(element.dealingMerchantId!=0){
         let userId=this.dropdownValueService.dealiningMarchandList
+        .find(f=>f.id==element.dealingMerchantId) && this.dropdownValueService.dealiningMarchandList
         .find(f=>f.id==element.dealingMerchantId).userId;
             element.dealingMerchantId=userId;
         }else{
@@ -161,6 +164,7 @@ refresList(){
       
         if(element.agentNameId!=0){
         let agent_Name=this.dropdownValueService.agentList
+        .find(f=>f.agentID==element.agentNameId) && this.dropdownValueService.agentList
         .find(f=>f.agentID==element.agentNameId).agent_Name;
             element.agentNameId=agent_Name;
         }else{

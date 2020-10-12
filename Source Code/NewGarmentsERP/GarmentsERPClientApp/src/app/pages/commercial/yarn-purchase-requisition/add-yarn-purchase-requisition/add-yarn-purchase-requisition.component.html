@@ -1,0 +1,355 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>
+      <button (click)="backTo()"
+      class="btn btn-outline-success ">
+     <i class="fas fa-arrow-left"></i></button>
+      Yarn Purchase Requisition Entry</nb-card-header>
+      <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit()">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="RequisitionNo" class="label text-dark">
+                Requisition No<span class="text-danger">*</span></label
+                >
+                <input
+                  required
+                  name="requisitionNo"
+                  #RequisitionNo="ngModel"
+                  [(ngModel)]="
+                  yarnPurchaseRequisitionService.yarnPurchaseRequisition.requisitionNo
+                  "
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="RequisitionNo"
+                  placeholder="Requisition No"
+                />
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                  yarnPurchaseRequisitionService.yarnPurchaseRequisition.requisitionNo ==
+                      '' && RequisitionNo.touched
+                  "
+                >
+                Requisition No is required
+                </div>
+              </div>
+            </div>
+               <div class="col-sm-3">
+               <div class="form-group">
+                 <label for="ItemCategoryId" class="label text-dark">
+                 Item Category
+                 <span class="text-danger">*</span> </label>
+                 <select
+                   name="itemCategoryId"
+                   required
+                   #ItemCategoryId="ngModel"
+                   [(ngModel)]="
+                   yarnPurchaseRequisitionService.yarnPurchaseRequisition.itemCategoryId
+                   "
+                   id="ItemCategoryId"
+                   class="form-control form-rounded form-control-sm"
+                 >
+                 <option value="">Select Item Category</option>
+                 <option
+                   *ngFor="let item of dropdownValueService.itemCategoryList"
+                   value="{{item.id}}"
+                   >{{ item.itemCategoryName}}</option
+                 >
+                 </select>
+                 <div
+                   class="text-left text-danger text-responsive"
+                   *ngIf="
+                   yarnPurchaseRequisitionService.yarnPurchaseRequisition.itemCategoryId== '' && ItemCategoryId.touched
+                   "
+                 >
+                 Item Category is required
+                 </div>
+               </div>
+             </div>
+                <div class="col-sm-3">
+               <div class="form-group">
+                 <label for="RequiredDate" class="label text-dark">
+                   Required Date<span class="text-danger">*</span>
+                 </label>
+                 <input readonly
+                   name="requiredDate"
+                   required
+                   #requiredDate="ngModel"
+                   [(ngModel)]="
+                     yarnPurchaseRequisitionService.yarnPurchaseRequisition.requiredDate
+                   "          
+                   type="text"
+                   class="form-control form-rounded form-control-sm"
+                   id="RequiredDate"
+                   [nbDatepicker]="RequiredDate"
+                   placeholder="Required Date"
+                 />
+                 <div
+                   class="text-left text-danger text-responsive"
+                   *ngIf="
+                   yarnPurchaseRequisitionService.yarnPurchaseRequisition.requiredDate ==
+                       '' &&requiredDate.touched
+                   "
+                 >
+                 Required Date is required
+                 </div>
+                 <nb-datepicker #RequiredDate></nb-datepicker>
+               </div>
+             </div>
+               <div class="col-sm-3">
+               <div class="form-group">
+                 <label for="PayMode" class="label text-dark">
+                 Pay Mode
+                 </label>
+                 <select
+                   name="payMode"
+                 
+                   #PayMode="ngModel"
+                   [(ngModel)]="
+                   yarnPurchaseRequisitionService.yarnPurchaseRequisition.payMode
+                   "
+                   id="PayMode"
+                   class="form-control form-rounded form-control-sm"
+                 >
+                 <option value="">Select Pay Mode</option>
+                 <option
+                   *ngFor="let item of dropdownValueService.payModeList"
+                   value="{{item.value}}"
+                   >{{ item.value}}</option
+                 >
+                 </select>
+                 
+               </div>
+             </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="RequisitionDate" class="label text-dark">
+                  Requisition Date<span class="text-danger">*</span>
+                </label>
+                <input readonly
+                  name="requisitionDate"
+                  required
+                  #requisitionDate="ngModel"
+                  [(ngModel)]="
+                    yarnPurchaseRequisitionService.yarnPurchaseRequisition.requisitionDate
+                  "          
+                  type="text"
+                  class="form-control form-rounded form-control-sm"
+                  id="RequisitionDate"
+                  [nbDatepicker]="RequisitionDate"
+                  placeholder="Requisition Date"
+                />
+                <div
+                  class="text-left text-danger text-responsive"
+                  *ngIf="
+                  yarnPurchaseRequisitionService.yarnPurchaseRequisition.requisitionDate ==
+                      '' &&requisitionDate.touched
+                  "
+                >
+                Requisition Date is required
+                </div>
+                <nb-datepicker #RequisitionDate></nb-datepicker>
+              </div>
+            </div>
+              <div class="col-sm-3">
+              <div class="form-group">
+                <label for="CurrencyId" class="label text-dark">
+                Currency
+                </label>
+                <select
+                  name="currencyId"
+                
+                  #CurrencyId="ngModel"
+                  [(ngModel)]="
+                  yarnPurchaseRequisitionService.yarnPurchaseRequisition.currencyId
+                  "
+                  id="CurrencyId"
+                  class="form-control form-rounded form-control-sm"
+                >
+                <option value="">Select Currency</option>
+                <option
+                  *ngFor="let item of dropdownValueService.currencyList"
+                  value="{{item.id}}"
+                  >{{ item.discountMethodName}}</option
+                >
+                </select>
+                
+              </div>
+            </div>
+              
+              <div class="col-sm-3">
+              <div class="form-group">
+                <label for="Source" class="label text-dark">
+                Source
+                </label>
+                <select
+                  name="source"
+                
+                  #Source="ngModel"
+                  [(ngModel)]="
+                  yarnPurchaseRequisitionService.yarnPurchaseRequisition.source
+                  "
+                  id="Source"
+                  class="form-control form-rounded form-control-sm"
+                >
+                <option value="">Select Source</option>
+                <option
+                  *ngFor="let item of dropdownValueService.sourceList"
+                  value="{{item.value}}"
+                  >{{ item.value}}</option
+                >
+                </select>
+                
+              </div>
+            </div>
+               <div class="col-sm-3">
+          <div class="form-group">
+           <label for="DoNo" class="label text-dark">
+             D/O No</label
+           >
+           <input
+             name="doNo"    
+             [(ngModel)]="
+             yarnPurchaseRequisitionService.yarnPurchaseRequisition.doNo
+             "
+             class="form-control form-rounded form-control-sm"
+             type="text"
+             id="DoNo"
+             placeholder=" D/O No"
+           />
+          </div>
+          </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+               <label for="Attention" class="label text-dark">
+                 Attention</label
+               >
+               <input
+                 name="attention"    
+                 [(ngModel)]="
+                 yarnPurchaseRequisitionService.yarnPurchaseRequisition.attention
+                 "
+                 class="form-control form-rounded form-control-sm"
+                 type="text"
+                 id="Attention"
+                 placeholder=" Attention"
+               />
+              </div>
+              </div>
+                 <div class="col-sm-3">
+              <div class="form-group">
+               <label for="DealingMerchant" class="label text-dark">
+                 Dealing Merchant</label
+               >
+               <input
+                 name="dealingMerchant"    
+                 [(ngModel)]="
+                 yarnPurchaseRequisitionService.yarnPurchaseRequisition.dealingMerchant
+                 "
+                 class="form-control form-rounded form-control-sm"
+                 type="text"
+                 id="DealingMerchant"
+                 placeholder=" Dealing Merchant"
+               />
+              </div>
+              </div>
+                
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="PiBasis" class="label text-dark">
+                    Basis
+                    </label>
+                    <select
+                      name="piBasis"
+                    
+                      #PiBasis="ngModel"
+                      [(ngModel)]="
+                      yarnPurchaseRequisitionService.yarnPurchaseRequisition.piBasis
+                      "
+                      id="PiBasis"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Basis</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.piBasisList"
+                      value="{{item.value}}"
+                      >{{ item.value}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div>
+                  
+                  <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="ReadytoApprove" class="label text-dark">
+                    Ready to Approve
+                    </label>
+                    <select
+                      name="readytoApprove"
+                    
+                      #ReadytoApprove="ngModel"
+                      [(ngModel)]="
+                      yarnPurchaseRequisitionService.yarnPurchaseRequisition.readytoApprove
+                      "
+                      id="ReadytoApprove"
+                      class="form-control form-rounded form-control-sm"
+                    >
+                    <option value="">Select Ready to Approve</option>
+                    <option
+                      *ngFor="let item of dropdownValueService.yesNoList"
+                      value="{{item.value}}"
+                      >{{ item.value}}</option
+                    >
+                    </select>
+                    
+                  </div>
+                </div>
+          </div>
+    
+
+   <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+       <label for="Remarks" class="label text-dark">
+         Remarks</label
+       >
+       <textarea
+         name="remarks"    
+         [(ngModel)]="
+         yarnPurchaseRequisitionService.yarnPurchaseRequisition.remarks
+         "
+         class="form-control form-rounded form-control-sm"
+         type="text"
+         id="Remarks"
+         placeholder=" Remarks"
+         rows="2"
+       ></textarea>
+      </div>
+      </div>
+   </div>
+  
+  
+          <button
+            type="submit"
+            nbButton
+            [disabled]="
+              form.invalid
+            "
+          >
+            Submit
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

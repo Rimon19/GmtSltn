@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,kBAAkB,CAAC;EACf,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,SAAS,EAAE,KAAK;CAEjB;;AAID,AAAA,eAAe,CAAC;EAChB,SAAS,EAAE,IAAI;EACb,KAAK,EAAE,GAAG;CACX;;AACD,AAAA,gBAAgB,CAAA;EAChB,SAAS,EAAC,IAAI;EACd,KAAK,EAAE,IAAI;EACX,KAAK,EAAE,IAAI;CACV",
+    "sources": [
+        "sewing-line.component.scss"
+    ],
+    "names": [],
+    "file": "sewing-line.component.css"
+}

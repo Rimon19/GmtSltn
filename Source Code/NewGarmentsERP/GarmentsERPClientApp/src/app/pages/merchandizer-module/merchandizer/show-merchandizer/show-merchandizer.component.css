@@ -1,0 +1,31 @@
+/* Structure */
+.example-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 18px;
+  width: 100%;
+}
+
+.mat-header-cell {
+  font-size: 20px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 750px;
+}
+/*# sourceMappingURL=show-merchandizer.component.css.map */

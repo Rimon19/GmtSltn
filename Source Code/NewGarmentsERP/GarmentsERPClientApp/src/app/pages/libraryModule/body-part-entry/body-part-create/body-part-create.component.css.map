@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "body-part-create.component.scss"
+    ],
+    "names": [],
+    "file": "body-part-create.component.css"
+}

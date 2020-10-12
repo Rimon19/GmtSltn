@@ -428,7 +428,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Purchase Order',
          children:[
           { title: 'Yarn Purchase Requisition',
-          link: '/pages/commercial/yarn-purchase-requisition',
+          link: '/pages/commercial/YarnPurchaseRequisition',
          },
          { title: 'Yarn Purchase Order',
           link: '/pages/demo',
@@ -486,8 +486,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Import',
          children:[
           { title: 'Pro Forma Invoice V2',
-          link: '/pages/demo',
-         },
+          link: '/pages/commercial/PiDetails',
+          },
          { title: 'BTB/Margin LC',
           link: '/pages/demo',
          },

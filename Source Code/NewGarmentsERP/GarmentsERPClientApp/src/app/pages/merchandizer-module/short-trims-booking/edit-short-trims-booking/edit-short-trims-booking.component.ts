@@ -116,7 +116,7 @@ export class EditShortTrimsBookingComponent implements OnInit {
       });
     }
     supplierProfileDDL(){
-      this.supplierProfileService.getAll().subscribe(data=>{
+      this.supplierProfileService.getAllSupplier().subscribe(data=>{
         this.supplierProfileList=data;     
       })
     }

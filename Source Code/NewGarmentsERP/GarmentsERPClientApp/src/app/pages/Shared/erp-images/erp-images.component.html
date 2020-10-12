@@ -1,40 +1,27 @@
-<div class="row">
-  <div class="col-lg-12">
-    <nb-card>
-      <nb-card-header>Upload Image</nb-card-header>
-      <button class="float-right ml-5"  mat-button (click)="onClose()">
+<!-- <div class="row">
+
+
+    <div class="col-lg-12">
+        <nb-card>
+            <nb-card-header>Upload Image</nb-card-header>
+            <button class="float-right ml-5" mat-button (click)="onClose()">
         <mat-icon>close</mat-icon>
       </button>
-      <nb-card-body>
-        <form #form="ngForm">
-          <div class="row">
-            <div class="col-sm-3">
-              <img title=""
-              [src]="output_image"
-              hieght="100"
-              width="100"
-            />
-            </div>
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label for="colorName" class="label">
+            <nb-card-body>
+                <form #form="ngForm">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img title="" [src]="output_image" hieght="100" width="100" />
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="colorName" class="label">
                   Select Image <span class="text-danger">*</span></label>
-                  <input
-                  type="file"
-                  class="custom-file-input"
-                  id="image"
-                  aria-describedby="image"
-                  accept="image/*"
-                  (change)="detectFiles($event)"
-                />
-                <label class="custom-file-label" for="image"
-                  >Choose file</label
+                                <input type="file" class="custom-file-input" id="image" aria-describedby="image" accept="image/*" (change)="detectFiles($event)" />
+                                <label class="custom-file-label" for="image">Choose file</label
                 >
                
-                <!-- <div class="text-left text-danger"
-                *ngIf="colourEntryService.colourEntry.colorName==''&&ColorName.touched">
-                Color Name  is required
-              </div> -->
+              
               </div>
               
             </div>
@@ -46,23 +33,7 @@
               
             </div>
            
-            <!-- <div class="col-sm-3">
-              <div class="form-group">
-                <label for="ContactNumber" class="label">
-                  Status</label>
-                  <select   name="status" #Status="ngModel"
-                  [(ngModel)]="colourEntryService.colourEntry.status"
-                   id="Status" 
-                   class="form-control text-responsive" >
-                  <option value=''>Select Status</option>
-                  <option  *ngFor="let btnAction of Active_Inactive" 
-                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
-                  
-              </select>
-               
-              </div>
-              
-            </div> -->
+          
            
             
           </div>
@@ -77,4 +48,97 @@
       </nb-card-body>
     </nb-card>
   </div>
-</div>
+</div>   -->
+<nb-card>
+    <nb-card-header>Upload Image
+        <button class="float-right ml-5" mat-button (click)="onClose()">
+<mat-icon>close</mat-icon>
+</button>
+    </nb-card-header>
+    <nb-card-body>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+            <div class="row mb-5">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-6">
+                    <img title="" [src]="output_image" hieght="100" width="100" />
+                </div>
+                <div class="col-sm-3">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span
+                    >
+                  </div>
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      id="inputGroupFile01"
+                      aria-describedby="inputGroupFileAddon01"
+                      accept="image/*"
+                      (change)="detectFiles($event)"
+                    />
+                    <label class="custom-file-label" for="inputGroupFile01"
+                      >Choose file</label
+                    >
+                  </div>
+                </div>
+              </div>
+                     </div>
+            <div class="col-sm-3">
+
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+                           
+            </div>
+            <div class="col-sm-6">
+            
+            </div>
+            <div class="col-sm-3">
+                           
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              
+                
+                <div
+                class="form-group float-right"
+                *ngFor="let img of imageCollections; let i = index"
+              >
+              
+                 <img
+                    src="http://localhost:4186/{{ img.imagePath }}"
+                    height="100px"
+                    width="100px"
+                  />
+                 
+                
+                <button mat-icon-button (click)="onDelete(img.id, i)"><i class="far fa-trash-alt fa-lg text-danger"></i></button>
+             
+              </div>
+              
+            </div>
+          </div>
+          <button type="submit" nbButton>Submit</button>
+        </form>
+      </nb-card-body>
+    
+  
+
+</nb-card>

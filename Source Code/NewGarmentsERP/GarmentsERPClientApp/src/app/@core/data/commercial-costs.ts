@@ -1,7 +1,7 @@
 export class CommercialCosts {
     id:number;
     item:string;
-    poNo:number;
+    precostingId:number;
     rateIn:number;
     amount:number;
     status:string;

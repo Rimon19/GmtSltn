@@ -1,19 +1,26 @@
 <div class="row">
   <div class="col-lg-12">
     <nb-card>
-      <nb-card-header>Fast React Intgration</nb-card-header>
+      <nb-card-header>
+        <button (click)="backHomePage()"
+        class="btn btn-outline-success "
+
+       >
+       <i class="fas fa-arrow-left"></i></button>
+       Fast React Intgration Entry
+      </nb-card-header>
       <nb-card-body>
         <form #form="ngForm" (submit)="onSubmit(form)">
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="exportPOReceivedfrom" class="label">
+                <label for="exportPOReceivedfrom" class="label text-dark">
                   exportPOReceivedfrom </label>
 
                   <input   name="exportPOReceivedfrom" #ExportPOReceivedfrom="ngModel"
                 [(ngModel)]="fastReactIntgrationService.fastReactIntgration.exportPOReceivedfrom"  
                  id="exportPOReceivedfrom" 
-                class="form-control" type="text" [nbDatepicker]="exportPOReceivedfrom"
+                class="form-control form-rounded form-control-sm" type="text" [nbDatepicker]="exportPOReceivedfrom"
                 id="exportPOReceivedfrom" placeholder="Export PO Received From">
                 <nb-datepicker #exportPOReceivedfrom></nb-datepicker>
               </div>
@@ -22,15 +29,15 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="exportModule" class="label">
+                <label for="exportModule" class="label text-dark">
                   Export Module<span class="text-danger">*</span> </label>
                   <select  name="exportModule" #exportModule="ngModel"
                   [(ngModel)]="fastReactIntgrationService.fastReactIntgration.exportModule"  
                    id="exportModule" 
-                  class="form-control text-responsive" >
+                class="form-control form-rounded form-control-sm" >
                   <option value=''>Select Export Module</option>
-                  <option  *ngFor="let btnAction of exportmodule" 
-                  value="{{btnAction.val}}">{{btnAction.btn}}</option>        
+                  <option  *ngFor="let btnAction of dropdownValueService.moduleList" 
+                  value="{{btnAction.moduleId}}">{{btnAction.moduleName}}</option>        
              </select>
            
               

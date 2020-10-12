@@ -63,7 +63,7 @@ export class StaticFeaturesService {
     return this.http.get<any[]>(BaseURL.apiUrl+'/BloodGroups')
   }
   getAllEmployeeCategories(){
-    return this.http.get<any[]>(BaseURL.apiUrl+'/EmployeeCategories')
+    return this.http.get<any[]>(BaseURL.apiUrl+'/EmpCategories')
   }
   getAllDesignationLebels(){
     return this.http.get<any[]>(BaseURL.apiUrl+'/DesignationLebels')
@@ -744,6 +744,47 @@ getEmpAdditionalDesignations(){
       {value:'Rubber'}
     ]
     return bookingType;
+  }
+
+  
+  getOfferingCostTypeInfoes(){
+    return this.http.get<any[]>(BaseURL.apiUrl+'/OfferingCostTypeInfoes');
+  }
+
+  //for commercial
+
+  getPIBasis(){
+    let PIBasis=[
+      {value:'Work Order Based'},
+      {value:'Independent'},
+      {value:'Sales Order'},
+      {value:'Purchase Contract'},
+      {value:'Booking'},
+      {value:'Job'},
+      {value:'Lot Ratio'},
+      {value:'Sample'},
+      {value:'Demand'},
+      {value:'Service Booking'},
+      {value:'Sample Booking'}
+   
+      
+    ];
+    return PIBasis;
+  }
+
+  getGoodsRcvStatus(){
+    let goodsRcvStatus=[
+      {value:'After Goods Receive'},
+      {value:'Before Goods Receive'}
+    ];
+    return goodsRcvStatus;
+  }
+  getIndentor(){
+    let indentor=[
+      {value:'Indentor Name'}
+   
+    ];
+    return indentor;
   }
 }
 

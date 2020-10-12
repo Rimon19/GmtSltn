@@ -7,22 +7,22 @@
 
        >
        <i class="fas fa-arrow-left"></i></button>
-       Currency Conversion Rate Update form
+       Currency Conversion Rate Edit
       </nb-card-header>
       <nb-card-body>
-        <form #form="ngForm">
+        <form #form="ngForm" (submit)="onSubmit(form)">
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="currency" class="label">
+                <label for="currency" class="label text-dark">
                   Currency <span class="text-danger">*</span></label>
                   <select    name="currency" #Currency="ngModel"
                   [(ngModel)]="currencyConversionRateService.currencyConversionRate.currency"
                    id="currency"  
-                  class="form-control text-responsive" >
+                  class="form-control form-rounded form-control-sm">
                   <option value=''>Select Currency</option>
-                  <option  *ngFor="let btnAction of currency" 
-                  value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                  <option  *ngFor="let btnAction of dropdownValueService.currencyList" 
+                  value="{{btnAction.id}}">{{btnAction.discountMethodName}}</option>
                  
              </select>
              <div class="text-left text-danger"
@@ -35,12 +35,12 @@
            
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="conversionRate" class="label">
+                <label for="conversionRate" class="label text-dark">
                   Conversion Rate<span class="text-danger">*</span> </label>
                 <input  name="conversionRate" #ConversionRate="ngModel"
                 [(ngModel)]="currencyConversionRateService.currencyConversionRate.conversionRate"
                  id="conversionRate"  
-                class="form-control" type="text" 
+               class="form-control form-rounded form-control-sm" type="number" 
              placeholder="Conversion Rate ">
               
              <div class="text-left text-danger"
@@ -53,11 +53,11 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="marketingRate" class="label">
+                <label for="marketingRate" class="label text-dark">
                   Marketing Rate<span class="text-danger">*</span></label>
                 <input   name="marketingRate" #MarketingRate="ngModel"
                 [(ngModel)]="currencyConversionRateService.currencyConversionRate.marketingRate"
-                class="form-control" type="text" 
+               class="form-control form-rounded form-control-sm"type="number" 
                 id="marketingRate" placeholder="Marketing Rate">
                
                 <div class="text-left text-danger"
@@ -70,12 +70,12 @@
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="date" class="label">
+                <label for="date" class="label text-dark">
                   Date<span class="text-danger">*</span></label>
                   <input   name="date" #Date="ngModel"
                   [(ngModel)]="currencyConversionRateService.currencyConversionRate.date"
                    id="date"  [nbDatepicker]="Date"
-                class="form-control" type="text" 
+               class="form-control form-rounded form-control-sm"type="text" 
                  placeholder="Date">
                  <nb-datepicker #Date></nb-datepicker>
                 <div class="text-left text-danger"
@@ -89,11 +89,10 @@
             
           </div>
          
-          <button type="submit"  (click)="update(currencyConversionRateService.currencyConversionRate)"
-           [disabled]="form.invalid 
+          <button type="submit" [disabled]="form.invalid
           ||currencyConversionRateService.currencyConversionRate.marketingRate==0 
           ||currencyConversionRateService.currencyConversionRate.conversionRate==0"
-            nbButton>Update</button>
+            nbButton>Submit</button>
         </form>
       </nb-card-body>
     </nb-card>

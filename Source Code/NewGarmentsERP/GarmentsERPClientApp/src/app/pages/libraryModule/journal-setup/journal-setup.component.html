@@ -1,8 +1,6 @@
 <nb-card>
   <div class="col-md-12" style = "overflow-x: scroll;">
-      <div class="smart-table-container" style = "width:1200px;">
-  
-        <div class="example-container mat-elevation-z8">
+      
           <div class="example-header">
             <h5>Journal Setup List</h5>
             <mat-form-field>
@@ -31,27 +29,27 @@
               <!-- Fav Column -->
               <ng-container matColumnDef="journalTypeId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header  class="text-dark">journal Type </mat-header-cell>
-                <mat-header-cell *matCellDef="let element" >{{element.journalTypeId}}</mat-header-cell> 
+                <mat-cell *matCellDef="let element" >{{element.journalTypeId}}</mat-cell> 
                
               </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="preFix">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Pre Fix</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.preFix}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.preFix}}</mat-cell>  
             
           
           </ng-container>
 
           <ng-container matColumnDef="startingNumber">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Starting Number</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.startingNumber}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.startingNumber}}</mat-cell>  
             
           
           </ng-container>
 
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="text-dark">Status</mat-header-cell>
-            <mat-header-cell *matCellDef="let element" >{{element.status}}</mat-header-cell>  
+            <mat-cell *matCellDef="let element" >{{element.status}}</mat-cell>  
             
           
           </ng-container>
@@ -62,9 +60,7 @@
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
        
-        </div>
   
-      </div>
     </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </nb-card>

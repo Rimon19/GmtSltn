@@ -10,7 +10,7 @@ import { HTTPService } from '../../shared/http.service';
 })
 export class OfferingCostBuyerInformationService extends HTTPService
    { 
-    BuyerInformation:FormArray = this.fb.array([]);
+   
    constructor(
     httpClient: HttpClient,
     toastr: NbToastrService,
@@ -24,7 +24,7 @@ export class OfferingCostBuyerInformationService extends HTTPService
     );
   
   }
-    OfferingCostBuyerInformation=this.fb.group
+    offeringCostBuyerInfoForm=this.fb.group
       ({
     id:[0],
     orderAutoId:[0], 

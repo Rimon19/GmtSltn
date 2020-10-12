@@ -173,7 +173,7 @@ this.dropdownValueService.getSuppliers();
       }
       if(element.id==0){
         console.log(element.id);
-        this.requiredFabricService.add(element).subscribe(data=>{
+        this.requiredFabricService.add(element).subscribe(data=>{ 
         
         });
       }

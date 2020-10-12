@@ -109,7 +109,7 @@
 
 
 <div class="row">
-  <div class="col-sm-5">
+  <div class="col-sm-4">
     <nb-card >
       <div class="row">
         <div class="col-sm-8">
@@ -143,7 +143,7 @@
       </div> 
     
       <div class="row" >
-        <div class="col-sm-3">
+        <div class="col-sm-6">
           <div class="form-group" >
             <div style="margin-left:14px;" class="form-group">
               <strong>Cost Components</strong>         
@@ -151,7 +151,7 @@
          
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="form-group">
             <strong><label for="">Budgeted Cost</label></strong>
          
@@ -169,18 +169,18 @@
       <form [formGroup]="fg"  *ngFor="let fg of costComponentForm.controls; let i=index;" >
        
         <div class="row"  >
-          <div class="col-sm-4">
+          <div class="col-sm-5">
             <div style="margin-left:14px;" class="form-group" >
-              <input  name="costComponent"
-              type="text" class="form-control form-rounded form-control-sm" readonly  fullWidth id="costComponent" formControlName="costComponentName" >       
+              <input 
+              type="text" class="form-control form-rounded form-control-sm" readonly  fullWidth  formControlName="costComponentName" >       
             </div>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <div class="form-group">
            
-              <input  name="fabNature"
+              <input 
               type="text" class="form-control form-rounded form-control-sm"
-                fullWidth id="fabricNature"
+                fullWidth
                  formControlName="budgetedCost"
                  (dblclick)="addCostMultipleRow(i)" >
            
@@ -190,8 +190,8 @@
          
           <div class="col-sm-3">
             <div class="form-group">
-              <input  name="QPrice"
-              type="text" class="form-control form-rounded form-control-sm"  fullWidth id="QPrice" formControlName="qPrice" >
+              <input  
+              type="text" class="form-control form-rounded form-control-sm"  fullWidth  formControlName="qPrice" >
               
               <input type="hidden" formControlName="id" >
             </div>
@@ -223,7 +223,7 @@
     </nb-card>
     
   </div>
-  <div class="col-sm-7 ">
+  <div class="col-sm-8">
     <nb-card *ngIf="isShowFabricCost">
       <nb-card-header>
          Fabric Cost Information
@@ -544,7 +544,7 @@
                     </select>
                                   </td>
                                   <td>
-                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Rate" formControlName="rate" />
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Rate" formControlName="rate" (change)="yarnCostService.onChangeRate(yarnCostService.yarnCostInformationForm.value)"/>
                                   </td>
                                   <td>
                                       <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers (change)="totalCalculation(yarnCostService.yarnCostInformationForm)" placeholder="Amount" formControlName="amount" />
@@ -557,15 +557,17 @@
                           </tbody>
                           <tbody>
                               <tr>
-                                  <td colspan="6" class="text-right">Total</td>
+                                  <td colspan="5" class="text-right">Total</td>
+                                  
                                   <td>
-                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalConsQnty" [(ngModel)]="totalConsQnty" placeholder="Total Cons. Qnty." />
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalConsQnty" [(ngModel)]="yarnCostService.totalConsQnty" placeholder="Total Cons. Qnty." />
                                   </td>
                                   <td></td>
                                   <td></td>
                                   <td colspan="">
-                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAmount" [(ngModel)]="totalAmount" placeholder="Total Amount" />
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAmount" [(ngModel)]="yarnCostService.totalAmount" placeholder="Total Amount" />
                                   </td>
+                                  
                               </tr>
                           </tbody>
                       </table>
@@ -617,15 +619,16 @@
                     </button>
                                   </td>
                                   <td>
-                                      <select class="form-control form-rounded form-control-sm" formControlName="fabricDescriptionId">
+                                      <select class="form-control form-rounded form-control-sm" formControlName="fabricDescriptionId" (change)="conversionCostForPreCostsService.onChangeFabricDescConvCost(fg.value.fabricDescriptionId)">
                       <option value="">Select Fabric Description</option>
                       <option
-                        *ngFor="let f of dropdownValueService.fabricDescriptionList"
-                        [(value)]="f.id"
+                        *ngFor="let f of conversionCostForPreCostsService.fabricDescriptionList;let i = index"
+                        [(value)]="i" 
                       >
-                        F.N-{{ f.fabNature }},Const:{{ f.construction }},comp-{{
+                     {{f.bodyPartFullName}},{{f.fabricDescription}}
+                        <!-- F.N-{{ f.fabNature }},Const:{{ f.construction }},comp-{{
                           f.composition
-                        }}
+                        }} -->
                       </option>
                     </select>
                                   </td>
@@ -644,21 +647,21 @@
   
                                   <td>
                                       <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Process Loss" formControlName="processLoss" (change)="
-                                      totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)
+                                      conversionCostForPreCostsService.totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm.value)
                       " />
                                   </td>
   
                                   <td>
-                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Req. Qty." formControlName="reqQty" (change)="totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)" />
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Req. Qty." formControlName="reqQty"  />
                                   </td>
   
                                   <td>
-                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="AVG Req." formControlName="avgReqQty" (change)="totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)" />
+                                      <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="AVG Req." formControlName="avgReqQty"  />
                                   </td>
   
                                   <td>
                                       <input class="form-control form-rounded form-control-sm" type="text" knifeOnlyNumbers placeholder="Charge/Unit" formControlName="chargeUnit" (change)="
-                                      totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm)
+                                      conversionCostForPreCostsService.totalCalculationForConversionCost(conversionCostForPreCostsService.conversionCostInformationForm.value)
                       " />
                                   </td>
   
@@ -667,7 +670,7 @@
                                   </td>
                                   <td>
                                       <select class="form-control form-rounded form-control-sm" formControlName="status">
-                      <option value="">Select Status</option>
+                      <option value="Active">Select Status</option>
                       <option
                         *ngFor="let btnAction of Active_Inactive"
                         value="{{ btnAction.val }}"
@@ -688,16 +691,16 @@
                               <tr>
                                   <td colspan="3" class="text-right">Sum</td>
                                   <td>
-                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalProcessLoss" [(ngModel)]="totalProcessLoss" placeholder="Total Process Loss" />
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalProcessLoss" [(ngModel)]="conversionCostForPreCostsService.totalProcessLoss" placeholder="Total Process Loss" />
                                   </td>
                                   <td>
-                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalReqQty" [(ngModel)]="totalReqQty" placeholder="Total Req. Qty." />
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalReqQty" [(ngModel)]="conversionCostForPreCostsService.totalReqQty" placeholder="Total Req. Qty." />
                                   </td>
                                   <td>
-                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAvgReqQty" [(ngModel)]="totalAvgReqQty" placeholder="Total Avg. Req Qty" />
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAvgReqQty" [(ngModel)]="conversionCostForPreCostsService.totalAvgReqQty" placeholder="Total Avg. Req Qty" />
                                   </td>
                                   <td colspan="">
-                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAvgChargeOrUnit" [(ngModel)]="totalAvgChargeOrUnit" placeholder="Total Avg Charge/Unit" />
+                                      <input class="form-control form-rounded form-control-sm" type="text" readonly name="totalAvgChargeOrUnit" [(ngModel)]="conversionCostForPreCostsService.totalAvgChargeOrUnit" placeholder="Total Avg Charge/Unit" />
                                   </td>
                               </tr>
                           </tbody>
@@ -851,12 +854,14 @@
                         class="form-control form-rounded form-control-sm "
                         type="text"   
                         knifeOnlyNumbers
+                       
+                        (click)="onAddTrimCost(i)"
                         (change)="trimCostsService.totalCalculation(trimCostsService.trimsCostInformationForm)"                
                         placeholder="Cons Unit Gmts "
                         formControlName="consUnitGmts"
                       />
                       </td>
-                      <td><button  class="btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAdd(i)" >Add Consumption</button></td>
+                      <!-- <td><button  class="btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAddTrimCost(i)" >Add Consumption</button></td> -->
                       <td>
                         <input
                         class="form-control form-rounded form-control-sm "
@@ -1081,12 +1086,13 @@
                         <input
                         class="form-control form-rounded form-control-sm "
                         type="text"
+                        (click)="onAddEmbelishmentCost(i)"
                         placeholder="Cons/1 Dzn Gmts"
                         formControlName="cons"
                         readonly
                       />
                       </td>
-                      <td><button  class=" btn btn-info form-control form-rounded form-control  text-responsive" (click)="onAdd(i)" >Add Consump.</button></td>
+                     
                       <td>
                         <input
                         
@@ -1264,7 +1270,7 @@
                       formControlName="status"  
                       class="form-control form-rounded form-control-sm">
                       <option value=''>Select Status  </option>
-                        <option  *ngFor="let btnAction of status" value="{{btnAction.val}}">{{btnAction.btn}}</option>   
+                        <option  *ngFor="let btnAction of Active_Inactive" value="{{btnAction.val}}">{{btnAction.btn}}</option>   
                  </select> 
                       </td>
                       
@@ -1289,6 +1295,271 @@
                     
                    /></td>
                     
+                  </tr>
+                </tbody>
+               
+             
+             
+               
+             
+           
+          </table>
+         
+        </form>
+        </div>
+      </div>
+      
+   
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card *ngIf="isShowCommercialCost">
+    <nb-card-header
+    >
+  
+    Commercial Cost
+   
+    <button
+      class="btn btn-outline-success float-right"
+      (click)="commercialCostsService.commlCostDetailsForm()"
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+   
+  </nb-card-header>
+    <nb-card-body>
+      <div class="col-md-12" style="overflow-x: scroll;">
+        <div class="smart-table-container" style="width:1000px;">
+        <form  >
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Item</th>
+                <th scope="col">Rate In %</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+    
+              </tr>
+            </thead>
+              
+                <tbody [formGroup]="fg"
+                *ngFor="let fg of commercialCostsService.commlCostInformationForm.controls;let i=index" >
+                  <tr>                
+                     <td>   
+                      <button  class="btn btn-light ml-1 "
+                       (click)="onDeleteCommercialCost(commercialCostsService.commlCostInformationForm,i)"
+                      >
+                          <i class="far fa-trash-alt fa-lg text-danger"></i>
+                          
+                      </button> 
+                     </td>
+                      <td>
+                        <select 
+                        formControlName="item"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=''>Select Item</option>
+                        <option  *ngFor="let btnAction of items" 
+                        value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                       
+                   </select>
+                       
+                      </td>
+                      <td>                     
+                        <input
+                          class="form-control form-rounded form-control-sm "
+                          type="text"
+                          knifeOnlyNumbers
+                          (change)="commercialCostsService.totalCalculation(commercialCostsService.commlCostInformationForm)"
+                          placeholder="Rate In%"
+                          formControlName="rateIn"
+                        />
+                      </td>    
+                      <td>                 
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        knifeOnlyNumbers
+                        (change)="commercialCostsService.totalCalculation(commercialCostsService.commlCostInformationForm)"
+                        placeholder="Amount"
+                        formControlName="amount"
+                       
+                      />
+                      </td>
+                      <td>
+                        <select 
+                        formControlName="status"  
+                        class="form-control form-rounded form-control-sm">
+                        <option value=''>Select Status</option>
+                        <option  *ngFor="let btnAction of Active_Inactive" 
+                        value="{{btnAction.val}}">{{btnAction.btn}}</option>
+                       
+                   </select>
+                      </td>
+                     
+                     
+                  </tr>
+                  
+                  <button *ngIf="i==commercialCostsService.count-1" 
+                   type="submit"
+                   (click)="recordSubmitcommlCost(commercialCostsService.commlCostInformationForm)"
+                   [disabled]="fg.invalid"   
+                   nbButton >Submit</button>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td colspan="2" class= "text-right ">Sum</td>
+                    <td > <input
+                     class="form-control form-rounded form-control-sm "
+                     type="text" name="totalRateIn"
+                     readonly
+                     placeholder="Total Rate In"
+                    [(ngModel)]="commercialCostsService.totalRateIn"
+                   /></td>
+                   <td > <input
+                    class="form-control form-rounded form-control-sm "
+                    type="text" name="totalAmount"
+                    readonly
+                    [(ngModel)]="commercialCostsService.totalAmount"
+                    placeholder="Total Amount"
+                   
+                  /></td>
+                  </tr>
+                </tbody>
+               
+             
+             
+               
+             
+           
+          </table>
+         
+        </form>
+        </div>
+      </div>
+      
+   
+    </nb-card-body>
+  </nb-card>
+
+
+  <nb-card *ngIf="isShowCommisionCost">
+    <nb-card-header
+    >
+    
+    Commission Cost
+   
+    <button
+      class="btn btn-outline-success float-right"
+      (click)="commissionCostService.commissionDetailsForm()"
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+   
+  </nb-card-header>
+    <nb-card-body>
+      <div class="col-md-12" style="overflow-x: scroll;">
+        <div class="smart-table-container" style="width:1000px;">
+        <form  >
+          <table class="">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Particulars</th>
+                <th scope="col">Commn. Base</th>
+                <th scope="col">Commn Rate</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+    
+              </tr>
+            </thead>
+              
+                <tbody [formGroup]="fg"
+                *ngFor="let fg of commissionCostService.commissionInformationForm.controls;let i=index" >
+                  <tr>                
+                     <td>   
+                      <button  class="btn btn-light ml-1 " (click)="onDeleteCommisionCost(commissionCostService.commissionInformationForm,i)"
+                      >
+                          <i class="far fa-trash-alt fa-lg text-danger"></i>
+                          
+                      </button> 
+                     </td>
+                      <td>
+     
+                        <select class="form-control form-rounded 
+                        form-control-sm " formControlName="particulars">
+                         <option value="">Select</option>
+                         <option value="Foreign">Foreign</option>
+                         <option value="Local">Local</option>
+                        </select>
+                      </td>
+                      <td>                     
+                       
+                        <select class="form-control form-rounded 
+                        form-control-sm " formControlName="commnBase">
+                         <option value="">Select</option>
+                         <option value="In Percentage">In Percentage</option>
+                         <option value="Per Pcs">Per Pcs</option>
+                         <option value="Per Dzn">Per Dzn</option>
+                        </select>
+                      </td>    
+                      <td>                 
+                        <input
+                        class="form-control form-rounded form-control-sm "
+                        type="text"
+                        knifeOnlyNumbers
+                        placeholder="Commn Rate"
+                        formControlName="commnRate"
+                       (change)="commissionCostService.totalCalculation(commissionCostService.commissionInformationForm)"
+                      />
+                      </td>
+                      <td>
+                          <input
+                          class="form-control form-rounded form-control-sm "
+                          type="text"            
+                          placeholder="Amount"
+                          formControlName="amount"
+                          (change)="commissionCostService.totalCalculation(commissionCostService.commissionInformationForm)"
+                          knifeOnlyNumbers
+                        />
+                      </td>
+                      <td>
+                       
+                      <select class="form-control form-rounded 
+                        form-control-sm " formControlName="status">
+                         <option value="">Select</option>
+                         <option value="Active">Active</option>
+                         <option value="In Active">InActive</option>
+                         
+                        </select>
+                      <input
+                    type="hidden"
+                      formControlName="id"
+                     
+                    />
+                    </td>
+  
+                  </tr>
+                  
+                  <button *ngIf="i==commissionCostService.count-1" type="submit" (click)="onSubmitCommisionCost(commissionCostService.commissionInformationForm)" nbButton >Submit</button>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td colspan="3" class= "text-right ">Sum</td>
+                    <td > <input
+                     class="form-control form-rounded form-control-sm "
+                     type="text"
+                     placeholder="Total"
+                    name="commnBaseRate"
+                    [(ngModel)]="commissionCostService.TotalCommnRate"
+                   /></td>
+                   <td > <input
+                    class="form-control form-rounded form-control-sm "
+                    type="text"
+                    placeholder="Total"
+                   name="amount"
+                   [(ngModel)]="commissionCostService.TotalAmmount"
+                  /></td>
                   </tr>
                 </tbody>
                
